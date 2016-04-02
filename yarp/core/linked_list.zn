@@ -1,0 +1,84 @@
+library LinkedList requires Alloc {
+	//! textmacro LinkedList takes TYPE, VAR_NAME
+		module Alloc;
+
+		public thistype next;
+		public thistype prev;
+		public $TYPE$ $VAR_NAME$;
+
+		public static method create($TYPE$ initial) -> thistype {
+			thistype this = allocate();
+			next = 0;
+			prev = 0;
+			$VAR_NAME$ = initial;
+
+			static if (thistype.postCreate.exists) {
+				postCreate();
+			}
+
+			return this;
+		}
+
+		public method destroy() {
+			if (next != 0)
+				next.prev = 0;
+
+			if (prev != 0)
+				prev.next = 0;
+
+			static if (thistype.postDestroy.exists) {
+				postDestroy();
+			}
+
+			deallocate();
+		}
+
+		public method unlink() {
+			if (next != 0)
+				next.prev = prev;
+			
+			if (prev != 0)
+				prev.next = next;
+
+			next = 0;
+			prev = 0;
+		}
+
+		// inserts the passed node after this one
+		public method insert(thistype node) -> thistype {
+			if (next != 0) {
+				next.prev = node;
+				node.next = next;
+			}
+
+			node.prev = this;
+			next = node;
+
+			return node;
+		}
+
+		// this function assumes the arguments are the beginning
+		// and end of another list
+		public method insertChain(thistype begin, thistype end) {
+			if (next != 0)
+				next.prev = end;
+
+			begin.prev = this;
+			next = begin;
+		}
+
+		public method getBegin() -> thistype {
+			while (this.prev != 0)
+				this = this.prev;
+
+			return this;
+		}
+
+		public method getEnd() -> thistype {
+			while (this.next != 0)
+				this = this.next;
+
+			return this;
+		}
+	//! endtextmacro
+}

@@ -1,0 +1,606 @@
+library Commands requires Util, CommandParser, Selection, Logs {
+	type CommandCallback extends function(CommandThread);
+
+	public constant integer ERR_NONE = 0;
+
+	public constant integer ERR_ALIAS_ZERO_LENGTH = 1;
+	public constant integer ERR_ALIAS_CONFLICT_COMMAND = 2;
+	public constant integer ERR_ALIAS_CONFLICT_ALIAS = 3;
+	public constant integer ERR_ALIAS_CONFLICT_MACRO = 3;
+
+	public constant integer ERR_MACRO_ZERO_LENGTH = 1;
+	public constant integer ERR_MACRO_LIMIT_EXHAUSTED = 2;
+	public constant integer ERR_MACRO_CONFLICT_COMMAND = 3;
+	public constant integer ERR_MACRO_CONFLICT_ALIAS = 4;
+	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
+
+	public struct Alias[] {
+		private static TableArray aliases;
+
+		static integer count;
+		static string all[];
+
+		static method save(integer who, string alias, string expansion) {
+			debug Assert(who < 12 && who >= 0,                   "Alias.save", "Invalid player ID.");
+			debug Assert(Alias.getAvailability(who, alias) == 0, "Alias.save", "This alias is unavailable.");
+
+			all[count] = alias;
+			count = count + 1;
+
+			aliases[who].string[SHC(alias)] = expansion;
+		}
+
+		static method remove(integer who, string alias) {
+			debug Assert(who < 12 && who >= 0, "Alias.remove", "Invalid player ID.");
+			debug Assert(Alias.exists(who, alias),  "Alias.remove", "Alias does not exist.");
+
+			aliases[who].string.remove(SHC(alias));
+		}
+
+		static method get(integer who, string alias) -> string {
+			debug Assert(who < 12 && who >= 0, "Alias.get", "Invalid player ID.");
+			debug Assert(Alias.exists(who, alias),  "Alias.get", "Alias does not exist.");
+			
+			return aliases[who].string[SHC(alias)];
+		}
+
+		static method exists(integer who, string alias) -> boolean {
+			debug Assert(who < 12 && who >= 0, "Alias.exists", "Invalid player ID.");
+
+			return aliases[who].string.has(SHC(alias));
+		}
+
+		static method getAvailability(integer who, string alias) -> integer {
+			debug Assert(who < 12 && who >= 0, "Alias.getAvailability", "Invalid player ID.");
+
+			if (SL(alias) == 0)
+				return ERR_ALIAS_ZERO_LENGTH;
+
+			if (Command.exists(alias))
+				return ERR_ALIAS_CONFLICT_COMMAND;
+
+			if (Macro.expandable(who, alias))
+				return ERR_ALIAS_CONFLICT_MACRO;
+
+			if (Alias.exists(who, alias))
+				return ERR_ALIAS_CONFLICT_ALIAS;
+
+			return ERR_NONE;
+		}
+
+		private static method onInit() {
+			aliases = TableArray[12];
+			count = 0;
+		}
+	}
+
+	public struct Macro[] {
+		private static string macros[12][64];
+		private static string expansions[12][64];
+		private static integer counts[];
+
+		static method save(integer who, string macro, string expansion) {
+			integer i;
+
+			macro = StringTrim(macro);
+
+			debug Assert(who < 12 && who >= 0,                   "Macro.save", "Invalid player ID.");
+			debug Assert(Macro.getAvailability(who, macro) == 0, "Macro.save", "This macro is unavailable.");
+
+			macros[who][counts[who]]     = macro;
+			expansions[who][counts[who]] = expansion;
+			counts[who]                  = counts[who] + 1;
+		}
+
+		static method saveall(string macro, string expansion) {
+			integer i;
+
+			for (0 <= i < 12)
+				Macro.save(i, macro, expansion);
+		}
+
+		static method remove(integer who, string macro) {
+			integer i;
+			integer count;
+
+			debug Assert(who < 12 && who >= 0,     "Macro.remove", "Invalid player ID.");
+			debug Assert(Macro.exists(who, macro), "Macro.remove", "This macro does not exist.");
+
+			count = counts[who];
+
+			for (0 <= i < count) {
+				if (macros[who][i] == macro) {
+					macros[who][i]             = macros[who][count - 1];
+					expansions[who][i]         = expansions[who][count - 1];
+					macros[who][count - 1]     = null;
+					expansions[who][count - 1] = null;
+					counts[who]                = counts[who] - 1;
+
+					return;
+				}
+			}
+		}
+
+		static method expand(integer who, string str) -> string {
+			integer i;
+			integer count = counts[who];
+			string macro;
+
+			debug Assert(who < 12 && who >= 0, "Macro.expand", "Invalid player ID.");
+
+			for (0 <= i < count) {
+				macro = macros[who][i];
+
+				if (Sub(str, 0, SL(macro)) == macro)
+					return expansions[who][i] + " " + Sub(str, SL(macro), SL(str));
+			}
+
+			return str;
+		}
+
+		static method expandable(integer who, string str) -> boolean {
+			integer i;
+			integer count = counts[who];
+			string macro;
+
+			debug Assert(who < 12 && who >= 0, "Macro.expandable", "Invalid player ID.");
+
+			for (0 <= i < count) {
+				macro = macros[who][i];
+
+				if (Sub(str, 0, SL(macro)) == macro)
+					return true;
+			}
+
+			return false;
+		}
+
+		static method expandableBy(string str, string macro) -> boolean {
+			return Sub(str, 0, SL(macro)) == macro;			
+		}
+
+		static method exists(integer who, string macro) -> boolean {
+			integer i;
+			integer count = counts[who];
+
+			debug Assert(who < 12 && who >= 0, "Macro.exists", "Invalid player ID.");
+
+			if (SL(macro) == 0)
+				return false;
+
+			for (0 <= i < count) {
+				if (macros[who][i] == macro)
+					return true;
+			}
+
+			return false;
+		}
+
+		static method getAvailability(integer who, string macro) -> integer {
+			integer i;
+
+			debug Assert(who < 12 && who >= 0, "Macro.getAvailability", "Invalid player ID.");
+
+			if (SL(macro) == 0)
+				return ERR_MACRO_ZERO_LENGTH;
+
+			if (counts[who] >= 64)
+				return ERR_MACRO_LIMIT_EXHAUSTED;
+
+			for (0 <= i < Command.count) {
+				if (Macro.expandableBy(Command.all[i], macro))
+					return ERR_MACRO_CONFLICT_COMMAND;
+			}
+
+			for (0 <= i < Alias.count) {
+				if (Macro.expandableBy(Alias.all[i], macro))
+					return ERR_MACRO_CONFLICT_ALIAS;
+			}
+
+			for (0 <= i < counts[who]) {
+				if (Macro.expandableBy(macros[who][i], macro))
+					return ERR_MACRO_CONFLICT_MACRO;
+			}
+
+			return ERR_NONE;
+		}
+
+		private static method onInit() {
+			integer i;
+
+			for (0 <= i < 12) {
+				counts[i] = 0;
+			}
+		}
+	}
+
+	public struct Command[] {
+		private static Table commands;
+		
+		static integer count;
+		static string all[];
+
+		static method register(string command, CommandCallback callback) {
+			debug Assert(SL(command) > 0,          "Command.register", "Command length is zero.");
+			debug Assert(callback > 0,             "Command.register", "Invalid callback provided.");
+			debug Assert(!Command.exists(command), "Command.register", "Command with the same name already exists.");
+
+			all[count] = command;
+			count = count + 1;
+
+			commands[SHC(command)] = callback;
+		}
+
+		static method exists(string command) -> boolean {
+			return commands.has(SHC(command));
+		}
+
+		static method run(string command, CommandThread thread) {
+			debug Assert(Command.exists(command), "Command.run", "Command does not exist.");
+
+			CommandCallback(commands[SHC(command)]).execute(thread);
+		}
+
+		private static method onInit() {
+			commands = Table.create();
+			count = 0;
+		}
+	}
+
+	struct CommandList[] {
+		module Alloc;
+
+		thistype next;
+		thistype prev;
+		string command;
+
+		static method create(string str) -> thistype {
+			thistype this = allocate();
+			next = 0;
+			prev = 0;
+			command = str;
+
+			return this;
+		}
+
+		method destroy() {
+			if (next != 0)
+				next.prev = prev;
+			if (prev != 0)
+				prev.next = next;
+
+			deallocate();
+		}
+
+		method insert(thistype node) -> thistype {
+			if (next != 0) {
+				next.prev = node;
+				node.next = next;
+			}
+
+			node.prev = this;
+			next = node;
+
+			return node;
+		}
+	}
+
+	public struct CommandThread[] {
+		module Alloc;
+
+		private {
+			static real     maxThreadQuota  = 512;
+			static real     maxPlayerQuota  = 2048;
+			static real     playerQuotas[];
+			static integer  maxCommandQueue = 48;
+			static thistype top             = 0;
+			static Table    restarters;
+
+			real             m_quota;
+			integer          m_queueSize;
+			CommandList      m_queue;
+			integer          m_owner;
+			thistype         m_next;
+			thistype         m_prev;
+			real             m_postponeDuration;
+			Selection        m_selection;
+			ArgumentSplitter m_args;
+			boolean          m_forceStop;
+		}
+
+		static method create(integer who) -> thistype {
+			thistype this = allocate();
+
+			debug Assert(who < 12 && who >= 0, "CommandThread.create", "Invalid player ID.");
+
+			m_next = 0;
+			m_prev = 0;
+
+			if (top == 0) {
+				top = this;
+			} else {
+				m_next = top;
+				top.m_prev = this;
+				top = this;
+			}
+
+			m_owner = who;
+			m_quota = 0;
+			m_queueSize = 0;
+			m_queue = 0;
+			m_postponeDuration = 0;
+			m_forceStop = false;
+			m_args = 0;
+			m_selection = Selection.create();
+
+			return this;
+		}
+
+		method destroy() {
+			CommandList list;
+
+			if (m_prev != 0)
+				m_prev.m_next = m_next;
+
+			if (m_next != 0)
+				m_next.m_prev = m_prev;
+
+			if (this == top) {
+				top = m_next;
+				top.m_prev = 0;
+			}
+
+			while (m_queue > 0) {
+				list = m_queue.next;
+				m_queue.destroy();
+				m_queue = list;
+			}
+
+			m_selection.destroy();
+			deallocate();
+		}
+
+		method stop() {
+			m_forceStop = true;
+		}
+
+		method postpone(real duration) {
+			if (duration < 0) duration = 0;
+
+			m_postponeDuration = duration;
+		}
+
+		// parses the command string and pushes the commands onto the queue
+		method pushCommands(string str) {
+			CommandSplitter splitter = CommandSplitter.create(StringTrim(str));
+			CommandList list;
+
+			if (m_queue == 0) {
+				m_queue = CommandList.create(Macro.expand(m_owner, StringTrim(splitter.next())));
+				m_queueSize = 1;
+			}
+
+			list = m_queue;
+
+			while (!splitter.isFinished()) {
+				list = list.insert(CommandList.create(Macro.expand(m_owner, StringTrim(splitter.next()))));
+				m_queueSize = m_queueSize + 1;
+			}
+
+			splitter.destroy();
+		}
+
+		// runs a single command in the command queue
+		method runCommand() {
+			string command;
+			CommandList list;
+
+			debug Assert(m_queue > 0, "CommandThread.runCommand", "Queue command is empty.");
+
+			m_args = ArgumentSplitter.create(m_queue.command);
+			command = m_args.next();
+
+			list = m_queue.next;
+			m_queue.destroy();
+			m_queue = list;
+			m_queueSize = m_queueSize - 1;
+			m_quota = m_quota + 1;
+			playerQuotas[m_owner] = playerQuotas[m_owner] + 1;
+
+			if (Command.exists(command)) {
+				Command.run(command, this);
+			} else if (Alias.exists(m_owner, command)) {
+				command = Alias.get(m_owner, command);
+
+				command = command + " " + m_args.restSimple();
+				pushCommands(command);
+			}
+
+			m_args.destroy();
+		}
+
+		// checks if the thread is allowed to continue running
+		method canContinue() -> boolean {
+			return m_queue > 0
+			    && m_queueSize < maxCommandQueue
+			    && m_quota < maxThreadQuota
+			    && playerQuotas[m_owner] < maxPlayerQuota
+			    && IsPlayerIngame(m_owner);
+		}
+
+		// restarts postponed threads
+		static method restartThread() {
+			timer restarter = GetExpiredTimer();
+			integer id = GetHandleId(restarter);
+			CommandThread this;
+
+			if (restarters.has(id)) {
+				this = restarters[id];
+				restarters.remove(id);
+				start();
+			}
+
+			DestroyTimer(restarter);
+			restarter = null;
+		}
+
+		// keeps running the commands until either the thread finishes, an overflow occurs, or it is postponed
+		method start() {
+			boolean postponed = false;
+			timer restarter;
+
+			while (canContinue() && !postponed) {
+				if (m_postponeDuration > 0) {
+					restarter = CreateTimer();
+					restarters[GetHandleId(restarter)] = this;
+					TimerStart(restarter, m_postponeDuration, false, function thistype.restartThread);
+
+					m_quota = m_quota - m_postponeDuration * maxThreadQuota;
+					m_postponeDuration = 0;
+					postponed = true;
+					restarter = null;
+
+					if (m_quota < 0) m_quota = 0;
+				} else {
+					runCommand();
+				}
+			}
+
+			if (!postponed) {
+				destroy();
+			}
+		}
+
+		// accessors
+
+		method operator owner() -> integer {
+			return m_owner;
+		}
+
+		method operator selection() -> Selection {
+			return m_selection;
+		}
+
+		method operator args() -> ArgumentSplitter {
+			return m_args;
+		}
+
+		// misc
+
+		static method stopAll(integer who) {
+			CommandThread list = top;
+
+			debug Assert(who < 12 && who >= 0, "CommandThread.stopAll", "Invalid player ID.");
+
+			while (list > 0) {
+				if (list.m_owner == who)
+					list.m_forceStop = true;
+
+				list = list.m_next;
+			}
+		}
+
+		private static method decreaseQuotas() {
+			integer i;
+
+			for (0 <= i <= 11) {
+				playerQuotas[i] = playerQuotas[i] - maxPlayerQuota * 0.1;
+
+				if (playerQuotas[i] < 0) playerQuotas[i] = 0;
+			}
+		}
+
+		private static method onInit() {
+			timer quotaDecreaser = CreateTimer();
+			restarters = Table.create();
+			TimerStart(quotaDecreaser, 0.1, true, function thistype.decreaseQuotas);
+			quotaDecreaser = null;
+
+			static if (DEBUG_MODE) {
+				maxThreadQuota = 16384;
+				maxPlayerQuota = 16384;
+			}
+		}
+	}
+
+	public struct AuxCommands[] {
+		private static string aux[];
+
+		static method getAux(integer who) -> string {
+			debug Assert(who >= 0 && who < 12, "AuxCommands.get", "Invalid player ID.");
+
+			return aux[who];
+		}
+
+		static method setAux(integer who, string str) {
+			debug Assert(who >= 0 && who < 12, "AuxCommands.set", "Invalid player ID.");
+
+			aux[who] = str;
+		}
+
+		private static method onInit() {
+			integer i;
+
+			for (0 <= i < 12) {
+				aux[i] = "";
+			}
+		}
+	}
+
+	struct Chat[] {
+		private static string delayed[];
+
+		private static method onChat() {
+			string str = StringTrim(GetEventPlayerChatString());
+			integer length = SL(str);
+			integer who = PID(GetTriggerPlayer());
+			string start = Sub(str, 0, 1);
+			string end = Sub(str, length - 1, length);
+			CommandThread thread;
+
+			if (start == "-" && end == "-") {
+				if (SL(str) + SL(delayed[who]) > 1920) {
+					WarningMessageTo(who, "Your delayed command length exceeds 1920.");
+					return;
+				}
+
+				MessageTo(who, "Your delayed command has been expanded.");
+				delayed[who] = delayed[who] + Sub(str, 1, length - 1);
+				return;
+			} else if (start == "-") {
+				if (SL(str) + SL(delayed[who]) > 1920) {
+					WarningMessageTo(who, "Your delayed command length exceeds 1920.");
+					return;
+				}
+
+				str = delayed[who] + Sub(str, 1, length);
+				delayed[who] = "";
+			} else if (end == "-") {
+				MessageTo(who, "You delayed your command.");
+				delayed[who] = Sub(str, 0, length - 1);
+				return;
+			}
+
+			thread = CommandThread.create(who);
+			thread.pushCommands(str);
+			thread.selection.fromPlayer(who);
+			thread.start.execute();
+
+			Log.log(who, TYPE_CMD, str);
+		}
+
+		private static method onInit() {
+			integer i = 0;
+			trigger chatTrigger = CreateTrigger();
+
+			TriggerAddAction(chatTrigger, function thistype.onChat);
+			
+			for (0 <= i < 12) {
+				TriggerRegisterPlayerChatEvent(chatTrigger, Player(i), "", false);
+				delayed[i] = "";
+			}
+
+			chatTrigger = null;
+		}
+	}
+}

@@ -1,0 +1,186 @@
+//! textmacro SimpleGetter takes VAR_NAME, VAR_TYPE
+	method operator $VAR_NAME$() -> $VAR_TYPE$ {
+		return m_$VAR_NAME$;
+	}
+//! endtextmacro
+
+//! textmacro SimpleSetter takes VAR_NAME, VAR_TYPE
+	method operator $VAR_NAME$=($VAR_TYPE$ value) {
+		m_$VAR_NAME$ = value;
+	}
+//! endtextmacro
+
+//! textmacro FunctionGetter takes VAR_NAME, VAR_TYPE, FUNC_NAME, FUNC_ARGS
+	method operator $VAR_NAME$() -> $VAR_TYPE$ {
+		return $FUNC_NAME$($FUNC_ARGS$);
+	}
+//! endtextmacro
+
+//! textmacro FunctionSetter takes VAR_NAME, VAR_TYPE, FUNC_NAME, FUNC_PRELUDE, FUNC_POSTLUDE
+	method operator $VAR_NAME$=($VAR_TYPE$ value) {
+		$FUNC_NAME$($FUNC_PRELUDE$ value $FUNC_POSTLUDE$);
+	}
+//! endtextmacro
+
+//! textmacro ExtendedSetter takes VAR_NAME, VAR_TYPE, FUNC_NAME, FUNC_PRELUDE, FUNC_POSTLUDE
+	method operator $VAR_NAME$=($VAR_TYPE$ value) {
+		m_$VAR_NAME$ = value;
+		$FUNC_NAME$($FUNC_PRELUDE$ value $FUNC_POSTLUDE$);
+	}
+//! endtextmacro
+
+library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
+	public struct UnitData[] {
+		//! runtextmacro AIDS_zinc()
+
+		private {
+			static constant real WORLD_MARGIN = 0;
+
+			integer     m_realOwner;
+			integer     m_vertexR;
+			integer     m_vertexG;
+			integer     m_vertexB;
+			integer     m_vertexA;
+			playercolor m_color;
+			real        m_size;
+			real        m_animSpeed;
+			real        m_z;
+			boolean     m_flown;
+			boolean     m_allocated;
+			real        m_angle;
+			real        m_lastAngle;
+		}
+
+		string name;
+
+		//! runtextmacro FunctionGetter("x",             "real",     "GetUnitX",         "unit")
+		//! runtextmacro FunctionGetter("y",             "real",     "GetUnitY",         "unit")
+		//! runtextmacro FunctionGetter("life",          "real",     "GetUnitState",     "unit, UNIT_STATE_LIFE")
+		//! runtextmacro FunctionGetter("mana",          "real",     "GetUnitState",     "unit, UNIT_STATE_MANA")
+		//! runtextmacro FunctionGetter("speed",         "real",     "GetUnitMoveSpeed", "unit")
+		//! runtextmacro FunctionGetter("id",            "integer",  "GetUnitTypeId",    "unit")
+
+		//! runtextmacro FunctionSetter("life",         "real",   "SetUnitState",       "unit, UNIT_STATE_LIFE, ", "")
+		//! runtextmacro FunctionSetter("mana",         "real",   "SetUnitState",       "unit, UNIT_STATE_MANA, ", "")
+		//! runtextmacro FunctionSetter("speed",        "real",   "SetUnitMoveSpeed",   "unit,", "")
+
+		//! runtextmacro SimpleGetter("realOwner",     "integer")
+		//! runtextmacro SimpleGetter("size",          "real")
+		//! runtextmacro SimpleGetter("animSpeed",     "real")
+		//! runtextmacro SimpleGetter("color",         "playercolor")
+		//! runtextmacro SimpleGetter("vertexR",       "integer")
+		//! runtextmacro SimpleGetter("vertexG",       "integer")
+		//! runtextmacro SimpleGetter("vertexB",       "integer")
+		//! runtextmacro SimpleGetter("vertexA",       "integer")
+		//! runtextmacro SimpleGetter("z",             "real")
+		//! runtextmacro SimpleGetter("allocated",     "boolean")
+
+		//! runtextmacro SimpleSetter("realOwner", "integer")
+
+		//! runtextmacro ExtendedSetter("animSpeed", "real",        "SetUnitTimeScale", "unit, ", "")
+		//! runtextmacro ExtendedSetter("size",      "real",        "SetUnitScale",     "unit, ", ", 1., 1.")
+		//! runtextmacro ExtendedSetter("color",     "playercolor", "SetUnitColor",     "unit, ", "")
+
+		method operator currentOwner() -> integer {
+			return PID(GetOwningPlayer(unit));
+		}
+
+		method operator currentOwner=(integer who) {
+			SetUnitOwner(unit, P(who), false);
+		}
+
+		method operator angle=(real value) {
+			m_lastAngle = GetElapsedGameTime(true);
+			m_angle = value;
+			SetUnitFacingTimed(unit, value, 0.05);
+		}
+
+		method operator angle() -> real {
+			if (GetElapsedGameTime(true) - m_lastAngle > 0.2) {
+				return GetUnitFacing(unit);
+			} else {
+				return m_angle;
+			}
+		}
+
+		method setVertexColor(integer r, integer g, integer b, integer a) {
+			m_vertexR = r;
+			m_vertexG = g;
+			m_vertexB = b;
+			m_vertexA = a;
+
+			SetUnitVertexColor(unit, r, g, b, a);
+		}
+
+		method setAnim(string anim) {
+			SetUnitAnimation(unit, anim);			
+		}
+
+		method queueAnim(string anim) {
+			QueueUnitAnimation(unit, anim);
+		}
+
+		method queueAnimCount(string anim, integer count) {
+			while (count > 0) {
+				QueueUnitAnimation(unit, anim);
+				count = count - 1;
+			}
+		}
+
+		method operator x=(real value) {
+			Fly.uproot(unit);
+			SetUnitX(unit, ClampReal(value, I2R(WorldBounds.minX) + WORLD_MARGIN, I2R(WorldBounds.maxX) - WORLD_MARGIN));
+		}
+
+		method operator y=(real value) {
+			Fly.uproot(unit);
+			SetUnitY(unit, ClampReal(value, I2R(WorldBounds.minY) + WORLD_MARGIN, I2R(WorldBounds.maxY) - WORLD_MARGIN));
+		}
+
+		method operator z=(real value) {
+			Fly.fly(unit);
+			SetUnitFlyHeight(unit, value, 1000000);
+			m_z = value;
+		}
+
+		method defaultValues() {
+			m_realOwner   = currentOwner;
+			m_z           = 0.0;
+			m_flown       = false;
+			m_allocated   = true;
+			size          = 1.0;
+			animSpeed     = 1.0;
+			color         = GetPlayerColor(P(currentOwner));
+			name          = "";
+			setVertexColor(255, 255, 255, 255);
+		}
+
+		private method AIDS_onCreate() {
+			integer id = GetUnitTypeId(unit);
+
+			// make buildings unmovable
+			if (IsUnitType(unit, UNIT_TYPE_SUMMONED) && IsUnitType(unit, UNIT_TYPE_MECHANICAL) && !IsUnitType(unit, UNIT_TYPE_ANCIENT)) {
+				UnitRemoveAbility(unit, 'Amov');
+				UnitRemoveType(unit, UNIT_TYPE_SUMMONED);
+			}
+
+			// if unit is a builder, disable pathing
+			if (GetOctet(id, 3) == 49) {
+				SetUnitPathing(unit, false);
+			}
+
+			defaultValues();
+		}
+
+		private method AIDS_onDestroy() {
+			m_allocated = false;
+		}
+
+		private static method AIDS_filter(unit what) -> boolean {
+			if (GetPlayerId(GetOwningPlayer(what)) > 11 || IsUnitUtility(what))
+				return false;
+
+			return true;
+		}
+	}
+}

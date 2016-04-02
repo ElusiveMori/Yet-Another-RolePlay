@@ -1,0 +1,262 @@
+//misc
+AddBuilding("dungeonlever", "Dungeon Lever", "Doodads\\Cinematic\\DungeonLever\\DungeonLever.mdx");
+AddBuilding("elevatorplatform", "Elevator Platform", "Doodads\\Cinematic\\ElevatorPuzzle\\ElevatorPuzzle.mdx");
+AddBuilding("eyeofsargeras", "Eye of Sargeras", "Doodads\\Cinematic\\EyeOfSargeras\\EyeOfSargeras.mdx");
+AddBuilding("grounswitch", "Ground Switch", "Doodads\\Cinematic\\FootSwitch\\FootSwitch.mdx");
+AddBuilding("ressurectstone", "Resurrection Stone", "Doodads\\Cinematic\\RessurectionStoneSE\\RessurectionStoneSE.mdx");
+AutoAddBuilder("misc", "Misc");
+
+//signs
+icon = "ReplaceableTextures\\CommandButtons\\BTNFlute.blp";
+AddBuilding("signpost1", "Sign Post 1", "Doodads\\LordaeronSummer\\Props\\SignPost\\SignPost.mdx");
+AddBuilding("signpost2", "Sign Post 2", "Doodads\\LordaeronSummer\\Props\\SignPost\\SignPost0.mdx");
+AddBuilding("traceysign", "Tracey's Armory", "Doodads\\Cityscape\\Props\\TavernSignTraceysArmory\\TavernSignTraceysArmory.mdx");
+AddBuilding("bobsign", "Bob's Guns", "Doodads\\Cityscape\\Props\\TavernSignBobsGuns\\TavernSignBobsGuns.mdx");
+AddBuilding("tavernsign", "Tavern Sign", "Doodads\\Cityscape\\Props\\TavernSign\\TavernSign.mdx");
+AutoAddBuilder("signs", "Signs");
+
+//farm
+icon = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+AddBuilding("hitchingpost", "Hitching Post", "Doodads\\LordaeronSummer\\Props\\HitchingPost\\HitchingPost.mdx");
+AddBuilding("trough1", "Trough 1", "Doodads\\LordaeronSummer\\Props\\Trough\\Trough0.mdx");
+AddBuilding("trough2", "Trough 2", "Doodads\\LordaeronSummer\\Props\\Trough\\Trough1.mdx");
+AddBuilding("wheelbarrel", "Wheel Barrel", "Doodads\\LordaeronSummer\\Props\\WheelBarrel\\WheelBarrel.mdx");
+AddBuilding("hay1", "Hay 1", "Doodads\\LordaeronSummer\\Props\\Hay\\Hay0.mdx");
+AddBuilding("hay2", "Hay 2", "Doodads\\LordaeronSummer\\Props\\Hay\\Hay1.mdx");
+AddBuilding("hay3", "Hay 3", "Doodads\\LordaeronSummer\\Props\\Hay\\Hay2.mdx");
+AddBuilding("hay4", "Hay 4", "Doodads\\LordaeronSummer\\Props\\Hay\\Hay3.mdx");
+AddBuilding("hay5", "Hay 5", "Doodads\\LordaeronSummer\\Props\\Hay\\Hay4.mdx");
+AddBuilding("haycart", "Hay Cart", "Doodads\\LordaeronSummer\\Props\\HayCart\\HayCart.mdx");
+AddBuilding("hayclump", "Hay Clump", "Doodads\\LordaeronSummer\\Props\\HayClump\\HayClump.mdx");
+AddBuilding("corn", "Corn", "Doodads\\LordaeronSummer\\Plants\\Corn\\Corn.mdx");
+AddBuilding("wheat", "Wheat", "Doodads\\LordaeronSummer\\Plants\\Wheat\\wheat.mdx");
+AddBuilding("wheatbunch", "Wheat Bunch", "Doodads\\LordaeronSummer\\Plants\\WheatBunch\\wheatbunch.mdx");
+AutoAddBuilder("farm", "Farm");
+
+//fx
+icon = "ReplaceableTextures\\CommandButtons\\BTNAnimalWarTraining.blp";
+AddBuilding("bluecracks1", "Blue Cracks 1", "Doodads\\Underground\\Props\\GCracks\\GCracks0.mdx");
+AddBuilding("bluecracks2", "Blue Cracks 2", "Doodads\\Underground\\Props\\GCracks\\GCracks1.mdx");
+AddBuilding("bluecracks3", "Blue Cracks 3", "Doodads\\Underground\\Props\\GCracks\\GCracks2.mdx");
+AddBuilding("bluecracks4", "Blue Cracks 4", "Doodads\\Underground\\Props\\GCracks\\GCracks3.mdx");
+AddBuilding("firepillar", "Fire Pillar", "Doodads\\Cinematic\\FirePillarMedium\\FirePillarMedium.mdx");
+AddBuilding("firetrapside", "Fire Trap Side", "Doodads\\Cinematic\\FireTrapSide\\FireTrapSide.mdx");
+AddBuilding("firetrapup", "Fire Trap Up", "Doodads\\Cinematic\\FireTrapUp\\FireTrapUp.mdx");
+AddBuilding("redcracks1", "Red Cracks 1", "Doodads\\Dungeon\\Props\\LavaCracks\\LavaCracks0.mdx");
+AddBuilding("redcracks2", "Red Cracks 2", "Doodads\\Dungeon\\Props\\LavaCracks\\LavaCracks1.mdx");
+AddBuilding("redcracks3", "Red Cracks 3", "Doodads\\Dungeon\\Props\\LavaCracks\\LavaCracks2.mdx");
+AddBuilding("redcracks4", "Red Cracks 4", "Doodads\\Dungeon\\Props\\LavaCracks\\LavaCracks3.mdx");
+AddBuilding("frosttrapside", "Frost Trap Side", "Doodads\\Cinematic\\FrostTrapSide\\FrostTrapSide.mdx");
+AddBuilding("frosttrapup", "Frost Trap Up", "Doodads\\Cinematic\\FrostTrapUp\\FrostTrapUp.mdx");
+AddBuilding("demonfootprint1", "Demon Footprint 1", "Doodads\\Cinematic\\DemonFootPrint\\DemonFootPrint0.mdx");
+AddBuilding("demonfootprint2", "Demon Footprint 2", "Doodads\\Cinematic\\DemonFootPrint\\DemonFootPrint1.mdx");
+AddBuilding("smokestack1", "Smoke Stack 1", "Doodads\\LordaeronSummer\\Props\\SmokeSmudge\\SmokeSmudge0.mdx");
+AddBuilding("smokestack2", "Smoke Stack 2", "Doodads\\LordaeronSummer\\Props\\SmokeSmudge\\SmokeSmudge1.mdx");
+AddBuilding("smokestack3", "Smoke Stack 3", "Doodads\\LordaeronSummer\\Props\\SmokeSmudge\\SmokeSmudge2.mdx");
+AddBuilding("redflame", "Red Flame", "Doodads\\Cinematic\\TownBurningFireEmitter\\TownBurningFireEmitter.mdx");
+AddBuilding("blueflame", "Blue Flame", "Doodads\\Cinematic\\TownBurningFireEmitterBlue\\TownBurningFireEmitterBlue.mdx");
+AddBuilding("lightning", "Lightning Bolt", "Doodads\\Cinematic\\Lightningbolt\\Lightningbolt.mdx");
+AddBuilding("energyfield", "Energy Field", "Doodads\\Cinematic\\EnergyField\\EnergyField.mdx");
+AddBuilding("overheaddust", "Overhead Dust", "Doodads\\Cinematic\\CavernDust\\CavernDust.mdx");
+AutoAddBuilder("fx", "FX");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNSeaElemental.blp";
+//sunken
+AddBuilding("sunkenaltar", "Bloody Sunken Altar", "Doodads\\Ruins\\Props\\RuinsBloodyAltar\\RuinsBloodyAltar.mdx");
+AddBuilding("sunkencircle", "Sunken Circle", "Doodads\\Ruins\\Props\\Ruins_NagaCircle\\Ruins_NagaCircle.mdx");
+AddBuilding("sunkenfountain", "Sunken Fountain", "Doodads\\Ruins\\Props\\RuinFountain\\RuinFountain.mdx");
+AddBuilding("sunkenshelf1", "Sunken Shelf 1", "Doodads\\Ruins\\Props\\LibraryShelf\\LibraryShelf0.mdx");
+AddBuilding("sunkenshelf2", "Sunken Shelf 2", "Doodads\\Ruins\\Props\\LibraryShelf\\LibraryShelf1.mdx");
+AddBuilding("sunkenshelf3", "Sunken Shelf 3", "Doodads\\Ruins\\Props\\LibraryShelf\\LibraryShelf2.mdx");
+AddBuilding("sunkenbrazier", "Sunken Brazier", "Doodads\\Ruins\\Props\\Firepot\\Firepot.mdx");
+AddBuilding("sunkendoor", "Sunken Door", "Doodads\\Ruins\\Terrain\\RuinsRoundDoor\\RuinsRoundDoor.mdx");
+AddBuilding("sunkenstairs", "Sunken Stairs", "Doodads\\Terrain\\CliffDoodad\\NagaStairsSmall0\\NagaStairsSmall0.mdx");
+AutoAddBuilder("sunken", "Sunken Stuff");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNOrbOfVenom.blp";
+//underground-sewer
+AddBuilding("sewervent1", "Sewer Vent 1", "Doodads\\Dungeon\\Props\\SewerVent\\SewerVent0.mdx");
+AddBuilding("sewervent2", "Sewer Vent 2", "Doodads\\Dungeon\\Props\\SewerVent\\SewerVent1.mdx");
+AddBuilding("sewervent3", "Sewer Vent 3", "Doodads\\Dungeon\\Props\\SewerVent\\SewerVent2.mdx");
+AddBuilding("sewervent4", "Sewer Vent 4", "Doodads\\Dungeon\\Props\\SewerVent\\SewerVent3.mdx");
+AddBuilding("sewerpipe1", "Sewer Pipe 1", "Doodads\\Dungeon\\Props\\SewerWallpipes\\SewerWallpipes0.mdx");
+AddBuilding("sewerpipe2", "Sewer Pipe 2", "Doodads\\Dungeon\\Props\\SewerWallpipes\\SewerWallpipes1.mdx");
+AddBuilding("sewerpipe3", "Sewer Pipe 3", "Doodads\\Dungeon\\Props\\SewerWallpipes\\SewerWallpipes2.mdx");
+AutoAddBuilder("sewer", "Sewer");
+
+//underground-torture
+icon = "ReplaceableTextures\\CommandButtons\\BTNYouDirtyRat!.blp";
+AddBuilding("chain1", "Chains 1", "Doodads\\Dungeon\\Props\\Chain\\Chain0.mdx");
+AddBuilding("chain2", "Chains 2", "Doodads\\Dungeon\\Props\\Chain\\Chain1.mdx");
+AddBuilding("chain3", "Chains 3", "Doodads\\Dungeon\\Props\\Chain\\Chain2.mdx");
+AddBuilding("chainpost", "Chain Post", "Doodads\\Dungeon\\Props\\ChainPost\\ChainPost.mdx");
+AddBuilding("ironmaiden", "Iron Maiden", "Doodads\\Dungeon\\Props\\IronMaiden\\IronMaiden.mdx");
+AddBuilding("cage", "Cage", "Doodads\\LordaeronSummer\\Props\\CageEmpty\\CageEmpty.mdx");
+AddBuilding("torturetable", "Torture Table", "Doodads\\Dungeon\\Props\\TortureTable\\TortureTable.mdx");
+AddBuilding("wyverncage", "Wyvern Cage 1", "Doodads\\Barrens\\Terrain\\WyvernCage\\WyvernCage0.mdx");
+AddBuilding("wyverncage", "Wyvern Cage 2", "Doodads\\Barrens\\Terrain\\WyvernCage\\WyvernCage1.mdx");
+AutoAddBuilder("torture", "Torture Stuff");
+
+//underground-other
+AddBuilding("supportbeam", "Support Beam", "Doodads\\Underground\\Terrain\\SupportBeam\\SupportBeam.mdx");
+AddBuilding("graterect", "Rectangular Grate", "Doodads\\Outland\\Props\\Grate\\Grate0.mdx");
+AddBuilding("grateround", "Round Grate", "Doodads\\Outland\\Props\\Grate\\Grate1.mdx");
+AddBuilding("minecart", "Minecart", "Doodads\\Dungeon\\Props\\MineCart\\MineCart.mdx");
+AddBuilding("minecartempty", "Empty Minecart", "Doodads\\Dungeon\\Props\\MineCartEmpty\\MineCartEmpty.mdx");
+AddBuilding("eggsack1", "Egg Sack 1", "Doodads\\Dungeon\\Terrain\\EggSack\\EggSack0.mdx");
+AddBuilding("eggsack2", "Egg Sack 2", "Doodads\\Dungeon\\Terrain\\EggSack\\EggSack1.mdx");
+AutoAddBuilder("underground", "Underground Stuff");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNOrcBattleStandard.blp";
+AddBuilding("obstacle1", "Obstacle 1", "Doodads\\Outland\\Props\\Obstacle\\Obstacle0.mdx");
+AddBuilding("obstacle2", "Obstacle 2", "Doodads\\Outland\\Props\\Obstacle\\Obstacle1.mdx");
+AddBuilding("obstacle3", "Obstacle 3", "Doodads\\Outland\\Props\\Obstacle\\Obstacle2.mdx");
+AddBuilding("obstacle4", "Obstacle 4", "Doodads\\Outland\\Props\\Obstacle\\Obstacle3.mdx");
+AddBuilding("obstacle5", "Obstacle 5", "Doodads\\Outland\\Props\\Obstacle\\Obstacle4.mdx");
+AddBuilding("stake1", "Stake 1", "Doodads\\Outland\\Props\\Stake\\Stake0.mdx");
+AddBuilding("stake2", "Stake 2", "Doodads\\Outland\\Props\\Stake\\Stake1.mdx");
+AddBuilding("standard1", "Standard 1", "Doodads\\Outland\\Props\\Standard\\Standard0.mdx");
+AddBuilding("standard2", "Standard 2", "Doodads\\Outland\\Props\\Standard\\Standard1.mdx");
+AutoAddBuilder("obstacles", "Obstacles & Stakes");
+
+//furniture-chairs
+icon = "ReplaceableTextures\\CommandButtons\\BTNBox.blp";
+AddBuilding("citystonebench", "City Stone Bench", "Doodads\\Cityscape\\Props\\CityStoneBench\\CityStoneBench.mdx");
+AddBuilding("citywoodbench", "City Wooden Bench", "Doodads\\Cityscape\\Props\\CityWoodBench\\CityWoodBench.mdx");
+AddBuilding("bench", "Bench", "Doodads\\Dungeon\\Props\\Bench\\Bench.mdx");
+AddBuilding("chair", "Chair", "Doodads\\Dungeon\\Props\\Chair\\Chair.mdx");
+AutoAddBuilder("furniture-chairs", "Chairs & Benches");
+
+AddBuilding("icecrownchair", "Icecrown Throne", "Doodads\\Icecrown\\Props\\IcecrownChair\\IcecrownChair.mdx");
+AddBuilding("icecrownicechair", "Icy Icecrown Throne", "Doodads\\Icecrown\\Props\\Icecrown_IceChair\\Icecrown_IceChair.mdx");
+AddBuilding("throne", "Throne", "Doodads\\Cityscape\\Props\\Throne\\Throne.mdx");
+AddBuilding("sunkenthrone1", "Sunken Throne 1", "Doodads\\Ruins\\Props\\RuinsRuinedThrone\\RuinsRuinedThrone0.mdx");
+AddBuilding("sunkenthrone2", "Sunken Throne 2", "Doodads\\Ruins\\Props\\RuinsRuinedThrone\\RuinsRuinedThrone1.mdx");
+AddBuilding("orcthrone", "Orcish Throne", "Doodads\\Barrens\\Props\\HellScreamThrone\\HellScreamThrone.mdx");
+AddBuilding("icecrownthrone", "Icecrown Throne", "Doodads\\Icecrown\\Terrain\\IceCrownThrone\\IceCrownThrone.mdx");
+AddBuilding("kingthrone", "King Throne", "Doodads\\Dalaran\\Props\\KingThrone\\KingThrone.mdx");
+AutoAddBuilder("furniture-thrones", "Thrones");
+
+//furniture-other
+AddBuilding("table", "Table", "Doodads\\Dungeon\\Props\\Table\\Table.mdx");
+AddBuilding("tablechair", "Table and Chair", "Doodads\\Dungeon\\Props\\TableNChair\\TableNChair.mdx");
+AddBuilding("bookshelf", "Bookshelf", "Doodads\\Dungeon\\Props\\Bookshelf\\Bookshelf.mdx");
+AddBuilding("bigbookshelf", "Big Bookshelf", "Doodads\\Dungeon\\Props\\BigBookshelf\\BigBookshelf.mdx");
+AddBuilding("biggerbookshelf", "Bigger Bookshelf", "Doodads\\Dungeon\\Props\\BookshelfWall\\BookshelfWall.mdx");
+AutoAddBuilderS("furniture-other1", "Misc Furniture Builder 1");
+AddBuilding("totem1", "Totem 1", "Doodads\\Barrens\\Props\\CentaurTotem\\CentaurTotem0.mdx");
+AddBuilding("totem2", "Totem 2", "Doodads\\Barrens\\Props\\CentaurTotem\\CentaurTotem1.mdx");
+AddBuilding("totem3", "Totem 3", "Doodads\\Barrens\\Props\\CentaurTotem\\CentaurTotem2.mdx");
+AddBuilding("totem4", "Totem 4", "Doodads\\Barrens\\Props\\TaurenTotem\\TaurenTotem0.mdx");
+AddBuilding("totem5", "Totem 5", "Doodads\\Barrens\\Props\\TaurenTotem\\TaurenTotem1.mdx");
+AddBuilding("flowerbed", "Flower Bed", "Doodads\\Cityscape\\Plants\\FlowerBedStraight\\FlowerBedStraight.mdx");
+AddBuilding("flowerpot", "Flower Pot", "Doodads\\Cityscape\\Plants\\PottedPlant\\PottedPlant.mdx");
+AddBuilding("altar", "Altar", "Doodads\\Outland\\Props\\Altar\\Altar.mdx");
+AddBuilding("archery", "Archery Range", "Doodads\\LordaeronSummer\\Props\\ArcheryRange\\ArcheryRange.mdx");
+AutoAddBuilderS("furniture-other2", "Misc Furniture Builder 2");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNMagicalSentry.blp";
+//dalaran
+AddBuilding("dalaranbuilding1", "Dalaran Building 1", "Doodads\\Dalaran\\Terrain\\DalaranBuilding\\DalaranBuilding0.mdx");
+AddBuilding("dalaranbuilding2", "Dalaran Building 2", "Doodads\\Dalaran\\Terrain\\DalaranBuilding\\DalaranBuilding1.mdx");
+AddBuilding("dalaranbuilding3", "Dalaran Building 3", "Doodads\\Dalaran\\Terrain\\DalaranVioletCitadel\\DalaranVioletCitadel.mdx");
+AddBuilding("magicvault", "Magic Vault", "Doodads\\Dalaran\\Terrain\\MagicVault\\MagicVault.mdx");
+AddBuilding("magicalpen", "Magical Pen", "Doodads\\Terrain\\DalaranMagicalPen\\DalaranMagicalPen.mdx");
+AddBuilding("magicalpenwall", "Magical Pen Wall", "Doodads\\Terrain\\DalaranMagicalPenWall\\DalaranMagicalPenWall.mdx");
+AddBuilding("crystalshield", "Crystal Shield", "Doodads\\Cityscape\\Props\\CrystalShield\\CrystalShield.mdx");
+AddBuilding("shimmeringportal", "Shimmering Portal", "Doodads\\Cinematic\\ShimmeringPortal\\ShimmeringPortal.mdx");
+AutoAddBuilder("dalaran", "Dalaran");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNCrate.blp";
+//junk
+AddBuilding("emptycrates1", "Empty Crates 1", "Doodads\\Cityscape\\Props\\EmptyCrates\\EmptyCrates0.mdx");
+AddBuilding("emptycrates2", "Empty Crates 2", "Doodads\\Cityscape\\Props\\EmptyCrates\\EmptyCrates1.mdx");
+AddBuilding("emptycrates3", "Empty Crates 3", "Doodads\\Cityscape\\Props\\EmptyCrates\\EmptyCrates2.mdx");
+AddBuilding("junkpile1", "Junk Pile 1", "Doodads\\Dungeon\\Props\\JunkPile\\JunkPile0.mdx");
+AddBuilding("junkpile2", "Junk Pile 2", "Doodads\\Dungeon\\Props\\JunkPile\\JunkPile1.mdx");
+AddBuilding("treasurepile1", "Treasure Pile 1", "Doodads\\Dungeon\\Props\\TreasurePile\\TreasurePile0.mdx");
+AddBuilding("treasurepile2", "Treasure Pile 2", "Doodads\\Dungeon\\Props\\TreasurePile\\TreasurePile1.mdx");
+AddBuilding("trash", "Trashed Crates", "Doodads\\LordaeronSummer\\Props\\Trash1\\Trash1.mdx");
+AddBuilding("crates1", "Crates 1", "Doodads\\LordaeronSummer\\Terrain\\Crates\\crates0.mdx");
+AddBuilding("crates2", "Crates 2", "Doodads\\LordaeronSummer\\Terrain\\Crates\\crates1.mdx");
+AutoAddBuilderS("junk1", "Junk Builder 1");
+
+AddBuilding("sunkentrash1", "Sunken Trash 1", "Doodads\\Ruins\\Props\\RuinsTrash\\RuinsTrash0.mdx");
+AddBuilding("sunkentrash2", "Sunken Trash 2", "Doodads\\Ruins\\Props\\RuinsTrash\\RuinsTrash1.mdx");
+AddBuilding("barricade 1", "Barricade 1", "Doodads\\LordaeronSummer\\Terrain\\Barricade\\Barricade0.mdx");
+AddBuilding("barricade 2", "Barricade 2", "Doodads\\LordaeronSummer\\Terrain\\Barricade\\Barricade1.mdx");
+AddBuilding("barricade 3", "Barricade 3", "Doodads\\LordaeronSummer\\Terrain\\Barricade\\Barricade2.mdx");
+AddBuilding("weaponsrack", "Weapons Rack", "Doodads\\LordaeronSummer\\Props\\Weapons\\Weapons.mdx");
+AddBuilding("armorrack", "Armor Rack", "Doodads\\LordaeronSummer\\Props\\ArmorRack\\ArmorRack.mdx");
+AutoAddBuilderS("junk2", "Junk Builder 2");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNLamp.blp";
+//lights-lanterns
+AddBuilding("crystallamp", "Crystal Lamp", "Doodads\\Cityscape\\Props\\CrystalLamp\\CrystalLamp.mdx");
+AddBuilding("lanternpost1", "Lantern Post 1", "Doodads\\LordaeronSummer\\Props\\LanternPost\\LanternPost0.mdx");
+AddBuilding("lanternpost2", "Lantern Post 2", "Doodads\\LordaeronSummer\\Props\\LanternPost\\LanternPost1.mdx");
+AddBuilding("villagelightpost", "Village Lightpost", "Doodads\\Village\\Props\\Village_Lightpost\\Village_Lightpost.mdx");
+AddBuilding("totem1", "Totem 1", "Doodads\\Ashenvale\\Props\\Totem\\Totem0.mdx");
+AddBuilding("totem2", "Totem 2", "Doodads\\Ashenvale\\Props\\Totem\\Totem1.mdx");
+AddBuilding("totem3", "Totem 3", "Doodads\\Ashenvale\\Props\\Totem\\Totem2.mdx");
+AddBuilding("lanternpost3", "Lantern Post 3", "Doodads\\Cityscape\\Props\\LanternPost\\LanternPost.mdx");
+AutoAddBuilder("lanterns", "Lanterns");
+
+//lights-fire
+AddBuilding("brazier1", "Ashenvale Brazier", "Doodads\\Ashenvale\\Props\\Brazier\\Brazier.mdx");
+AddBuilding("icetorch", "Icy Torch", "Doodads\\Icecrown\\Props\\IceTorch\\IceTorch.mdx");
+AddBuilding("brazier2", "Brazier", "Doodads\\LordaeronSummer\\Props\\brazier\\brazier.mdx");
+AddBuilding("brazier3", "Glowing Brazier", "Doodads\\LordaeronSummer\\Props\\brazierOmni\\brazierOmni.mdx");
+AddBuilding("torchhuman1", "Torch", "Doodads\\LordaeronSummer\\Props\\TorchHuman\\TorchHuman.mdx");
+AddBuilding("torchhuman2", "Glowing Torch", "Doodads\\LordaeronSummer\\Props\\TorchHumanOmni\\TorchHumanOmni.mdx");
+AddBuilding("firepit", "Fire Pit", "Doodads\\Northrend\\Props\\FirePit\\FirePit.mdx");
+AddBuilding("firepitpig", "Fire Pit \\w Pig", "Doodads\\Northrend\\Props\\FirePitPig\\FirePitPig.mdx");
+AddBuilding("firepittrashed", "Trashed Fire Pit", "Doodads\\Northrend\\Props\\FirePitTrashed\\FirePitTrashed.mdx");
+AddBuilding("sunkenbrazier1", "Sunken Brazier 1", "Doodads\\Ruins\\Props\\Brazier\\Brazier0.mdx");
+AddBuilding("sunkenbrazier2", "Sunken Brazier 2", "Doodads\\Ruins\\Props\\Brazier\\Brazier1.mdx");
+AutoAddBuilder("fire", "Fire");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNFrostBolt.blp";
+
+//ice-others
+AddBuilding("snowman", "Snow Man", "Doodads\\Icecrown\\Props\\SnowMan\\SnowMan.mdx");
+AddBuilding("igloo", "Igloo", "Doodads\\Icecrown\\Structures\\Igloo\\Igloo.mdx");
+AutoAddBuilder("icemisc", "Ice");
+
+//ice-rocks
+AddBuilding("clearicerock1", "Clear Ice Rock 1", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock0.mdx");
+AddBuilding("clearicerock2", "Clear Ice Rock 2", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock1.mdx");
+AddBuilding("clearicerock3", "Clear Ice Rock 3", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock2.mdx");
+AddBuilding("clearicerock4", "Clear Ice Rock 4", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock3.mdx");
+AddBuilding("clearicerock5", "Clear Ice Rock 5", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock4.mdx");
+AddBuilding("clearicerock6", "Clear Ice Rock 6", "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock5.mdx");
+AutoAddBuilder("icerock", "Ice Rocks");
+
+//ice-floating
+AddBuilding("iceedge1", "Ice Edge 1", "Doodads\\Icecrown\\Water\\IceEdge\\IceEdge0.mdx");
+AddBuilding("iceedge2", "Ice Edge 2", "Doodads\\Icecrown\\Water\\IceEdge\\IceEdge1.mdx");
+AddBuilding("iceedge3", "Ice Edge 3", "Doodads\\Icecrown\\Water\\IceEdge\\IceEdge2.mdx");
+AddBuilding("iceedge4", "Ice Edge 4", "Doodads\\Icecrown\\Water\\IceEdge\\IceEdge3.mdx");
+AddBuilding("iceberg1", "Iceberg 1", "Doodads\\Northrend\\Water\\North_Iceberg\\North_Iceberg.mdx");
+AddBuilding("iceberg2", "Iceberg 2", "Doodads\\Northrend\\Water\\North_Iceberg2\\North_Iceberg2.mdx");
+AddBuilding("iceberg3", "Iceberg 3", "Doodads\\Northrend\\Water\\North_Iceberg3\\North_Iceberg3.mdx");
+AddBuilding("iceberg4", "Iceberg 4", "Doodads\\Northrend\\Water\\North_Iceberg4\\North_Iceberg4.mdx");
+AddBuilding("iceflow1", "Ice Flow 1", "Doodads\\Northrend\\Water\\North_IceFloe\\North_IceFloe.mdx");
+AddBuilding("iceflow2", "Ice Flow 2", "Doodads\\Northrend\\Water\\North_IceFloe2\\North_IceFloe2.mdx");
+AddBuilding("iceflow3", "Ice Flow 3", "Doodads\\Northrend\\Water\\North_IceFloe3\\North_IceFloe3.mdx");
+AddBuilding("iceflow4", "Ice Flow 4", "Doodads\\Northrend\\Water\\North_IceFloe4\\North_IceFloe4.mdx");
+AutoAddBuilder("icefloat", "Floating Ice");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNOrcCaptureFlag.blp";
+
+//flags
+AddBuilding("bannerlong1", "Long Banner 1", "Doodads\\Cityscape\\Props\\Banner_Long\\Banner_Long.mdx");
+AddBuilding("bannerlong2", "Long Banner 2", "Doodads\\Cityscape\\Props\\Banner_Long2\\Banner_Long2.mdx");
+AddBuilding("bannerhuman1", "Human Banner 1", "Doodads\\LordaeronSummer\\Props\\BannerHuman\\BannerHuman0.mdx");
+AddBuilding("bannerhuman2", "Human Banner 2", "Doodads\\LordaeronSummer\\Props\\BannerHuman\\BannerHuman1.mdx");
+AddBuilding("bannerorc1", "Orc Banner 1", "Doodads\\LordaeronSummer\\Props\\BannerOrc\\BannerOrc0.mdx");
+AddBuilding("bannerorc2", "Orc Banner 2", "Doodads\\LordaeronSummer\\Props\\BannerOrc\\BannerOrc1.mdx");
+AddBuilding("tutorialorcbanner", "Tutorial Orc Banner", "Doodads\\LordaeronSummer\\Props\\TutorialOrcBanner\\TutorialOrcBanner.mdx");
+AutoAddBuilder("flags", "Flags");
+AutoAddShop("misc", "Miscellanous Stuff");
+

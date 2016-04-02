@@ -1,0 +1,71 @@
+library Chat requires Core {
+	struct Chat[] {
+		private static method Command_Log(CommandThread thread) {
+			string command = thread.args.next();
+
+			if (command == "ooc") {
+				LogBoard.setActiveLogType(thread.owner, TYPE_OOC);
+				LogBoard.setLogScroll(thread.owner, 0);
+			} else if (command == "ic") {
+				LogBoard.setActiveLogType(thread.owner, TYPE_IC);
+				LogBoard.setLogScroll(thread.owner, 0);
+			} else if (command == "cmd") {
+				LogBoard.setActiveLogType(thread.owner, TYPE_CMD);
+				LogBoard.setLogScroll(thread.owner, 0);
+			} else if (command == "scroll") {
+				LogBoard.setLogScroll(thread.owner, S2I(thread.args.next()));
+			} else if (command == "hide") {
+				LogBoard.setActiveLogType(thread.owner, -1);
+			}
+		}
+
+		private static method Command_IC(CommandThread thread) {
+			MessageIC(thread.owner, thread.args.next(), thread.args.restSimple());
+		}
+
+		private static method Command_OOC(CommandThread thread) {
+			MessageOOC(thread.owner, thread.args.restSimple());
+		}
+
+		private static method Command_SetName(CommandThread thread) {
+			Macro.save(thread.owner, thread.args.next(), "ic [" + thread.args.restSimple() + "]");
+		}
+
+		private static method Command_SetUnitName(CommandThread thread) {
+			UnitList list = thread.selection.top;
+
+			while (list > 0) {
+				if (HasPlayerUnitAccess(thread.owner, list.what)) {
+					UnitData[list.what].name = thread.args.restSimple();
+				}
+
+				list = list.next;
+			}
+		}
+
+		private static method Command_Say(CommandThread thread) {
+			UnitList list = thread.selection.top;
+
+			while (list > 0) {
+				if (HasPlayerUnitAccess(thread.owner, list.what)) {
+					MessageIC(thread.owner, UnitData[list.what].name, thread.args.restSimple());
+				}
+
+				list = list.next;
+			}
+		}
+
+		private static method onInit() {
+			Command.register("log",         thistype.Command_Log);
+			Command.register("ic",          thistype.Command_IC);
+			Command.register("ooc",         thistype.Command_OOC);
+			Command.register("say",         thistype.Command_Say);
+			Command.register("setname",     thistype.Command_SetName);
+			Command.register("setunitname", thistype.Command_SetUnitName);
+
+			Macro.saveall(".", "ooc");
+			Macro.saveall(";", "sayunit");
+		}
+	}
+	
+}

@@ -1,0 +1,34 @@
+//archways-natural
+icon = "ReplaceableTextures\\CommandButtons\\BTNNatureTouchGrow.blp";
+shopModel = "Doodads\\Ashenvale\\Structures\\ARockArch\\ARockArch";
+AddBuilding("natarchashen", "Ashenvale Archway", "Doodads\\Ashenvale\\Structures\\ARockArch\\ARockArch.mdx");
+AddBuilding("natarchbarren", "Barrens Archway", "Doodads\\Barrens\\Structures\\BRockArch\\BRockArch.mdx");
+AddBuilding("natarchdungeon", "Dungeon Archway", "Doodads\\Dungeon\\Structures\\DRockArch\\DRockArch.mdx");
+AddBuilding("natarchfel", "Felwood Archway", "Doodads\\Felwood\\Structures\\CRockArch\\CRockArch.mdx");
+AddBuilding("natarchicecrown", "Icecrown Archway", "Doodads\\Icecrown\\Structures\\Icecrown_StoneArch\\Icecrown_StoneArch.mdx");
+AddBuilding("natarchice", "Ice Archway", "Doodads\\Icecrown\\Structures\\IC_IceArch\\IC_IceArch.mdx");
+AddBuilding("natarchlord", "Lordaeron Archway", "Doodads\\LordaeronSummer\\Structures\\LRockArch\\LRockArch.mdx");
+AddBuilding("natarchnorth", "Northrend Archway", "Doodads\\Northrend\\Structures\\NRockArch\\NRockArch.mdx");
+AddBuilding("natarchoutland", "Outland Archway", "Doodads\\Outland\\Structures\\Outland_RockArch\\Outland_RockArch.mdx");
+AddBuilding("natarchsunken", "Sunken Archway", "Doodads\\Ruins\\Structures\\SRuinArch\\SRuinArch.mdx");
+AddBuilding("natarchcoral1", "Coral Archway 1", "Doodads\\Ruins\\Water\\CoralArch\\CoralArch0.mdx");
+AddBuilding("natarchcoral2", "Coral Archway 2", "Doodads\\Ruins\\Water\\CoralArch\\CoralArch1.mdx");
+AddBuilding("natarchunder", "Underground Archway", "Doodads\\Underground\\Structures\\GRockArch\\GRockArch.mdx");
+AutoAddBuilder("natarch", "Natural Archways");
+
+//archways-artificial
+icon = "ReplaceableTextures\\CommandButtons\\BTNAdvStruct.blp";
+AddBuilding("artarchcity", "City Archway", "Doodads\\Cityscape\\Structures\\Archway1\\Archway1.mdx");
+AddBuilding("artarchcityruined1", "Ruined City Archway 1", "Doodads\\Cityscape\\Structures\\Archway1_Ruined\\Archway1_Ruined.mdx");
+AddBuilding("artarchcityruined2", "Ruined City Archway 2", "Doodads\\Cityscape\\Structures\\Archway2_Ruined\\Archway2_Ruined.mdx");
+AddBuilding("artarchdungeon", "Dungeon Archway", "Doodads\\Dungeon\\Structures\\DungeonArchway1\\DungeonArchway1.mdx");
+AddBuilding("artarchunder", "Underground Archway", "Doodads\\Underground\\Structures\\UndergroundArchway1\\UndergroundArchway1.mdx");
+AddBuilding("artarchsunken1", "Sunken Archway 1", "Doodads\\Ruins\\Structures\\RuinsArchway0_\\RuinsArchway0_0.mdx");
+AddBuilding("artarchsunken2", "Sunken Archway 2", "Doodads\\Ruins\\Structures\\RuinsArchway0_\\RuinsArchway0_1.mdx");
+AddBuilding("artarchsunken3", "Sunken Archway 3", "Doodads\\Ruins\\Structures\\RuinsArchway0_\\RuinsArchway0_2.mdx");
+AddBuilding("artarchsunkenruined", "Ruined Sunken Archway", "Doodads\\Ruins\\Structures\\RuinsArchwayBroken00\\RuinsArchwayBroken00.mdx");
+AutoAddBuilder("artarch", "Structure Archways");
+
+shopScale = 0.25;
+AutoAddShop("arch", "Archways");
+shopScale = 0.5;

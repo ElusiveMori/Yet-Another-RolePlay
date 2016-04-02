@@ -1,0 +1,50 @@
+// safe prefixes 1234567890PqQTxy
+
+void InitNextCharacters() {
+	for (int i = 0; i < strlen(permittedChars) - 1; i++) {
+		nextChars[substr(permittedChars, i, i + 1)] = substr(permittedChars, i + 1, i + 2);
+	}	
+
+	nextChars["z"] = "0";
+}
+
+void InitHotkeys() {
+	hotkeys[0]  = "Q";
+	hotkeys[1]  = "W";
+	hotkeys[2]  = "E";
+	hotkeys[3]  = "R";
+	hotkeys[4]  = "A";
+	hotkeys[5]  = "S";
+	hotkeys[6]  = "D";
+	hotkeys[7]  = "F";
+	hotkeys[8]  = "Z";
+	hotkeys[9]  = "X";
+	hotkeys[10] = "C";
+	hotkeys[11] = "V";
+}
+
+string GetNextId(string id) {
+	int pos = 3;
+	array temp = array();
+	bool carry = true;
+
+	while (pos >= 0) {
+		if (carry) {
+			if (substr(id, pos, pos + 1) == "z") {
+				temp[pos] = "0";
+			} else {
+				temp[pos] = nextChars[substr(id, pos, pos + 1)];
+				carry = false;
+			}
+		} else {
+			temp[pos] = substr(id, pos, pos + 1);
+		}
+		pos--;
+	}
+
+	return temp[0] + temp[1] + temp[2] + temp[3];
+}
+
+string MakeHotkeyTip(string hotkey) {
+	return HOTKEY_COLOR + "[" + hotkey + "] |r";
+}

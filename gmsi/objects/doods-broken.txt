@@ -1,0 +1,52 @@
+//broken
+shopModel = "Doodads\\LordaeronSummer\\Props\\HayCartbroken\\HayCartbroken";
+icon = "ReplaceableTextures\\CommandButtons\\BTNUnholyStrength.blp";
+AddBuilding("windmillburn", "Burned Wind Mill", "Doodads\\LordaeronSummer\\Structures\\WindMillBurned\\WindMillBurned.mdx");
+AddBuilding("granaryburn", "Burned Granary", "Doodads\\LordaeronSummer\\Structures\\GranaryBurned\\GranaryBurned.mdx");
+AddBuilding("towerburn", "Burned Tower", "Doodads\\LordaeronSummer\\Structures\\TowerScorched\\TowerScorched.mdx");
+AddBuilding("innburn", "Burned Inn", "Doodads\\LordaeronSummer\\Structures\\InnScorched\\InnScorched.mdx");
+AddBuilding("gobshipyardburn", "Burned Goblin Shipyard", "Doodads\\LordaeronSummer\\Structures\\GoblinShipyardRuined\\GoblinShipyardRuined.mdx");
+AddBuilding("farmburn", "Burned Farm", "Doodads\\LordaeronSummer\\Structures\\FarmScorched\\FarmScorched.mdx");
+AddBuilding("barnburn", "Burned Barn", "Doodads\\LordaeronSummer\\Structures\\BarnScorched\\BarnScorched.mdx");
+AddBuilding("cathedralburn", "Burned Cathedral", "Doodads\\Cityscape\\Structures\\CathedralRuined\\CathedralRuined.mdx");
+AddBuilding("fountainbroken", "Broken Fountain", "Doodads\\Cityscape\\Props\\FountainRuined\\FountainRuined.mdx");
+AddBuilding("nightelfshipburn", "Burned Night Elf Ship", "Doodads\\Cinematic\\NightElfTransportShipRuined\\NightElfTransportShipRuined.mdx");
+AddBuilding("wheelbarrelbroken", "Broken Wheel Barrel", "Doodads\\LordaeronSummer\\Props\\WheelBarrelBroken\\WheelBarrelBroken.mdx");
+AddBuilding("haycartrot", "Rotten Hay Cat", "Doodads\\LordaeronSummer\\Props\\RottenHayCart\\RottenHayCart.mdx");
+AddBuilding("haycartrotbroken", "Broken Rotten Hay Cart", "Doodads\\LordaeronSummer\\Props\\RottenHayCartbroken\\RottenHayCartbroken.mdx");
+AddBuilding("haycartbroken", "Broken Hay Cart", "Doodads\\LordaeronSummer\\Props\\HayCartbroken\\HayCartbroken.mdx");
+AddBuilding("hayrot1", "Rotten Hay 1", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay0.mdx");
+AddBuilding("hayrot2", "Rotten Hay 2", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay1.mdx");
+AddBuilding("hayrot3", "Rotten Hay 3", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay2.mdx");
+AddBuilding("hayrot4", "Rotten Hay 4", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay3.mdx");
+AddBuilding("hayrot5", "Rotten Hay 5", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay4.mdx");
+AddBuilding("wheatburn1", "Burned Wheat 1", "Doodads\\LordaeronSummer\\Plants\\CornWheatScorched\\CornWheatScorched0.mdx");
+AddBuilding("wheatburn2", "Burned Wheat 2", "Doodads\\LordaeronSummer\\Plants\\CornWheatScorched\\CornWheatScorched1.mdx");
+AutoAddBuilder("broken", "Broken");
+
+//broken-dalaran
+AddBuilding("dalaranruin1", "Dalaran Ruin 1", "Doodads\\Ruins\\Props\\DalaranRuinCrystals\\DalaranRuinCrystals.mdx");
+AddBuilding("dalaranruin2", "Dalaran Ruin 2", "Doodads\\Ruins\\Props\\DalaranRuinTower\\DalaranRuinTower.mdx");
+AddBuilding("dalaranruin3", "Dalaran Ruin 3", "Doodads\\Ruins\\Props\\DalaranRuinTower2\\DalaranRuinTower2.mdx");
+AddBuilding("dalaranruin4", "Dalaran Ruin 4", "Doodads\\Ruins\\Props\\DalaranRuinTowerBase\\DalaranRuinTowerBase.mdx");
+AddBuilding("dalaranruin5", "Dalaran Ruin 5", "Doodads\\Ruins\\Props\\DalaranRuinTwoBases\\DalaranRuinTwoBases0.mdx");
+AddBuilding("dalaranruin6", "Dalaran Ruin 6", "Doodads\\Ruins\\Props\\DalaranRuinTwoBases\\DalaranRuinTwoBases1.mdx");
+AddBuilding("dalaranruin7", "Dalaran Ruin 7", "Doodads\\Ruins\\Props\\DalaranRuinTwoBases2\\DalaranRuinTwoBases2.mdx");
+AddBuilding("dalaranruin8", "Dalaran Ruin 8", "Doodads\\Ruins\\Props\\DalaranVioletCitadelRuin\\DalaranVioletCitadelRuin.mdx");
+AutoAddBuilder("brokendalaran", "Broken Dalaran");
+
+//broken-city
+AddBuilding("cityruinbase1", "Building Rubble 1", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_0_BaseRuin\\CityBuildingLarge_0_BaseRuin.mdx");
+AddBuilding("cityruinbase2", "Building Rubble 2", "Doodads\\Cityscape\\Structures\\CityBuildingSmall135_0_BaseRuin\\CityBuildingSmall135_0_BaseRuin.mdx");
+AddBuilding("cityruin1", "Ruined Building 1", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_0_Ruined\\CityBuildingLarge_0_Ruined.mdx");
+AddBuilding("cityruin2", "Ruined Building 2", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_135_Ruined\\CityBuildingLarge_135_Ruined.mdx");
+AddBuilding("cityruin3", "Ruined Building 3", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_45_Ruined\\CityBuildingLarge_45_Ruined.mdx");
+AddBuilding("cityruin4", "Ruined Building 4", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_90_Ruined\\CityBuildingLarge_90_Ruined.mdx");
+AddBuilding("cityruin5", "Ruined Building 5", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_0_Ruined\\CityBuildingSmall0_0_Ruined.mdx");
+AddBuilding("cityruin6", "Ruined Building 6", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_1_Ruined\\CityBuildingSmall0_1_Ruined.mdx");
+AddBuilding("cityruin7", "Ruined Building 7", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_2_Ruined\\CityBuildingSmall0_2_Ruined.mdx");
+AutoAddBuilder("brokencity", "Broken City");
+
+shopScale = 1;
+AutoAddShop("broken", "Broken Stuff");
+shopScale = 0.5;

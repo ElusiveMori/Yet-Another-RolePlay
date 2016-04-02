@@ -1,0 +1,44 @@
+echoln("Starting YARP initialization script.\n
+This script is meant to install YARP required technical units into the map, 
+as well as create buildings and builder units, and set up other things.");
+
+include("objects.gsl");
+include("io.gsl");
+include("common.gsl");
+include("string.gsl");
+include("westrings.gsl");
+
+include("yarp/orders.gsl");
+include("yarp/globals.gsl");
+include("yarp/util.gsl");
+include("yarp/base.gsl");
+include("yarp/generators.gsl");
+include("yarp/data.gsl");
+
+void Init() {
+	InitNextCharacters();
+	InitHotkeys();
+	PrepareStock();
+
+	MakeIndexer();
+	MakeSpawnerCargo();
+	MakeSpawner();
+	MakeLocation();
+	MakeFlierUtils();
+	MakeTerrain();
+
+	include("yarp/objects/doods.txt");
+	include("yarp/objects/doods-magic.txt");
+	include("yarp/objects/doods-rocks.txt");
+	include("yarp/objects/doods-water.txt");
+	include("yarp/objects/doods-broken.txt");
+	include("yarp/objects/doods-nature.txt");
+	include("yarp/objects/doods-archways.txt");
+	include("yarp/objects/doods-graveyard.txt");
+	include("yarp/objects/doods-structures.txt");
+
+	PreplaceUnits();
+	saveMap(map, @outputPath + "/" + map.fileName);
+}
+
+Init();

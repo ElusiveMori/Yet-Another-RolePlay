@@ -1,0 +1,33 @@
+library FlyUtils requires Util {
+	public constant integer ABIL_UNITFLY       = 'Amrf';
+	public constant integer ABIL_BUILDFLY_BOOK = 'pA01';
+	public constant integer ABIL_BUILDFLY      = 'Aro1';
+
+	public struct Fly[] {
+		static method uproot(unit what) {
+			real angle;
+
+			if (IsUnitType(what, UNIT_TYPE_STRUCTURE)) { //&& GetUnitAbilityLevel(what, ABIL_BUILDFLY) == 0) {
+				angle = GetUnitFacing(what);
+				UnitAddAbility(what, ABIL_BUILDFLY_BOOK);
+				IssueImmediateOrder(what, "unroot");
+				SetUnitAnimation(what, "stand");
+				SetUnitFacing(what, angle);
+			}	
+		}
+
+		static method fly(unit what) {
+			uproot(what);
+
+			if (UnitAddAbility(what, ABIL_UNITFLY))
+				UnitRemoveAbility(what, ABIL_UNITFLY);
+		}
+
+		private static method onInit() {
+			integer i;
+
+			for (0 <= i <= 12)
+				SetPlayerAbilityAvailable(Player(i), ABIL_BUILDFLY_BOOK, false);
+		}
+	}
+}

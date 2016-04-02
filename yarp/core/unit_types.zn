@@ -1,0 +1,16 @@
+library UnitTypes requires Util {
+	public function IsIdUtility(integer id) -> boolean {
+		integer prefix = GetOctet(id, 3);
+
+		// if first character of unit id is 'p' or '2'
+		if (prefix == 112 || prefix == 50) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function IsUnitUtility(unit who) -> boolean {
+		return IsIdUtility(GetUnitTypeId(who));
+	}
+}

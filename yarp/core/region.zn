@@ -1,0 +1,455 @@
+library Region requires Util, Logs {
+	// behold the horrible spaghetti code
+
+	public {
+		constant integer REGION_ID              = 'pU01';
+		constant integer REGION_ABIL_INC_WIDTH  = 'pA05';
+		constant integer REGION_ABIL_INC_HEIGHT = 'pA06';
+		constant integer REGION_ABIL_DEC_WIDTH  = 'pA07';
+		constant integer REGION_ABIL_DEC_HEIGHT = 'pA08';
+		constant integer REGION_ABIL_REMOVE     = 'pA09';
+		constant integer REGION_ABIL_AUX        = 'pA0a';
+	}
+
+	struct RegionHighlighter[] {
+		module Alloc;
+
+		private {
+			static Table decayers;
+
+			lightning l1;
+			lightning l2;
+			lightning l3;
+			lightning l4;
+			integer target;
+		}
+
+		private static method decay() {
+			timer expired = GetExpiredTimer();
+			thistype this = decayers[GetHandleId(expired)];
+
+			if (IsLocalPlayer(target)) {
+				DestroyLightning(l1);
+				DestroyLightning(l2);
+				DestroyLightning(l3);
+				DestroyLightning(l4);
+			}
+
+			deallocate();
+			decayers.remove(GetHandleId(expired));
+			DestroyTimer(expired);
+			expired = null;
+		}
+
+		static method create(integer who, real minx, real miny, real maxx, real maxy, real duration) -> thistype {
+			thistype this = allocate();
+			timer decayer = CreateTimer();
+			target = who;
+
+			if (IsLocalPlayer(who)) {
+				l1 = AddLightning("DRAM", false, minx, miny, minx, maxy);
+				l2 = AddLightning("DRAM", false, minx, maxy, maxx, maxy);
+				l3 = AddLightning("DRAM", false, maxx, maxy, maxx, miny);
+				l4 = AddLightning("DRAM", false, maxx, miny, minx, miny);
+
+				PingMinimapEx(minx, miny, duration, 255, 120, 120, false);
+				PingMinimapEx(minx, maxy, duration, 255, 120, 120, false);
+				PingMinimapEx(maxx, miny, duration, 255, 120, 120, false);
+				PingMinimapEx(maxx, maxy, duration, 255, 120, 120, false);
+			}
+
+			decayers[GetHandleId(decayer)] = this;
+			TimerStart(decayer, duration, false, function thistype.decay);
+			decayer = null;
+			return this;
+		}
+
+		private static method onInit() {
+			decayers = Table.create();
+		}
+	}
+
+	public struct RegionController[] {
+		//! runtextmacro AIDS_zinc()
+
+		integer owner;
+		integer rectId;
+		weathereffect weather;
+		integer weatherId;
+
+		boolean enabledDNC;
+		string terrainDNC;
+		string unitDNC;
+
+		boolean fogEnabled;
+		real fogZstart;
+		real fogZend;
+		real fogRed;
+		real fogGreen;
+		real fogBlue;
+
+		static thistype currentDNC = 0;
+		static thistype currentFog = 0;
+
+		method operator rectangle() -> rect {
+			return Region.rectangles[owner][rectId];
+		}
+
+		method setFog(boolean enabled, real start, real end, real red, real green, real blue) {
+			fogEnabled = enabled;
+			fogZstart  = start;
+			fogZend    = end;
+			fogRed     = red;
+			fogGreen   = green;
+			fogBlue    = blue;
+		}
+
+		method setDNC(boolean enabled, string newTerrainDNC, string newUnitDNC) {
+			enabledDNC = enabled;
+
+			if (Region.terrainDNC.string.has(SH(newTerrainDNC))) {
+				terrainDNC = Region.terrainDNC.string[SH(newTerrainDNC)];
+			} else {
+				terrainDNC = "";
+			}
+
+			if (Region.unitDNC.string.has(SH(newUnitDNC))) {
+				unitDNC = Region.unitDNC.string[SH(newUnitDNC)];
+			} else {
+				unitDNC = "";
+			}
+		}
+
+		method setWeather(string str) {
+			integer id;
+
+			removeWeather();
+
+			if (Region.weather.has(SH(str))) {
+				id = Region.weather[SH(str)];
+
+				weather = AddWeatherEffect(rectangle, id);
+				EnableWeatherEffect(weather, true);
+				weatherId = id;
+			}
+		}
+
+		method removeWeather() {
+			if (weatherId > 0) {
+				RemoveWeatherEffect(weather);
+				weatherId = 0;
+			}
+		}
+
+		method refreshWeather() {
+			if (weatherId > 0) {
+				RemoveWeatherEffect(weather);
+				weather = AddWeatherEffect(rectangle, weatherId);
+				EnableWeatherEffect(weather, true);
+			}
+		}
+
+		method alignToGrid() {
+			real x = GetUnitX(unit);
+			real y = GetUnitY(unit);
+			real sx, sy;
+
+			if (x > 0) sx = 1; else sx = -1;
+			if (y > 0) sy = 1; else sy = -1;
+
+			SetUnitX(unit, I2R(R2I((x + sx * 64) / 128)) * 128);
+			SetUnitY(unit, I2R(R2I((y + sy * 64) / 128)) * 128);
+
+			IssueImmediateOrder(unit, "stop");
+		}
+
+		private static method AIDS_filter(unit what) -> boolean {
+			return GetUnitTypeId(what) == REGION_ID;
+		}
+
+		private method AIDS_onCreate() {
+			integer who = GetPlayerId(GetOwningPlayer(unit));
+			real x = GetUnitX(unit);
+			real y = GetUnitY(unit);
+			integer i;
+
+			for (0 <= i <= 15) {
+				if (Region.rectangleControllers[who][i] == 0) {
+					Region.rectangleControllers[who][i] = this;
+					SetRect(Region.rectangles[who][i], x - 64, y - 64, x + 64, y + 64);
+					rectId = i;
+					owner = who;
+
+					enabledDNC = false;
+					fogEnabled = false;
+
+					SetUnitColor(unit, ConvertPlayerColor(12));
+					if (IsLocalPlayer(who)) {
+						SetUnitVertexColor(unit, 255, 255, 255, 100);
+					} else {
+						SetUnitVertexColor(unit, 255, 255, 255, 0);
+					}
+
+					alignToGrid();
+					SetUnitPropWindow(unit, 0);
+
+					return;
+				}
+			}
+
+			RemoveUnit(unit);
+		}
+
+		private method AIDS_onDestroy() {
+			Region.rectangleControllers[owner][rectId] = 0;
+			removeWeather();
+		}
+	}
+
+	// this struct is just for callbacks and timers
+	struct Region[] {
+		static Table terrainDNC;
+		static Table unitDNC;
+		static Table weather;
+
+		static rect rectangles[12][16];
+		static integer rectangleControllers[12][16];
+
+		private static method onCast() {
+			integer spellId = GetSpellAbilityId();
+			unit caster = GetTriggerUnit();
+			integer owner = GetPlayerId(GetOwningPlayer(caster));
+			group selection;
+			rect temp;
+			real x, y;
+			CommandThread thread;
+
+			if (GetUnitTypeId(caster) == REGION_ID) {
+				x = GetUnitX(caster);
+				y = GetUnitY(caster);
+				temp = RegionController[caster].rectangle;
+
+				if (spellId == REGION_ABIL_INC_WIDTH) {
+					SetRect(temp, GetRectMinX(temp), GetRectMinY(temp), GetRectMaxX(temp) + 256, GetRectMaxY(temp));
+					MoveRectTo(temp, x, y);
+					RegionController[caster].refreshWeather();
+				} else if (spellId == REGION_ABIL_DEC_WIDTH) {
+					SetRect(temp, GetRectMinX(temp), GetRectMinY(temp), GetRectMaxX(temp) - 256, GetRectMaxY(temp));
+					MoveRectTo(temp, x, y);
+					RegionController[caster].refreshWeather();
+				} else if (spellId == REGION_ABIL_INC_HEIGHT) {
+					SetRect(temp, GetRectMinX(temp), GetRectMinY(temp), GetRectMaxX(temp), GetRectMaxY(temp) + 256);
+					MoveRectTo(temp, x, y);
+					RegionController[caster].refreshWeather();
+				} else if (spellId == REGION_ABIL_DEC_HEIGHT) {
+					SetRect(temp, GetRectMinX(temp), GetRectMinY(temp), GetRectMaxX(temp), GetRectMaxY(temp) - 256);
+					MoveRectTo(temp, x, y);
+					RegionController[caster].refreshWeather();
+				} else if (spellId == REGION_ABIL_REMOVE) {
+					RemoveUnit(caster);
+				} else if (spellId == REGION_ABIL_AUX) {
+					selection = NewGroup();
+					GroupEnumUnitsInRect(selection, temp, null);
+
+					thread = CommandThread.create(owner);
+					thread.pushCommands(AuxCommands.getAux(owner));
+					thread.selection.addGroup(selection);
+					thread.start.execute();
+
+					Log.log(owner, TYPE_CMD, "(region) " + AuxCommands.getAux(owner));
+					LogBoard.updateBoard();
+
+					selection = null;
+				}
+			}
+
+			caster = null;
+		}
+
+		private static method onOrder() {
+			unit ordered = GetOrderedUnit();
+			string order = OrderId2String(GetIssuedOrderId());
+			eventid id = GetTriggerEventId();
+			real sx, sy;
+			real x, y;
+			RegionController controller;
+
+			if (GetUnitTypeId(ordered) == REGION_ID) {
+				if (id == EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER) {
+					if (order == "smart" || order == "move") {
+						SetUnitX(ordered, GetOrderPointX());
+						SetUnitY(ordered, GetOrderPointY());
+						controller = RegionController[ordered];
+						controller.refreshWeather();
+						controller.alignToGrid();
+						MoveRectTo(controller.rectangle, GetUnitX(ordered), GetUnitY(ordered));
+					} else {
+						IssueImmediateOrder(ordered, "stop");
+					}
+				} else if (id == EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER) {	
+					IssueImmediateOrder(ordered, "stop");
+				}
+			}
+
+			ordered = null; 
+		}
+
+		private static method highlightRegions() {
+			timer expired = GetExpiredTimer();
+			group temp;
+			unit fog;
+			rect rectangle;
+			integer i;
+
+			for (0 <= i < 12) {
+				temp = NewGroup();
+				GroupEnumUnitsSelected(temp, Player(i), null);
+
+				fog = FirstOfGroup(temp);
+
+				while (fog != null) {
+					GroupRemoveUnit(temp, fog);
+
+					if (GetUnitTypeId(fog) == REGION_ID) {
+						rectangle = RegionController[fog].rectangle;
+
+						RegionHighlighter.create(i, GetRectMinX(rectangle), GetRectMinY(rectangle), GetRectMaxX(rectangle), GetRectMaxY(rectangle), 0.125);
+						rectangle = null;
+					}
+
+					fog = FirstOfGroup(temp);
+				}
+
+				ReleaseGroup(temp);
+			}
+
+			temp = null;
+			fog = null;
+			TimerStart(expired, 0.125, false, function thistype.highlightRegions);
+			expired = null;
+		}
+
+		private static method applyAtmospheric() {
+			timer expired = GetExpiredTimer();
+			rect rectangle;
+			real margin = GetCameraEyePositionZ() / 4;
+			RegionController controller;
+			real x = GetCameraTargetPositionX();
+			real y = GetCameraTargetPositionY();
+			integer i, j;
+			boolean DNCHit = false;
+			boolean fogHit = false;
+
+			for (0 <= i < 12) {
+				for (0 <= j < 16) {
+					controller = rectangleControllers[i][j];
+					if (controller > 0) {
+						rectangle = controller.rectangle;
+
+						if (controller.fogEnabled || controller.enabledDNC) {
+							if (x > GetRectMinX(rectangle) - margin && x < GetRectMaxX(rectangle) + margin &&
+								y > GetRectMinY(rectangle) - margin && y < GetRectMaxY(rectangle) + margin) {
+
+								if (controller.fogEnabled && !fogHit) {
+									fogHit = true;
+									SetTerrainFogEx(0, controller.fogZstart, controller.fogZend, 0, controller.fogRed, controller.fogGreen, controller.fogBlue);
+								}
+
+								if (controller.enabledDNC && !DNCHit) {
+									DNCHit = true;
+									SetDayNightModels(controller.terrainDNC, controller.unitDNC);
+								}
+							}
+
+							if (fogHit && DNCHit) break;
+						}
+					}
+				}
+
+				if (fogHit && DNCHit) {
+					break;
+				}
+			}
+
+			if (!fogHit) {
+				SetTerrainFogEx(0, 100000, 100000, 0, 0, 0, 0);
+			}
+
+			if (!DNCHit) {
+				SetDayNightModels("Environment\\DNC\\DNCAshenvale\\DNCAshenValeTerrain\\DNCAshenValeTerrain.mdl", "Environment\\DNC\\DNCAshenvale\\DNCAshenvaleUnit\\DNCAshenvaleUnit.mdl");
+			}
+
+			TimerStart(expired, 0.125, false, function thistype.applyAtmospheric);
+			expired = null;
+			rectangle = null;
+		}
+
+		private static method onInit() {
+			trigger orderTrigger = CreateTrigger();
+			trigger castTrigger = CreateTrigger();
+			integer i, j;
+			timer highlighter = CreateTimer();
+			timer atmospheric = CreateTimer();
+			terrainDNC = Table.create();
+			unitDNC = Table.create();
+			weather = Table.create();
+
+			terrainDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeTerrain\\DNCAshenValeTerrain.mdl";
+			terrainDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranTerrain\\DNCDalaranTerrain.mdl";
+			terrainDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonTerrain\\DNCDungeonTerrain.mdl";
+			terrainDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodTerrain\\DNCFelWoodTerrain.mdl";
+			terrainDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronTerrain\\DNCLordaeronTerrain.mdl";
+			terrainDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundTerrain\\DNCUndergroundTerrain.mdl";
+
+			unitDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeUnit\\DNCAshenValeUnit.mdl";
+			unitDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranUnit\\DNCDalaranUnit.mdl";
+			unitDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonUnit\\DNCDungeonUnit.mdl";
+			unitDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodUnit\\DNCFelWoodUnit.mdl";
+			unitDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronUnit\\DNCLordaeronUnit.mdl";
+			unitDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundUnit\\DNCUndergroundUnit.mdl";
+
+			weather[SH("ashenvalerainheavy")]   = 'RAhr';
+			weather[SH("ashenvalerainlight")]   = 'RAlr';
+			weather[SH("dalaranshield")]        = 'MEds';
+			weather[SH("dungeonbluefogheavy")]  = 'FDbh';
+			weather[SH("dungeonbluefoglight")]  = 'FDbl';
+			weather[SH("dungeongreenfogheavy")] = 'FDgh';
+			weather[SH("dungeongreenfoglight")] = 'FDgl';
+			weather[SH("dungeonredfogheavy")]   = 'FDrh';
+			weather[SH("dungeonredfoglight")]   = 'FDrl';
+			weather[SH("dungeonwhitefogheavy")] = 'FDwh';
+			weather[SH("dungeonwhitefoglight")] = 'FDwl';
+			weather[SH("lordaeronrainheavy")]   = 'RLhr';
+			weather[SH("lordaeronrainlight")]   = 'RLlr';
+			weather[SH("northrendblizzard")]    = 'SNbs';
+			weather[SH("northrendsnowheavy")]   = 'SNhs';
+			weather[SH("northrendsnowlight")]   = 'SNls';
+			weather[SH("outlandwindheavy")]     = 'WOcw';
+			weather[SH("outlandwindlight")]     = 'WOlw';
+			weather[SH("raysoflight")]          = 'LRaa';
+			weather[SH("raysofmoonlight")]      = 'LRma';
+			weather[SH("windheavy")]            = 'WNcw';
+
+			TimerStart(highlighter, 0.125, false, function thistype.highlightRegions);
+			TimerStart(atmospheric, 0.125, false, function thistype.applyAtmospheric);
+			highlighter = null;
+			atmospheric = null;
+
+			TriggerAddAction(orderTrigger, function thistype.onOrder);
+			TriggerAddAction(castTrigger, function thistype.onCast);
+			TriggerRegisterAnyUnitEventBJ(orderTrigger, EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER);
+			TriggerRegisterAnyUnitEventBJ(orderTrigger, EVENT_PLAYER_UNIT_ISSUED_ORDER);
+			TriggerRegisterAnyUnitEventBJ(orderTrigger, EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER);
+			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
+			
+			for (0 <= i < 12)
+				for (0 <= j < 16) {
+					rectangles[i][j] = Rect(0, 0, 0, 0);
+					rectangleControllers[i][j] = 0;
+				}
+
+			orderTrigger = null;
+			castTrigger = null;
+		}
+	}
+}

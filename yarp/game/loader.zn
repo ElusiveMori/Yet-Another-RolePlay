@@ -1,0 +1,75 @@
+library Loader requires Core {
+	struct Loader[] {
+		private static method Command_LoadAddQueueUnit(CommandThread thread) {
+			LoadQueue queue = Load.addToQueue(thread.owner);
+
+			queue.objectType = 0;
+			queue.id         = String2Id(thread.args.next());
+			queue.x          = S2R(thread.args.next());
+			queue.y          = S2R(thread.args.next());
+			queue.angle      = S2R(thread.args.next());
+			queue.size       = S2R(thread.args.next());
+			queue.speed      = S2R(thread.args.next());
+			queue.animSpeed  = S2R(thread.args.next());
+			queue.z          = S2R(thread.args.next());
+			queue.color      = S2I(thread.args.next());
+			queue.vertexR    = S2I(thread.args.next());
+			queue.vertexG    = S2I(thread.args.next());
+			queue.vertexB    = S2I(thread.args.next());
+			queue.vertexA    = S2I(thread.args.next());
+		}
+
+		private static method Command_LoadAddQueueTile(CommandThread thread) {
+			LoadQueue queue = Load.addToQueue(thread.owner);
+
+			queue.objectType = 1;
+			queue.x          = S2R(thread.args.next()) * 128;
+			queue.y          = S2R(thread.args.next()) * 128;
+			queue.id         = String2Id(thread.args.next());
+		}
+
+		private static method Command_LoadAddQueueDeform(CommandThread thread) {
+			LoadQueue queue = Load.addToQueue(thread.owner);
+
+			queue.objectType = 2;
+			queue.x          = S2R(thread.args.next());
+			queue.y          = S2R(thread.args.next());
+			queue.magnitude  = S2R(thread.args.next());
+			queue.radius     = S2R(thread.args.next());
+		}
+
+		private static method Command_LoadClearQueue(CommandThread thread) {
+			Load.clearQueue(thread.owner);
+		}
+
+		private static method Command_LoadStartPaste(CommandThread thread) {
+			Load.startPaste(thread.owner);
+		}
+
+		private static method Command_LoadSetOffset(CommandThread thread) {
+			real x = S2R(thread.args.next());
+			real y = S2R(thread.args.next());
+			UnitList list = thread.selection.top;
+
+			while (list > 0) {
+				if (GetUnitTypeId(list.what) == REGION_ID) {
+					x = GetUnitX(list.what);
+					y = GetUnitY(list.what);
+				}
+
+				list = list.next;
+			}
+
+			Load.setOffset(thread.owner, x, y);
+		}
+
+		private static method onInit() {
+			Command.register("_au", thistype.Command_LoadAddQueueUnit);
+			Command.register("_at", thistype.Command_LoadAddQueueTile);
+			Command.register("_ad", thistype.Command_LoadAddQueueDeform);
+			Command.register("_cq", thistype.Command_LoadClearQueue);
+			Command.register("_sp", thistype.Command_LoadStartPaste);
+			Command.register("_so", thistype.Command_LoadSetOffset);
+		}
+	}
+}

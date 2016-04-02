@@ -1,0 +1,149 @@
+shopScale = 1;
+shopModel = "Doodads\\Cityscape\\Plants\\CityBush\\CityBush";
+icon = "ReplaceableTextures\\CommandButtons\\BTNNaturesBlessing.blp";
+//nature-shrooms
+AddBuilding("ashenshroom1", "Ashenvale Mushroom 1", "Doodads\\Ashenvale\\Plants\\AshenShrooms\\AshenShrooms0.mdx");
+AddBuilding("ashenshroom2", "Ashenvale Mushroom 2", "Doodads\\Ashenvale\\Plants\\AshenShrooms\\AshenShrooms1.mdx");
+AddBuilding("ashenshroom3", "Ashenvale Mushroom 3", "Doodads\\Ashenvale\\Plants\\AshenShrooms\\AshenShrooms2.mdx");
+AddBuilding("ashenshroom4", "Ashenvale Mushroom 4", "Doodads\\Ashenvale\\Plants\\AshenShrooms\\AshenShrooms3.mdx");
+AddBuilding("felshroom1", "Felwood Mushroom 1", "Doodads\\Felwood\\Plants\\FelwoodShrooms\\FelwoodShrooms0.mdx");
+AddBuilding("felshroom2", "Felwood Mushroom 2", "Doodads\\Felwood\\Plants\\FelwoodShrooms\\FelwoodShrooms1.mdx");
+AddBuilding("felshroom3", "Felwood Mushroom 3", "Doodads\\Felwood\\Plants\\FelwoodShrooms\\FelwoodShrooms2.mdx");
+AddBuilding("felshroom4", "Felwood Mushroom 4", "Doodads\\Felwood\\Plants\\FelwoodShrooms\\FelwoodShrooms3.mdx");
+AutoAddBuilderS("nature-shrooms1", "Mushrooms Builder 1");
+AddBuilding("sunkenshroom1", "Sunken Mushroom 1", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom0.mdx");
+AddBuilding("sunkenshroom2", "Sunken Mushroom 2", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom1.mdx");
+AddBuilding("sunkenshroom3", "Sunken Mushroom 3", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom2.mdx");
+AddBuilding("sunkenshroom4", "Sunken Mushroom 4", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom3.mdx");
+AddBuilding("sunkenshroom5", "Sunken Mushroom 5", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom4.mdx");
+AddBuilding("sunkenshroom6", "Sunken Mushroom 6", "Doodads\\Ruins\\Plants\\Ruins_Shroom\\Ruins_Shroom5.mdx");
+AddBuilding("blueshroom", "Blue Mushroom", "Doodads\\Underground\\Plants\\ShroomsBlue\\ShroomsBlue.mdx");
+AutoAddBuilderS("nature-shrooms2", "Mushrooms Builder 2");
+
+//nature-cacti
+AddBuilding("cactus1", "Cactus 1", "Doodads\\Barrens\\Plants\\Cactus\\Cactus0.mdx");
+AddBuilding("cactus2", "Cactus 2", "Doodads\\Barrens\\Plants\\Cactus\\Cactus1.mdx");
+AddBuilding("cactus3", "Cactus 3", "Doodads\\Barrens\\Plants\\Cactus\\Cactus2.mdx");
+AddBuilding("cactus4", "Cactus 4", "Doodads\\Barrens\\Plants\\Cactus\\Cactus3.mdx");
+AddBuilding("cactus5", "Cactus 5", "Doodads\\Barrens\\Plants\\Cactus\\Cactus4.mdx");
+AddBuilding("cactus6", "Cactus 6", "Doodads\\Barrens\\Plants\\Cactus\\Cactus5.mdx");
+AddBuilding("cactus7", "Cactus 7", "Doodads\\Barrens\\Plants\\Cactus\\Cactus6.mdx");
+AddBuilding("cactus8", "Cactus 8", "Doodads\\Barrens\\Plants\\Cactus\\Cactus7.mdx");
+AddBuilding("cactus9", "Cactus 9", "Doodads\\Barrens\\Plants\\Cactus\\Cactus8.mdx");
+AddBuilding("cactus10", "Cactus 10", "Doodads\\Barrens\\Plants\\Cactus\\Cactus9.mdx");
+AutoAddBuilder("nature-cacti", "Cacti");
+
+//nature-animals
+AddBuilding("bird", "Bird", "Doodads\\Ashenvale\\Props\\Bird\\Bird.mdx");
+AddBuilding("flies", "Flies", "Doodads\\LordaeronSummer\\Props\\Flies\\Flies.mdx");
+AddBuilding("bats", "Bats", "Doodads\\Northrend\\Props\\Bats\\Bats.mdx");
+AutoAddBuilder("nature-animals", "Animals");
+
+//nature-logs
+AddBuilding("ashenstump", "Ashenvale Stump", "Doodads\\Ashenvale\\Props\\AshenHollowStump\\AshenHollowStump.mdx");
+AddBuilding("ashenlog", "Ashenvale Log", "Doodads\\Ashenvale\\Props\\AshenLogStraight\\AshenLogStraight.mdx");
+AddBuilding("felstump", "Felwood Stump", "Doodads\\Felwood\\Props\\FelwoodHollowStump\\FelwoodHollowStump.mdx");
+AddBuilding("fellog", "Felwood Log", "Doodads\\Felwood\\Props\\FelwoodLogStraight\\FelwoodLogStraight.mdx");
+AddBuilding("bridgelog", "Bridge Log", "Doodads\\LordaeronSummer\\Structures\\BridgeLog\\BridgeLog.mdx");
+AutoAddBuilder("nature-logs", "Logs");
+
+//nature-lilies
+AddBuilding("lily1", "Lily Pad 1", "Doodads\\LordaeronSummer\\Plants\\LillyPad\\LillyPad.mdx");
+AddBuilding("lily2", "Lily Pad 2", "Doodads\\LordaeronSummer\\Plants\\LilyPad\\LilyPad0.mdx");
+AddBuilding("lily3", "Lily Pad 3", "Doodads\\LordaeronSummer\\Plants\\LilyPad\\LilyPad1.mdx");
+AddBuilding("lily4", "Lily Pad 4", "Doodads\\LordaeronSummer\\Plants\\LilyPad\\LilyPad2.mdx");
+AddBuilding("fellily", "Felwood Lily Pad", "Doodads\\Felwood\\Plants\\FelwoodLillyPad\\FelwoodLillyPad.mdx");
+AddBuilding("ashenlily1", "Ashenvale Lily Pad 1", "Doodads\\Ashenvale\\Water\\AshenLillyPad\\AshenLillyPad.mdx");
+AddBuilding("ashenlily2", "Ashenvale Lily Pad 2", "Doodads\\Ashenvale\\Water\\AshenvaleLilyPad\\AshenvaleLilyPad0.mdx");
+AddBuilding("ashenlily3", "Ashenvale Lily Pad 3", "Doodads\\Ashenvale\\Water\\AshenvaleLilyPad\\AshenvaleLilyPad1.mdx");
+AddBuilding("ashenlily4", "Ashenvale Lily Pad 4", "Doodads\\Ashenvale\\Water\\AshenvaleLilyPad\\AshenvaleLilyPad2.mdx");
+AutoAddBuilderS("nature-lilies1", "Lilies Builder 1");
+
+AddBuilding("sunkenlily1", "Sunken Lily Pad 1", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad0.mdx");
+AddBuilding("sunkenlily2", "Sunken Lily Pad 2", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad1.mdx");
+AddBuilding("sunkenlily3", "Sunken Lily Pad 3", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad2.mdx");
+AddBuilding("sunkenlily4", "Sunken Lily Pad 4", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad3.mdx");
+AddBuilding("sunkenlily5", "Sunken Lily Pad 5", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad4.mdx");
+AddBuilding("sunkenlily6", "Sunken Lily Pad 6", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad5.mdx");
+AddBuilding("sunkenlily7", "Sunken Lily Pad 7", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad6.mdx");
+AddBuilding("sunkenlily8", "Sunken Lily Pad 8", "Doodads\\Ruins\\Plants\\Ruins_Lilypad\\Ruins_Lilypad7.mdx");
+AutoAddBuilderS("nature-lilies2", "Lilies Builder 2");
+
+//nature-shrubs
+AddBuilding("felcattail", "Felwood Cattail", "Doodads\\Felwood\\Plants\\FelwoodCatTail\\FelwoodCatTail.mdx");
+AddBuilding("ashencattail", "Ashenvale Cattail", "Doodads\\Ashenvale\\Plants\\AshenCatTail\\AshenCatTail.mdx");
+AddBuilding("rushes1", "Rushes 1", "Doodads\\LordaeronSummer\\Plants\\RiverRushes\\RiverRushes0.mdx");
+AddBuilding("rushes2", "Rushes 2", "Doodads\\LordaeronSummer\\Plants\\RiverRushes\\RiverRushes1.mdx");
+AddBuilding("rushes3", "Rushes 3", "Doodads\\LordaeronSummer\\Plants\\RiverRushes\\RiverRushes2.mdx");
+AddBuilding("rushes4", "Rushes 4", "Doodads\\LordaeronSummer\\Plants\\RiverRushes\\RiverRushes3.mdx");
+AddBuilding("rushes5", "Rushes 5", "Doodads\\Ruins\\Plants\\Ruins_Rush\\Ruins_Rush0.mdx");
+AddBuilding("rushes6", "Rushes 6", "Doodads\\Ruins\\Plants\\Ruins_Rush\\Ruins_Rush1.mdx");
+AddBuilding("shrub1", "Shrub 1", "Doodads\\Ruins\\Plants\\Ruins_Shrub\\Ruins_Shrub0.mdx");
+AddBuilding("shrub2", "Shrub 2", "Doodads\\Ruins\\Plants\\Ruins_Shrub\\Ruins_Shrub1.mdx");
+AddBuilding("shrub3", "Shrub 3", "Doodads\\Ruins\\Plants\\Ruins_Shrub\\Ruins_Shrub2.mdx");
+AutoAddBuilder("nature-shrubs", "Shrubs");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNShimmerWeed.blp";
+
+//nature-vines
+AddBuilding("felthorns1", "Felwood Thorns 1", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns0.mdx");
+AddBuilding("felthorns2", "Felwood Thorns 2", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns1.mdx");
+AddBuilding("felthorns3", "Felwood Thorns 3", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns2.mdx");
+AddBuilding("felthorns4", "Felwood Thorns 4", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns3.mdx");
+AddBuilding("felthorns5", "Felwood Thorns 5", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns4.mdx");
+AddBuilding("felthorns6", "Felwood Thorns 6", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns5.mdx");
+AddBuilding("felthorns7", "Felwood Thorns 7", "Doodads\\Felwood\\Plants\\Felwood_Thorns\\Felwood_Thorns6.mdx");
+AddBuilding("sunkenwallvines1", "Sunken Wall Vines 1", "Doodads\\Ruins\\Terrain\\CityCliffVines0\\CityCliffVines0.mdx");
+AddBuilding("sunkenwallvines2", "Sunken Wall Vines 2", "Doodads\\Ruins\\Terrain\\CityCliffVines1\\CityCliffVines1.mdx");
+AutoAddBuilderS("nature-vines1", "Vines Builder 1");
+
+AddBuilding("norththorns1", "Northrend Thorns 1", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns0.mdx");
+AddBuilding("norththorns2", "Northrend Thorns 2", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns1.mdx");
+AddBuilding("norththorns3", "Northrend Thorns 3", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns2.mdx");
+AddBuilding("norththorns4", "Northrend Thorns 4", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns3.mdx");
+AddBuilding("norththorns5", "Northrend Thorns 5", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns4.mdx");
+AddBuilding("norththorns6", "Northrend Thorns 6", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns5.mdx");
+AddBuilding("norththorns7", "Northrend Thorns 7", "Doodads\\Northrend\\Plants\\North_Thorns\\North_Thorns6.mdx");
+AddBuilding("vinyplant1", "Viny Plant 1", "Doodads\\Ruins\\Plants\\VinyPlant\\VinyPlant0.mdx");
+AddBuilding("vinyplant2", "Viny Plant 2", "Doodads\\Ruins\\Plants\\VinyPlant\\VinyPlant1.mdx");
+AddBuilding("vinyplant3", "Viny Plant 3", "Doodads\\Ruins\\Plants\\VinyPlant\\VinyPlant2.mdx");
+AddBuilding("vinyplant4", "Viny Plant 4", "Doodads\\Ruins\\Plants\\VinyPlant\\VinyPlant3.mdx");
+AutoAddBuilderS("nature-vines2", "Vines Builder 2");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNDisenchant.blp";
+
+//nature-outland
+AddBuilding("outlandplant1", "Outland Plant 1", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant0.mdx");
+AddBuilding("outlandplant2", "Outland Plant 2", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant1.mdx");
+AddBuilding("outlandplant3", "Outland Plant 3", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant2.mdx");
+AddBuilding("outlandplant4", "Outland Plant 4", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant3.mdx");
+AddBuilding("outlandplant5", "Outland Plant 5", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant4.mdx");
+AddBuilding("outlandplant6", "Outland Plant 6", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant5.mdx");
+AddBuilding("outlandplant7", "Outland Plant 7", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant6.mdx");
+AddBuilding("outlandplant8", "Outland Plant 8", "Doodads\\Outland\\Plants\\Outland_Plant\\Outland_Plant7.mdx");
+AutoAddBuilder("nature-outland", "Outland Plants");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNNaturesBlessing.blp";
+
+//nature-other
+AddBuilding("worldtree", "World Tree", "Doodads\\Ashenvale\\Structures\\Worldtree\\Worldtree.mdx");
+AddBuilding("ashenbush", "Ashenvale Bush", "Doodads\\Ashenvale\\Plants\\AshenBush0\\AshenBush0.mdx");
+AddBuilding("citybush", "City Bush", "Doodads\\Cityscape\\Plants\\CityBush\\CityBush.mdx");
+AddBuilding("felbush1", "Felwood Bush 1", "Doodads\\Felwood\\Plants\\FelwoodBush\\FelwoodBush0.mdx");
+AddBuilding("felbush2", "Felwood Bush 2", "Doodads\\Felwood\\Plants\\FelwoodBush\\FelwoodBush1.mdx");
+AddBuilding("grasstuft1", "Grass Tuft 1", "Doodads\\LordaeronSummer\\Plants\\GrassTuft\\GrassTuft0.mdx");
+AddBuilding("grasstuft2", "Grass Tuft 2", "Doodads\\LordaeronSummer\\Plants\\GrassTuft\\GrassTuft1.mdx");
+AddBuilding("grasstuft3", "Grass Tuft 3", "Doodads\\LordaeronSummer\\Plants\\GrassTuft\\GrassTuft2.mdx");
+AddBuilding("grasstuft4", "Grass Tuft 4", "Doodads\\LordaeronSummer\\Plants\\GrassTuft\\GrassTuft3.mdx");
+AutoAddBuilder("nature-other", "Other Plants");
+
+//nature-flowers
+AddBuilding("flowers1", "Flowers 1", "Doodads\\Ruins\\Plants\\Ruins_Flower\\Ruins_Flower0.mdx");
+AddBuilding("flowers2", "Flowers 2", "Doodads\\Ruins\\Plants\\Ruins_Flower\\Ruins_Flower1.mdx");
+AddBuilding("flowers3", "Flowers 3", "Doodads\\Ruins\\Plants\\Ruins_Flower\\Ruins_Flower2.mdx");
+AddBuilding("flowers4", "Flowers 4", "Doodads\\Ruins\\Plants\\Ruins_Flower\\Ruins_Flower3.mdx");
+AddBuilding("flowers5", "Flowers 5", "Doodads\\Ruins\\Plants\\Ruins_Flower\\Ruins_Flower4.mdx");
+AutoAddBuilder("nature-flowers", "Flowers");
+
+AutoAddShop("nature", "Nature Stuff");
+shopScale = 0.5;

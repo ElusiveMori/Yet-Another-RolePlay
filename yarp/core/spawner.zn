@@ -1,0 +1,74 @@
+library Spawner requires Util {
+	public constant integer SPAWNER_ID = 'pU00';
+
+	public struct Spawner {
+		static integer sampled[];
+		static unit spawners[];
+
+		static method isSpawner(unit what) -> boolean {
+			return GetUnitTypeId(what) == SPAWNER_ID;
+		}
+
+		static method get(integer who) -> unit {
+			if (IsPlayerIngame(who)) {
+				return spawners[who];
+			}
+			
+			return null;
+		}
+
+		private static method onPointOrder() {
+			unit ordered = GetOrderedUnit();
+			string order = OrderId2String(GetIssuedOrderId());
+			real x;
+			real y;
+			real sx;
+			real sy;
+			real d;
+
+			if (isSpawner(ordered)) {
+				if (order == "smart" || order == "move") {
+					SetUnitX(ordered, GetOrderPointX());
+					SetUnitY(ordered, GetOrderPointY());
+				} else if (order == "patrol") {
+					IssueImmediateOrder(ordered, "stop");
+				} else if (order != "unloadall") {
+					x = GetOrderPointX();
+					y = GetOrderPointY();
+					sx = GetUnitX(ordered) - x;
+					sy = GetUnitY(ordered) - y;
+					d = SquareRoot(sx * sx + sy * sy);
+					sx = sx / d;
+					sy = sy / d;
+					if (d > 512) {
+						SetUnitX(ordered, x + sx * 512);
+						SetUnitY(ordered, y + sy * 512);
+					}
+				}
+			}
+
+			ordered = null;
+		}
+
+		private static method onInit() {
+			integer i;
+			playerslotstate s;
+			trigger pointOrderTrigger = CreateTrigger();
+			TriggerAddAction(pointOrderTrigger, function thistype.onPointOrder);
+
+			TriggerRegisterAnyUnitEventBJ(pointOrderTrigger, EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER);
+
+			for (0 <= i <= 11) {
+				if (IsPlayerIngame(i)) {
+					spawners[i] = CreateUnit(Player(i), SPAWNER_ID, 0, 0, 0);
+					SetUnitX(spawners[i], WorldBounds.centerX);
+					SetUnitY(spawners[i], WorldBounds.centerY);
+					SetUnitPathing(spawners[i], false);
+					sampled[i] = 0;
+				}
+			}
+
+			pointOrderTrigger = null;
+		}
+	}
+}

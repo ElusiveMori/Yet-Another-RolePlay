@@ -1,0 +1,410 @@
+library Util requires AIDS, Alloc, ARGB, Board, GameClock, GroupUtils, StringLib, Table, WorldBounds {
+	public constant string  DEBUG_PREFIX      = "|c0036a97dDebug >> |r";
+	public constant string  WARNING_PREFIX    = "|c00b65e2bWarning >> |r";
+	public constant string  MESSAGE_PREFIX    = "|c006d619e>> |r";
+	public constant string  HINT_PREFIX       = "|c0051e177Hint >> |r";
+	public constant string  DEBUG_HIGHLIGHT   = "|c008fc9e6";
+	public constant string  WARNING_HIGHLIGHT = "|c00eab257";
+	public constant string  GENERIC_HIGHLIGHT = "|c00a6bfe2";
+	public constant string  ASSERT_HIGHLIGHT  = "|c00a93c36";
+	public constant integer MESSAGE_DURATION  = 60;
+
+	public integer LocalPlayer;
+	
+	Table PlayerStrings;
+	Table ASCIIChars;
+	string PlayerColors[];
+	integer DebugCounter = 1;
+
+	public function P(integer id) -> player {
+		return Player(id);
+	}
+
+	public function PID(player who) -> integer {
+		return GetPlayerId(who);
+	}
+
+	public function SH(string str) -> integer {
+		return StringHash(str);
+	}
+
+	public function SC(string str, boolean b) -> string {
+		return StringCase(str, b);
+	}
+
+	public function SHC(string str) -> integer {
+		return SH(SC(str, false));
+	}
+
+	public function SL(string str) -> integer {
+		return StringLength(str);
+	}
+
+	public function Sub(string str, integer i, integer j) -> string {
+		return SubString(str, i, j);
+	}
+
+	public function B2S(boolean b) -> string {
+		if (b)
+			return "true";
+		else
+			return "false";
+	}
+
+	public function IsLocalPlayer(integer who) -> boolean {
+		return LocalPlayer == who;
+	}
+
+	public function IsPlayerIngame(integer who) -> boolean {
+		return GetPlayerSlotState(P(who)) == PLAYER_SLOT_STATE_PLAYING;
+	}
+
+	public function SimpleMessage(string str) {
+		DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, MESSAGE_DURATION, str);
+	}
+
+	public function SimpleMessageTo(integer who, string str) {
+		if (IsLocalPlayer(who)) {
+			SimpleMessage(str);
+		}
+	}
+
+	public function DebugMessage(string str) {
+		SimpleMessage("[" + I2S(DebugCounter) + "]" + DEBUG_PREFIX + str);
+		DebugCounter = DebugCounter + 1;
+	}
+	
+	public function WarningMessage(string str) {
+		SimpleMessage(WARNING_PREFIX + str);
+	}
+
+	public function Message(string str) {
+		SimpleMessage(MESSAGE_PREFIX + str);
+	}
+
+	public function HintMessage(string str) {
+		SimpleMessage(HINT_PREFIX + str);
+	}
+
+	public function DebugMessageTo(integer who, string str) {
+		SimpleMessageTo(who, DEBUG_PREFIX + str);
+	}
+	
+	public function WarningMessageTo(integer who, string str) {
+		SimpleMessageTo(who, WARNING_PREFIX + str);
+	}
+
+	public function MessageTo(integer who, string str) {
+		SimpleMessageTo(who, MESSAGE_PREFIX + str);
+	}
+
+	public function HintMessageTo(integer who, string str) {
+		SimpleMessageTo(who, HINT_PREFIX + str);
+	}
+
+	public function ColorStr(string str, string color) -> string {
+		return color + str + "|r";
+	}
+	
+	public function PColorStr(string str, integer who) -> string {
+		return ColorStr(str, PlayerColors[who]);
+	}
+
+	public function PlayerName(integer who) -> string {
+		return PColorStr(GetPlayerName(P(who)), who);
+	}
+
+/*  public function StringTrim (string s) -> string {
+		integer il = 0;
+		integer ir = StringLength(s) - 1;
+		string char = SubString(s, il, il + 1);
+
+		while (char == " ") {
+			il = il + 1;
+			char = SubString(s, il, il + 1);
+		}
+
+		char = SubString(s, ir, ir + 1);
+
+		while (char == " ") {
+			ir = ir - 1;
+			char = SubString(s, ir, ir + 1);
+		}
+
+		return SubString(s, il, ir + 1);
+	}
+*/
+
+	public function PlayerIdFromString(string color) -> integer {
+		if (PlayerStrings.has(StringHash(color)))
+			return PlayerStrings[StringHash(color)];
+		else
+			return -1;
+	}
+
+	public function ClampInteger(integer value, integer lower, integer higher) -> integer {
+		if (value < lower)
+			return lower;
+		else if (value > higher)
+			return higher;
+		else
+			return value;
+	}
+
+	public function ClampReal(real value, real lower, real higher) -> real {
+		if (value < lower)
+			return lower;
+		else if (value > higher)
+			return higher;
+		else
+			return value;
+	}
+
+	public function Mod(integer dividend, integer divisor) -> integer {
+		integer mod = dividend - (dividend / divisor) * divisor;
+
+		if (mod < 0) {
+			mod = mod + divisor;
+		}
+
+		return mod;
+	}
+
+	public function GetASCIICharacter(integer char) -> string {
+		return ASCIIChars.string[char];
+	}
+
+	public function GetOctet(integer id, integer octet) -> integer {
+		while (octet > 0) {
+			id = id / 256;
+			octet = octet - 1;
+		}
+
+		return Mod(id, 256);
+	}
+
+	public function String2Id(string str) -> integer {
+		integer power = 1;
+		integer i;
+		integer id = 0;
+
+		for (3 >= i >= 0) {
+			id = id + power * StringAsciiAt(str, i);
+			power = power * 256;
+		}
+
+		return id;
+	}
+
+	public function Id2String(integer id) -> string {
+		string strId = "";
+		integer i;
+
+		for (3 >= i >= 0) {
+			strId = strId + GetASCIICharacter(GetOctet(id, i));
+		}
+
+		return strId;
+	}
+
+	public function ColorToInt(playercolor color) -> integer {
+		if (color == PLAYER_COLOR_RED) {
+			return 0;
+		} else if (color == PLAYER_COLOR_BLUE) {
+			return 1;
+		} else if (color == PLAYER_COLOR_CYAN) {
+			return 2;
+		} else if (color == PLAYER_COLOR_PURPLE) {
+			return 3;
+		} else if (color == PLAYER_COLOR_YELLOW) {
+			return 4;
+		} else if (color == PLAYER_COLOR_ORANGE) {
+			return 5;
+		} else if (color == PLAYER_COLOR_GREEN) {
+			return 6;
+		} else if (color == PLAYER_COLOR_PINK) {
+			return 7;
+		} else if (color == PLAYER_COLOR_LIGHT_GRAY) {
+			return 8;
+		} else if (color == PLAYER_COLOR_LIGHT_BLUE) {
+			return 9;
+		} else if (color == PLAYER_COLOR_AQUA) {
+			return 10;
+		} else if (color == PLAYER_COLOR_BROWN) {
+			return 11;
+		} else {
+			return 12;
+		}
+	}
+
+	function Pause() {
+		PauseGame(true);
+	}
+
+	function AssertMessage(string str) {
+		DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, 60000, ColorStr(str, ASSERT_HIGHLIGHT));
+	}
+
+	function StopGame() {
+		integer i;
+		timer stopper = CreateTimer();
+		TimerStart(stopper, 0, true, function Pause);
+
+		i = 1/0;
+	}
+
+	public function Assert(boolean condition, string where, string error) {
+		if (!condition) {
+			AssertMessage("=======================================");
+			AssertMessage(">>> An assertion has failed!");
+			AssertMessage(">>> Originating from: " + where);
+			AssertMessage(">>> Error: " + error);
+			AssertMessage(">>> Game has been paused and disabled.");
+			AssertMessage("=======================================");
+			StopGame();
+		}
+	}
+
+	function onInit() {
+		LocalPlayer = PID(GetLocalPlayer());
+		PlayerStrings = Table.create();
+		ASCIIChars = Table.create();
+
+		PlayerStrings[StringHash("red")]        = 0;
+		PlayerStrings[StringHash("blue")]       = 1;
+		PlayerStrings[StringHash("cyan")]       = 2;
+		PlayerStrings[StringHash("teal")]       = 2;
+		PlayerStrings[StringHash("purple")]     = 3;
+		PlayerStrings[StringHash("yellow")]     = 4;
+		PlayerStrings[StringHash("orange")]     = 5;
+		PlayerStrings[StringHash("green")]      = 6;
+		PlayerStrings[StringHash("pink")]       = 7;
+		PlayerStrings[StringHash("gray")]       = 8;
+		PlayerStrings[StringHash("grey")]       = 8;
+		PlayerStrings[StringHash("light blue")] = 9;
+		PlayerStrings[StringHash("lightblue")]  = 9;
+		PlayerStrings[StringHash("lb")]         = 9;
+		PlayerStrings[StringHash("aqua")]       = 10;
+		PlayerStrings[StringHash("dark green")] = 10;
+		PlayerStrings[StringHash("darkgreen")]  = 10;
+		PlayerStrings[StringHash("dg")]         = 10;
+		PlayerStrings[StringHash("brown")]      = 11;
+		PlayerStrings[StringHash("black")]      = 15;
+		PlayerStrings[StringHash("neutral")]    = 15;
+		PlayerStrings[StringHash("passive")]    = 15;
+		PlayerStrings[StringHash("hostile")]    = 12;
+
+		ASCIIChars.string[32]  = " ";
+		ASCIIChars.string[33]  = "!";
+		ASCIIChars.string[34]  = "\""; //"
+		ASCIIChars.string[35]  = "#";
+		ASCIIChars.string[36]  = "$";
+		ASCIIChars.string[37]  = "%";
+		ASCIIChars.string[38]  = "&";
+		ASCIIChars.string[39]  = "'";
+		ASCIIChars.string[40]  = "(";
+		ASCIIChars.string[41]  = ")";
+		ASCIIChars.string[42]  = "*";
+		ASCIIChars.string[43]  = "+";
+		ASCIIChars.string[44]  = ",";
+		ASCIIChars.string[45]  = "-";
+		ASCIIChars.string[46]  = ".";
+		ASCIIChars.string[47]  = "/";
+		ASCIIChars.string[48]  = "0";
+		ASCIIChars.string[49]  = "1";
+		ASCIIChars.string[50]  = "2";
+		ASCIIChars.string[51]  = "3";
+		ASCIIChars.string[52]  = "4";
+		ASCIIChars.string[53]  = "5";
+		ASCIIChars.string[54]  = "6";
+		ASCIIChars.string[55]  = "7";
+		ASCIIChars.string[56]  = "8";
+		ASCIIChars.string[57]  = "9";
+		ASCIIChars.string[58]  = ":";
+		ASCIIChars.string[59]  = ";";
+		ASCIIChars.string[60]  = "<";
+		ASCIIChars.string[61]  = "=";
+		ASCIIChars.string[62]  = ">";
+		ASCIIChars.string[63]  = "?";
+		ASCIIChars.string[64]  = "@";
+		ASCIIChars.string[65]  = "A";
+		ASCIIChars.string[66]  = "B";
+		ASCIIChars.string[67]  = "C";
+		ASCIIChars.string[68]  = "D";
+		ASCIIChars.string[69]  = "E";
+		ASCIIChars.string[70]  = "F";
+		ASCIIChars.string[71]  = "G";
+		ASCIIChars.string[72]  = "H";
+		ASCIIChars.string[73]  = "I";
+		ASCIIChars.string[74]  = "J";
+		ASCIIChars.string[75]  = "K";
+		ASCIIChars.string[76]  = "L";
+		ASCIIChars.string[77]  = "M";
+		ASCIIChars.string[78]  = "N";
+		ASCIIChars.string[79]  = "O";
+		ASCIIChars.string[80]  = "P";
+		ASCIIChars.string[81]  = "Q";
+		ASCIIChars.string[82]  = "R";
+		ASCIIChars.string[83]  = "S";
+		ASCIIChars.string[84]  = "T";
+		ASCIIChars.string[85]  = "U";
+		ASCIIChars.string[86]  = "V";
+		ASCIIChars.string[87]  = "W";
+		ASCIIChars.string[88]  = "X";
+		ASCIIChars.string[89]  = "Y";
+		ASCIIChars.string[90]  = "Z";
+		ASCIIChars.string[91]  = "[";
+		ASCIIChars.string[92]  = "\\";
+		ASCIIChars.string[93]  = "]";
+		ASCIIChars.string[94]  = "^";
+		ASCIIChars.string[95]  = "_";
+		ASCIIChars.string[96]  = "`";
+		ASCIIChars.string[97]  = "a";
+		ASCIIChars.string[98]  = "b";
+		ASCIIChars.string[99]  = "c";
+		ASCIIChars.string[100] = "d";
+		ASCIIChars.string[101] = "e";
+		ASCIIChars.string[102] = "f";
+		ASCIIChars.string[103] = "g";
+		ASCIIChars.string[104] = "h";
+		ASCIIChars.string[105] = "i";
+		ASCIIChars.string[106] = "j";
+		ASCIIChars.string[107] = "k";
+		ASCIIChars.string[108] = "l";
+		ASCIIChars.string[109] = "m";
+		ASCIIChars.string[110] = "n";
+		ASCIIChars.string[111] = "o";
+		ASCIIChars.string[112] = "p";
+		ASCIIChars.string[113] = "q";
+		ASCIIChars.string[114] = "r";
+		ASCIIChars.string[115] = "s";
+		ASCIIChars.string[116] = "t";
+		ASCIIChars.string[117] = "u";
+		ASCIIChars.string[118] = "v";
+		ASCIIChars.string[119] = "w";
+		ASCIIChars.string[120] = "x";
+		ASCIIChars.string[121] = "y";
+		ASCIIChars.string[122] = "z";
+		ASCIIChars.string[123] = "{";
+		ASCIIChars.string[124] = "|";
+		ASCIIChars.string[125] = "}";
+		ASCIIChars.string[126] = "~";
+
+		PlayerColors[0] = "|c00ff0303";
+		PlayerColors[1] = "|c000042ff";
+		PlayerColors[2] = "|c001ce6b9";
+		PlayerColors[3] = "|c00540081";
+		PlayerColors[4] = "|c00ffff01";
+		PlayerColors[5] = "|c00fe8a0e";
+		PlayerColors[6] = "|c0020c000";
+		PlayerColors[7] = "|c00e55bb0";
+		PlayerColors[8] = "|c00959697";
+		PlayerColors[9] = "|c007ebff1";
+		PlayerColors[10] = "|c00106246";
+		PlayerColors[11] = "|c004e2a04";
+		PlayerColors[12] = "|c00282828";
+		PlayerColors[13] = "|c00282828";
+		PlayerColors[14] = "|c00282828";
+		PlayerColors[15] = "|c00282828";
+	}
+}

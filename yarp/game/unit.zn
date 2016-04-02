@@ -1,0 +1,412 @@
+library Unit requires Core {
+	//! textmacro CommandHeader takes CMD_NAME
+		private static method $CMD_NAME$(CommandThread thread) {
+			UnitList list = thread.selection.top;
+			UnitData unitData;
+			integer owner = thread.owner;
+	//! endtextmacro
+
+	//! textmacro CommandStart
+		while (list > 0) {
+			unitData = UnitData[list.what];
+			if (HasPlayerUnitAccess(owner, list.what)) {
+	//! endtextmacro
+
+	//! textmacro CommandEnd
+				}
+
+				list = list.next;
+			}
+		}
+	//! endtextmacro
+
+	//! textmacro CommandCondition takes CMD_COND
+		if (!$CMD_COND$) {
+			return;
+		}
+	//! endtextmacro
+
+	struct Unit[] {
+		private static method Command_UnitRemove(CommandThread thread) {
+			string command      = thread.args.next();
+			UnitList list       = 0;
+			Selection selection = 0;
+			group temp          = null;
+			boolean valid       = true;
+			integer target      = -1;
+
+			if (StringLength(command) == 0) {
+				selection = thread.selection;
+			} else if (command == "me") {
+				selection = Selection.create();
+				temp = NewGroup();
+				GroupEnumUnitsOfPlayer(temp, P(thread.owner), null);
+				selection.addGroup(temp);
+				temp = null;
+			} else {
+				selection = Selection.create();
+				target = PlayerIdFromString(command);
+				temp = NewGroup();
+				if (target >= 0) {
+					GroupEnumUnitsOfPlayer(temp, P(target), null);
+					selection.addGroup(temp);
+				} else
+					valid = false;
+				temp = null;
+			}
+
+			if (valid) {
+				list = selection.top;
+
+				while (list > 0) {
+					if (HasPlayerUnitAccess(thread.owner, list.what)) {
+						RemoveUnit(list.what);
+					}
+
+					list = list.next;
+				}
+			}
+
+			if (selection != thread.selection) {
+				selection.destroy();
+			}
+		}
+
+		private static method Command_UnitGive(CommandThread thread) {
+			integer owner       = thread.owner;
+			integer target      = -1;
+			string targetName   = thread.args.next();
+			boolean forced      = (thread.args.next() == "force");
+			boolean resetOwner  = false;
+			UnitList list       = 0;
+			Selection selection = thread.selection;
+			UnitData unitData;
+
+			if (targetName == "me") {
+				target = owner;
+			} else {
+				target = PlayerIdFromString(targetName);
+			}
+
+			if (target < 0) return;
+			resetOwner = (target < 12);
+
+			if (forced) {
+				list = selection.top;
+
+				while (list > 0) {
+					if (HasPlayerUnitAccess(owner, list.what)) {
+						unitData = UnitData[list.what];
+
+						if (resetOwner)
+							unitData.realOwner = target;
+
+						unitData.currentOwner = target;
+					}
+
+					list = list.next;
+				}
+			} else {
+				list = selection.top;
+
+				while (list > 0) {
+					if (HasPlayerUnitAccess(owner, list.what) && unitData.realOwner == owner) {
+						unitData = UnitData[list.what];
+
+						if (resetOwner)
+							unitData.realOwner = target;
+
+						unitData.currentOwner = target;
+					}
+
+					list = list.next;
+				}
+			}
+		}
+
+		private static method Command_UnitStep(CommandThread thread) {
+			string str = thread.args.restSimple();
+			integer i = 0;
+			UnitList list = thread.selection.top;
+			CommandThread newThread;
+
+			while (list > 0) {
+				newThread = CommandThread.create(thread.owner);
+				newThread.selection.addUnit(list.what);
+				newThread.pushCommands("repeat " + I2S(i) + " " + str);
+				newThread.start.evaluate();
+
+				list = list.next;
+				i = i + 1;
+			}
+		}
+
+		private static method Command_UnitAbility(CommandThread thread) {
+			string str = thread.args.next();
+			integer id = String2Id(thread.args.next());
+			integer owner = thread.owner;
+			UnitList list = thread.selection.top;
+
+			if (str == "add") {
+				while (list > 0) {
+					if (HasPlayerUnitAccess(owner, list.what)) {
+						UnitAddAbility(list.what, id);
+					}
+
+					list = list.next;
+				}
+			} else if (str == "remove") {
+				while (list > 0) {
+					if (HasPlayerUnitAccess(owner, list.what)) {
+						UnitRemoveAbility(list.what, id);
+					}
+
+					list = list.next;
+				}
+			}
+		}
+
+		//! runtextmacro CommandHeader("Command_UnitKill")
+		//! runtextmacro CommandStart()
+			KillUnit(list.what);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitExplode")
+		//! runtextmacro CommandStart()
+			SetUnitExploded(list.what, true);
+			KillUnit(list.what);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSize")
+			real size = S2R(thread.args.next()) / 100;
+		//! runtextmacro CommandStart()
+			unitData.size = size;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSizeDelta")
+			real size = S2R(thread.args.next()) / 100;
+		//! runtextmacro CommandStart()
+			unitData.size = unitData.size + size;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitAngle")
+			real angle = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.angle = angle;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitAngleDelta")
+			real angle = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.angle = unitData.angle + angle;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitAngleRandom")
+		//! runtextmacro CommandStart()
+			unitData.angle = GetRandomReal(0, 360);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitMoveX")
+			real amount = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.x = unitData.x + amount;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitMoveY")
+			real amount = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.y = unitData.y + amount;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitMoveXY")
+			real x = S2R(thread.args.next());
+			real y = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.x = unitData.x + x;
+			unitData.y = unitData.y + y;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSetX")
+			real amount = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.x = amount;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSetY")
+			real amount = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.y = amount;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSetXY")
+			real x = S2R(thread.args.next());
+			real y = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.x = x;
+			unitData.y = y;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitShowPos")
+			location loc;
+		//! runtextmacro CommandStart()
+			loc = GetUnitLoc(list.what);
+			MessageTo(owner, "Position: " + R2S(GetLocationX(loc)) + ", " + R2S(GetLocationY(loc)) + ", " + R2S(GetLocationZ(loc)));
+			RemoveLocation(loc);
+			loc = null;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitMoveDirection")
+			real angle = Deg2Rad(S2R(thread.args.next()));
+			real amount = S2R(thread.args.next());
+			real x = Cos(angle) * amount;
+			real y = Sin(angle) * amount;
+		//! runtextmacro CommandStart()
+			unitData.x = unitData.x + x;
+			unitData.y = unitData.y + y;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitTint")
+			integer r = R2I(S2R(thread.args.next()) * 255 / 100);
+			integer g = R2I(S2R(thread.args.next()) * 255 / 100);
+			integer b = R2I(S2R(thread.args.next()) * 255 / 100);
+			integer a = 255 - R2I(S2R(thread.args.next()) * 255 / 100);
+		//! runtextmacro CommandStart()
+			unitData.setVertexColor(r, g, b, a);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitColor")
+			integer id = PlayerIdFromString(thread.args.restParsed());
+			playercolor color;
+
+			if (id >= 0)
+				color = ConvertPlayerColor(id);
+			else
+				color = ConvertPlayerColor(15);
+		//! runtextmacro CommandStart()
+			unitData.color = color;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitAnimSpeed")
+			real animSpeed = S2R(thread.args.restParsed());
+		//! runtextmacro CommandStart()
+			unitData.animSpeed = animSpeed;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitSpeed")
+			real speed = S2R(thread.args.restParsed());
+		//! runtextmacro CommandStart()
+			unitData.speed = speed;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitRemoveBuffs")
+		//! runtextmacro CommandStart()
+			UnitRemoveBuffs(list.what, true, true);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitRemoveCooldowns")
+		//! runtextmacro CommandStart()
+			UnitResetCooldown(list.what);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitPlayAnim")
+			string anim = thread.args.next();
+			integer count = S2I(thread.args.next()) - 1;
+
+			if (count < 0)
+				count = 0;
+		//! runtextmacro CommandStart()
+			unitData.setAnim(anim);
+			unitData.queueAnimCount(anim, count);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitQueueAnim")
+			string anim = thread.args.next();
+			integer count = S2I(thread.args.next());
+
+			if (count < 0)
+				count = 0;
+		//! runtextmacro CommandStart()
+			unitData.queueAnimCount(anim, count);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitFly")
+			real height = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.z = height;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitFlyDelta")
+			real height = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.z = unitData.z + height;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitPath")
+			boolean on = false;
+			string arg = thread.args.next();
+
+			if (arg == "off") {
+				on = false;
+			} else if (arg == "on") {
+				on = true;
+			} else {
+				return;
+			}
+		//! runtextmacro CommandStart()
+			SetUnitPathing(list.what, on);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitId")
+		//! runtextmacro CommandStart()
+			MessageTo(owner, "ID: " + Id2String(unitData.id) + " (" + I2S(unitData.id) + ")");
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitLife")
+			real life = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.life = life;
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitMana")
+			real mana = S2R(thread.args.next());
+		//! runtextmacro CommandStart()
+			unitData.mana = mana;
+		//! runtextmacro CommandEnd()
+
+		private static method onInit() {
+			Command.register("remove",  thistype.Command_UnitRemove);
+			Command.register("give",    thistype.Command_UnitGive);
+			Command.register("kill",    thistype.Command_UnitKill);
+			Command.register("explode", thistype.Command_UnitExplode);
+			Command.register("size",    thistype.Command_UnitSize);
+			Command.register("sized",   thistype.Command_UnitSizeDelta);
+			Command.register("fa",      thistype.Command_UnitAngle);
+			Command.register("fd",      thistype.Command_UnitAngleDelta);
+			Command.register("fr",      thistype.Command_UnitAngleRandom);
+			Command.register("movex",   thistype.Command_UnitMoveX);
+			Command.register("movey",   thistype.Command_UnitMoveY);
+			Command.register("move",    thistype.Command_UnitMoveXY);
+			Command.register("posx",    thistype.Command_UnitSetX);
+			Command.register("posy",    thistype.Command_UnitSetY);
+			Command.register("pos",     thistype.Command_UnitSetXY);
+			Command.register("movea",   thistype.Command_UnitMoveDirection);
+			Command.register("showpos", thistype.Command_UnitShowPos);
+			Command.register("tint",    thistype.Command_UnitTint);
+			Command.register("color",   thistype.Command_UnitColor);
+			Command.register("aspeed",  thistype.Command_UnitAnimSpeed);
+			Command.register("speed",   thistype.Command_UnitSpeed);
+			Command.register("buff",    thistype.Command_UnitRemoveBuffs);
+			Command.register("cd",      thistype.Command_UnitRemoveCooldowns);
+			Command.register("play",    thistype.Command_UnitPlayAnim);
+			Command.register("playq",   thistype.Command_UnitQueueAnim);
+			Command.register("fly",     thistype.Command_UnitFly);
+			Command.register("flyd",    thistype.Command_UnitFlyDelta);
+			Command.register("path",    thistype.Command_UnitPath);
+			Command.register("step",    thistype.Command_UnitStep);
+			Command.register("id",      thistype.Command_UnitId);
+			Command.register("life",    thistype.Command_UnitLife);
+			Command.register("mana",    thistype.Command_UnitMana);
+			Command.register("ability", thistype.Command_UnitAbility);
+		}
+	}
+}

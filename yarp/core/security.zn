@@ -1,0 +1,49 @@
+library Security requires Util, UnitData, UnitTypes {
+	public {
+		constant integer ACCESS_LVL_PASSIVE = -1;
+		constant integer ACCESS_LVL_REGULAR = 0;
+		constant integer ACCESS_LVL_ADMIN   = 1;
+		constant integer ACCESS_LVL_HOST    = 2;
+	}
+
+	integer accesses[];
+
+	public function GetPlayerAccessLevel(integer who) -> integer {
+		debug Assert(who >= 0 && who < 12, "GetPlayerAccessLevel", "Invalid player ID.");
+
+		return accesses[who];
+	}
+
+	public function SetPlayerAccessLevel(integer who, integer access) {
+		debug Assert(who >= 0 && who < 12, "SetPlayerAccessLevel", "Invalid player ID.");
+
+		accesses[who] = access;
+	}
+
+	public function HasPlayerUnitAccess(integer who, unit what) -> boolean {
+		UnitData unitData = UnitData[what];
+
+		debug Assert(who >= 0 && who < 12, "HasPlayerUnitAccess", "Invalid player ID.");
+
+		return (unitData.allocated) && ((who == unitData.realOwner) || (GetPlayerAccessLevel(who) > ACCESS_LVL_REGULAR));
+	}
+
+	function onInit() {
+		accesses[0]  = ACCESS_LVL_HOST;
+		accesses[1]  = ACCESS_LVL_REGULAR;
+		accesses[2]  = ACCESS_LVL_REGULAR;
+		accesses[3]  = ACCESS_LVL_REGULAR;
+		accesses[4]  = ACCESS_LVL_REGULAR;
+		accesses[5]  = ACCESS_LVL_REGULAR;
+		accesses[6]  = ACCESS_LVL_REGULAR;
+		accesses[7]  = ACCESS_LVL_REGULAR;
+		accesses[8]  = ACCESS_LVL_REGULAR;
+		accesses[9]  = ACCESS_LVL_REGULAR;
+		accesses[10] = ACCESS_LVL_REGULAR;
+		accesses[11] = ACCESS_LVL_REGULAR;
+		accesses[12] = ACCESS_LVL_PASSIVE;
+		accesses[13] = ACCESS_LVL_PASSIVE;
+		accesses[14] = ACCESS_LVL_PASSIVE;
+		accesses[15] = ACCESS_LVL_PASSIVE;
+	}
+}

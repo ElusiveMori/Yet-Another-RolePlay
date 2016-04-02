@@ -1,0 +1,369 @@
+void AddBuilding(string eId, string name, string model) {
+	Unit u = GetBaseBuilding(unitsCurrentId);
+	u.file = model;
+	u.Name = name;
+	extendedIds[eId] = unitsCurrentId;
+	extendedIdsRev[unitsCurrentId] = eId;
+	buildingQueue[] = unitsCurrentId;
+
+	unitsCurrentId = GetNextId(unitsCurrentId);
+}
+
+void AddUnit(string eId, string name, string model) {
+	Unit u = GetBaseUnit(unitsCurrentId);
+	u.file = model;
+	u.Name = name;
+	extendedIds[eId] = unitsCurrentId;
+	extendedIdsRev[unitsCurrentId] = eId;
+
+	unitsCurrentId = GetNextId(unitsCurrentId);
+}
+
+/*
+	Shortcut scheme:
+	Q W E R
+	A S D F
+	Z X C V
+*/
+
+// last param is a comma-delimeted list of eIds or unit ids
+void AddBuilder(string eId, string name, string units) {
+	Unit builder = GetBaseBuilder(buildersCurrentId);
+	builder.file = builderModel;
+	builder.Name = name;
+	builder.Tip = OVERTIP_COLOR + name + "|r";
+	builder.race = "human";
+	builder["type"] = "peon";
+
+	extendedIds[eId] = buildersCurrentId;
+	extendedIdsRev[buildersCurrentId] = eId;
+	builderQueue[] = buildersCurrentId;
+
+	buildersCurrentId = GetNextId(buildersCurrentId);
+	string ubertip = SUBTIP_COLOR + "This builds the following:|r" + LISTING_COLOR;
+	string buildList = "";
+	bool first = true;
+	int hotkey = 0;
+
+	for (string id: units) {
+		Unit u = map.objects[id];
+
+		if (u == null) {
+			id = extendedIds[id];
+			u = map.objects[id];
+		}
+
+		if (u != null) {
+			if (!first)
+				buildList = buildList + ",";
+			else
+				first = false;
+
+			u.Tip = HOTKEY_COLOR + "[" + hotkeys[hotkey] + "]" + "|r " + u.Name;
+			u.Hotkey = hotkeys[hotkey];
+			hotkey++;
+			ubertip = + ubertip + "|n" + u.Name;
+			buildList = buildList + id;
+		}
+	}
+
+	ubertip = ubertip + "|r";
+	builder.Ubertip = ubertip;
+	builder.Builds = buildList;
+}
+
+void AddShop(string eId, string name, string units) {
+	Unit shop = GetBaseShop(shopsCurrentId);
+	shop.file = shopModel;
+	shop.Name = name;
+	shop.race = "undead";
+	shop.modelScale = shopScale;
+	shop.scale = 3;
+
+	extendedIds[eId] = shopsCurrentId;
+	extendedIdsRev[shopsCurrentId] = eId;
+
+	shopsCurrentId = GetNextId(shopsCurrentId);
+	bool first = true;
+	string sellList = "";
+
+	for (string id: units) {
+		Unit u = map.objects[id];
+
+		if (u == null) {
+			id = extendedIds[id];
+			u = map.objects[id];
+		}
+
+		if (u != null) {
+			if (!first)
+				sellList = sellList + ",";
+			else
+				first = false;
+
+			sellList = sellList + id;
+		}
+	}
+
+	echoln("Added shop " + eId + " - " + name);
+
+	shop.Sellunits = sellList;
+}
+
+// adds a single builder
+void AutoAddBuilderS(string eId, string name) {
+	int count = 0;
+	int number = 1;
+	eId = "b-" + eId;
+
+	int total = 0;
+	for (int i: buildingQueue) total++;
+	int i = 0;
+
+	if (total > 11) error("More than 11 buildings for this builder! Rearrange configuration.");
+
+	string buildList = "";
+	while (buildingQueue[i] != null) {
+		string id = buildingQueue[i];
+		unset(buildingQueue[i]);
+		i++;
+
+		if (strlen(buildList) > 0) {
+			buildList = buildList + ",";
+		}
+
+		buildList = buildList + id;
+		count++;
+
+		if (buildingQueue[i] == null || count == 11) {
+			AddBuilder(eId, name, buildList);
+			return;
+		}
+	}
+}
+
+// automatically adds as many builders as needed
+void AutoAddBuilder(string eId, string name) {
+	int count = 0;
+	int number = 1;
+	eId = "b-" + eId;
+
+	int total = 0;
+	for (int i: buildingQueue) total++;
+	int i = 0;
+
+	bool multiple = total > 11;
+
+	string buildList = "";
+	while (buildingQueue[i] != null) {
+		string id = buildingQueue[i];
+		unset(buildingQueue[i]);
+		i++;
+
+		if (strlen(buildList) > 0) {
+			buildList = buildList + ",";
+		}
+
+		buildList = buildList + id;
+		count++;
+
+		if (buildingQueue[i] == null || count == 11) {
+			if (multiple) {
+				AddBuilder(eId + number, name + " Builder " + number, buildList);
+			} else {
+				AddBuilder(eId, name + " Builder", buildList);
+			}
+
+			buildList = "";
+			count = 0;
+			number++;
+		}
+	}
+}
+
+void AutoAddShop(string eId, string name) {
+	int count = 0;
+	int number = 1;
+	eId = "s-" + eId;
+
+	int total = 0;
+	for (int i: builderQueue) total++;
+	int i = 0;
+
+	bool multiple = total > 12;
+
+	string sellList = "";
+	while (builderQueue[i] != null) {
+		string id = builderQueue[i];
+		unset(builderQueue[i]);
+		i++;
+
+		if (strlen(sellList) > 0) {
+			sellList = sellList + ",";
+		}
+
+		sellList = sellList + id;
+		count++;
+
+		if (builderQueue[i] == null || count == 12) {
+			if (multiple) {
+				AddShop(eId + number, name + " " + number, sellList);
+			} else {
+				AddShop(eId, name, sellList);
+			}
+
+			sellList = "";
+			count = 0;
+			number++;
+		}
+	}
+}
+
+void PrepareStock() {
+	for (string i: map.objects) {
+		if (isIdCustom(i)) {
+			unset(map.objects[i]);
+			continue;
+		}
+
+		Wc3obj o = map.objects[i];
+
+		for (string j: o) {
+			unset(o[j]);
+		}
+
+		if (o.typetostr == "Unit") {
+			for (string j: o) {
+				unset(o[j]);
+			}
+
+			if (o.isbldg == 1) {
+				bool ancient = false;
+
+				for (string j: o["type"]) {
+					if (j == "ancient") {
+						ancient = true;
+						break;
+					}
+				}
+
+				bool blightDispel = false;
+				bool first = true;
+				string newList = "";
+
+				for (string j: o.abilList) {
+					if (j == "Abdl" || j == "Abds") {
+						blightDispel = true;
+					} else {
+						if (first) {
+							newList = j;
+							first = false;
+						} else {
+							newList = newList + "," + j;
+						}
+					}
+				}
+
+				if (blightDispel) {
+					o.abilList = newList;
+				}
+
+				if (!ancient) {
+					o["type"] = "mechanical,summoned";
+				}
+
+				o.preventPlace = "";
+				o.uberSplat = "";
+				o.turnRate = 1.0;
+				o.spd = 1;
+				o.elevPts = 4;
+				o.elevRad = 50;
+			} else {
+				bool isWorker = false;
+
+				for (string j: o["type"]) {
+					if (j == "Peon") {
+						isWorker = true;
+						break;
+					}
+				}
+
+				if (isWorker) {
+					o.race = "human";
+				}
+
+				o.elevPts = 0;
+			}
+			o.lumbercost = 0;
+			o.goldcost = 0;
+			o.Requires = "";
+		//	o.elevPts = 0;
+		//	o.elevRad = 0;
+			o.bountyplus = 0;
+			o.bountydice = 0;
+			o.bountysides = 0;
+			o.upgrades = "";
+			o.bldtm = 1;
+			o.fused = 0;
+			o.fmade = 0;
+			o.stockMax = 1;
+			o.stockRegen = 0;
+			o.stockStart = 1;
+			o.cargoSize = 1;
+			o.unitShadow = "";
+			o.buildingShadow = "_";
+		} else if (o.typetostr == "Ability") {
+			o.checkDep = 0;
+		}
+	}
+}
+
+void PreplaceUnits() {
+	for (int i: map.placed.objects) {
+		if (map.placed.objects[i].typeID == "sloc") {
+			map.placed.objects[i].x = 0;
+			map.placed.objects[i].y = 0;
+		} else
+			unset(map.placed.objects[i]);
+	}
+
+	array sch = array();
+
+	float gridSize = 196;
+
+	// stock doodads
+	sch[0][0] = "s-rocks-ashen";
+	sch[0][1] = "s-rocks-barren";
+	sch[0][2] = "s-rocks-under";
+	sch[0][3] = "s-rocks-fel";
+	sch[0][4] = "s-rocks-sunken";
+	sch[1][0] = "s-rocks-icecrown";
+	sch[1][1] = "s-rocks-lordaeron";
+	sch[1][2] = "s-rocks-north";
+	sch[1][3] = "s-rocks-outland";
+
+	sch[2][0] = "s-walls-icecrown";
+	sch[2][1] = "s-walls-sunken";
+	sch[2][2] = "s-walls-lordaeron";
+
+	sch[3][0] = "s-nature1";
+	sch[3][1] = "s-nature2";
+	sch[3][2] = "s-water";
+
+	sch[4][0] = "s-structures1";
+	sch[4][1] = "s-structures2";
+	sch[4][2] = "s-graveyard";
+	sch[4][3] = "s-arch";
+	sch[4][4] = "s-broken";
+
+	sch[5][0] = "s-misc1";
+	sch[5][1] = "s-misc2";
+	sch[5][2] = "s-misc3";
+	sch[5][3] = "s-magic";
+
+	for (int i: sch) {
+		for (int j: sch[i]) {
+			placeUnit(map, extendedIds[sch[i][j]], j * gridSize - gridSize * 8, i * gridSize - gridSize * 8, 0, 0, 270);
+		}
+	}
+}

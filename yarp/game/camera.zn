@@ -1,0 +1,90 @@
+library Camera requires Core {
+	struct Camera[] {
+		static real distance = 1850;
+		static real farz = 6000;
+		static real aoa = 0;
+		static real fov = 60;
+		static real roll = 0;
+		static real rotation = 0;
+
+		static boolean adjusted_aoa = false;
+		static boolean adjusted_fov = false;
+		static boolean adjusted_roll = false;
+		static boolean adjusted_rot = false;
+
+		private static method Command_Cam(CommandThread thread) {
+			string command = thread.args.next();
+			string argument = thread.args.next();
+			real value = S2R(argument);
+
+			if (IsLocalPlayer(thread.owner)) {
+				if (command == "dist") {
+					distance = value;
+					farz = value * 2.5;
+				} else if (command == "farz") {
+					farz = value;
+				} else if (command == "fov") {
+					if (argument == "reset") {
+						adjusted_fov = false;
+						ResetToGameCamera(0);
+					} else {
+						fov = value;
+						adjusted_fov = true;
+					}
+				} else if (command == "roll") {
+					if (argument == "reset") {
+						adjusted_roll = false;
+						ResetToGameCamera(0);
+					} else {
+						roll = value;
+						adjusted_roll = true;
+					}
+				} else if (command == "rot") {
+					if (argument == "reset") {
+						adjusted_rot = false;
+						ResetToGameCamera(0);
+					} else {
+						rotation = value;
+						adjusted_rot = true;
+					}
+				}  else if (command == "aoa") {
+					if (argument == "reset") {
+						adjusted_aoa = false;
+						ResetToGameCamera(0);
+					} else {
+						aoa = value;
+						adjusted_aoa = true;
+					}
+				}
+			}
+		}
+
+		private static method resetCamera() {
+			timer resetter = GetExpiredTimer();
+
+			SetCameraField(CAMERA_FIELD_TARGET_DISTANCE, distance, 0);
+			SetCameraField(CAMERA_FIELD_FARZ, farz, 0);
+
+			if (adjusted_fov)
+				SetCameraField(CAMERA_FIELD_FIELD_OF_VIEW, fov, 0);
+
+			if (adjusted_roll)
+				SetCameraField(CAMERA_FIELD_ROLL, roll, 0);
+
+			if (adjusted_rot)
+				SetCameraField(CAMERA_FIELD_ROTATION, rotation, 0);
+
+			if (adjusted_aoa)
+				SetCameraField(CAMERA_FIELD_ANGLE_OF_ATTACK, aoa, 0);
+		}
+
+		private static method onInit() {
+			timer resetter = CreateTimer();
+			TimerStart(resetter, 0.015625, true, function thistype.resetCamera);
+		//	TimerStart(resetter, 0.0625, true, function thistype.resetCamera);
+			resetter = null;
+
+			Command.register("cam", thistype.Command_Cam);
+		}
+	}
+}

@@ -1,0 +1,62 @@
+library Spawn requires Core {
+	struct Spawn[] {
+		private static method Command_Spawn(CommandThread thread) {
+			string arg1 = thread.args.next();
+			string arg2 = thread.args.next();
+			integer count;
+			integer unitId;
+			integer i;
+			unit spawner = Spawner.get(thread.owner);
+			unit spawned;
+			real x;
+			real y;
+
+			if (spawner == null)
+				return;
+
+			if (StringLength(arg2) == 0) {
+				arg2 = arg1;
+				arg1 = "1";
+			}
+
+			count = S2I(arg1);
+
+			if (count < 1)
+				count = 1;
+
+			if (SubString(arg2, 0, 1) == "_") {
+				arg2 = SubString(arg2, 1, 5);
+
+				if (StringLength(arg2) == 4)
+					unitId = String2Id(arg2);
+				else {
+					spawner = null;
+					return;
+				}
+			} else
+				unitId = UnitId(arg2);
+
+			if (!(IsIdUtility(unitId) || StringLength(UnitId2String(unitId)) == 0)) {
+				x = GetUnitX(spawner);
+				y = GetUnitY(spawner);
+
+				for (0 <= i < count) {
+					spawned = CreateUnit(P(thread.owner), unitId, x, y, 270);
+					SetUnitX(spawned, x);
+					SetUnitY(spawned, y);
+				}
+
+				spawned = null;
+			}
+			
+			spawner = null;
+		}
+
+		private static method onInit() {
+			Command.register("spawn", thistype.Command_Spawn);
+		}
+	}
+
+
+
+}

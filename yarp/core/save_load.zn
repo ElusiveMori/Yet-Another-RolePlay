@@ -1,0 +1,362 @@
+library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
+	public struct Save[] {
+		private {
+			static real oX = 0;
+			static real oY = 0;
+			static integer count = 0;
+			static integer owner = 0;
+
+			// tile saving
+			static integer tilesX = 0;
+			static integer tilesY = 0;
+			static integer curTileX = 0;
+			static integer curTileY = 0;
+			static integer tileOffsetX = 0;
+			static integer tileOffsetY = 0;
+
+			// deform saving
+			static real minx = 0;
+			static real maxx = 0;
+			static real miny = 0;
+			static real maxy = 0;
+			static DeformationList curDeform;
+
+			// unit saving
+			static group unitQueue;
+			static unit curUnit;
+
+			static constant string delim = "|";
+		}
+
+		static method setArea(rect where) {
+			debug Assert(where != null, "Save.setArea", "Rectangle is null.");
+
+			oX = GetRectCenterX(where);
+			oY = GetRectCenterY(where);
+			tilesX = R2I((GetRectMaxX(where) - GetRectMinX(where) + 16) / 128); 
+			tilesY = R2I((GetRectMaxY(where) - GetRectMinY(where) + 16) / 128); 
+			curTileX = 0;
+			curTileY = 0;
+			tileOffsetX = -(tilesX / 2);
+			tileOffsetY = -(tilesY / 2);
+
+			minx = GetRectMinX(where);
+			miny = GetRectMinY(where);
+			maxx = GetRectMaxX(where);
+			maxy = GetRectMaxY(where);
+
+			unitQueue = NewGroup();
+			GroupEnumUnitsInRect(unitQueue, where, function() -> boolean {
+				unit what = GetFilterUnit();
+
+				if (HasPlayerUnitAccess(owner, what)) {
+					what = null;
+					return true;
+				}
+
+				what = null;
+				return false;
+			});
+		}
+
+		static method writeLine(string str) {
+			if (!IsLocalPlayer(owner))
+				return;
+
+			Preload("#[[" + str + "]]#");
+		}
+
+		static method writeHeader() {
+			count = 0;
+
+			if (!IsLocalPlayer(owner))
+				return;
+
+			PreloadGenClear();
+			writeLine("ox::" + R2S(oX));
+			writeLine("oy::" + R2S(oY));
+		}
+
+		static method writeUnit(unit what) {
+			UnitData unitData = UnitData[what];
+
+			writeLine("unit::"
+			          + Id2String(unitData.id) + delim
+			          + R2S(unitData.x - oX) + delim 
+			          + R2S(unitData.y - oY) + delim
+			          + R2S(unitData.angle) + delim
+			          + R2S(unitData.size) + delim
+			          + R2S(unitData.speed) + delim
+			          + R2S(unitData.animSpeed) + delim
+			          + R2S(unitData.z) + delim
+			          + I2S(ColorToInt(unitData.color)) + delim
+			          + I2S(unitData.vertexR) + delim
+			          + I2S(unitData.vertexG) + delim
+			          + I2S(unitData.vertexB) + delim
+			          + I2S(unitData.vertexA));
+
+			count = count + 1;
+		}
+
+		static method writeTile(integer x, integer y) {
+			writeLine("tile::" + I2S(x) + delim + I2S(y) + delim + Id2String(GetTerrainType(oX + I2R(x) * 128, oY + I2R(y) * 128)));
+		}
+
+		static method writeDeform(real x, real y, real magnitude, real radius) {
+			writeLine("deform::" + R2S(x) + delim + R2S(y) + delim + R2S(magnitude) + delim + R2S(radius));
+		}
+
+		static method saveTerrain() {
+			count = 0;
+
+			while (curTileY < tilesY && count < 384) {
+				while (curTileX < tilesX && count < 384) {
+					writeTile(tileOffsetX + curTileX, tileOffsetY + curTileY);
+					curTileX = curTileX + 1;
+					count = count + 1;
+				}
+
+				if (curTileX >= tilesX) {
+					curTileX = 0;
+					curTileY = curTileY + 1;
+				}
+			}
+
+			if (curTileX < tilesX && curTileY < tilesY) {
+				saveTerrain.execute();
+			} else {
+				debug DebugMessage("Saving terrain is complete.");
+			}
+		}
+
+		static method saveDeforms() {
+			count = 0;
+
+			while (curDeform > 0 && count < 384) {
+				if (curDeform.x > minx && curDeform.x < maxx && curDeform.y > miny && curDeform.y < maxy) {
+					writeDeform(curDeform.x, curDeform.y, curDeform.magnitude, curDeform.radius);
+				}
+
+				count = count + 1;
+				curDeform = curDeform.next;
+			}
+
+			if (curDeform > 0) {
+				saveDeforms.execute();
+			} else {
+				debug DebugMessage("Saving deforms is complete.");
+			}
+		}
+
+		static method saveUnits() {
+			count = 0;
+			curUnit = FirstOfGroup(unitQueue);
+
+			while (curUnit != null && count < 384) {
+				GroupRemoveUnit(unitQueue, curUnit);
+
+				if (HasPlayerUnitAccess(owner, curUnit)) {
+					writeUnit(curUnit);
+				}
+
+				count = count + 1;
+
+				curUnit = FirstOfGroup(unitQueue);
+			}
+
+			if (curUnit != null) {
+				saveUnits.execute();
+			} else {
+				debug DebugMessage("Saving units is complete.");
+			}
+		}
+
+		static method save(integer who, rect where, string filename) {
+			debug Assert(who >= 0 && who < 12, "Save.save", "Invalid player ID.");
+			debug Assert(SL(filename) > 0,     "Save.save", "Filename is zero-length.");
+
+			owner = who;
+			setArea(where);
+
+			curDeform = DeformationList.top;
+
+		//	unitsFinished = false;
+		//	terrainFinished = false;
+		//	deformsFinished = false;
+
+			writeHeader();
+			saveTerrain.execute();
+			saveDeforms.execute();
+			saveUnits.execute();
+
+		//	debug Assert(unitsFinished,   "Save.save", "Unit saving has failed.");
+		//	debug Assert(terrainFinished, "Save.save", "Terrain saving has failed.");
+		//	debug Assert(deformsFinished, "Save.save", "Deformation saving has failed.");
+
+			if (IsLocalPlayer(owner)) {
+				PreloadGenEnd("yarp\\" + filename + ".txt");
+
+				Message("You have saved your units to " + filename + ".txt");
+			}
+		}
+	}
+
+	public struct LoadQueue[] {
+		module Alloc;
+
+		static thistype tops[]; // first in queue for each player
+		static integer sizes[]; // queue sizes for each player
+		thistype next;
+		thistype prev;
+		integer owner;
+		integer objectType; // 0 for unit, 1 for tile, 2 for deform
+
+		// shared
+
+		integer id;
+		real x;
+		real y;
+
+		// unit
+
+		real angle;
+		real size;
+		real speed;
+		real animSpeed;
+		real z;
+		integer color;
+		integer vertexR;
+		integer vertexG;
+		integer vertexB;
+		integer vertexA;
+
+		// deformation
+
+		real magnitude;
+		real radius;
+
+		static method create() -> thistype {
+			thistype this = allocate();
+
+			next = 0;
+			prev = 0;
+			owner = 0;
+
+			return this;
+		}
+
+		method destroy() {
+			if (tops[owner] == this)
+				tops[owner] = next;
+
+			if (next != 0)
+				next.prev = prev;
+			if (prev != 0)
+				prev.next = next;
+
+			deallocate();
+		}
+	}
+
+	public struct Load[] {
+		static real offsetsX[];
+		static real offsetsY[];
+		static Table processors;
+		static boolean pasting[];
+
+		static method setOffset(integer who, real x, real y) {
+			offsetsX[who] = x;
+			offsetsY[who] = y;
+		}
+
+		static method addToQueue(integer who) -> LoadQueue {
+			LoadQueue queue = LoadQueue.create();
+			LoadQueue top = LoadQueue.tops[who];
+			queue.owner = who;
+
+			if (top == 0) {
+				LoadQueue.tops[who] = queue;
+			} else {
+				top.prev = queue;
+				queue.next = top;
+				LoadQueue.tops[who] = queue;
+			}
+
+			return queue;
+		}
+
+		static method clearQueue(integer who) {
+			while (LoadQueue.tops[who] > 0) {
+				LoadQueue.tops[who].destroy();
+			}
+		}
+
+		static method process() {
+			timer processor = GetExpiredTimer();
+			integer id = GetHandleId(processor);
+			integer who = -1;
+			unit what;
+			LoadQueue queue;
+			UnitData unitData;
+
+			if (processors.has(id)) {
+				who = processors[id];
+				queue = LoadQueue.tops[who];
+
+				if (queue > 0) {
+					if (queue.objectType == 0) {
+						if (!IsIdUtility(queue.id)) {
+							what = CreateUnit(Player(queue.owner), queue.id, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.angle);
+
+							if (what != null) {
+								unitData = UnitData[what];
+
+								if (unitData > 0) {
+									unitData.size = queue.size;
+									unitData.speed = queue.speed;
+									unitData.animSpeed = queue.animSpeed;
+									unitData.z = queue.z;
+									unitData.color = ConvertPlayerColor(queue.color);
+									unitData.setVertexColor(queue.vertexR, queue.vertexG, queue.vertexB, queue.vertexA);
+								}
+							}
+							
+							what = null;
+						}
+					} else if (queue.objectType == 1) {
+						SetTerrainType(offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.id, -1, 1, 0);
+					} else if (queue.objectType == 2) {
+						DeformationList.create(who, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.magnitude, queue.radius);
+					}
+
+					queue.destroy();
+
+					TimerStart(processor, 0.015625, false, function thistype.process);
+				} else {
+					DestroyTimer(processor);
+					pasting[who] = false;
+					processors.remove(id);
+				}
+			} else {
+				DestroyTimer(processor);
+			}
+
+			processor = null;
+		}
+
+		static method startPaste(integer who) {
+			timer processor;
+
+			if (!pasting[who]) {	
+				processor = CreateTimer();
+				processors[GetHandleId(processor)] = who;
+				TimerStart(processor, 0.015625, false, function thistype.process);
+				pasting[who] = true;
+			}
+		}
+
+		private static method onInit() {
+			processors = Table.create();
+		}
+	}
+}

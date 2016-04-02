@@ -1,0 +1,129 @@
+library Generic requires Core {
+	struct Generic[] {
+		private static method Command_Wait(CommandThread thread) {
+			thread.postpone(S2R(thread.args.next()));
+		}
+
+		private static method Command_MakeAlias(CommandThread thread) {
+			string alias = thread.args.next();
+			string expansion = thread.args.restParsed();
+
+			integer result = Alias.getAvailability(thread.owner, alias);
+
+			if (result == ERR_NONE) {
+				Alias.save(thread.owner, alias, expansion);
+				MessageTo(thread.owner, "Successfully created alias [" + ColorStr(alias, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
+			} else if (result == ERR_ALIAS_CONFLICT_COMMAND) {
+				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing command.");
+			} else if (result == ERR_ALIAS_CONFLICT_ALIAS) {
+				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing alias.");
+			} else if (result == ERR_ALIAS_CONFLICT_MACRO) {
+				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing macro.");
+			} else if (result == ERR_ALIAS_ZERO_LENGTH) {
+				MessageTo(thread.owner, "Couldn't create the alias! The alias must not be zero-length.");
+			}
+		}
+
+		private static method Command_MakeMacro(CommandThread thread) {
+			string macro = thread.args.next();
+			string expansion = thread.args.restParsed();
+
+			integer result = Macro.getAvailability(thread.owner, macro);
+
+			if (result == ERR_NONE) {
+				Macro.save(thread.owner, macro, expansion);
+				MessageTo(thread.owner, "Successfully created macro [" + ColorStr(macro, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
+			} else if (result == ERR_MACRO_CONFLICT_COMMAND) {
+				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing command.");
+			} else if (result == ERR_MACRO_CONFLICT_ALIAS) {
+				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing alias.");
+			} else if (result == ERR_MACRO_CONFLICT_MACRO) {
+				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing macro.");
+			} else if (result == ERR_MACRO_LIMIT_EXHAUSTED) {
+				MessageTo(thread.owner, "Couldn't create the macro! You have reached the maximum limit of macros.");
+			} else if (result == ERR_MACRO_ZERO_LENGTH) {
+				MessageTo(thread.owner, "Couldn't create the macro! The macro must not be zero-length.");
+			}
+		}
+
+		private static method Command_RemoveAlias(CommandThread thread) {
+			string alias = thread.args.next();
+
+			if (Alias.exists(thread.owner, alias)) {
+				Alias.remove(thread.owner, alias);
+				MessageTo(thread.owner, "Successfully removed alias [" + alias + "].");
+			} else {
+				MessageTo(thread.owner, "This alias does not exist!");
+			}
+		}
+
+		private static method Command_RemoveMacro(CommandThread thread) {
+			string macro = thread.args.next();
+
+			if (Macro.exists(thread.owner, macro)) {
+				Macro.remove(thread.owner, macro);
+				MessageTo(thread.owner, "Successfully removed macro [" + macro + "].");
+			} else {
+				MessageTo(thread.owner, "This macro does not exist!");
+			}
+		}
+
+		private static method Command_ThreadControl(CommandThread thread) {
+			string cmd = thread.args.next();
+
+			if (cmd == "stop") {
+				thread.stop();
+			} else if (cmd == "stopall") {
+				CommandThread.stopAll(thread.owner);
+			}
+		}
+
+		private static method Command_Repeat(CommandThread thread) {
+			integer count = S2I(thread.args.next());
+			string cmd = thread.args.restParsed();
+
+			if (count > 0) {
+				thread.pushCommands(cmd + "|repeat " + I2S(count - 1) + " " + cmd);
+			}
+		}
+
+		private static method Command_Sequence(CommandThread thread) {
+			integer count = S2I(thread.args.next());
+			real delay = S2R(thread.args.next());
+			string cmd = thread.args.restParsed();
+
+			if (delay < 0) delay = 0.01;
+
+			if (count > 0) {
+				thread.pushCommands(cmd + "|" + "wait " + R2S(delay) + "|seq " + I2S(count - 1) + " " + R2S(delay) + " " + cmd);
+			}
+		}
+
+	//	private static method Command_SaveAll(CommandThread thread) {
+	//		group temp = NewGroup();
+	//		GroupEnumUnitsInRect(temp, WorldBounds.world, null);
+	//		Save.setFilename("saveall");
+	//		Save.setQueue(temp);
+	//		Save.save(thread.owner);
+	//
+	//		temp = null;
+	//	}
+
+		private static method Command_Aux(CommandThread thread) {
+			AuxCommands.setAux(thread.owner, thread.args.restParsed());
+		}
+
+		private static method onInit() {
+			Command.register("alias",    thistype.Command_MakeAlias);
+			Command.register("macro",    thistype.Command_MakeMacro);
+			Command.register("unalias",  thistype.Command_RemoveAlias);
+			Command.register("unmacro",  thistype.Command_RemoveMacro);
+			Command.register("thread",   thistype.Command_ThreadControl);
+			Command.register("wait",     thistype.Command_Wait);
+			Command.register("repeat",   thistype.Command_Repeat);
+			Command.register("seq",      thistype.Command_Sequence);
+	//		Command.register("saveall",  thistype.Command_SaveAll);
+			Command.register("aux",      thistype.Command_Aux);
+		}
+	}
+}

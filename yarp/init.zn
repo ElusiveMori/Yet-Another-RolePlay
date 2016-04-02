@@ -1,0 +1,57 @@
+// External Dependencies
+
+//! import vjass "yarp/ext/alloc.j"
+//! import vjass "yarp/ext/gameclock.j"
+//! import vjass "yarp/ext/group.j"
+//! import vjass "yarp/ext/table.j"
+//! import vjass "yarp/ext/worldbounds.j"
+//! import vjass "yarp/ext/stringlib.j"
+//! import vjass "yarp/ext/aids.j"
+//! import vjass "yarp/ext/argb.j"
+//! import vjass "yarp/ext/board.j"
+
+// Core
+
+//! zinc
+//! import zinc "yarp/core/util.zn"
+//! import zinc "yarp/core/selection.zn"
+//! import zinc "yarp/core/command_parser.zn"
+//! import zinc "yarp/core/commands.zn"
+//! import zinc "yarp/core/unit_data.zn"
+//! import zinc "yarp/core/unit_types.zn"
+//! import zinc "yarp/core/security.zn"
+//! import zinc "yarp/core/fly_utils.zn"
+//! import zinc "yarp/core/save_load.zn"
+//! import zinc "yarp/core/logs.zn"
+//! import zinc "yarp/core/spawner.zn"
+//! import zinc "yarp/core/region.zn"
+//! import zinc "yarp/core/deformations.zn"
+
+// Game Management
+
+//! import zinc "yarp/game/generic.zn"
+//! import zinc "yarp/game/unit.zn"
+//! import zinc "yarp/game/chat.zn"
+//! import zinc "yarp/game/camera.zn"
+// import zinc "yarp/game/commands_region.zn"
+// import zinc "yarp/game/locations.zn"
+//! import zinc "yarp/game/instant_build.zn"
+//! import zinc "yarp/game/terrain.zn"
+//! import zinc "yarp/game/spawn.zn"
+//! import zinc "yarp/game/misc.zn"
+//! import zinc "yarp/game/regions.zn"
+//! import zinc "yarp/game/loader.zn"
+
+
+library Core requires Util, Selection, CommandParser, FlyUtils, Logs, SaveLoad, Security, UnitData, UnitTypes, Region, Spawner, Deformations {
+	function onInit() {
+		static if (DEBUG_MODE) {
+			TriggerSleepAction(1.0);
+			ClearTextMessages();
+			Message("This is a debug build of YARP.");
+			Message("This means that there may be debug messages left over, and performance may suffer due to lots of redundancy checks. Recompile the script without debug mode if performance problems are present.");
+		}
+	}
+}
+
+//! endzinc

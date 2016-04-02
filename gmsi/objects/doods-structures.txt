@@ -1,0 +1,290 @@
+// 01 - ruined
+// 02 - both caps
+// 00 03 - one cap
+// 04 - no caps
+
+// 0 - -
+// 135 - /
+// 45 - \
+// 90 - |
+
+shopModel = "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall02";
+
+//walls-icecrown
+icon = "ReplaceableTextures\\CommandButtons\\BTNFrost.blp";
+AddBuilding("icecrownwallhoriz1", "Icecrown Wall (-) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall00.mdx");
+AddBuilding("icecrownwallhoriz4", "Icecrown Wall (-) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall03.mdx");
+AddBuilding("icecrownwallvert1",  "Icecrown Wall (|) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall90\\IceCrownWall900.mdx");
+AddBuilding("icecrownwallvert4",  "Icecrown Wall (|) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall90\\IceCrownWall903.mdx");
+AddBuilding("icecrownwalldiag11", "Icecrown Wall (/) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall135\\IceCrownWall1350.mdx");
+AddBuilding("icecrownwalldiag14", "Icecrown Wall (/) (One Cap)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall135\\IceCrownWall1353.mdx");
+AddBuilding("icecrownwalldiag21", "Icecrown Wall (\\) (One Cap)",   "Doodads\\Icecrown\\Terrain\\IceCrownWall45\\IceCrownWall450.mdx");
+AddBuilding("icecrownwalldiag24", "Icecrown Wall (\\) (One Cap)",   "Doodads\\Icecrown\\Terrain\\IceCrownWall45\\IceCrownWall453.mdx");
+AutoAddBuilder("walls-icecrown-onecap", "Icecrown One Cap Walls");
+
+AddBuilding("icecrownwallhoriz2", "Icecrown Wall (-) (Ruined)",     "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall01.mdx");
+AddBuilding("icecrownwalldiag12", "Icecrown Wall (/) (Ruined)",     "Doodads\\Icecrown\\Terrain\\IceCrownWall135\\IceCrownWall1351.mdx");
+AddBuilding("icecrownwalldiag22", "Icecrown Wall (\\) (Ruined)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall45\\IceCrownWall451.mdx");
+AddBuilding("icecrownwallvert2",  "Icecrown Wall (|) (Ruined)",     "Doodads\\Icecrown\\Terrain\\IceCrownWall90\\IceCrownWall901.mdx");
+AutoAddBuilder("walls-icecrown-ruined", "Icecrown Ruined Walls");
+
+AddBuilding("icecrownwallhoriz3", "Icecrown Wall (-) (Both Caps)",  "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall02.mdx");
+AddBuilding("icecrownwallhoriz5", "Icecrown Wall (-) (No Caps)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall0\\IceCrownWall04.mdx");
+AddBuilding("icecrownwallvert3",  "Icecrown Wall (|) (Both Caps)",  "Doodads\\Icecrown\\Terrain\\IceCrownWall90\\IceCrownWall902.mdx");
+AddBuilding("icecrownwallvert5",  "Icecrown Wall (|) (No Caps)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall90\\IceCrownWall904.mdx");
+AddBuilding("icecrownwalldiag13", "Icecrown Wall (/) (Both Caps)",  "Doodads\\Icecrown\\Terrain\\IceCrownWall135\\IceCrownWall1352.mdx");
+AddBuilding("icecrownwalldiag15", "Icecrown Wall (/) (No Caps)",    "Doodads\\Icecrown\\Terrain\\IceCrownWall135\\IceCrownWall1354.mdx");
+AddBuilding("icecrownwalldiag23", "Icecrown Wall (\\) (Both Caps)", "Doodads\\Icecrown\\Terrain\\IceCrownWall45\\IceCrownWall452.mdx");
+AddBuilding("icecrownwalldiag25", "Icecrown Wall (\\) (No Caps)",   "Doodads\\Icecrown\\Terrain\\IceCrownWall45\\IceCrownWall454.mdx");
+AutoAddBuilder("walls-icecrown-regular", "Icecrown Regular Walls");
+AutoAddShop("walls-icecrown", "Icecrown Walls");
+
+shopModel = "Doodads\\LordaeronSummer\\Terrain\\StoneWall0\\StoneWall02";
+//walls-lordaeron
+icon = "ReplaceableTextures\\CommandButtons\\BTNHumanBuild.blp";
+AddBuilding("lordaeronwallhoriz1", "Lordaeron Wall (-) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall0\\StoneWall00.mdx");
+AddBuilding("lordaeronwallhoriz4", "Lordaeron Wall (-) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall0\\StoneWall03.mdx");
+AddBuilding("lordaeronwallvert1",  "Lordaeron Wall (|) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall90\\StoneWall900.mdx");
+AddBuilding("lordaeronwallvert4",  "Lordaeron Wall (|) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall90\\StoneWall903.mdx");
+AddBuilding("lordaeronwalldiag11", "Lordaeron Wall (/) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall135\\StoneWall1350.mdx");
+AddBuilding("lordaeronwalldiag14", "Lordaeron Wall (/) (One Cap)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall135\\StoneWall1353.mdx");
+AddBuilding("lordaeronwalldiag21", "Lordaeron Wall (\\) (One Cap)",  "Doodads\\LordaeronSummer\\Terrain\\StoneWall45\\StoneWall450.mdx");
+AddBuilding("lordaeronwalldiag24", "Lordaeron Wall (\\) (One Cap)",  "Doodads\\LordaeronSummer\\Terrain\\StoneWall45\\StoneWall453.mdx");
+AutoAddBuilder("walls-lordaeron-onecap", "Lordaeron One Cap Walls");
+
+AddBuilding("lordaeronwallhoriz3", "Lordaeron Wall (-) (Both Caps)", "Doodads\\LordaeronSummer\\Terrain\\StoneWall0\\StoneWall02.mdx");
+AddBuilding("lordaeronwallhoriz5", "Lordaeron Wall (-) (No Caps)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall0\\StoneWall04.mdx");
+AddBuilding("lordaeronwallvert3",  "Lordaeron Wall (|) (Both Caps)", "Doodads\\LordaeronSummer\\Terrain\\StoneWall90\\StoneWall902.mdx");
+AddBuilding("lordaeronwallvert5",  "Lordaeron Wall (|) (No Caps)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall90\\StoneWall904.mdx");
+AddBuilding("lordaeronwalldiag13", "Lordaeron Wall (/) (Both Caps)", "Doodads\\LordaeronSummer\\Terrain\\StoneWall135\\StoneWall1352.mdx");
+AddBuilding("lordaeronwalldiag15", "Lordaeron Wall (/) (No Caps)",   "Doodads\\LordaeronSummer\\Terrain\\StoneWall135\\StoneWall1354.mdx");
+AddBuilding("lordaeronwalldiag23", "Lordaeron Wall (\\) (Both Caps)","Doodads\\LordaeronSummer\\Terrain\\StoneWall45\\StoneWall452.mdx");
+AddBuilding("lordaeronwalldiag25", "Lordaeron Wall (\\) (No Caps)",  "Doodads\\LordaeronSummer\\Terrain\\StoneWall45\\StoneWall454.mdx");
+AutoAddBuilder("walls-lordaeron-regular", "Lordaeron Regular Walls");
+
+AddBuilding("lordaeronrubble", "Lordaeron Ruined Wall", "Doodads\\LordaeronSummer\\Props\\RubbleStoneWall\\RubbleStoneWall.mdx");
+AddBuilding("lordaeronwallfountain", "Lordaeron Wall Fountain", "Doodads\\LordaeronSummer\\Props\\WallFountainCliff\\WallFountainCliff0.mdx");
+AddBuilding("lordaeronwallfountain", "Lordaeron Wall Fountain", "Doodads\\LordaeronSummer\\Props\\WallFountainCliff\\WallFountainCliff1.mdx");
+AutoAddBuilder("walls-lordaeron-others", "Lordaeron Misc Walls");
+AutoAddShop("walls-lordaeron", "Lordaeron Walls");
+
+shopModel = "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall02";
+//walls-sunken
+icon = "ReplaceableTextures\\CommandButtons\\BTNNecklace.blp";
+AddBuilding("sunkenwallhoriz1", "Sunken Wall (-) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall00.mdx");
+AddBuilding("sunkenwallhoriz4", "Sunken Wall (-) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall03.mdx");
+AddBuilding("sunkenwalldiag14", "Sunken Wall (/) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall135\\RuinsWall1353.mdx");
+AddBuilding("sunkenwalldiag11", "Sunken Wall (/) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall135\\RuinsWall1350.mdx");
+AddBuilding("sunkenwalldiag21", "Sunken Wall (\\) (One Cap)",   "Doodads\\Ruins\\Terrain\\RuinsWall45\\RuinsWall450.mdx");
+AddBuilding("sunkenwalldiag24", "Sunken Wall (\\) (One Cap)",   "Doodads\\Ruins\\Terrain\\RuinsWall45\\RuinsWall453.mdx");
+AddBuilding("sunkenwallvert1",  "Sunken Wall (|) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall90\\RuinsWall900.mdx");
+AddBuilding("sunkenwallvert4",  "Sunken Wall (|) (One Cap)",    "Doodads\\Ruins\\Terrain\\RuinsWall90\\RuinsWall903.mdx");
+AutoAddBuilder("walls-sunken-onecap", "Sunken One Cap Walls");
+
+AddBuilding("sunkenwallhoriz2", "Sunken Wall (-) (Ruined)",     "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall01.mdx");
+AddBuilding("sunkenwalldiag12", "Sunken Wall (/) (Ruined)",     "Doodads\\Ruins\\Terrain\\RuinsWall135\\RuinsWall1351.mdx");
+AddBuilding("sunkenwalldiag22", "Sunken Wall (\\) (Ruined)",    "Doodads\\Ruins\\Terrain\\RuinsWall45\\RuinsWall451.mdx");
+AddBuilding("sunkenwallvert2",  "Sunken Wall (|) (Ruined)",     "Doodads\\Ruins\\Terrain\\RuinsWall90\\RuinsWall901.mdx");
+AutoAddBuilder("walls-sunken-ruined", "Sunken Ruined Walls");
+
+AddBuilding("sunkenwallhoriz3", "Sunken Wall (-) (Both Caps)",  "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall02.mdx");
+AddBuilding("sunkenwallhoriz5", "Sunken Wall (-) (No Caps)",    "Doodads\\Ruins\\Terrain\\RuinsWall0\\RuinsWall04.mdx");
+AddBuilding("sunkenwallvert3",  "Sunken Wall (|) (Both Caps)",  "Doodads\\Ruins\\Terrain\\RuinsWall90\\RuinsWall902.mdx");
+AddBuilding("sunkenwallvert5",  "Sunken Wall (|) (No Caps)",    "Doodads\\Ruins\\Terrain\\RuinsWall90\\RuinsWall904.mdx");
+AddBuilding("sunkenwalldiag13", "Sunken Wall (/) (Both Caps)",  "Doodads\\Ruins\\Terrain\\RuinsWall135\\RuinsWall1352.mdx");
+AddBuilding("sunkenwalldiag15", "Sunken Wall (/) (No Caps)",    "Doodads\\Ruins\\Terrain\\RuinsWall135\\RuinsWall1354.mdx");
+AddBuilding("sunkenwalldiag23", "Sunken Wall (\\) (Both Caps)", "Doodads\\Ruins\\Terrain\\RuinsWall45\\RuinsWall452.mdx");
+AddBuilding("sunkenwalldiag25", "Sunken Wall (\\) (No Caps)",   "Doodads\\Ruins\\Terrain\\RuinsWall45\\RuinsWall454.mdx");
+AutoAddBuilder("walls-sunken-regular", "Sunken Regular Walls");
+AutoAddShop("walls-sunken", "Sunken Walls");
+
+shopModel = "Doodads\\Cityscape\\Structures\\City_ColumnSingle\\City_ColumnSingle";
+//walls-fences
+icon = "ReplaceableTextures\\CommandButtons\\BTNWandOfNeutralization.blp";
+AddBuilding("longfence", "Long Fence", "Doodads\\Village\\Props\\Village_Fencelong\\Village_Fencelong.mdx");
+AddBuilding("longfenceangled", "Long Angled Fence", "Doodads\\Village\\Props\\Village_FencelongAngled\\Village_FencelongAngled.mdx");
+AddBuilding("shortfence", "Short Fence", "Doodads\\Village\\Props\\Village_Fenceshort\\Village_Fenceshort.mdx");
+AddBuilding("shortfenceangled", "Short Angled Fence", "Doodads\\Village\\Props\\Village_FenceshortAngled\\Village_FenceshortAngled.mdx");
+AddBuilding("northfence", "Northrend Fence", "Doodads\\Northrend\\Props\\NorthrendFenceStraight\\NorthrendFenceStraight.mdx");
+AddBuilding("northfenceangled", "Northrend Fence Angled", "Doodads\\Northrend\\Props\\NorthrendFenceAngled\\NorthrendFenceAngled.mdx");
+AutoAddBuilder("walls-fences", "Fences");
+
+//bridges
+icon = "ReplaceableTextures\\CommandButtons\\BTNAdvStruct.blp";
+AddBuilding("bridgedestroyed", "Destroyed Bridge", "Doodads\\Cityscape\\Structures\\CityBridgeLarge45Destroyed\\CityBridgeLarge45Destroyed.mdx");
+AddBuilding("bridgecitysmall", "Small Stone Bridge", "Doodads\\LordaeronSummer\\Structures\\CityBridgeSmall\\CityBridgeSmall.mdx");
+AddBuilding("bridgelordaeron", "Lordaeron Bridge", "Doodads\\LordaeronSummer\\Structures\\LordaeronBridge\\LordaeronBridge.mdx");
+AddBuilding("bridgecityxlarge", "Very Large City Bridge", "Doodads\\Terrain\\CityBridgeExtraLarge0\\CityBridgeExtraLarge0.mdx");
+AddBuilding("bridgecitylarge", "Large City Bridge", "Doodads\\Terrain\\CityBridgeLarge0\\CityBridgeLarge0.mdx");
+AddBuilding("bridgecitysmall", "Small City Bridge", "Doodads\\Terrain\\CityBridgeSmall0\\CityBridgeSmall0.mdx");
+AddBuilding("bridgeforce", "Force Bridge", "Doodads\\Terrain\\ForceBridgeLarge0\\ForceBridgeLarge0.mdx");
+AddBuilding("bridgeice", "Ice Bridge", "Doodads\\Terrain\\IceBridge\\IceBridge.mdx");
+AddBuilding("bridgerockxlarge", "Very Large Rock Bridge", "Doodads\\Terrain\\RockBridgeExtraLarge0\\RockBridgeExtraLarge0.mdx");
+AddBuilding("bridgerocklarge", "Large Rock Bridge", "Doodads\\Terrain\\RockBridgeLarge0\\RockBridgeLarge0.mdx");
+AddBuilding("bridgerocksmall", "Small Rock Bridge", "Doodads\\Terrain\\RockBridgeSmall0\\RockBridgeSmall0.mdx");
+AddBuilding("bridgetree", "Tree Bridge", "Doodads\\Terrain\\TreeBridge0\\TreeBridge0.mdx");
+AddBuilding("bridgewoodxlarge", "Very Large Wood Bridge", "Doodads\\Terrain\\WoodBridgeExtraLarge0\\WoodBridgeExtraLarge0.mdx");
+AddBuilding("bridgewoodlarge", "Large Wood Bridge", "Doodads\\Terrain\\WoodBridgeLarge0\\WoodBridgeLarge0.mdx");
+AddBuilding("ramp", "Ramp", "Doodads\\LordaeronSummer\\Terrain\\BridgeRampSmall45\\BridgeRampSmall45.mdx");
+AutoAddBuilder("bridges", "Bridges");
+
+//walls
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcaniteArchitecture.blp";
+AddBuilding("ruinedcurvedwall", "Ruined Curved Wall", "Doodads\\Barrens\\Structures\\RuinedCurvedWall\\RuinedCurvedWall.mdx");
+AddBuilding("ruinedwall", "Ruined Wall", "Doodads\\Barrens\\Structures\\RuinedWall\\RuinedWall.mdx");
+AddBuilding("energywall", "Energy Wall", "Doodads\\Cinematic\\EnergyFieldWall\\EnergyFieldWall.mdx");
+AddBuilding("forcewall", "Force Wall", "Doodads\\Dungeon\\Props\\Forcewall\\Forcewall.mdx");
+AddBuilding("forcewalldiag", "Force Wall Diagonal", "Doodads\\Dungeon\\Props\\Forcewall45\\Forcewall45.mdx");
+AutoAddBuilder("walls", "Misc Walls");
+
+//walls-underground
+AddBuilding("barreddungwall1", "Dungeon Barred Wall 1", "Doodads\\Dungeon\\Structures\\PorticulisWall0_\\PorticulisWall0_0.mdx");
+AddBuilding("barreddungwall2", "Dungeon Barred Wall 2", "Doodads\\Dungeon\\Structures\\PorticulisWall0_\\PorticulisWall0_1.mdx");
+AddBuilding("barreddungwall3", "Dungeon Barred Wall 3", "Doodads\\Dungeon\\Structures\\PorticulisWall0_\\PorticulisWall0_2.mdx");
+AddBuilding("barredundwall1", "Underground Barred Wall 1", "Doodads\\Underground\\Structures\\GPorticulisWall0_\\GPorticulisWall0_0.mdx");
+AddBuilding("barredundwall2", "Underground Barred Wall 2", "Doodads\\Underground\\Structures\\GPorticulisWall0_\\GPorticulisWall0_1.mdx");
+AddBuilding("barredundwall3", "Underground Barred Wall 3", "Doodads\\Underground\\Structures\\GPorticulisWall0_\\GPorticulisWall0_2.mdx");
+AutoAddBuilder("walls-underground", "Underground Walls");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNStoneForm.blp";
+//statues-obelisks
+AddBuilding("ashenbrokenobelisk1", "Ashen Broken Obelisk 1", "Doodads\\Ashenvale\\Props\\AshenBrokenObilisk\\AshenBrokenObilisk0.mdx");
+AddBuilding("ashenbrokenobelisk2", "Ashen Broken Obelisk 2", "Doodads\\Ashenvale\\Props\\AshenBrokenObilisk\\AshenBrokenObilisk1.mdx");
+AddBuilding("ashenobilisk", "Ashen Obilisk", "Doodads\\Ashenvale\\Props\\AshenObilisk\\AshenObilisk.mdx");
+AddBuilding("icecrownobelisk", "Icecrown Obelisk", "Doodads\\Cinematic\\IcecrownObelisk\\IcecrownObelisk.mdx");
+AddBuilding("dungeonobelisk", "Dungeon Obelisk", "Doodads\\Dungeon\\Props\\DungeonObilisk\\DungeonObilisk.mdx");
+AddBuilding("felwoodbrokenobelisk2", "Felwood Broken Obelisk 2", "Doodads\\Felwood\\Props\\FelwoodBrokenObilisk\\FelwoodBrokenObilisk1.mdx");
+AddBuilding("felwoodbrokenobelisk1", "Felwood Broken Obelisk 1", "Doodads\\Felwood\\Props\\FelwoodBrokenObilisk\\FelwoodBrokenObilisk0.mdx");
+AddBuilding("felwoodobelisk", "Felwood Obelisk", "Doodads\\Felwood\\Props\\FelwoodObilisk\\FelwoodObilisk.mdx");
+AddBuilding("icecrownobelisk1", "Ice Crown Obelisk 1", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk0.mdx");
+AddBuilding("icecrownobelisk2", "Ice Crown Obelisk 2", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk1.mdx");
+AddBuilding("icecrownobelisk3", "Ice Crown Obelisk 3", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk2.mdx");
+AddBuilding("obelisk1", "Obelisk 1", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk0.mdx");
+AddBuilding("obelisk2", "Obelisk 2", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk1.mdx");
+AddBuilding("obelisk3", "Obelisk 3", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk2.mdx");
+AddBuilding("cityobelisk", "City Obelisk", "Doodads\\Cityscape\\Props\\City_Oblisk\\City_Oblisk.mdx");
+AddBuilding("northrendbrokenobelisk", "Northrend Broken Obelisk", "Doodads\\Northrend\\Props\\NorthrendBrokenObilisk\\NorthrendBrokenObilisk.mdx");
+AddBuilding("northrendobelisk", "Northrend Obelisk", "Doodads\\Northrend\\Props\\NorthrendObilisk\\NorthrendObilisk.mdx");
+AddBuilding("ruinsobelisk1", "Ruins Obelisk 1", "Doodads\\Ruins\\Props\\RuinsObelisk\\RuinsObelisk0.mdx");
+AddBuilding("ruinsobelisk2", "Ruins Obelisk 2", "Doodads\\Ruins\\Props\\RuinsObelisk\\RuinsObelisk1.mdx");
+AddBuilding("undergroundobelisk", "Underground Obelisk", "Doodads\\Underground\\Props\\UndergroundObilisk\\UndergroundObilisk.mdx");
+AutoAddBuilder("statues-obelisks", "Obelisks");
+
+//statues-others
+AddBuilding("keeperstatue", "Keeper Statue", "Doodads\\Ashenvale\\Props\\KeeperStatue\\KeeperStatue.mdx");
+AddBuilding("sentinelstatue", "Sentinel Statue", "Doodads\\Ashenvale\\Props\\SentinelStatue\\SentinelStatue.mdx");
+AddBuilding("blackcitadelstatue", "Black Citadel Statue", "Doodads\\BlackCitadel\\Props\\BlackCitadelStatue\\BlackCitadelStatue.mdx");
+AddBuilding("citystatue", "City Statue", "Doodads\\Cityscape\\Props\\City_Statue\\City_Statue.mdx");
+AddBuilding("knightstatuea", "Knight Statue A", "Doodads\\Cityscape\\Props\\KnightStatueA\\KnightStatueA.mdx");
+AddBuilding("whalestatue", "Whale Statue", "Doodads\\Cityscape\\Props\\WhaleStatue\\WhaleStatue.mdx");
+AddBuilding("asharastatue", "Ashara Statue", "Doodads\\Dungeon\\Props\\AzsharaStatue\\AzsharaStatue.mdx");
+AddBuilding("spiderstatue1", "Spider Statue 1", "Doodads\\Icecrown\\Props\\SpiderStatue0\\SpiderStatue0.mdx");
+AddBuilding("spiderstatue2", "Spider Statue 2", "Doodads\\Icecrown\\Props\\SpiderStatue1\\SpiderStatue1.mdx");
+AddBuilding("statue1", "Statue 1", "Doodads\\Ruins\\Props\\Statue\\Statue0.mdx");
+AddBuilding("statue2", "Statue 2", "Doodads\\Ruins\\Props\\Statue\\Statue1.mdx");
+AddBuilding("statuebroken1", "Statue Broken 1", "Doodads\\Ruins\\Props\\StatueBroken\\StatueBroken0.mdx");
+AddBuilding("statuebroken2", "Statue Broken 2", "Doodads\\Ruins\\Props\\StatueBroken\\StatueBroken1.mdx");
+AutoAddBuilder("statues-others", "Statues");
+
+//structures
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcaniteArchitecture.blp";
+AddBuilding("barn", "Barn", "Doodads\\LordaeronSummer\\Structures\\Barn\\Barn.mdx");
+AddBuilding("granary", "Granary", "Doodads\\LordaeronSummer\\Structures\\Granary\\Granary.mdx");
+AddBuilding("inn", "Inn", "Doodads\\LordaeronSummer\\Structures\\Inn\\Inn.mdx");
+AddBuilding("well", "Well", "Doodads\\LordaeronSummer\\Structures\\well\\well.mdx");
+AddBuilding("windmill", "Windmill", "Doodads\\LordaeronSummer\\Structures\\WindMill\\WindMill.mdx");
+AddBuilding("ziggurat1", "Ziggurat 1", "Doodads\\Northrend\\Structures\\AncientZiggurat\\AncientZiggurat0.mdx");
+AddBuilding("ziggurat2", "Ziggurat 2", "Doodads\\Northrend\\Structures\\AncientZiggurat\\AncientZiggurat1.mdx");
+AddBuilding("crypt", "Crypt", "Doodads\\Northrend\\Structures\\NorthrendCrypt\\NorthrendCrypt.mdx");
+AddBuilding("cathedral", "Cathedral", "Doodads\\Cityscape\\Structures\\Cathedral\\Cathedral.mdx");
+AddBuilding("tavern", "Tavern", "Doodads\\Cityscape\\Structures\\Tavern\\Tavern.mdx");
+AddBuilding("thrallhut", "Thrall's Hut", "Doodads\\Cinematic\\ThrallsHut\\ThrallsHut.mdx");
+AddBuilding("cityfountain", "City Fountain", "Doodads\\Cityscape\\Props\\City_Fountain\\City_Fountain.mdx");
+AddBuilding("sunwell", "Sun Well", "Doodads\\Cinematic\\SunWell\\SunWell.mdx");
+AutoAddBuilder("structure", "Structure");
+
+//citywalls
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcaniteArchitecture.blp";
+AddBuilding("citywall1", "City Wall (|)", "Doodads\\Cityscape\\Structures\\CityLowWall0\\CityLowWall0.mdx");
+AddBuilding("citywall2", "City Wall (/)", "Doodads\\Cityscape\\Structures\\CityLowWall135\\CityLowWall135.mdx");
+AddBuilding("citywall3", "City Wall (\\)", "Doodads\\Cityscape\\Structures\\CityLowWall45\\CityLowWall45.mdx");
+AddBuilding("citywall4", "City Wall (-)", "Doodads\\Cityscape\\Structures\\CityLowWall90\\CityLowWall90.mdx");
+AddBuilding("citywallalone", "City Wall Standalone", "Doodads\\Cityscape\\Structures\\City_LowWall\\City_LowWall.mdx");
+AddBuilding("citywallcaplow", "City Wall Cap Low", "Doodads\\Cityscape\\Structures\\City_LowWall_ShortEndCap\\City_LowWall_ShortEndCap.mdx");
+AddBuilding("citywallcaptall", "City Wall Cap High", "Doodads\\Cityscape\\Structures\\City_LowWall_TallEndCap\\City_LowWall_TallEndCap.mdx");
+AddBuilding("citywallcaplantern", "City Wall Cap \\w Lantern", "Doodads\\Cityscape\\Structures\\City_LowWall_TallEndCapWithLantern\\City_LowWall_TallEndCapWithLantern.mdx");
+AddBuilding("citywallcaptallnolantern", "City Wall Cap \\w/o Lantern", "Doodads\\Cityscape\\Structures\\City_LowWall_TallEndCapWithoutLantern\\City_LowWall_TallEndCapWithoutLantern.mdx");
+AutoAddBuilder("citywall", "City Walls");
+
+//gates
+icon = "ReplaceableTextures\\CommandButtons\\BTNHumanBuild.blp";
+AddBuilding("gatesargeras", "Sargeras Gate", "Doodads\\Cinematic\\SargerasGate\\SargerasGate.mdx");
+AddBuilding("gatecity", "City Gate", "Doodads\\Cityscape\\Terrain\\CityEnteranceGate\\CityEnteranceGate.mdx");
+AddBuilding("gatecave", "Cave Gate", "Doodads\\Dungeon\\Terrain\\CaveGate\\CaveGate.mdx");
+AddBuilding("gatedungeon", "Dungeon Gate", "Doodads\\Dungeon\\Terrain\\DungeonPorticulisGate\\DungeonPorticulisGate.mdx");
+AddBuilding("gatedungeondiag", "Diagonal Dungeon Gate", "Doodads\\Dungeon\\Terrain\\DungeonPorticulisGate45\\DungeonPorticulisGate45.mdx");
+AddBuilding("gateicecrown", "Icecrown Gate", "Doodads\\Icecrown\\Terrain\\IceCrownGate\\IceCrownGate.mdx");
+AddBuilding("gateicecrowndiag", "Diagonal Icecrown Gate", "Doodads\\Icecrown\\Terrain\\IceCrownGate45\\IceCrownGate45.mdx");
+AddBuilding("gateicecrownthrone", "Icecrown Throne Gate", "Doodads\\Icecrown\\Terrain\\IceCrownThroneGate\\IceCrownThroneGate.mdx");
+AddBuilding("gateice", "Ice Gate", "Doodads\\Icecrown\\Terrain\\IceGate\\IceGate.mdx");
+AddBuilding("gateicediag", "Ice Gate Diagonal", "Doodads\\Icecrown\\Terrain\\IceGate45\\IceGate45.mdx");
+AddBuilding("gatedemonic", "Demonic Gate", "Doodads\\LordaeronSummer\\Terrain\\BigElfGate\\BigElfGate.mdx");
+AddBuilding("gatedemonicdiag", "Diagonal Demonic Gate", "Doodads\\LordaeronSummer\\Terrain\\BigElfGate45\\BigElfGate45.mdx");
+AddBuilding("gateelf", "Elf Gate", "Doodads\\LordaeronSummer\\Terrain\\ElfGate\\ElfGate.mdx");
+AddBuilding("gateelf", "Diagonal Elf Gate", "Doodads\\LordaeronSummer\\Terrain\\ElfGate45\\ElfGate45.mdx");
+AddBuilding("gatenormal", "Normal Gate", "Doodads\\LordaeronSummer\\Terrain\\Gate\\Gate.mdx");
+AddBuilding("gatenormaldiag", "Diagonal Normal Gate", "Doodads\\LordaeronSummer\\Terrain\\Gate45\\Gate45.mdx");
+AddBuilding("gateiron", "Iron Gate", "Doodads\\LordaeronSummer\\Terrain\\IronGate\\IronGate.mdx");
+AddBuilding("gateirondiag", "Diagonal Iron Gate", "Doodads\\LordaeronSummer\\Terrain\\IronGate45\\IronGate45.mdx");
+AddBuilding("gatesunken", "Sunken Gate", "Doodads\\Ruins\\Terrain\\RuinsGate\\RuinsGate.mdx");
+AddBuilding("gatesunkendiag", "Diagonal Sunken Gate", "Doodads\\Ruins\\Terrain\\RuinsGate45\\RuinsGate45.mdx");
+AutoAddBuilder("gates", "Gates");
+
+//buildings
+AddBuilding("citybuilding1", "City Building 1", "Doodads\\Cityscape\\Structures\\MoreCityBuilding\\MoreCityBuilding0.mdx");
+AddBuilding("citybuilding2", "City Building 2", "Doodads\\Cityscape\\Structures\\MoreCityBuilding\\MoreCityBuilding1.mdx");
+AddBuilding("citybuilding3", "City Building 3", "Doodads\\Cityscape\\Structures\\MoreCityBuilding\\MoreCityBuilding2.mdx");
+AddBuilding("citybuilding4", "City Building 4", "Doodads\\Cityscape\\Structures\\MoreCityBuilding\\MoreCityBuilding3.mdx");
+AddBuilding("citybuilding5", "City Building 5", "Doodads\\Cityscape\\Structures\\MoreCityBuilding\\MoreCityBuilding4.mdx");
+AddBuilding("sunkenbuilding1", "Sunken Building 1", "Doodads\\Ruins\\Structures\\RuinsBuilding\\RuinsBuilding0.mdx");
+AddBuilding("sunkenbuilding2", "Sunken Building 2", "Doodads\\Ruins\\Structures\\RuinsBuilding\\RuinsBuilding1.mdx");
+AddBuilding("sunkenbuilding3", "Sunken Building 3", "Doodads\\Ruins\\Structures\\RuinsBuilding\\RuinsBuilding2.mdx");
+AddBuilding("elvenbuilding1", "Elven Village Building 1", "Doodads\\LordaeronSummer\\Structures\\ElvenVillageBuilding\\ElvenVillageBuilding0.mdx");
+AddBuilding("elvenbuilding2", "Elven Village Building 2", "Doodads\\LordaeronSummer\\Structures\\ElvenVillageBuilding\\ElvenVillageBuilding1.mdx");
+AutoAddBuilderS("buildings1", "Buildings Builder 1");
+AddBuilding("villagebuilding1", "Village Building 1", "Doodads\\Village\\Structures\\VillageBuilding\\VillageBuilding0.mdx");
+AddBuilding("villagebuilding2", "Village Building 2", "Doodads\\Village\\Structures\\VillageBuilding\\VillageBuilding1.mdx");
+AddBuilding("villagebuilding3", "Village Building 3", "Doodads\\Village\\Structures\\VillageBuilding\\VillageBuilding2.mdx");
+AutoAddBuilderS("buildings2", "Buildings Builder 2");
+
+//pillars-city
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcaniteArchitecture.blp";
+AddBuilding("citycolumndouble", "City Double Column", "Doodads\\Cityscape\\Structures\\City_ColumnDouble\\City_ColumnDouble.mdx");
+AddBuilding("citycolumncircle", "City Semi-circle Column", "Doodads\\Cityscape\\Structures\\City_ColumnSemiCircle\\City_ColumnSemiCircle.mdx");
+AddBuilding("citycolumnsingle", "City Single Column", "Doodads\\Cityscape\\Structures\\City_ColumnSingle\\City_ColumnSingle.mdx");
+AddBuilding("citycolumncircleruin", "Ruined City Semi-circle Column", "Doodads\\Cityscape\\Structures\\City_ColumnSemiCircle_Ruined\\City_ColumnSemiCircle_Ruined.mdx");
+AddBuilding("citycolumnsingle1", "Ruined City Single Column 1", "Doodads\\Cityscape\\Structures\\City_ColumnSingle1_Ruined\\City_ColumnSingle1_Ruined.mdx");
+AddBuilding("citycolumnsingle2", "Ruined City Single Column 2", "Doodads\\Cityscape\\Structures\\City_ColumnSingle2_Ruined\\City_ColumnSingle2_Ruined.mdx");
+AutoAddBuilder("pillarscity", "City Pillars");
+
+//pillars-broken
+AddBuilding("ashenbrokencolumn1", "Broken Ashenvale Column 1", "Doodads\\Ashenvale\\Structures\\AshenBrokenColumn\\AshenBrokenColumn0.mdx");
+AddBuilding("ashenbrokencolumn2", "Broken Ashenvale Column 2", "Doodads\\Ashenvale\\Structures\\AshenBrokenColumn\\AshenBrokenColumn1.mdx");
+AddBuilding("northbrokencolumn1", "Broken Northrend Column 1", "Doodads\\Northrend\\Props\\NorthrendBrokenColumn\\NorthrendBrokenColumn0.mdx");
+AddBuilding("northbrokencolumn2", "Broken Northrend Column 2", "Doodads\\Northrend\\Props\\NorthrendBrokenColumn\\NorthrendBrokenColumn1.mdx");
+AddBuilding("felbrokencolumn1", "Broken Felwood Column 1", "Doodads\\Felwood\\Structures\\FelwoodBrokenColumn\\FelwoodBrokenColumn0.mdx");
+AddBuilding("felbrokencolumn1", "Broken Felwood Column 2", "Doodads\\Felwood\\Structures\\FelwoodBrokenColumn\\FelwoodBrokenColumn1.mdx");
+AutoAddBuilder("pillarsbroken", "Broken Pillars");
+
+//pillars-others
+AddBuilding("sunkenpillar1", "Sunken Pillar 1", "Doodads\\Ruins\\Props\\RuinsPillar\\RuinsPillar0.mdx");
+AddBuilding("sunkenpillar2", "Sunken Pillar 2", "Doodads\\Ruins\\Props\\RuinsPillar\\RuinsPillar1.mdx");
+AddBuilding("sunkenpillar3", "Sunken Pillar 3", "Doodads\\Ruins\\Props\\RuinsPillar\\RuinsPillar2.mdx");
+AddBuilding("sunkenpillar4", "Sunken Pillar 4", "Doodads\\Ruins\\Props\\RuinsPillar\\RuinsPillar3.mdx");
+AddBuilding("sunkenpillar5", "Sunken Pillar 5", "Doodads\\Ruins\\Props\\RuinsPillar\\RuinsPillar4.mdx");
+AddBuilding("icecrownpillar1", "Icecrown Pillar 1", "Doodads\\Icecrown\\Props\\IceCrownPillar\\IceCrownPillar0.mdx");
+AddBuilding("icecrownpillar2", "Icecrown Pillar 2", "Doodads\\Icecrown\\Props\\IceCrownPillar\\IceCrownPillar1.mdx");
+AddBuilding("icecrownpillar3", "Icecrown Pillar 3", "Doodads\\Icecrown\\Props\\IceCrownPillar\\IceCrownPillar2.mdx");
+AutoAddBuilder("pillarsother", "Other Pillars");
+
+AutoAddShop("structures", "Structures");

@@ -1,0 +1,82 @@
+Unit GetBaseUnit(string id) {
+	Unit base = createObject(map, "ncrb", id, true);
+	base.Art = icon;
+	base.abilList = "";
+	base.spd = 256;
+	base.turnRate = 1;
+	base.upgrades = "";
+	base.bldtm = 1;
+	base.bountyplus = 0;
+	base.bountydice = 0;
+	base.bountysides = 0;
+	base.goldcost = 0;
+	base.HP = 128;
+	base.regenHP = 0;
+	base.level = 0;
+	base.manaN = 128;
+	base.goldRep = 0;
+	base.reptm = 1;
+//	base.sight = 1000;
+//	base.nsight = 1000;
+	base.stockMax = 1;
+	base.stockRegen = 0;
+	base.stockStart = 1;
+	base.cargoSize = 1;
+	base.unitSound = "";
+	base.elevPts = 0;
+	base.elevRad = 0;
+	base.Tip = "";
+	base.Ubertip = "";
+	base.unitShadow = "";
+	base.buildingShadow = "_";
+
+	return base;
+}
+
+Unit GetBaseBuilding(string id) {
+	Unit base = GetBaseUnit(id);
+	base.pathTex = "PathTextures\\2x2Default.tga";
+	base.spd = 1;
+	base.manaN = 0;
+	base.isbldg = 1;
+	base.preventPlace = "";
+	base["type"] = "mechanical,summoned";
+	base.movetp = "";
+
+	return base;
+}
+
+Unit GetBaseBuilder(string id) {
+	Unit base = GetBaseUnit(id);
+
+	base.spd = 522;
+	base.HP = 1;
+	base.abilList = "Avul";
+	base.manaN = 0;
+
+	return base;
+}
+
+Unit GetBaseShop(string id) {
+	Unit base = GetBaseUnit(id);
+
+	base.manaN = 0;
+	base.isbldg = 1;
+	base.spd = 0;
+	base.movetp = "";
+	base.abilList = "Avul";
+
+	return base;
+}
+
+Ability GetBaseAbility(string id) {
+	Ability base = createObject(map, "ANcl", id, true);
+
+	base.Ubertip = "";
+	base.hero = 0;
+	base.levels = 1;
+//	base.DataE1 = 1;
+	base.DataC1 = 1;
+
+	return base;
+}

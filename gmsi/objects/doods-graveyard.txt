@@ -1,0 +1,85 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNAnimateDead.blp";
+shopModel = "Doodads\\Cityscape\\Props\\CityGrave\\CityGrave0";
+
+//graveyard-corpses
+AddBuilding("scorchedremains1", "Scorched Remains 1", "Doodads\\Ashenvale\\Props\\ScorchedRemains\\ScorchedRemains0.mdx");
+AddBuilding("scorchedremains2", "Scorched Remains 2", "Doodads\\Ashenvale\\Props\\ScorchedRemains\\ScorchedRemains1.mdx");
+AddBuilding("scorchedremains3", "Scorched Remains 3", "Doodads\\Ashenvale\\Props\\ScorchedRemains\\ScorchedRemains2.mdx");
+AddBuilding("headonspear1", "Head on Spear 1", "Doodads\\LordaeronSummer\\Props\\HeadOnSpear\\HeadOnSpear0.mdx");
+AddBuilding("headonspear2", "Head on Spear 2", "Doodads\\LordaeronSummer\\Props\\HeadOnSpear\\HeadOnSpear1.mdx");
+AddBuilding("headonspear3", "Head on Spear 3", "Doodads\\LordaeronSummer\\Props\\HeadOnSpear\\HeadOnSpear2.mdx");
+AddBuilding("impaledbody1", "Impaled Body 1", "Doodads\\LordaeronSummer\\Props\\ImpaledBody\\ImpaledBody0.mdx");
+AddBuilding("impaledbody2", "Impaled Body 2", "Doodads\\LordaeronSummer\\Props\\ImpaledBody\\ImpaledBody1.mdx");
+AddBuilding("sittingcorpse", "Sitting Corpse", "Doodads\\LordaeronSummer\\Props\\SittingCorpse\\SittingCorpse.mdx");
+AddBuilding("cauldronwithheads", "Cauldron With Heads", "Doodads\\LordaeronSummer\\Props\\CauldronWithHeads\\CauldronWithHeads.mdx");
+AutoAddBuilder("graveyard-corpses", "Corpses");
+
+//graveyard-bones-barrens
+AddBuilding("barrensbones1", "Barrens Bones 1", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones0.mdx");
+AddBuilding("barrensbones2", "Barrens Bones 2", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones1.mdx");
+AddBuilding("barrensbones3", "Barrens Bones 3", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones2.mdx");
+AddBuilding("barrensbones4", "Barrens Bones 4", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones3.mdx");
+AddBuilding("barrensbones5", "Barrens Bones 5", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones4.mdx");
+AddBuilding("barrensbones6", "Barrens Bones 6", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones5.mdx");
+AddBuilding("barrensbones7", "Barrens Bones 7", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones6.mdx");
+AddBuilding("barrensbones8", "Barrens Bones 8", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones7.mdx");
+AddBuilding("barrensbones9", "Barrens Bones 9", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones8.mdx");
+AddBuilding("barrensbones10", "Barrens Bones 10", "Doodads\\Barrens\\Props\\Barrens_Bones\\Barrens_Bones9.mdx");
+AutoAddBuilder("graveyard-bones-barrens", "Barrens Bones");
+
+//graveyard-bones-ribs
+AddBuilding("ribbones1", "Rib Bones 1", "Doodads\\LordaeronSummer\\Props\\RibBones\\RibBones0.mdx");
+AddBuilding("ribbones2", "Rib Bones 2", "Doodads\\LordaeronSummer\\Props\\RibBones\\RibBones1.mdx");
+AddBuilding("ribbones3", "Rib Bones 3", "Doodads\\LordaeronSummer\\Props\\RibBones\\RibBones2.mdx");
+AddBuilding("ribbones4", "Rib Bones 4", "Doodads\\LordaeronSummer\\Props\\RibBones\\RibBones3.mdx");
+AutoAddBuilder("graveyard-bones-ribs", "Rib Bones");
+
+//graveyard-bones-stick
+AddBuilding("skullonstick1", "Skull on a Stick 1", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick0.mdx");
+AddBuilding("skullonstick2", "Skull on a Stick 2", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick1.mdx");
+AddBuilding("skullonstick3", "Skull on a Stick 3", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick2.mdx");
+AddBuilding("skullonstick4", "Skull on a Stick 4", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick3.mdx");
+AddBuilding("skullonstick5", "Skull on a Stick 5", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick4.mdx");
+AddBuilding("skullonstick6", "Skull on a Stick 6", "Doodads\\LordaeronSummer\\Props\\SkullonStick\\SkullonStick5.mdx");
+AutoAddBuilder("graveyard-bones-stick", "Skulls On Sticks");
+
+//graveyard-bones-northrend
+AddBuilding("northbones1", "Northrend Bones 1", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones0.mdx");
+AddBuilding("northbones2", "Northrend Bones 2", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones1.mdx");
+AddBuilding("northbones3", "Northrend Bones 3", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones2.mdx");
+AddBuilding("northbones4", "Northrend Bones 4", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones3.mdx");
+AddBuilding("northbones5", "Northrend Bones 5", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones4.mdx");
+AddBuilding("northbones6", "Northrend Bones 6", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones5.mdx");
+AddBuilding("northbones7", "Northrend Bones 7", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones6.mdx");
+AddBuilding("northbones8", "Northrend Bones 8", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones7.mdx");
+AddBuilding("northbones9", "Northrend Bones 9", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones8.mdx");
+AddBuilding("northbones10", "Northrend Bones 10", "Doodads\\Northrend\\Props\\North_Bones\\North_Bones9.mdx");
+AutoAddBuilder("graveyard-bones-north", "Northrend Bones");
+
+//graveyard-bones-skulls
+AddBuilding("skullpile1", "Skull Pile 1", "Doodads\\LordaeronSummer\\Props\\SkullPile\\SkullPile0.mdx");
+AddBuilding("skullpile2", "Skull Pile 2", "Doodads\\LordaeronSummer\\Props\\SkullPile\\SkullPile1.mdx");
+AddBuilding("skullpile3", "Skull Pile 3", "Doodads\\LordaeronSummer\\Props\\SkullPile\\SkullPile2.mdx");
+AddBuilding("skullpile4", "Skull Pile 4", "Doodads\\LordaeronSummer\\Props\\SkullPile\\SkullPile3.mdx");
+AddBuilding("skull1", "Skull 1", "Doodads\\Outland\\Props\\Skull\\Skull0.mdx");
+AddBuilding("skull2", "Skull 2", "Doodads\\Outland\\Props\\Skull\\Skull1.mdx");
+AutoAddBuilder("graveyard-bones-skulls", "Skulls");
+
+//graveyard-graves
+AddBuilding("citygrave1", "City Grave 1", "Doodads\\Cityscape\\Props\\CityGrave\\CityGrave0.mdx");
+AddBuilding("citygrave2", "City Grave 2", "Doodads\\Cityscape\\Props\\CityGrave\\CityGrave1.mdx");
+AddBuilding("citygrave3", "City Grave 3", "Doodads\\Cityscape\\Props\\CityGrave\\CityGrave2.mdx");
+AddBuilding("citygrave4", "City Grave 4", "Doodads\\Cityscape\\Props\\CityGrave\\CityGrave3.mdx");
+AddBuilding("grave", "Grave", "Doodads\\LordaeronSummer\\Props\\Grave\\Grave.mdx");
+AddBuilding("peasantgrave1", "Peasant Grave 1", "Doodads\\LordaeronSummer\\Props\\PeasantGrave\\PeasantGrave0.mdx");
+AddBuilding("peasantgrave2", "Peasant Grave 2", "Doodads\\LordaeronSummer\\Props\\PeasantGrave\\PeasantGrave1.mdx");
+AddBuilding("peasantgrave3", "Peasant Grave 3", "Doodads\\LordaeronSummer\\Props\\PeasantGrave\\PeasantGrave2.mdx");
+AddBuilding("northrendgrave", "Northrend Grave", "Doodads\\Northrend\\Props\\NorthrendGrave\\NorthrendGrave.mdx");
+AddBuilding("northrendtombstone1", "Northrend Tomb Stone 1", "Doodads\\Northrend\\Props\\NorthrendTombStone\\NorthrendTombStone0.mdx");
+AddBuilding("northrendtombstone2", "Northrend Tomb Stone 2", "Doodads\\Northrend\\Props\\NorthrendTombStone\\NorthrendTombStone1.mdx");
+AddBuilding("northrendtombstone3", "Northrend Tomb Stone 3", "Doodads\\Northrend\\Props\\NorthrendTombStone\\NorthrendTombStone2.mdx");
+AutoAddBuilder("graveyard-graves", "Graves");
+
+shopScale = 1;
+AutoAddShop("graveyard", "Graveyard Stuff");
+shopScale = 0.5;

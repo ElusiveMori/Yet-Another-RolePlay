@@ -1,0 +1,65 @@
+library Deformations requires Util {
+	public struct DeformationList[] {
+		module Alloc;
+
+		terraindeformation deformation;
+		real x;
+		real y;
+		real radius;
+		real magnitude;
+		integer owner;
+		thistype next;
+		thistype prev;
+
+		static thistype top = 0;
+
+		static method create(integer who, real x, real y, real magnitude, real radius) -> thistype {
+			thistype this = allocate();
+
+			if (x > 0) {
+				x = I2R(R2I((x + 64) / 128)) * 128;
+			} else {
+				x = I2R(R2I((x - 64) / 128)) * 128;
+			}
+
+			if (y > 0) {
+				y = I2R(R2I((y + 64) / 128)) * 128;
+			} else {
+				y = I2R(R2I((y - 64) / 128)) * 128;
+			}
+
+			this.deformation = TerrainDeformCrater(x, y, radius, -magnitude, 0, true);
+			this.x = x;
+			this.y = y;
+			this.magnitude = magnitude;
+			this.radius = radius;
+			this.owner = who;
+
+			this.next = 0;
+			this.prev = 0;
+
+			if (top == 0)
+				top = this;
+			else {
+				top.prev = this;
+				this.next = top;
+				top = this;
+			}
+
+			return this;
+		}
+
+		method destroy() {
+			if (top == this)
+				top = this.next;
+
+			if (next > 0)
+				next.prev = prev;
+
+			if (prev > 0)
+				prev.next = next;
+
+			TerrainDeformStop(deformation, 0);
+		}
+	}
+}

@@ -1,0 +1,197 @@
+library Selection requires Util {
+	public struct Selection[] {
+		module Alloc;
+		UnitList top;
+		UnitList bottom;
+
+		static method create() -> thistype {
+			thistype this = allocate();
+
+			top    = 0;
+			bottom = 0;
+
+			return this;
+		}
+
+		method destroy() {
+			clear();
+			deallocate();
+		}
+
+		method addUnit(unit what) {
+			debug Assert(what != null, "Selection.addUnit", "Invalid unit.");
+
+			if (bottom > 0) {
+				bottom.insert(UnitList.create(what, this));
+			} else {
+				top = UnitList.create(what, this);
+				bottom = top;
+			}
+		}
+
+		method removeUnit(unit what) {
+			UnitList list = top;
+
+			debug Assert(what != null, "Selection.removeUnit", "Invalid unit.");
+
+			while (list > 0) {
+				if (list.what == what) {
+					list.destroy();
+					return;
+				}
+			
+				list = list.next;
+			}
+		}
+
+		method handleRemoval(UnitList removed) {
+			if (top == removed)
+				top = removed.next;
+
+			if (bottom == removed)
+				bottom = removed.prev;
+		}
+
+		method addGroup(group what) {
+			unit fog = FirstOfGroup(what);
+
+			debug Assert(what != null, "Selection.addGroup", "Invalid group.");
+
+			while (fog != null) {
+				GroupRemoveUnit(what, fog);
+
+				addUnit(fog);
+
+				fog = FirstOfGroup(what);
+			}
+
+			ReleaseGroup(what);
+		}
+
+		method clear() {
+			UnitList list = top.next;
+
+			while (top > 0) {
+				top.destroy();
+
+				top = list;
+				list = list.next;
+			}
+		}
+
+		method copy() -> thistype {
+			thistype copy = thistype.create();
+			UnitList list = top;
+
+			while (list > 0) {
+				copy.addUnit(list.what);
+
+				list = list.next;
+			}
+
+			return copy;
+		}
+
+		method fromPlayer(integer who) {
+			group selection = NewGroup();
+
+			debug Assert(who >= 0 && who < 12, "Selection.fromPlayer", "Invalid player ID.");
+
+			GroupEnumUnitsSelected(selection, P(who), null);
+			addGroup(selection);
+
+			selection = null;
+		}
+	}
+
+	public struct UnitList[] {
+		module Alloc;
+
+		private static thistype tops[];
+		
+		private Selection m_manager;
+		private thistype m_nextUnit;
+		private thistype m_prevUnit;
+		thistype next;
+		thistype prev;
+		unit     what;
+
+		static method create(unit initial, Selection manager) -> thistype {
+			integer id = GetUnitId(initial);
+			thistype this = allocate();
+
+			debug Assert(initial != null, "UnitList.create", "Invalid unit.");
+			debug Assert(manager > 0,     "UnitList.create", "Invalid manager.");
+
+			next = 0;
+			prev = 0;
+			what = initial;
+			m_manager = manager;
+
+			m_prevUnit = 0;
+			m_nextUnit = tops[id];
+
+			if (tops[id] > 0) {
+				tops[id].m_prevUnit = this;
+			}
+
+			tops[id] = this;
+
+			return this;
+		}
+
+		method destroy() {
+			integer id = GetUnitId(what);
+
+			m_manager.handleRemoval(this);
+
+			if (next != 0)
+				next.prev = prev;
+			if (prev != 0)
+				prev.next = next;
+
+			if (m_nextUnit > 0)
+				m_nextUnit.m_prevUnit = m_prevUnit;
+			if (m_prevUnit > 0)
+				m_prevUnit.m_nextUnit = m_nextUnit;
+
+			if (tops[id] == this)
+				tops[id] = m_nextUnit;
+
+			deallocate();
+		}
+
+		method insert(thistype node) -> thistype {
+			if (next != 0) {
+				next.prev = node;
+				node.next = next;
+			}
+
+			node.prev = this;
+			next = node;
+
+			return node;
+		}
+
+		static method onDeindex(integer what) {
+			thistype this = tops[what];
+			thistype list;
+
+			while (this > 0) {
+				list = m_nextUnit;
+				destroy();
+				this = list;
+			}
+
+			tops[what] = 0;
+		}
+	}
+
+	public struct Deindexer[] {
+		//! runtextmacro AIDS_zinc()
+
+		method AIDS_onDestroy() {
+			UnitList.onDeindex(this);
+		}
+	}
+}

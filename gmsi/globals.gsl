@@ -1,0 +1,78 @@
+// hotkeys
+
+global array hotkeys         = array();
+
+// ID generator
+
+global array nextChars       = array();
+global string permittedChars = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+// text colors
+
+global string HOTKEY_COLOR  = "|c00dd9831";
+global string SUBTIP_COLOR  = "|c00a6b1c5";
+global string OVERTIP_COLOR = "|c00eac690";
+global string LISTING_COLOR = "|c00e4e9ce";
+
+// utility units
+
+global string SPAWNER_ID    = "pU00";
+global string LOCATION_ID    = "pU01";
+
+// utility abilities
+
+global string INDEXER_ID           = "pA00";
+global string BUILDING_FLIER_ID    = "pA01";
+global string SPAWNER_CARGO_HOLD   = "pA02";
+global string SPAWNER_CARGO_LOAD   = "pA03";
+global string SPAWNER_CARGO_UNLOAD = "pA04";
+global string LOCATION_INC_WIDTH   = "pA05";
+global string LOCATION_INC_HEIGHT  = "pA06";
+global string LOCATION_DEC_WIDTH   = "pA07";
+global string LOCATION_DEC_HEIGHT  = "pA08";
+global string LOCATION_REMOVE      = "pA09";
+global string LOCATION_AUX         = "pA0a";
+global string TERRAIN_SPELLBOOK    = "pA0b";
+global string TERRAIN_SAMPLE       = "pA0c";
+global string TERRAIN_CIRCLE1      = "pA0d";
+global string TERRAIN_CIRCLE2      = "pA0e";
+global string TERRAIN_CIRCLE3      = "pA0f";
+global string TERRAIN_CIRCLE4      = "pA0g";
+global string TERRAIN_SQUARE1      = "pA0h";
+global string TERRAIN_SQUARE2      = "pA0i";
+global string TERRAIN_SQUARE3      = "pA0j";
+global string TERRAIN_SQUARE4      = "pA0k";
+global string HEIGHT_SPELLBOOK     = "pA0l";
+global string HEIGHT_RAISEPOINT    = "pA0m";
+global string HEIGHT_LOWERPOINT    = "pA0n";
+global string HEIGHT_RAISECIRCLE1  = "pA0o";
+global string HEIGHT_LOWERCIRCLE1  = "pA0p";
+global string HEIGHT_RAISECIRCLE2  = "pA0q";
+global string HEIGHT_LOWERCIRCLE2  = "pA0r";
+global string HEIGHT_RAISECIRCLE3  = "pA0s";
+global string HEIGHT_LOWERCIRCLE3  = "pA0t";
+global string HEIGHT_REMOVEDEFORMS = "pA0u";
+
+// unit ID starts
+
+global string unitsCurrentId    = "0000";
+global string heroesCurrentId   = "Q000";
+global string buildersCurrentId = "1000";
+global string shopsCurrentId    = "pS00";
+
+// generated units properties
+
+global string icon = "ReplaceableTextures\\CommandButtons\\BTNAdvStruct.blp";
+global string builderModel = "units\\human\\Peasant\\Peasant";
+global string shopModel = "buildings\\human\\HumanBarracks\\HumanBarracks";
+global float shopScale = 0.5;
+
+// extended ids
+
+global array extendedIds    = array();
+global array extendedIdsRev = array();
+
+// queues
+
+global array buildingQueue = array();
+global array builderQueue = array();

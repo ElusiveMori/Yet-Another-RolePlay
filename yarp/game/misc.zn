@@ -1,0 +1,67 @@
+library Misc requires Core {
+	struct Misc {
+		private static method onPurchase() {
+			unit sold = GetSoldUnit();
+			unit spawner = Spawner.get(PID(GetOwningPlayer(sold)));
+
+			if (GetOctet(GetUnitTypeId(GetSellingUnit()), 3) == 112) {
+				SetUnitX(sold, GetUnitX(spawner));
+				SetUnitY(sold, GetUnitY(spawner));
+			}
+
+			sold = null;
+			spawner = null;
+		}
+
+		private static method onLeave() {
+			integer who = PID(GetTriggerPlayer());
+			unit spawner = Spawner.get(who);
+			RemoveUnit(spawner);
+			Message("Player " + PlayerName(who) + " has left the game.");
+		}
+
+		private static method transferShop() -> boolean {
+			unit filtered = GetFilterUnit();
+			integer id = GetUnitTypeId(filtered);
+
+			if (GetOctet(id, 3) == 112 && GetOctet(id, 2) == 83) {
+				SetUnitOwner(filtered, Player(13), true);
+				SetUnitColor(filtered, GetPlayerColor(Player(13)));
+			}
+
+			filtered = null;
+			return false;
+		}
+
+		private static method onInit() {
+			trigger purchaseTrigger = CreateTrigger();
+			trigger leaveTrigger = CreateTrigger();
+			integer i;
+			integer j;
+			group temp = NewGroup();
+			TriggerRegisterAnyUnitEventBJ(purchaseTrigger, EVENT_PLAYER_UNIT_SELL);
+			TriggerAddAction(purchaseTrigger, function thistype.onPurchase);
+
+			for (0 <= i < 12) {
+				SetPlayerAllianceStateBJ(Player(13), Player(i), bj_ALLIANCE_ALLIED_ADVUNITS);
+				TriggerRegisterPlayerEvent(leaveTrigger, Player(i), EVENT_PLAYER_LEAVE);
+
+				for (0 <= j < 12) {
+					SetPlayerAllianceStateBJ(Player(i), Player(j), bj_ALLIANCE_ALLIED);
+				}
+			}
+
+			TriggerAddAction(leaveTrigger, function thistype.onLeave);		
+			GroupEnumUnitsInRect(temp, GetWorldBounds(), Condition(function thistype.transferShop));
+
+			SetCameraPosition(WorldBounds.centerX, WorldBounds.centerY);
+			FogEnable(false);
+			FogMaskEnable(false);
+
+			purchaseTrigger = null;
+			leaveTrigger = null;
+			ReleaseGroup(temp);
+			temp = null;
+		}
+	}
+}

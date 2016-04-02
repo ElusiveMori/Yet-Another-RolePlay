@@ -1,0 +1,72 @@
+library InstantBuild requires Core {
+	struct InstantBuild[] {
+		static real posx[];
+		static real posy[];
+		static unit builders[];
+		static integer count = 0;
+
+		private static method onBuild() {
+			unit what = GetConstructingStructure();
+			real mind = 10000000;
+			real d;
+			real xs, ys, x, y;
+			integer mini;
+			integer i;
+
+			xs = GetUnitX(what); ys = GetUnitY(what);
+			ReplaceUnitBJ(what, GetUnitTypeId(what), 2);
+
+			for (0 <= i < count) {
+				x = GetUnitX(builders[i]) - xs;
+				y = GetUnitY(builders[i]) - ys;
+				d = x*x + y*y;
+
+				if (d < mind) {
+					mini = i;
+					what = builders[i];
+				}
+			}
+
+			builders[mini] = builders[count - 1];
+			builders[count - 1] = null;
+			count = count - 1;
+
+			if (what != null) {
+				SetUnitX(what, posx[GetUnitId(what)]);
+				SetUnitY(what, posy[GetUnitId(what)]);
+			}
+
+			what = null;
+		}
+
+		private static method onOrder() {
+			unit what = GetOrderedUnit();
+			integer orderId = GetIssuedOrderId();
+
+			if (GetOctet(orderId, 3) > 0) {
+				posx[GetUnitId(what)] = GetUnitX(what);
+				posy[GetUnitId(what)] = GetUnitY(what);
+				builders[count] = what;
+				count = count + 1;
+
+				SetUnitX(what, GetOrderPointX());
+				SetUnitY(what, GetOrderPointY());
+			}
+
+			what = null;
+		}
+
+		private static method onInit() {
+			integer i;
+			trigger buildTrigger = CreateTrigger();
+			trigger orderTrigger = CreateTrigger();
+			TriggerAddAction(buildTrigger, function thistype.onBuild);
+			TriggerAddAction(orderTrigger, function thistype.onOrder);
+
+			for (0 <= i <= 11) {
+				TriggerRegisterPlayerUnitEvent(buildTrigger, Player(i), EVENT_PLAYER_UNIT_CONSTRUCT_START, null);
+				TriggerRegisterPlayerUnitEvent(orderTrigger, Player(i), EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER, null);
+			}
+		}
+	}
+}
