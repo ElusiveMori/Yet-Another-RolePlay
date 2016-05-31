@@ -25,6 +25,7 @@
 //! import zinc "yarp/core/logs.zn"
 //! import zinc "yarp/core/spawner.zn"
 //! import zinc "yarp/core/region.zn"
+//! import zinc "yarp/core/lists.zn"
 //! import zinc "yarp/core/deformations.zn"
 
 // Game Management
@@ -43,7 +44,7 @@
 //! import zinc "yarp/game/loader.zn"
 
 
-library Core requires Util, Selection, CommandParser, FlyUtils, Logs, SaveLoad, Security, UnitData, UnitTypes, Region, Spawner, Deformations {
+library Core requires Util, Selection, CommandParser, FlyUtils, Logs, SaveLoad, Security, UnitData, UnitTypes, Region, Spawner, Deformations, Lists {
 	function onInit() {
 		static if (DEBUG_MODE) {
 			TriggerSleepAction(1.0);

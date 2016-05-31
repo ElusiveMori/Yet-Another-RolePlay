@@ -107,14 +107,14 @@ library Region requires Util, Logs {
 		method setDNC(boolean enabled, string newTerrainDNC, string newUnitDNC) {
 			enabledDNC = enabled;
 
-			if (Region.terrainDNC.string.has(SH(newTerrainDNC))) {
-				terrainDNC = Region.terrainDNC.string[SH(newTerrainDNC)];
+			if (Listing.terrainDNC.string.has(SH(newTerrainDNC))) {
+				terrainDNC = Listing.terrainDNC.string[SH(newTerrainDNC)];
 			} else {
 				terrainDNC = "";
 			}
 
-			if (Region.unitDNC.string.has(SH(newUnitDNC))) {
-				unitDNC = Region.unitDNC.string[SH(newUnitDNC)];
+			if (Listing.unitDNC.string.has(SH(newUnitDNC))) {
+				unitDNC = Listing.unitDNC.string[SH(newUnitDNC)];
 			} else {
 				unitDNC = "";
 			}
@@ -125,8 +125,8 @@ library Region requires Util, Logs {
 
 			removeWeather();
 
-			if (Region.weather.has(SH(str))) {
-				id = Region.weather[SH(str)];
+			if (Listing.weather.has(SH(str))) {
+				id = Listing.weather[SH(str)];
 
 				weather = AddWeatherEffect(rectangle, id);
 				EnableWeatherEffect(weather, true);
@@ -208,10 +208,6 @@ library Region requires Util, Logs {
 
 	// this struct is just for callbacks and timers
 	struct Region[] {
-		static Table terrainDNC;
-		static Table unitDNC;
-		static Table weather;
-
 		static rect rectangles[12][16];
 		static integer rectangleControllers[12][16];
 
@@ -390,45 +386,6 @@ library Region requires Util, Logs {
 			integer i, j;
 			timer highlighter = CreateTimer();
 			timer atmospheric = CreateTimer();
-			terrainDNC = Table.create();
-			unitDNC = Table.create();
-			weather = Table.create();
-
-			terrainDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeTerrain\\DNCAshenValeTerrain.mdl";
-			terrainDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranTerrain\\DNCDalaranTerrain.mdl";
-			terrainDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonTerrain\\DNCDungeonTerrain.mdl";
-			terrainDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodTerrain\\DNCFelWoodTerrain.mdl";
-			terrainDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronTerrain\\DNCLordaeronTerrain.mdl";
-			terrainDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundTerrain\\DNCUndergroundTerrain.mdl";
-
-			unitDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeUnit\\DNCAshenValeUnit.mdl";
-			unitDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranUnit\\DNCDalaranUnit.mdl";
-			unitDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonUnit\\DNCDungeonUnit.mdl";
-			unitDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodUnit\\DNCFelWoodUnit.mdl";
-			unitDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronUnit\\DNCLordaeronUnit.mdl";
-			unitDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundUnit\\DNCUndergroundUnit.mdl";
-
-			weather[SH("ashenvalerainheavy")]   = 'RAhr';
-			weather[SH("ashenvalerainlight")]   = 'RAlr';
-			weather[SH("dalaranshield")]        = 'MEds';
-			weather[SH("dungeonbluefogheavy")]  = 'FDbh';
-			weather[SH("dungeonbluefoglight")]  = 'FDbl';
-			weather[SH("dungeongreenfogheavy")] = 'FDgh';
-			weather[SH("dungeongreenfoglight")] = 'FDgl';
-			weather[SH("dungeonredfogheavy")]   = 'FDrh';
-			weather[SH("dungeonredfoglight")]   = 'FDrl';
-			weather[SH("dungeonwhitefogheavy")] = 'FDwh';
-			weather[SH("dungeonwhitefoglight")] = 'FDwl';
-			weather[SH("lordaeronrainheavy")]   = 'RLhr';
-			weather[SH("lordaeronrainlight")]   = 'RLlr';
-			weather[SH("northrendblizzard")]    = 'SNbs';
-			weather[SH("northrendsnowheavy")]   = 'SNhs';
-			weather[SH("northrendsnowlight")]   = 'SNls';
-			weather[SH("outlandwindheavy")]     = 'WOcw';
-			weather[SH("outlandwindlight")]     = 'WOlw';
-			weather[SH("raysoflight")]          = 'LRaa';
-			weather[SH("raysofmoonlight")]      = 'LRma';
-			weather[SH("windheavy")]            = 'WNcw';
 
 			TimerStart(highlighter, 0.125, false, function thistype.highlightRegions);
 			TimerStart(atmospheric, 0.125, false, function thistype.applyAtmospheric);

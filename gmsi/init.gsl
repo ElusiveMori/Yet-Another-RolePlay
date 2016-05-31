@@ -26,6 +26,7 @@ void Init() {
 	MakeLocation();
 	MakeFlierUtils();
 	MakeTerrain();
+	MakeDoodad();
 
 	include("yarp/objects/doods.txt");
 	include("yarp/objects/doods-magic.txt");

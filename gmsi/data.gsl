@@ -17,7 +17,7 @@ void MakeFlierUtils() {
 	Ability buildingFlier = createObject(map, "Aspb", BUILDING_FLIER_ID, true);
 	buildingFlier.DataD1 = 1;
 	buildingFlier.DataC1 = 1;
-	buildingFlier.DataE1 = "deathcoil";
+	buildingFlier.DataE1 = GetFreeOrder();
 	buildingFlier.DataA1 = "Aro1";
 }
 
@@ -56,7 +56,7 @@ void MakeSpawner() {
 	spawner["Tip"       ] = "";
 	spawner["Ubertip"   ] = "This is a Spawner.";
 	spawner["type"      ] = "peon";
-	spawner["abilList"  ] = "Avul,pA02,pA03,pA04,pA0b,pA0l";
+	spawner["abilList"  ] = "Avul,pA02,pA03,pA04,pA0b,pA0l,pA0v";
 	spawner["blend"     ] = 0;
 	spawner["castbsw"   ] = 0;
 	spawner["castpt"    ] = 0;
@@ -487,6 +487,87 @@ void MakeTerrain() {
 	abil.DataA1 = 0; // follow through time
 	abil.Ubertip = "Removes all the deformations in the area, in other words, restoring the height field to default.";
 	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNGoldRing.blp";
+	abil.Rng1 = 4096;
+	abil.CasterArt = "";
+	abil.EffectArt = "";
+}
+
+void MakeDoodad() {
+	Ability abil = createObject(map, "Aspb", DOODAD_SPELLBOOK, true);
+	abil.Tip = MakeHotkeyTip("R") + "Doodad Tools";
+	abil.Hotkey = "R";
+	abil.DataD1 = 4;
+	abil.DataC1 = 4;
+	abil.DataE1 = GetFreeOrder();
+	abil.DataA1 = "pA0w,pA0x,pA0y,pA0z";
+	abil.Buttonpos = 1;
+	abil.Buttonpos1 = 2;
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+
+	abil = GetBaseAbility(DOODAD_PLACE);
+	abil.Area1 = 80;
+	abil.DataB1 = 2;
+	abil.DataE1 = 0;
+	abil.DataF1 = GetFreeOrder();
+	abil.DataD1 = 0; // art duration
+	abil.DataC1 = 1;
+	abil.Hotkey = "Q";
+	abil.Name = "Build Doodad";
+	abil.Tip = MakeHotkeyTip("Q") + "Build Doodad";
+	abil.DataA1 = 0; // follow through time
+	abil.Ubertip = "Places a doodad. Use the dood command to specify which dood you want to build.";
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+	abil.Rng1 = 4096;
+	abil.CasterArt = "";
+	abil.EffectArt = "";
+
+	abil = GetBaseAbility(DOODAD_REMOVE);
+	abil.Area1 = 256;
+	abil.DataB1 = 2;
+	abil.DataE1 = 0;
+	abil.DataF1 = GetFreeOrder();
+	abil.DataD1 = 0; // art duration
+	abil.DataC1 = 3;
+	abil.Hotkey = "W";
+	abil.Name = "Remove Doodad";
+	abil.Tip = MakeHotkeyTip("W") + "Remove Doodad";
+	abil.DataA1 = 0; // follow through time
+	abil.Ubertip = "Removes doodads in the area.";
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+	abil.Rng1 = 4096;
+	abil.CasterArt = "";
+	abil.EffectArt = "";
+
+	abil = GetBaseAbility(DOODAD_KILL);
+	abil.Area1 = 256;
+	abil.DataB1 = 2;
+	abil.DataE1 = 0;
+	abil.DataF1 = GetFreeOrder();
+	abil.DataD1 = 0; // art duration
+	abil.DataC1 = 3;
+	abil.Hotkey = "E";
+	abil.Name = "Kill Doodad";
+	abil.Tip = MakeHotkeyTip("E") + "Kill Doodad";
+	abil.DataA1 = 0; // follow through time
+	abil.Ubertip = "Kills doodads in the area.";
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+	abil.Rng1 = 4096;
+	abil.CasterArt = "";
+	abil.EffectArt = "";
+
+	abil = GetBaseAbility(DOODAD_SAMPLE);
+	abil.Area1 = 80;
+	abil.DataB1 = 2;
+	abil.DataE1 = 0;
+	abil.DataF1 = GetFreeOrder();
+	abil.DataD1 = 0; // art duration
+	abil.DataC1 = 1;
+	abil.Hotkey = "R";
+	abil.Name = "Sample Doodad";
+	abil.Tip = MakeHotkeyTip("R") + "Sample Doodad";
+	abil.DataA1 = 0; // follow through time
+	abil.Ubertip = "Samples a doodad to place later.";
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
 	abil.Rng1 = 4096;
 	abil.CasterArt = "";
 	abil.EffectArt = "";

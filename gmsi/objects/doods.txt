@@ -143,6 +143,8 @@ AddBuilding("tablechair", "Table and Chair", "Doodads\\Dungeon\\Props\\TableNCha
 AddBuilding("bookshelf", "Bookshelf", "Doodads\\Dungeon\\Props\\Bookshelf\\Bookshelf.mdx");
 AddBuilding("bigbookshelf", "Big Bookshelf", "Doodads\\Dungeon\\Props\\BigBookshelf\\BigBookshelf.mdx");
 AddBuilding("biggerbookshelf", "Bigger Bookshelf", "Doodads\\Dungeon\\Props\\BookshelfWall\\BookshelfWall.mdx");
+AddBuilding("barrel1", "Barrel 1", "buildings\\Other\\BarrelsUnit0\\BarrelsUnit0.mdx");
+AddBuilding("barrel2", "Barrel 2", "buildings\\Other\\BarrelsUnit1\\BarrelsUnit1.mdx");
 AutoAddBuilderS("furniture-other1", "Misc Furniture Builder 1");
 AddBuilding("totem1", "Totem 1", "Doodads\\Barrens\\Props\\CentaurTotem\\CentaurTotem0.mdx");
 AddBuilding("totem2", "Totem 2", "Doodads\\Barrens\\Props\\CentaurTotem\\CentaurTotem1.mdx");

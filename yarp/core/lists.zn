@@ -1,0 +1,225 @@
+library Lists requires Util {
+	public struct Listing {
+		static Table terrainDNC;
+		static Table unitDNC;
+		static Table weather;
+		static Table tiles;
+		static Table doodVariations;
+
+		private static method onInit() {
+			terrainDNC = Table.create();
+			unitDNC = Table.create();
+			weather = Table.create();
+			tiles = Table.create();
+			doodVariations = Table.create();
+
+			terrainDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeTerrain\\DNCAshenValeTerrain.mdl";
+			terrainDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranTerrain\\DNCDalaranTerrain.mdl";
+			terrainDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonTerrain\\DNCDungeonTerrain.mdl";
+			terrainDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodTerrain\\DNCFelWoodTerrain.mdl";
+			terrainDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronTerrain\\DNCLordaeronTerrain.mdl";
+			terrainDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundTerrain\\DNCUndergroundTerrain.mdl";
+
+			unitDNC.string[SH("ashenvale")]   = "Environment\\DNC\\DNCAshenvale\\DNCAshenValeUnit\\DNCAshenValeUnit.mdl";
+			unitDNC.string[SH("dalaran")]     = "Environment\\DNC\\DNCDalaran\\DNCDalaranUnit\\DNCDalaranUnit.mdl";
+			unitDNC.string[SH("dungeon")]     = "Environment\\DNC\\DNCDungeon\\DNCDungeonUnit\\DNCDungeonUnit.mdl";
+			unitDNC.string[SH("felwood")]     = "Environment\\DNC\\DNCFelwood\\DNCFelWoodUnit\\DNCFelWoodUnit.mdl";
+			unitDNC.string[SH("lordaeron")]   = "Environment\\DNC\\DNCLordaeron\\DNCLordaeronUnit\\DNCLordaeronUnit.mdl";
+			unitDNC.string[SH("underground")] = "Environment\\DNC\\DNCUnderground\\DNCUndergroundUnit\\DNCUndergroundUnit.mdl";
+
+			weather[SH("ashenvalerainheavy")]   = 'RAhr';
+			weather[SH("ashenvalerainlight")]   = 'RAlr';
+			weather[SH("dalaranshield")]        = 'MEds';
+			weather[SH("dungeonbluefogheavy")]  = 'FDbh';
+			weather[SH("dungeonbluefoglight")]  = 'FDbl';
+			weather[SH("dungeongreenfogheavy")] = 'FDgh';
+			weather[SH("dungeongreenfoglight")] = 'FDgl';
+			weather[SH("dungeonredfogheavy")]   = 'FDrh';
+			weather[SH("dungeonredfoglight")]   = 'FDrl';
+			weather[SH("dungeonwhitefogheavy")] = 'FDwh';
+			weather[SH("dungeonwhitefoglight")] = 'FDwl';
+			weather[SH("lordaeronrainheavy")]   = 'RLhr';
+			weather[SH("lordaeronrainlight")]   = 'RLlr';
+			weather[SH("northrendblizzard")]    = 'SNbs';
+			weather[SH("northrendsnowheavy")]   = 'SNhs';
+			weather[SH("northrendsnowlight")]   = 'SNls';
+			weather[SH("outlandwindheavy")]     = 'WOcw';
+			weather[SH("outlandwindlight")]     = 'WOlw';
+			weather[SH("raysoflight")]          = 'LRaa';
+			weather[SH("raysofmoonlight")]      = 'LRma';
+			weather[SH("windheavy")]            = 'WNcw';
+
+			tiles.boolean['Ldrt'] = true;
+			tiles.boolean['Ldro'] = true;
+			tiles.boolean['Ldrg'] = true;
+			tiles.boolean['Lrok'] = true;
+			tiles.boolean['Lgrs'] = true;
+			tiles.boolean['Lgrd'] = true;
+			tiles.boolean['Fdrt'] = true;
+			tiles.boolean['Fdro'] = true;
+			tiles.boolean['Fdrg'] = true;
+			tiles.boolean['Frok'] = true;
+			tiles.boolean['Fgrs'] = true;
+			tiles.boolean['Fgrd'] = true;
+			tiles.boolean['Wdrt'] = true;
+			tiles.boolean['Wdro'] = true;
+			tiles.boolean['Wsng'] = true;
+			tiles.boolean['Wrok'] = true;
+			tiles.boolean['Wgrs'] = true;
+			tiles.boolean['Wsnw'] = true;
+			tiles.boolean['Bdrt'] = true;
+			tiles.boolean['Bdrh'] = true;
+			tiles.boolean['Bdrr'] = true;
+			tiles.boolean['Bdrg'] = true;
+			tiles.boolean['Bdsr'] = true;
+			tiles.boolean['Bdsd'] = true;
+			tiles.boolean['Bflr'] = true;
+			tiles.boolean['Bgrr'] = true;
+			tiles.boolean['Adrt'] = true;
+			tiles.boolean['Adrd'] = true;
+			tiles.boolean['Agrs'] = true;
+			tiles.boolean['Arck'] = true;
+			tiles.boolean['Agrd'] = true;
+			tiles.boolean['Avin'] = true;
+			tiles.boolean['Adrg'] = true;
+			tiles.boolean['Alvd'] = true;
+			tiles.boolean['Cdrt'] = true;
+			tiles.boolean['Cdrd'] = true;
+			tiles.boolean['Cpos'] = true;
+			tiles.boolean['Crck'] = true;
+			tiles.boolean['Cvin'] = true;
+			tiles.boolean['Cgrs'] = true;
+			tiles.boolean['Clvg'] = true;
+			tiles.boolean['Ndrt'] = true;
+			tiles.boolean['Ndrd'] = true;
+			tiles.boolean['Nrck'] = true;
+			tiles.boolean['Ngrs'] = true;
+			tiles.boolean['Nice'] = true;
+			tiles.boolean['Nsnw'] = true;
+			tiles.boolean['Nsnr'] = true;
+			tiles.boolean['Ydrt'] = true;
+			tiles.boolean['Ydtr'] = true;
+			tiles.boolean['Yblm'] = true;
+			tiles.boolean['Ybtl'] = true;
+			tiles.boolean['Ysqd'] = true;
+			tiles.boolean['Yrtl'] = true;
+			tiles.boolean['Ygsb'] = true;
+			tiles.boolean['Yhdg'] = true;
+			tiles.boolean['Ywmb'] = true;
+			tiles.boolean['Vdrt'] = true;
+			tiles.boolean['Vdrr'] = true;
+			tiles.boolean['Vcrp'] = true;
+			tiles.boolean['Vcbp'] = true;
+			tiles.boolean['Vstp'] = true;
+			tiles.boolean['Vgrs'] = true;
+			tiles.boolean['Vrck'] = true;
+			tiles.boolean['Vgrt'] = true;
+			tiles.boolean['Qdrt'] = true;
+			tiles.boolean['Qdrr'] = true;
+			tiles.boolean['Qcrp'] = true;
+			tiles.boolean['Qcbp'] = true;
+			tiles.boolean['Qstp'] = true;
+			tiles.boolean['Qgrs'] = true;
+			tiles.boolean['Qrck'] = true;
+			tiles.boolean['Qgrt'] = true;
+			tiles.boolean['Xdrt'] = true;
+			tiles.boolean['Xdtr'] = true;
+			tiles.boolean['Xblm'] = true;
+			tiles.boolean['Xbtl'] = true;
+			tiles.boolean['Xsqd'] = true;
+			tiles.boolean['Xrtl'] = true;
+			tiles.boolean['Xgsb'] = true;
+			tiles.boolean['Xhdg'] = true;
+			tiles.boolean['Xwmb'] = true;
+			tiles.boolean['Ddrt'] = true;
+			tiles.boolean['Dbrk'] = true;
+			tiles.boolean['Drds'] = true;
+			tiles.boolean['Dlvc'] = true;
+			tiles.boolean['Dlav'] = true;
+			tiles.boolean['Ddkr'] = true;
+			tiles.boolean['Dgrs'] = true;
+			tiles.boolean['Dsqd'] = true;
+			tiles.boolean['Gdrt'] = true;
+			tiles.boolean['Gbrk'] = true;
+			tiles.boolean['Grds'] = true;
+			tiles.boolean['Glvc'] = true;
+			tiles.boolean['Glav'] = true;
+			tiles.boolean['Gdkr'] = true;
+			tiles.boolean['Ggrs'] = true;
+			tiles.boolean['Gsqd'] = true;
+			tiles.boolean['Zdrt'] = true;
+			tiles.boolean['Zdtr'] = true;
+			tiles.boolean['Zdrg'] = true;
+			tiles.boolean['Zbks'] = true;
+			tiles.boolean['Zsan'] = true;
+			tiles.boolean['Zbkl'] = true;
+			tiles.boolean['Ztil'] = true;
+			tiles.boolean['Zgrs'] = true;
+			tiles.boolean['Zvin'] = true;
+			tiles.boolean['Idrt'] = true;
+			tiles.boolean['Idtr'] = true;
+			tiles.boolean['Idki'] = true;
+			tiles.boolean['Ibkb'] = true;
+			tiles.boolean['Irbk'] = true;
+			tiles.boolean['Itbk'] = true;
+			tiles.boolean['Iice'] = true;
+			tiles.boolean['Ibsq'] = true;
+			tiles.boolean['Isnw'] = true;
+			tiles.boolean['Odrt'] = true;
+			tiles.boolean['Odtr'] = true;
+			tiles.boolean['Osmb'] = true;
+			tiles.boolean['Ofst'] = true;
+			tiles.boolean['Olgb'] = true;
+			tiles.boolean['Orok'] = true;
+			tiles.boolean['Ofsl'] = true;
+			tiles.boolean['Oaby'] = true;
+			tiles.boolean['Kdrt'] = true;
+			tiles.boolean['Kfsl'] = true;
+			tiles.boolean['Kdtr'] = true;
+			tiles.boolean['Kfst'] = true;
+			tiles.boolean['Ksmb'] = true;
+			tiles.boolean['Klgb'] = true;
+			tiles.boolean['Ksqt'] = true;
+			tiles.boolean['Kdkt'] = true;
+			tiles.boolean['Jdrt'] = true;
+			tiles.boolean['Jdtr'] = true;
+			tiles.boolean['Jblm'] = true;
+			tiles.boolean['Jbtl'] = true;
+			tiles.boolean['Jsqd'] = true;
+			tiles.boolean['Jrtl'] = true;
+			tiles.boolean['Jgsb'] = true;
+			tiles.boolean['Jhdg'] = true;
+			tiles.boolean['Jwmb'] = true;
+
+			doodVariations['DTsh'] = 8; // dungeon tree wall
+			doodVariations['GTsh'] = 8; // underground tree wall
+			doodVariations['OTtw'] = 10; // outland tree wall
+
+			doodVariations['YTft'] = 2; // cityscape fall tree wall
+			doodVariations['JTct'] = 2; // cityscape ruined tree wall
+			doodVariations['YTst'] = 2; // cityscape snowy tree wall
+			doodVariations['YTct'] = 2; // cityscape summer tree wall
+			doodVariations['YTwt'] = 2; // cityscape winter tree wall
+
+			doodVariations['FTtw'] = 10; // fall tree wall
+			doodVariations['JTtw'] = 10; // dalaran tree wall
+			doodVariations['WTst'] = 10; // snowy tree wall
+			doodVariations['LTlt'] = 10; // summer tree wall
+			doodVariations['WTtw'] = 10; // winter tree wall
+
+			doodVariations['ATtc'] = 3; // ashenvale canopy tree
+			doodVariations['BTtc'] = 3; // barrens canopy tree
+			doodVariations['CTtc'] = 3; // felwood canopy tree
+			doodVariations['ITtc'] = 3; // icecrown canopy tree
+			doodVariations['NTtc'] = 3; // northrend canopy tree
+			doodVariations['ZTtc'] = 3; // ruins canopy tree
+
+			doodVariations['ATtr'] = 5; // ashenvale tree wall
+			doodVariations['BTtw'] = 5; // barrens tree wall
+			doodVariations['CTtr'] = 5; // felwood tree wall
+			doodVariations['ITtw'] = 5; // icecrown tree wall
+			doodVariations['NTtw'] = 5; // northrend tree wall
+			doodVariations['ZTtw'] = 5; // ruins tree wall
+		}
+	}
+}

@@ -148,7 +148,7 @@ AddBuilding("felspires8", "Felwood Spires 8", "Doodads\\Felwood\\Rocks\\Felwood_
 AutoAddBuilderS("rocks-felwood3", "Felwood Spires Builder");
 AutoAddShop("rocks-fel", "Felwood Rocks");
 
-shopModel = "Doodads\\Icecrown\\Rocks\\Icecrown_Crystal\\Icecrown_Crystal0";
+shopModel = "Doodads\\Icecrown\\Rocks\\Ice_SnowRock\\Ice_SnowRock0";
 
 //rocks-icecrown
 icon = "ReplaceableTextures\\CommandButtons\\BTNOrbOfFrost.blp";

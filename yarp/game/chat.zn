@@ -64,7 +64,7 @@ library Chat requires Core {
 			Command.register("setunitname", thistype.Command_SetUnitName);
 
 			Macro.saveall(".", "ooc");
-			Macro.saveall(";", "sayunit");
+			Macro.saveall(";", "say");
 		}
 	}
 	

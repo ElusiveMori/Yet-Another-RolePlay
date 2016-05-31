@@ -52,6 +52,11 @@ global string HEIGHT_LOWERCIRCLE2  = "pA0r";
 global string HEIGHT_RAISECIRCLE3  = "pA0s";
 global string HEIGHT_LOWERCIRCLE3  = "pA0t";
 global string HEIGHT_REMOVEDEFORMS = "pA0u";
+global string DOODAD_SPELLBOOK     = "pA0v";
+global string DOODAD_PLACE         = "pA0w";
+global string DOODAD_REMOVE        = "pA0x";
+global string DOODAD_KILL          = "pA0y";
+global string DOODAD_SAMPLE        = "pA0z";
 
 // unit ID starts
 

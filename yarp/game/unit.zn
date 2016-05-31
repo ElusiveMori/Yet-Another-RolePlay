@@ -75,8 +75,7 @@ library Unit requires Core {
 		private static method Command_UnitGive(CommandThread thread) {
 			integer owner       = thread.owner;
 			integer target      = -1;
-			string targetName   = thread.args.next();
-			boolean forced      = (thread.args.next() == "force");
+			string targetName   = thread.args.restSimple();
 			boolean resetOwner  = false;
 			UnitList list       = 0;
 			Selection selection = thread.selection;
@@ -91,36 +90,53 @@ library Unit requires Core {
 			if (target < 0) return;
 			resetOwner = (target < 12);
 
-			if (forced) {
-				list = selection.top;
+			list = selection.top;
 
-				while (list > 0) {
-					if (HasPlayerUnitAccess(owner, list.what)) {
-						unitData = UnitData[list.what];
+			while (list > 0) {
+				if (HasPlayerUnitAccess(owner, list.what) && unitData.realOwner == owner) {
+					unitData = UnitData[list.what];
 
-						if (resetOwner)
-							unitData.realOwner = target;
+					if (resetOwner)
+						unitData.realOwner = target;
 
-						unitData.currentOwner = target;
-					}
-
-					list = list.next;
+					unitData.currentOwner = target;
 				}
+
+				list = list.next;
+			}
+		}
+
+		private static method Command_UnitGiveForce(CommandThread thread) {
+			integer owner       = thread.owner;
+			integer target      = -1;
+			string targetName   = thread.args.restSimple();
+			boolean resetOwner  = false;
+			UnitList list       = 0;
+			Selection selection = thread.selection;
+			UnitData unitData;
+
+			if (targetName == "me") {
+				target = owner;
 			} else {
-				list = selection.top;
+				target = PlayerIdFromString(targetName);
+			}
 
-				while (list > 0) {
-					if (HasPlayerUnitAccess(owner, list.what) && unitData.realOwner == owner) {
-						unitData = UnitData[list.what];
+			if (target < 0) return;
+			resetOwner = (target < 12);
 
-						if (resetOwner)
-							unitData.realOwner = target;
+			list = selection.top;
 
-						unitData.currentOwner = target;
-					}
+			while (list > 0) {
+				if (HasPlayerUnitAccess(owner, list.what)) {
+					unitData = UnitData[list.what];
 
-					list = list.next;
+					if (resetOwner)
+						unitData.realOwner = target;
+
+					unitData.currentOwner = target;
 				}
+
+				list = list.next;
 			}
 		}
 
@@ -287,7 +303,7 @@ library Unit requires Core {
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitAnimSpeed")
-			real animSpeed = S2R(thread.args.restParsed());
+			real animSpeed = S2R(thread.args.restParsed()) / 100;
 		//! runtextmacro CommandStart()
 			unitData.animSpeed = animSpeed;
 		//! runtextmacro CommandEnd()
@@ -327,6 +343,13 @@ library Unit requires Core {
 				count = 0;
 		//! runtextmacro CommandStart()
 			unitData.queueAnimCount(anim, count);
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_Tag")
+			string tag = thread.args.next();
+			boolean off = (thread.args.next() == "off");
+		//! runtextmacro CommandStart()
+			AddUnitAnimationProperties(list.what, tag, !off);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitFly")
@@ -376,6 +399,7 @@ library Unit requires Core {
 		private static method onInit() {
 			Command.register("remove",  thistype.Command_UnitRemove);
 			Command.register("give",    thistype.Command_UnitGive);
+			Command.register("givef",   thistype.Command_UnitGiveForce);
 			Command.register("kill",    thistype.Command_UnitKill);
 			Command.register("explode", thistype.Command_UnitExplode);
 			Command.register("size",    thistype.Command_UnitSize);
@@ -398,6 +422,7 @@ library Unit requires Core {
 			Command.register("buff",    thistype.Command_UnitRemoveBuffs);
 			Command.register("cd",      thistype.Command_UnitRemoveCooldowns);
 			Command.register("play",    thistype.Command_UnitPlayAnim);
+			Command.register("tag",     thistype.Command_Tag);
 			Command.register("playq",   thistype.Command_UnitQueueAnim);
 			Command.register("fly",     thistype.Command_UnitFly);
 			Command.register("flyd",    thistype.Command_UnitFlyDelta);

@@ -352,9 +352,10 @@ void PreplaceUnits() {
 
 	sch[4][0] = "s-structures1";
 	sch[4][1] = "s-structures2";
-	sch[4][2] = "s-graveyard";
-	sch[4][3] = "s-arch";
-	sch[4][4] = "s-broken";
+	sch[4][2] = "s-structures3";
+	sch[4][3] = "s-graveyard";
+	sch[4][4] = "s-arch";
+	sch[4][5] = "s-broken";
 
 	sch[5][0] = "s-misc1";
 	sch[5][1] = "s-misc2";

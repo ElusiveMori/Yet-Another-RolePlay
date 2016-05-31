@@ -17,10 +17,19 @@ library Terrain requires Core {
 	constant integer HEIGHT_LOWERCIRCLE2  = 'pA0r';
 	constant integer HEIGHT_RAISECIRCLE3  = 'pA0s';
 	constant integer HEIGHT_LOWERCIRCLE3  = 'pA0t';
-	constant integer HEIGHT_removeDeformsRadius = 'pA0u';
+	constant integer HEIGHT_REMOVEDEFORMS = 'pA0u';
+
+	constant integer DOODAD_PLACE  = 'pA0w';
+	constant integer DOODAD_REMOVE = 'pA0x';
+	constant integer DOODAD_KILL   = 'pA0y';
+	constant integer DOODAD_SAMPLE = 'pA0z';
+
+	constant integer BUILD_DOODAD = 'pA0v';
 
 	struct Terrain[] {
 		static integer sampled[];
+		static integer sampledDoods[];
+		static real doodSizes[];
 		static real heights[];
 
 		static integer count;
@@ -31,6 +40,10 @@ library Terrain requires Core {
 		static real removeDy;
 		static real removeDist;
 		static DeformationList removeCur;
+
+		static integer sampleWho;
+
+		static Table tileWhitelist;
 
 		private static method removeDeformsRadius() {
 			count = 0;
@@ -73,11 +86,25 @@ library Terrain requires Core {
 			}
 		}
 
+		private static method aux_removeDood() {
+			RemoveDestructable(GetEnumDestructable());
+		}
+
+		private static method aux_killDood() {
+			KillDestructable(GetEnumDestructable());
+		}
+
+		private static method aux_sampleDood() {
+			sampledDoods[sampleWho] = GetDestructableTypeId(GetEnumDestructable());
+		}
+
 		private static method onCast() {
 			integer spellId = GetSpellAbilityId();
 			unit caster = GetTriggerUnit();
 			integer owner = PID(GetOwningPlayer(caster));
 			real x, y;
+			rect area;
+			integer variation;
 
 			if (Spawner.isSpawner(caster)) {
 				x = GetSpellTargetX();
@@ -123,20 +150,45 @@ library Terrain requires Core {
 					DeformationList.create(owner, x, y, -heights[owner], 512);
 				} else if (spellId == HEIGHT_LOWERCIRCLE3) {
 					DeformationList.create(owner, x, y, -heights[owner], 768);
-				} else if (spellId == HEIGHT_removeDeformsRadius) {
+				} else if (spellId == HEIGHT_REMOVEDEFORMS) {
 					removeWho = owner;
 					removeX = x;
 					removeY = y;
 					removeCur = DeformationList.top;
 
 					removeDeformsRadius.execute();
+				} else if (spellId == DOODAD_PLACE) {
+					if (sampledDoods[owner] > 0) {
+						if (Listing.doodVariations.has(sampledDoods[owner])) {
+							variation = GetRandomInt(0, Listing.doodVariations[sampledDoods[owner]] - 1);
+						} else {
+							variation = GetRandomInt(0, 2);
+						}
+						debug DebugMessage(I2S(variation));
+						CreateDestructable(sampledDoods[owner], x, y, GetRandomReal(0, 360), doodSizes[owner], variation);
+					}
+				} else if (spellId == DOODAD_REMOVE) {
+					area = Rect(0, 0, 512, 512);
+					MoveRectTo(area, x, y);
+					EnumDestructablesInRect(area, null, function thistype.aux_removeDood);
+					RemoveRect(area);
+					area = null;
+				} else if (spellId == DOODAD_KILL) {
+					area = Rect(0, 0, 512, 512);
+					MoveRectTo(area, x, y);
+					EnumDestructablesInRect(area, null, function thistype.aux_killDood);
+					RemoveRect(area);
+					area = null;
+				} else if (spellId == DOODAD_SAMPLE) {
+					area = Rect(0, 0, 512, 512);
+					MoveRectTo(area, x, y);
+					sampleWho = owner;
+					EnumDestructablesInRect(area, null, function thistype.aux_sampleDood);
+					RemoveRect(area);
+					area = null;
 				}
 			}
 		}
-
-	//	private static method Command_Terrain(CommandThread thread) {
-	//
-	//	}
 
 		private static method Command_Height(CommandThread thread) {
 			heights[thread.owner] = S2R(thread.args.next());
@@ -166,10 +218,29 @@ library Terrain requires Core {
 		}
 
 		private static method Command_Terrain(CommandThread thread) {
-			sampled[thread.owner] = String2Id(thread.args.next());
+			integer id = String2Id(thread.args.next());
+
+			if (Listing.tiles.boolean.has(id)) {
+				sampled[thread.owner] = id;
+			} else {
+				MessageTo(thread.owner, "Invalid tile ID.");
+			}
+		}
+
+		private static method Command_Dood(CommandThread thread) {
+			string command = thread.args.next();
+
+			if (command == "size") {
+				doodSizes[thread.owner] = S2R(thread.args.next()) / 100;
+			} else {
+				if (Sub(command, 0, 1) == "_") {
+					sampledDoods[thread.owner] = String2Id(Sub(command, 1, 5));
+				}
+			}
 		}
 
 		private static method onInit() {
+			integer i;
 			trigger castTrigger = CreateTrigger();
 			TriggerAddAction(castTrigger, function thistype.onCast);
 			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
@@ -178,6 +249,11 @@ library Terrain requires Core {
 			Command.register("height",        thistype.Command_Height);
 			Command.register("removedeforms", thistype.Command_RemoveDeforms);
 			Command.register("terrain",       thistype.Command_Terrain);
+			Command.register("dood",          thistype.Command_Dood);
+
+			for (0 <= i < 12) {
+				doodSizes[i] = 1;
+			}
 		}
 	}
 }
