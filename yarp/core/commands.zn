@@ -6,13 +6,15 @@ library Commands requires Util, CommandParser, Selection, Logs {
 	public constant integer ERR_ALIAS_ZERO_LENGTH = 1;
 	public constant integer ERR_ALIAS_CONFLICT_COMMAND = 2;
 	public constant integer ERR_ALIAS_CONFLICT_ALIAS = 3;
-	public constant integer ERR_ALIAS_CONFLICT_MACRO = 3;
+	public constant integer ERR_ALIAS_CONFLICT_MACRO = 4;
+	public constant integer ERR_ALIAS_FORBIDDEN = 5;
 
 	public constant integer ERR_MACRO_ZERO_LENGTH = 1;
 	public constant integer ERR_MACRO_LIMIT_EXHAUSTED = 2;
 	public constant integer ERR_MACRO_CONFLICT_COMMAND = 3;
 	public constant integer ERR_MACRO_CONFLICT_ALIAS = 4;
 	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
+	public constant integer ERR_MACRO_FORBIDDEN = 6;
 
 	public struct Alias[] {
 		private static TableArray aliases;
@@ -55,6 +57,11 @@ library Commands requires Util, CommandParser, Selection, Logs {
 
 			if (SL(alias) == 0)
 				return ERR_ALIAS_ZERO_LENGTH;
+
+			for (0 <= i < SL(alias)) {
+				if (Sub(alias, i, i + 1) == "-")
+					return ERR_ALIAS_FORBIDDEN;
+			}
 
 			if (Command.exists(alias))
 				return ERR_ALIAS_CONFLICT_COMMAND;
@@ -186,6 +193,11 @@ library Commands requires Util, CommandParser, Selection, Logs {
 
 			if (counts[who] >= 64)
 				return ERR_MACRO_LIMIT_EXHAUSTED;
+
+			for (0 <= i < SL(macro)) {
+				if (Sub(macro, i, i + 1) == "-")
+					return ERR_MACRO_FORBIDDEN;
+			}
 
 			for (0 <= i < Command.count) {
 				if (Macro.expandableBy(Command.all[i], macro))
