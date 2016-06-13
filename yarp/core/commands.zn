@@ -53,6 +53,7 @@ library Commands requires Util, CommandParser, Selection, Logs {
 		}
 
 		static method getAvailability(integer who, string alias) -> integer {
+			integer i;
 			debug Assert(who < 12 && who >= 0, "Alias.getAvailability", "Invalid player ID.");
 
 			if (SL(alias) == 0)

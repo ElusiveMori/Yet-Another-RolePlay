@@ -30,12 +30,13 @@ library Chat requires Core {
 		private static method Command_SetName(CommandThread thread) {
 			string macro = thread.args.next();
 			string expansion = "ic [" + thread.args.restSimple() + "]";
+			integer result;
 
 			if (Macro.exists(thread.owner, macro)) {
 				Macro.remove(thread.owner, macro);
 			}
 
-			integer result = Macro.getAvailability(thread.owner, macro);
+			result = Macro.getAvailability(thread.owner, macro);
 
 			if (result == ERR_NONE) {
 				Macro.save(thread.owner, macro, expansion);
