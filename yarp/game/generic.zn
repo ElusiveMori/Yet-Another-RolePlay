@@ -21,6 +21,8 @@ library Generic requires Core {
 				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing macro.");
 			} else if (result == ERR_ALIAS_ZERO_LENGTH) {
 				MessageTo(thread.owner, "Couldn't create the alias! The alias must not be zero-length.");
+			} else if (result == ERR_ALIAS_FORBIDDEN) {
+				MessageTo(thread.owner, "Couldn't create the alias! It contains a forbidden character: -");
 			}
 		}
 
@@ -43,6 +45,8 @@ library Generic requires Core {
 				MessageTo(thread.owner, "Couldn't create the macro! You have reached the maximum limit of macros.");
 			} else if (result == ERR_MACRO_ZERO_LENGTH) {
 				MessageTo(thread.owner, "Couldn't create the macro! The macro must not be zero-length.");
+			} else if (result == ERR_MACRO_FORBIDDEN) {
+				MessageTo(thread.owner, "Couldn't create the macro! It contains a forbidden character: -");
 			}
 		}
 
