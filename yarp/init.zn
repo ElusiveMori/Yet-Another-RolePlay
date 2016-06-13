@@ -47,6 +47,7 @@
 library Core requires Util, Selection, CommandParser, FlyUtils, Logs, SaveLoad, Security, UnitData, UnitTypes, Region, Spawner, Deformations, Lists {
 	function onInit() {
 		static if (DEBUG_MODE) {
+			ClearTextMessages();
 			TriggerSleepAction(1.0);
 			ClearTextMessages();
 			Message("This is a debug build of YARP.");
