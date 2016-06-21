@@ -1,5 +1,17 @@
 library Regions requires Core {
 	struct Regions[] {
+		private static CommandThread s_thread;
+		private static unit s_unit;
+
+		private static boolean s_bool;
+		private static real s_real1;
+		private static real s_real2;
+		private static real s_real3;
+		private static real s_real4;
+		private static real s_real5;
+
+		private static string s_string;
+
 		private static method Command_CreateRegion(CommandThread thread) {
 			unit spawner = Spawner.get(thread.owner);
 			unit loc = CreateUnit(P(thread.owner), REGION_ID, GetUnitX(spawner), GetUnitY(spawner), 270);
@@ -15,11 +27,16 @@ library Regions requires Core {
 			spawner = null;
 		}
 
+		private static method Command_SaveRegion_aux() {
+			unit what = GetEnumUnit();
+
+			if (s_unit == null && PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				s_unit = what;
+			}
+		}
+
 		private static method Command_SaveRegion(CommandThread thread) {
-			UnitList list = thread.selection.top;
 			string filename = thread.args.restSimple();
-			unit loc;
-			group temp;
 
 			if (SL(filename) == 0) {
 				MessageTo(thread.owner, "Invalid file name.");
@@ -27,77 +44,74 @@ library Regions requires Core {
 			}
 
 			if (IsLocalPlayer(thread.owner)) {
-				while (list > 0) {
-					if (PID(GetOwningPlayer(list.what)) == thread.owner && GetUnitTypeId(list.what) == REGION_ID) {
-						loc = list.what;
-						list = thread.selection.top;
-						break;
-					}
+				s_thread = thread;
+				s_unit = null;
+				thread.selection.run(function thistype.Command_SaveRegion_aux);
 
-					list = list.next;
-				}
-
-				if (loc == null) {
+				if (s_unit == null) {
 					Message("You must select a Location Specifier!");
 					return;
 				}
 
-				Save.save(thread.owner, RegionController[loc].rectangle, filename);
+				Save.save(thread.owner, RegionController[s_unit].rectangle, filename);
+			}
+		}
 
-				loc = null;
-				temp = null;
+		private static method Command_FogRegion_aux() {
+			unit what = GetEnumUnit();
+
+			if (PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				RegionController[what].setFog(s_bool, s_real1, s_real2, s_real3, s_real4, s_real5);
 			}
 		}
 
 		private static method Command_FogRegion(CommandThread thread) {
-			UnitList list = thread.selection.top;
 			string first = thread.args.next();
-			boolean enabled = (first != "off");
-			real start = S2R(first);
-			real end = S2R(thread.args.next());
-			real r = S2R(thread.args.next());
-			real g = S2R(thread.args.next());
-			real b = S2R(thread.args.next());
+			s_bool = (first != "off");
+			s_real1 = S2R(first);
+			s_real2 = S2R(thread.args.next());
+			s_real3 = S2R(thread.args.next());
+			s_real4 = S2R(thread.args.next());
+			s_real5 = S2R(thread.args.next());
+			s_thread = thread;
 
-			while (list > 0) {
-				if (PID(GetOwningPlayer(list.what)) == thread.owner && GetUnitTypeId(list.what) == REGION_ID) {
-					RegionController[list.what].setFog(enabled, start, end, r, g, b);
-				}
+			thread.selection.run(function thistype.Command_FogRegion_aux);
+		}
 
-				list = list.next;
+		private static method Command_LightingRegion_aux() {
+			unit what = GetEnumUnit();
+
+			if (PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				RegionController[what].setDNC(s_bool, s_string, s_string);
 			}
 		}
 
 		private static method Command_LightingRegion(CommandThread thread) {
-			UnitList list = thread.selection.top;
-			string first = thread.args.next();
-			boolean enabled = (first != "off");
+			s_string = thread.args.next();
+			s_bool = (s_string != "off");
+			s_thread = thread;
 
-			while (list > 0) {
-				if (PID(GetOwningPlayer(list.what)) == thread.owner && GetUnitTypeId(list.what) == REGION_ID) {
-					RegionController[list.what].setDNC(enabled, first, first);
+			thread.selection.run(function thistype.Command_LightingRegion_aux);
+		}
+
+		private static method Command_WeatherRegion_aux() {
+			unit what = GetEnumUnit();
+
+			if (PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				if (s_bool) {
+					RegionController[what].setWeather(s_string);
+				} else {
+					RegionController[what].removeWeather();			
 				}
-
-				list = list.next;
 			}
 		}
 
 		private static method Command_WeatherRegion(CommandThread thread) {
-			UnitList list = thread.selection.top;
-			string first = thread.args.next();
-			boolean enabled = (first != "off");
+			s_string = thread.args.next();
+			s_bool = (s_string != "off");
+			s_thread = thread;
 
-			while (list > 0) {
-				if (PID(GetOwningPlayer(list.what)) == thread.owner && GetUnitTypeId(list.what) == REGION_ID) {
-					if (enabled) {
-						RegionController[list.what].setWeather(first);
-					} else {
-						RegionController[list.what].removeWeather();			
-					}
-				}
-
-				list = list.next;
-			}
+			thread.selection.run(function thistype.Command_WeatherRegion_aux);
 		}
 
 		private static method onInit() {

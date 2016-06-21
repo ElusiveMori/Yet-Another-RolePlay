@@ -176,6 +176,9 @@ library Region requires Util, Logs {
 			for (0 <= i <= 15) {
 				if (Region.rectangleControllers[who][i] == 0) {
 					Region.rectangleControllers[who][i] = this;
+					alignToGrid();
+					x = GetUnitX(unit);
+					y = GetUnitY(unit);
 					SetRect(Region.rectangles[who][i], x - 64, y - 64, x + 64, y + 64);
 					rectId = i;
 					owner = who;
@@ -190,7 +193,6 @@ library Region requires Util, Logs {
 						SetUnitVertexColor(unit, 255, 255, 255, 0);
 					}
 
-					alignToGrid();
 					SetUnitPropWindow(unit, 0);
 
 					return;
@@ -215,7 +217,6 @@ library Region requires Util, Logs {
 			integer spellId = GetSpellAbilityId();
 			unit caster = GetTriggerUnit();
 			integer owner = GetPlayerId(GetOwningPlayer(caster));
-			group selection;
 			rect temp;
 			real x, y;
 			CommandThread thread;
@@ -244,18 +245,13 @@ library Region requires Util, Logs {
 				} else if (spellId == REGION_ABIL_REMOVE) {
 					RemoveUnit(caster);
 				} else if (spellId == REGION_ABIL_AUX) {
-					selection = NewGroup();
-					GroupEnumUnitsInRect(selection, temp, null);
-
 					thread = CommandThread.create(owner);
 					thread.pushCommands(AuxCommands.getAux(owner));
-					thread.selection.addGroup(selection);
+					GroupEnumUnitsInRect(thread.selection.getGroup(), temp, null);
 					thread.start.execute();
 
 					Log.log(owner, TYPE_CMD, "(region) " + AuxCommands.getAux(owner));
 					LogBoard.updateBoard();
-
-					selection = null;
 				}
 			}
 

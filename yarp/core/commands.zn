@@ -32,6 +32,13 @@ library Commands requires Util, CommandParser, Selection, Logs {
 			aliases[who].string[SHC(alias)] = expansion;
 		}
 
+		static method saveall(string alias, string expansion) {
+			integer i;
+
+			for (0 <= i < 12)
+				Alias.save(i, alias, expansion);
+		}
+
 		static method remove(integer who, string alias) {
 			debug Assert(who < 12 && who >= 0, "Alias.remove", "Invalid player ID.");
 			debug Assert(Alias.exists(who, alias),  "Alias.remove", "Alias does not exist.");
@@ -387,17 +394,24 @@ library Commands requires Util, CommandParser, Selection, Logs {
 		method pushCommands(string str) {
 			CommandSplitter splitter = CommandSplitter.create(StringTrim(str));
 			CommandList list;
+			CommandList temp;
 
 			if (m_queue == 0) {
-				m_queue = CommandList.create(Macro.expand(m_owner, StringTrim(splitter.next())));
 				m_queueSize = 1;
 			}
 
+			temp = m_queue;
+			m_queue = CommandList.create(Macro.expand(m_owner, StringTrim(splitter.next())));
 			list = m_queue;
 
 			while (!splitter.isFinished()) {
 				list = list.insert(CommandList.create(Macro.expand(m_owner, StringTrim(splitter.next()))));
 				m_queueSize = m_queueSize + 1;
+			}
+
+			if (temp != 0) {
+				list.next = temp;
+				temp.prev = list;
 			}
 
 			splitter.destroy();

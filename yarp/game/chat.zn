@@ -1,5 +1,8 @@
 library Chat requires Core {
 	struct Chat[] {
+		private static CommandThread s_thread;
+		private static string s_string;
+
 		private static method Command_Log(CommandThread thread) {
 			string command = thread.args.next();
 
@@ -36,48 +39,37 @@ library Chat requires Core {
 				Macro.remove(thread.owner, macro);
 			}
 
-			result = Macro.getAvailability(thread.owner, macro);
+			thread.pushCommands("macro [" + macro + "] " + expansion);
+		}
 
-			if (result == ERR_NONE) {
-				Macro.save(thread.owner, macro, expansion);
-				MessageTo(thread.owner, "Successfully created macro [" + ColorStr(macro, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
-			} else if (result == ERR_MACRO_CONFLICT_COMMAND) {
-				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing command.");
-			} else if (result == ERR_MACRO_CONFLICT_ALIAS) {
-				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing alias.");
-			} else if (result == ERR_MACRO_CONFLICT_MACRO) {
-				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing macro.");
-			} else if (result == ERR_MACRO_LIMIT_EXHAUSTED) {
-				MessageTo(thread.owner, "Couldn't create the macro! You have reached the maximum limit of macros.");
-			} else if (result == ERR_MACRO_ZERO_LENGTH) {
-				MessageTo(thread.owner, "Couldn't create the macro! The macro must not be zero-length.");
-			} else if (result == ERR_MACRO_FORBIDDEN) {
-				MessageTo(thread.owner, "Couldn't create the macro! It contains a forbidden character: -");
+		private static method Command_SetUnitName_aux() {
+			unit what = GetEnumUnit();
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				UnitData[what].name = s_string;
 			}
 		}
 
 		private static method Command_SetUnitName(CommandThread thread) {
-			UnitList list = thread.selection.top;
+			s_thread = thread;
+			s_string = thread.args.restSimple();
 
-			while (list > 0) {
-				if (HasPlayerUnitAccess(thread.owner, list.what)) {
-					UnitData[list.what].name = thread.args.restSimple();
-				}
+			thread.selection.run(function thistype.Command_SetUnitName_aux);
+		}
 
-				list = list.next;
+		private static method Command_Say_aux() {
+			unit what = GetEnumUnit();
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				MessageIC(s_thread.owner, UnitData[what].name, s_string);
 			}
 		}
 
 		private static method Command_Say(CommandThread thread) {
-			UnitList list = thread.selection.top;
+			s_thread = thread;
+			s_string = thread.args.restSimple();
 
-			while (list > 0) {
-				if (HasPlayerUnitAccess(thread.owner, list.what)) {
-					MessageIC(thread.owner, UnitData[list.what].name, thread.args.restSimple());
-				}
-
-				list = list.next;
-			}
+			thread.selection.run(function thistype.Command_Say_aux);
 		}
 
 		private static method onInit() {

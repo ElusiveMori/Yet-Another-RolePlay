@@ -81,10 +81,10 @@ library Camera requires Core {
 		private static method onInit() {
 			timer resetter = CreateTimer();
 			TimerStart(resetter, 0.015625, true, function thistype.resetCamera);
-		//	TimerStart(resetter, 0.0625, true, function thistype.resetCamera);
 			resetter = null;
 
 			Command.register("cam", thistype.Command_Cam);
+			Alias.saveall("zoom", "cam dist");
 		}
 	}
 }

@@ -1,399 +1,384 @@
 library Unit requires Core {
 	//! textmacro CommandHeader takes CMD_NAME
 		private static method $CMD_NAME$(CommandThread thread) {
-			UnitList list = thread.selection.top;
-			UnitData unitData;
-			integer owner = thread.owner;
 	//! endtextmacro
 
-	//! textmacro CommandStart
-		while (list > 0) {
-			unitData = UnitData[list.what];
-			if (HasPlayerUnitAccess(owner, list.what)) {
+	//! textmacro CommandStart takes CMD_NAME
+			s_thread = thread;
+			thread.selection.run(function thistype.$CMD_NAME$_aux);
+		}
+
+		private static method $CMD_NAME$_aux() {
+			unit what = GetEnumUnit();
+			UnitData unitData;
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				unitData = UnitData[what];
 	//! endtextmacro
 
 	//! textmacro CommandEnd
-				}
-
-				list = list.next;
 			}
-		}
-	//! endtextmacro
-
-	//! textmacro CommandCondition takes CMD_COND
-		if (!$CMD_COND$) {
-			return;
 		}
 	//! endtextmacro
 
 	struct Unit[] {
+		private static CommandThread s_thread;
+		private static real s_real1;
+		private static real s_real2;
+		private static integer s_int;
+		private static integer s_r;
+		private static integer s_g;
+		private static integer s_b;
+		private static integer s_a;
+		private static boolean s_bool;
+		private static string s_string;
+		private static playercolor s_color;
+
+		private static method Command_UnitRemove_aux() {
+			unit what = GetEnumUnit();
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				RemoveUnit(what);
+			}
+		}
+
 		private static method Command_UnitRemove(CommandThread thread) {
-			string command      = thread.args.next();
-			UnitList list       = 0;
-			Selection selection = 0;
-			group temp          = null;
-			boolean valid       = true;
-			integer target      = -1;
+			string command = thread.args.next();
+			boolean valid  = true;
+			integer target = -1;
+			s_thread = thread;
 
 			if (StringLength(command) == 0) {
-				selection = thread.selection;
 			} else if (command == "me") {
-				selection = Selection.create();
-				temp = NewGroup();
-				GroupEnumUnitsOfPlayer(temp, P(thread.owner), null);
-				selection.addGroup(temp);
-				temp = null;
+				thread.selection.clear();
+				GroupEnumUnitsOfPlayer(thread.selection.getGroup(), P(thread.owner), null);
 			} else {
-				selection = Selection.create();
 				target = PlayerIdFromString(command);
-				temp = NewGroup();
+
 				if (target >= 0) {
-					GroupEnumUnitsOfPlayer(temp, P(target), null);
-					selection.addGroup(temp);
-				} else
+					thread.selection.clear();
+					GroupEnumUnitsOfPlayer(thread.selection.getGroup(), P(target), null);
+				} else {
 					valid = false;
-				temp = null;
-			}
-
-			if (valid) {
-				list = selection.top;
-
-				while (list > 0) {
-					if (HasPlayerUnitAccess(thread.owner, list.what)) {
-						RemoveUnit(list.what);
-					}
-
-					list = list.next;
 				}
 			}
 
-			if (selection != thread.selection) {
-				selection.destroy();
+			thread.selection.run(function thistype.Command_UnitRemove_aux);
+		}
+
+		private static method Command_UnitGive_aux() {
+			unit what = GetEnumUnit();
+			UnitData unitData;
+
+			if (HasPlayerUnitAccess(s_thread.owner, what) && unitData.realOwner == s_thread.owner) {
+				unitData = UnitData[what];
+
+				if (s_bool) {
+					unitData.realOwner = s_int;
+				}
+
+				unitData.currentOwner = s_int;
 			}
 		}
 
 		private static method Command_UnitGive(CommandThread thread) {
-			integer owner       = thread.owner;
-			integer target      = -1;
-			string targetName   = thread.args.restSimple();
-			boolean resetOwner  = false;
-			UnitList list       = 0;
-			Selection selection = thread.selection;
-			UnitData unitData;
+			string targetName = thread.args.restSimple();
+			s_int = -1;
+			s_thread = thread;
 
 			if (targetName == "me") {
-				target = owner;
+				s_int = thread.owner;
 			} else {
-				target = PlayerIdFromString(targetName);
+				s_int = PlayerIdFromString(targetName);
 			}
 
-			if (target < 0) return;
-			resetOwner = (target < 12);
+			if (s_int < 0) return;
+			s_bool = (s_int < 12);
 
-			list = selection.top;
+			thread.selection.run(function thistype.Command_UnitGive_aux);
+		}
 
-			while (list > 0) {
-				if (HasPlayerUnitAccess(owner, list.what) && unitData.realOwner == owner) {
-					unitData = UnitData[list.what];
+		private static method Command_UnitGiveForce_aux() {
+			unit what = GetEnumUnit();
+			UnitData unitData;
 
-					if (resetOwner)
-						unitData.realOwner = target;
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				unitData = UnitData[what];
 
-					unitData.currentOwner = target;
+				if (s_bool) {
+					unitData.realOwner = s_int;
 				}
 
-				list = list.next;
+				unitData.currentOwner = s_int;
 			}
 		}
 
 		private static method Command_UnitGiveForce(CommandThread thread) {
-			integer owner       = thread.owner;
-			integer target      = -1;
-			string targetName   = thread.args.restSimple();
-			boolean resetOwner  = false;
-			UnitList list       = 0;
-			Selection selection = thread.selection;
-			UnitData unitData;
+			string targetName = thread.args.restSimple();
+			s_int = -1;
+			s_thread = thread;
 
 			if (targetName == "me") {
-				target = owner;
+				s_int = thread.owner;
 			} else {
-				target = PlayerIdFromString(targetName);
+				s_int = PlayerIdFromString(targetName);
 			}
 
-			if (target < 0) return;
-			resetOwner = (target < 12);
+			if (s_int < 0) return;
+			s_bool = (s_int < 12);
 
-			list = selection.top;
+			thread.selection.run(function thistype.Command_UnitGiveForce_aux);
+		}
 
-			while (list > 0) {
-				if (HasPlayerUnitAccess(owner, list.what)) {
-					unitData = UnitData[list.what];
+		private static method Command_UnitStep_aux() {
+			unit what = GetEnumUnit();
+			CommandThread thread;
 
-					if (resetOwner)
-						unitData.realOwner = target;
+			thread = CommandThread.create(s_thread.owner);
+			thread.selection.addUnit(what);
+			thread.pushCommands("repeat " + I2S(s_int) + " " + s_string);
+			thread.start.execute();
 
-					unitData.currentOwner = target;
-				}
-
-				list = list.next;
-			}
+			s_int = s_int + 1;
 		}
 
 		private static method Command_UnitStep(CommandThread thread) {
-			string str = thread.args.restSimple();
-			integer i = 0;
-			UnitList list = thread.selection.top;
-			CommandThread newThread;
+			s_string = thread.args.restParsed();
+			s_int = 0;
+			s_thread = thread;
 
-			while (list > 0) {
-				newThread = CommandThread.create(thread.owner);
-				newThread.selection.addUnit(list.what);
-				newThread.pushCommands("repeat " + I2S(i) + " " + str);
-				newThread.start.evaluate();
+			thread.selection.run(function thistype.Command_UnitStep_aux);
+		}
 
-				list = list.next;
-				i = i + 1;
+		private static method Command_UnitAbility_aux_add() {
+			unit what = GetEnumUnit();
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				UnitAddAbility(what, s_int);
+			}
+		}
+
+		private static method Command_UnitAbility_aux_rem() {
+			unit what = GetEnumUnit();
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				UnitRemoveAbility(what, s_int);
 			}
 		}
 
 		private static method Command_UnitAbility(CommandThread thread) {
 			string str = thread.args.next();
-			integer id = String2Id(thread.args.next());
-			integer owner = thread.owner;
-			UnitList list = thread.selection.top;
+			s_int = String2Id(thread.args.next());
+			s_thread = thread;
 
 			if (str == "add") {
-				while (list > 0) {
-					if (HasPlayerUnitAccess(owner, list.what)) {
-						UnitAddAbility(list.what, id);
-					}
-
-					list = list.next;
-				}
+				thread.selection.run(function thistype.Command_UnitAbility_aux_add);
 			} else if (str == "remove") {
-				while (list > 0) {
-					if (HasPlayerUnitAccess(owner, list.what)) {
-						UnitRemoveAbility(list.what, id);
-					}
-
-					list = list.next;
-				}
+				thread.selection.run(function thistype.Command_UnitAbility_aux_rem);
 			}
 		}
 
 		//! runtextmacro CommandHeader("Command_UnitKill")
-		//! runtextmacro CommandStart()
-			KillUnit(list.what);
+		//! runtextmacro CommandStart("Command_UnitKill")
+			KillUnit(what);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitExplode")
-		//! runtextmacro CommandStart()
-			SetUnitExploded(list.what, true);
-			KillUnit(list.what);
+		//! runtextmacro CommandStart("Command_UnitExplode")
+			SetUnitExploded(what, true);
+			KillUnit(what);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSize")
-			real size = S2R(thread.args.next()) / 100;
-		//! runtextmacro CommandStart()
-			unitData.size = size;
+			s_real1 = S2R(thread.args.next()) / 100;
+		//! runtextmacro CommandStart("Command_UnitSize")
+			unitData.size = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSizeDelta")
-			real size = S2R(thread.args.next()) / 100;
-		//! runtextmacro CommandStart()
-			unitData.size = unitData.size + size;
+			s_real1 = S2R(thread.args.next()) / 100;
+		//! runtextmacro CommandStart("Command_UnitSizeDelta")
+			unitData.size = unitData.size + s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitAngle")
-			real angle = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.angle = angle;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitAngle")
+			unitData.angle = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitAngleDelta")
-			real angle = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.angle = unitData.angle + angle;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitAngleDelta")
+			unitData.angle = unitData.angle + s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitAngleRandom")
-		//! runtextmacro CommandStart()
+		//! runtextmacro CommandStart("Command_UnitAngleRandom")
 			unitData.angle = GetRandomReal(0, 360);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitMoveX")
-			real amount = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.x = unitData.x + amount;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitMoveX")
+			unitData.x = unitData.x + s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitMoveY")
-			real amount = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.y = unitData.y + amount;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitMoveY")
+			unitData.y = unitData.y + s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitMoveXY")
-			real x = S2R(thread.args.next());
-			real y = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.x = unitData.x + x;
-			unitData.y = unitData.y + y;
+			s_real1 = S2R(thread.args.next());
+			s_real2 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitMoveXY")
+			unitData.x = unitData.x + s_real1;
+			unitData.y = unitData.y + s_real2;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSetX")
-			real amount = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.x = amount;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitSetX")
+			unitData.x = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSetY")
-			real amount = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.y = amount;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitSetY")
+			unitData.y = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSetXY")
-			real x = S2R(thread.args.next());
-			real y = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.x = x;
-			unitData.y = y;
-		//! runtextmacro CommandEnd()
-
-		//! runtextmacro CommandHeader("Command_UnitShowPos")
-			location loc;
-		//! runtextmacro CommandStart()
-			loc = GetUnitLoc(list.what);
-			MessageTo(owner, "Position: " + R2S(GetLocationX(loc)) + ", " + R2S(GetLocationY(loc)) + ", " + R2S(GetLocationZ(loc)));
-			RemoveLocation(loc);
-			loc = null;
+			s_real1 = S2R(thread.args.next());
+			s_real2 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitSetXY")
+			unitData.x = s_real1;
+			unitData.y = s_real2;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitMoveDirection")
 			real angle = Deg2Rad(S2R(thread.args.next()));
 			real amount = S2R(thread.args.next());
-			real x = Cos(angle) * amount;
-			real y = Sin(angle) * amount;
-		//! runtextmacro CommandStart()
-			unitData.x = unitData.x + x;
-			unitData.y = unitData.y + y;
+			s_real1 = Cos(angle) * amount;
+			s_real2 = Sin(angle) * amount;
+		//! runtextmacro CommandStart("Command_UnitMoveDirection")
+			unitData.x = unitData.x + s_real1;
+			unitData.y = unitData.y + s_real2;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitTint")
-			integer r = R2I(S2R(thread.args.next()) * 255 / 100);
-			integer g = R2I(S2R(thread.args.next()) * 255 / 100);
-			integer b = R2I(S2R(thread.args.next()) * 255 / 100);
-			integer a = 255 - R2I(S2R(thread.args.next()) * 255 / 100);
-		//! runtextmacro CommandStart()
-			unitData.setVertexColor(r, g, b, a);
+			s_r = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_g = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_b = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_a = 255 - R2I(S2R(thread.args.next()) * 255 / 100);
+		//! runtextmacro CommandStart("Command_UnitTint")
+			unitData.setVertexColor(s_r, s_g, s_b, s_a);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitColor")
 			integer id = PlayerIdFromString(thread.args.restParsed());
-			playercolor color;
 
 			if (id >= 0)
-				color = ConvertPlayerColor(id);
+				s_color = ConvertPlayerColor(id);
 			else
-				color = ConvertPlayerColor(15);
-		//! runtextmacro CommandStart()
-			unitData.color = color;
+				s_color = ConvertPlayerColor(15);
+		//! runtextmacro CommandStart("Command_UnitColor")
+			unitData.color = s_color;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitAnimSpeed")
-			real animSpeed = S2R(thread.args.restParsed()) / 100;
-		//! runtextmacro CommandStart()
-			unitData.animSpeed = animSpeed;
+			s_real1 = S2R(thread.args.restParsed()) / 100;
+		//! runtextmacro CommandStart("Command_UnitAnimSpeed")
+			unitData.animSpeed = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitSpeed")
-			real speed = S2R(thread.args.restParsed());
-		//! runtextmacro CommandStart()
-			unitData.speed = speed;
+			s_real1 = S2R(thread.args.restParsed());
+		//! runtextmacro CommandStart("Command_UnitSpeed")
+			unitData.speed = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitRemoveBuffs")
-		//! runtextmacro CommandStart()
-			UnitRemoveBuffs(list.what, true, true);
+		//! runtextmacro CommandStart("Command_UnitRemoveBuffs")
+			UnitRemoveBuffs(what, true, true);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitRemoveCooldowns")
-		//! runtextmacro CommandStart()
-			UnitResetCooldown(list.what);
+		//! runtextmacro CommandStart("Command_UnitRemoveCooldowns")
+			UnitResetCooldown(what);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitPlayAnim")
-			string anim = thread.args.next();
-			integer count = S2I(thread.args.next()) - 1;
+			s_string = thread.args.next();
+			s_int = S2I(thread.args.next()) - 1;
 
-			if (count < 0)
-				count = 0;
-		//! runtextmacro CommandStart()
-			unitData.setAnim(anim);
-			unitData.queueAnimCount(anim, count);
+			if (s_int < 0)
+				s_int = 0;
+		//! runtextmacro CommandStart("Command_UnitPlayAnim")
+			unitData.setAnim(s_string);
+			unitData.queueAnimCount(s_string, s_int);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitQueueAnim")
-			string anim = thread.args.next();
-			integer count = S2I(thread.args.next());
+			s_string = thread.args.next();
+			s_int = S2I(thread.args.next()) - 1;
 
-			if (count < 0)
-				count = 0;
-		//! runtextmacro CommandStart()
-			unitData.queueAnimCount(anim, count);
+			if (s_int < 0)
+				s_int = 0;
+		//! runtextmacro CommandStart("Command_UnitQueueAnim")
+			unitData.queueAnimCount(s_string, s_int);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_Tag")
-			string tag = thread.args.next();
-			boolean off = (thread.args.next() == "off");
-		//! runtextmacro CommandStart()
-			AddUnitAnimationProperties(list.what, tag, !off);
+			s_string = thread.args.next();
+			s_bool = (thread.args.next() == "off");
+		//! runtextmacro CommandStart("Command_Tag")
+			AddUnitAnimationProperties(what, s_string, !s_bool);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitFly")
-			real height = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.z = height;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitFly")
+			unitData.z = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitFlyDelta")
-			real height = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.z = unitData.z + height;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitFlyDelta")
+			unitData.z = unitData.z + s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitPath")
-			boolean on = false;
 			string arg = thread.args.next();
 
 			if (arg == "off") {
-				on = false;
+				s_bool = false;
 			} else if (arg == "on") {
-				on = true;
+				s_bool = true;
 			} else {
 				return;
 			}
-		//! runtextmacro CommandStart()
-			SetUnitPathing(list.what, on);
+		//! runtextmacro CommandStart("Command_UnitPath")
+			SetUnitPathing(what, s_bool);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitId")
-		//! runtextmacro CommandStart()
-			MessageTo(owner, "ID: " + Id2String(unitData.id) + " (" + I2S(unitData.id) + ")");
+		//! runtextmacro CommandStart("Command_UnitId")
+			MessageTo(s_thread.owner, "ID: " + Id2String(unitData.id) + " (" + I2S(unitData.id) + ")");
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitLife")
-			real life = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.life = life;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitLife")
+			unitData.life = s_real1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitMana")
-			real mana = S2R(thread.args.next());
-		//! runtextmacro CommandStart()
-			unitData.mana = mana;
+			s_real1 = S2R(thread.args.next());
+		//! runtextmacro CommandStart("Command_UnitMana")
+			unitData.mana = s_real1;
 		//! runtextmacro CommandEnd()
 
 		private static method onInit() {
@@ -414,7 +399,6 @@ library Unit requires Core {
 			Command.register("posy",    thistype.Command_UnitSetY);
 			Command.register("pos",     thistype.Command_UnitSetXY);
 			Command.register("movea",   thistype.Command_UnitMoveDirection);
-			Command.register("showpos", thistype.Command_UnitShowPos);
 			Command.register("tint",    thistype.Command_UnitTint);
 			Command.register("color",   thistype.Command_UnitColor);
 			Command.register("aspeed",  thistype.Command_UnitAnimSpeed);

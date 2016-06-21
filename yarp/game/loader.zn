@@ -1,5 +1,8 @@
 library Loader requires Core {
 	struct Loader[] {
+		private static real s_x;
+		private static real s_y;
+
 		private static method Command_LoadAddQueueUnit(CommandThread thread) {
 			LoadQueue queue = Load.addToQueue(thread.owner);
 
@@ -46,21 +49,22 @@ library Loader requires Core {
 			Load.startPaste(thread.owner);
 		}
 
-		private static method Command_LoadSetOffset(CommandThread thread) {
-			real x = S2R(thread.args.next());
-			real y = S2R(thread.args.next());
-			UnitList list = thread.selection.top;
+		private static method Command_LoadSetOffset_aux() {
+			unit what = GetEnumUnit();
 
-			while (list > 0) {
-				if (GetUnitTypeId(list.what) == REGION_ID) {
-					x = GetUnitX(list.what);
-					y = GetUnitY(list.what);
-				}
-
-				list = list.next;
+			if (GetUnitTypeId(what) == REGION_ID) {
+				s_x = GetUnitX(what);
+				s_y = GetUnitY(what);
 			}
+		}
 
-			Load.setOffset(thread.owner, x, y);
+		private static method Command_LoadSetOffset(CommandThread thread) {
+			s_x = S2R(thread.args.next());
+			s_y = S2R(thread.args.next());
+
+			thread.selection.run(function thistype.Command_LoadSetOffset_aux);
+
+			Load.setOffset(thread.owner, s_x, s_y);
 		}
 
 		private static method onInit() {
