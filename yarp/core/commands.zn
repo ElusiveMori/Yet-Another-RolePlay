@@ -16,6 +16,8 @@ library Commands requires Util, CommandParser, Selection, Logs {
 	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
 	public constant integer ERR_MACRO_FORBIDDEN = 6;
 
+	
+
 	public struct Alias[] {
 		private static TableArray aliases;
 
