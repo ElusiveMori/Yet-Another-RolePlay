@@ -438,7 +438,7 @@ library Unit requires Core {
 			Command.register("ability", thistype.Command_UnitAbility);
 			Command.register("global",  thistype.Command_UnitGlobal);
 
-			Alias.saveall("gl", "global")
+			Alias.saveall("gl", "global");
 		}
 	}
 }

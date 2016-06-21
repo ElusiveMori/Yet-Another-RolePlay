@@ -1,5 +1,11 @@
 library Spawn requires Core {
 	struct Spawn[] {
+		private static real s_ox;
+		private static real s_oy;
+		private static real s_sx;
+		private static real s_sy;
+		private static CommandThread s_thread;
+
 		private static method Command_Spawn(CommandThread thread) {
 			string arg1 = thread.args.next();
 			string arg2 = thread.args.next();
@@ -11,8 +17,7 @@ library Spawn requires Core {
 			real x;
 			real y;
 
-			if (spawner == null)
-				return;
+			if (spawner == null) return;
 
 			if (StringLength(arg2) == 0) {
 				arg2 = arg1;
@@ -52,8 +57,51 @@ library Spawn requires Core {
 			spawner = null;
 		}
 
+		private static method Command_Clone_aux() {
+			unit what = GetEnumUnit();
+			unit clone;
+			real x = GetUnitX(what);
+			real y = GetUnitY(what);
+			UnitData originalData;
+			UnitData cloneData;
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				originalData = UnitData[what];
+				clone = CreateUnit(P(s_thread.owner), GetUnitTypeId(what), 0, 0, originalData.angle);
+				cloneData = UnitData[clone];
+
+				cloneData.x         = s_sx + (x - s_ox);
+				cloneData.y         = s_sy + (y - s_oy);
+				cloneData.life      = originalData.life;
+				cloneData.mana      = originalData.mana;
+				cloneData.speed     = originalData.speed;
+				cloneData.size      = originalData.size;
+				cloneData.animSpeed = originalData.animSpeed;
+				cloneData.color     = originalData.color;
+				cloneData.z         = originalData.z;
+				cloneData.setVertexColor(originalData.vertexR, originalData.vertexG, originalData.vertexB, originalData.vertexA);
+			}
+		}
+
+		private static method Command_Clone(CommandThread thread) {
+			unit spawner = Spawner.get(thread.owner);
+
+			if (spawner == null) return;
+
+			thread.selection.calcOrigin();
+
+			s_ox = thread.selection.getOriginX();
+			s_oy = thread.selection.getOriginY();	
+			s_sx = GetUnitX(spawner);
+			s_sy = GetUnitY(spawner);
+			s_thread = thread;
+
+			thread.selection.run(function thistype.Command_Clone_aux);	
+		}
+
 		private static method onInit() {
 			Command.register("spawn", thistype.Command_Spawn);
+			Command.register("clone", thistype.Command_Clone);
 		}
 	}
 

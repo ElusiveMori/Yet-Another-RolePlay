@@ -164,7 +164,6 @@ library Terrain requires Core {
 						} else {
 							variation = GetRandomInt(0, 2);
 						}
-						debug DebugMessage(I2S(variation));
 						CreateDestructable(sampledDoods[owner], x, y, GetRandomReal(0, 360), doodSizes[owner], variation);
 					}
 				} else if (spellId == DOODAD_REMOVE) {
