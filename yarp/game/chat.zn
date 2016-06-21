@@ -72,6 +72,12 @@ library Chat requires Core {
 			thread.selection.run(function thistype.Command_Say_aux);
 		}
 
+		private static method Command_Clear(CommandThread thread) {
+			if (IsLocalPlayer(thread.owner)) {
+				ClearTextMessages();
+			}
+		}
+
 		private static method onInit() {
 			Command.register("log",         thistype.Command_Log);
 			Command.register("ic",          thistype.Command_IC);
@@ -79,6 +85,7 @@ library Chat requires Core {
 			Command.register("say",         thistype.Command_Say);
 			Command.register("setname",     thistype.Command_SetName);
 			Command.register("setunitname", thistype.Command_SetUnitName);
+			Command.register("clear",       thistype.Command_Clear);
 
 			Macro.saveall(".", "ooc");
 			Macro.saveall(";", "say");
