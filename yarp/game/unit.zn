@@ -178,6 +178,26 @@ library Unit requires Core {
 			}
 		}
 
+		private static method Command_UnitGlobal(CommandThread thread) {
+			string targetName = thread.args.next();
+			string command = thread.args.restParsed();
+			CommandThread newThread;
+			integer target;
+
+			if (targetName == "me") {
+				target = thread.owner;
+			} else {
+				target = PlayerIdFromString(targetName);
+			}
+
+			if (target < 0) return;
+
+			thread = CommandThread.create(thread.owner);
+			GroupEnumUnitsOfPlayer(thread.selection.getGroup(), P(target), null);
+			thread.pushCommands(command);
+			thread.start.execute();
+		}
+
 		//! runtextmacro CommandHeader("Command_UnitKill")
 		//! runtextmacro CommandStart("Command_UnitKill")
 			KillUnit(what);
@@ -416,6 +436,9 @@ library Unit requires Core {
 			Command.register("life",    thistype.Command_UnitLife);
 			Command.register("mana",    thistype.Command_UnitMana);
 			Command.register("ability", thistype.Command_UnitAbility);
+			Command.register("global",  thistype.Command_UnitGlobal);
+
+			Alias.saveall("gl", "global")
 		}
 	}
 }
