@@ -79,11 +79,11 @@ library Chat requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("log",         thistype.Command_Log,         CMD_CHAT);
-			Command.register("ic",          thistype.Command_IC,          CMD_CHAT);
-			Command.register("ooc",         thistype.Command_OOC,         CMD_CHAT);
-			Command.register("say",         thistype.Command_Say,         CMD_CHAT);
-			Command.register("setname",     thistype.Command_SetName,     CMD_SETTING);
+			Command.register("log",         thistype.Command_Log,         CMD_DIRECT);
+			Command.register("ic",          thistype.Command_IC,          CMD_DIRECT);
+			Command.register("ooc",         thistype.Command_OOC,         CMD_DIRECT);
+			Command.register("say",         thistype.Command_Say,         CMD_DIRECT);
+			Command.register("setname",     thistype.Command_SetName,     CMD_DIRECT);
 			Command.register("setunitname", thistype.Command_SetUnitName, CMD_UNITPROP);
 			Command.register("clear",       thistype.Command_Clear,       CMD_NONE);
 
