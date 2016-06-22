@@ -100,8 +100,8 @@ library Spawn requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("spawn", thistype.Command_Spawn);
-			Command.register("clone", thistype.Command_Clone);
+			Command.register("spawn", thistype.Command_Spawn, CMD_SPAWNING);
+			Command.register("clone", thistype.Command_Clone, CMD_SPAWNING);
 		}
 	}
 

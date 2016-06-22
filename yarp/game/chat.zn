@@ -79,13 +79,13 @@ library Chat requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("log",         thistype.Command_Log);
-			Command.register("ic",          thistype.Command_IC);
-			Command.register("ooc",         thistype.Command_OOC);
-			Command.register("say",         thistype.Command_Say);
-			Command.register("setname",     thistype.Command_SetName);
-			Command.register("setunitname", thistype.Command_SetUnitName);
-			Command.register("clear",       thistype.Command_Clear);
+			Command.register("log",         thistype.Command_Log,         CMD_CHAT);
+			Command.register("ic",          thistype.Command_IC,          CMD_CHAT);
+			Command.register("ooc",         thistype.Command_OOC,         CMD_CHAT);
+			Command.register("say",         thistype.Command_Say,         CMD_CHAT);
+			Command.register("setname",     thistype.Command_SetName,     CMD_SETTING);
+			Command.register("setunitname", thistype.Command_SetUnitName, CMD_UNITPROP);
+			Command.register("clear",       thistype.Command_Clear,       CMD_NONE);
 
 			Macro.saveall(".", "ooc");
 			Macro.saveall(";", "say");

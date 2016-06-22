@@ -16,7 +16,19 @@ library Commands requires Util, CommandParser, Selection, Logs {
 	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
 	public constant integer ERR_MACRO_FORBIDDEN = 6;
 
-	
+	// command flags
+	public constant integer CMD_NONE     = 0x00; // no special flags
+	public constant integer CMD_SPAWNING = 0x01; // for commands that spawn units
+	public constant integer CMD_EXEC     = 0x02; // for commands that execute other commands
+	public constant integer CMD_UNITPROP = 0x04; // for commands that change unit properties
+	public constant integer CMD_CHAT     = 0x08; // for commands that print something into the chat
+	public constant integer CMD_SETTING  = 0x10; // for commands that alter a player's local settings
+	public constant integer CMD_DIRECT   = 0x20; // for other commands forbidden from step, seq, global, etc.
+
+	// command filter presets
+	public constant integer CMDF_ANY     = 0xFF; // for normal, permit anything
+	public constant integer CMDF_EXEC    = 0x06; // for step, seq, permit only EXEC and UNITPROP
+	public constant integer CMDF_EXTEND  = 0xDF; // for global, run, don't permit DIRECT
 
 	public struct Alias[] {
 		private static TableArray aliases;
@@ -238,11 +250,12 @@ library Commands requires Util, CommandParser, Selection, Logs {
 
 	public struct Command[] {
 		private static Table commands;
+		private static Table flags;
 		
 		static integer count;
 		static string all[];
 
-		static method register(string command, CommandCallback callback) {
+		static method register(string command, CommandCallback callback, integer flag) {
 			debug Assert(SL(command) > 0,          "Command.register", "Command length is zero.");
 			debug Assert(callback > 0,             "Command.register", "Invalid callback provided.");
 			debug Assert(!Command.exists(command), "Command.register", "Command with the same name already exists.");
@@ -251,20 +264,31 @@ library Commands requires Util, CommandParser, Selection, Logs {
 			count = count + 1;
 
 			commands[SHC(command)] = callback;
+			flags[SHC(command)] = flag;
 		}
 
 		static method exists(string command) -> boolean {
 			return commands.has(SHC(command));
 		}
 
+		static method getFlag(string command) -> integer {
+			debug Assert(Command.exists(command), "Command.getFlag", "Command does not exist.");
+
+			return flags[SHC(command)];
+		}
+
 		static method run(string command, CommandThread thread) {
+			integer flag = Command.getFlag(command);
 			debug Assert(Command.exists(command), "Command.run", "Command does not exist.");
 
-			CommandCallback(commands[SHC(command)]).execute(thread);
+			if (BitwiseAnd(thread.filter, flag) == flag) {
+				CommandCallback(commands[SHC(command)]).execute(thread);
+			}
 		}
 
 		private static method onInit() {
 			commands = Table.create();
+			flags = Table.create();
 			count = 0;
 		}
 	}
@@ -328,9 +352,10 @@ library Commands requires Util, CommandParser, Selection, Logs {
 			Selection        m_selection;
 			ArgumentSplitter m_args;
 			boolean          m_forceStop;
+			integer          m_filter;
 		}
 
-		static method create(integer who) -> thistype {
+		static method create(integer who, integer filter) -> thistype {
 			thistype this = allocate();
 
 			debug Assert(who < 12 && who >= 0, "CommandThread.create", "Invalid player ID.");
@@ -346,6 +371,7 @@ library Commands requires Util, CommandParser, Selection, Logs {
 				top = this;
 			}
 
+			m_filter = filter;
 			m_owner = who;
 			m_quota = 0;
 			m_queueSize = 0;
@@ -514,6 +540,10 @@ library Commands requires Util, CommandParser, Selection, Logs {
 			return m_args;
 		}
 
+		method operator filter() -> integer {
+			return m_filter;
+		}
+
 		// misc
 
 		static method stopAll(integer who) {
@@ -610,7 +640,7 @@ library Commands requires Util, CommandParser, Selection, Logs {
 				return;
 			}
 
-			thread = CommandThread.create(who);
+			thread = CommandThread.create(who, CMDF_ANY);
 			thread.pushCommands(str);
 			thread.selection.fromPlayer(who);
 			thread.start.execute();

@@ -245,10 +245,10 @@ library Terrain requires Core {
 			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
 			castTrigger = null;
 
-			Command.register("height",        thistype.Command_Height);
-			Command.register("removedeforms", thistype.Command_RemoveDeforms);
-			Command.register("terrain",       thistype.Command_Terrain);
-			Command.register("dood",          thistype.Command_Dood);
+			Command.register("height",        thistype.Command_Height,        CMD_DIRECT);
+			Command.register("removedeforms", thistype.Command_RemoveDeforms, CMD_DIRECT);
+			Command.register("terrain",       thistype.Command_Terrain,       CMD_DIRECT);
+			Command.register("dood",          thistype.Command_Dood,          CMD_DIRECT);
 
 			for (0 <= i < 12) {
 				doodSizes[i] = 1;

@@ -68,12 +68,12 @@ library Loader requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("_au", thistype.Command_LoadAddQueueUnit);
-			Command.register("_at", thistype.Command_LoadAddQueueTile);
-			Command.register("_ad", thistype.Command_LoadAddQueueDeform);
-			Command.register("_cq", thistype.Command_LoadClearQueue);
-			Command.register("_sp", thistype.Command_LoadStartPaste);
-			Command.register("_so", thistype.Command_LoadSetOffset);
+			Command.register("_au", thistype.Command_LoadAddQueueUnit,   CMD_DIRECT);
+			Command.register("_at", thistype.Command_LoadAddQueueTile,   CMD_DIRECT);
+			Command.register("_ad", thistype.Command_LoadAddQueueDeform, CMD_DIRECT);
+			Command.register("_cq", thistype.Command_LoadClearQueue,     CMD_DIRECT);
+			Command.register("_sp", thistype.Command_LoadStartPaste,     CMD_DIRECT);
+			Command.register("_so", thistype.Command_LoadSetOffset,      CMD_DIRECT);
 		}
 	}
 }

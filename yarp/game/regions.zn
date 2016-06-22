@@ -115,11 +115,11 @@ library Regions requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("region"  , thistype.Command_CreateRegion);
-			Command.register("save"    , thistype.Command_SaveRegion);
-			Command.register("fog"     , thistype.Command_FogRegion);
-			Command.register("lighting", thistype.Command_LightingRegion);
-			Command.register("weather" , thistype.Command_WeatherRegion);
+			Command.register("region",   thistype.Command_CreateRegion,   CMD_DIRECT);
+			Command.register("save",     thistype.Command_SaveRegion,     CMD_DIRECT);
+			Command.register("fog",      thistype.Command_FogRegion,      CMD_DIRECT);
+			Command.register("lighting", thistype.Command_LightingRegion, CMD_DIRECT);
+			Command.register("weather",  thistype.Command_WeatherRegion,  CMD_DIRECT);
 		}
 	}
 	

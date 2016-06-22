@@ -134,7 +134,7 @@ library Unit requires Core {
 			unit what = GetEnumUnit();
 			CommandThread thread;
 
-			thread = CommandThread.create(s_thread.owner);
+			thread = CommandThread.create(s_thread.owner, CMDF_EXEC);
 			thread.selection.addUnit(what);
 			thread.pushCommands("repeat " + I2S(s_int) + " " + s_string);
 			thread.start.execute();
@@ -192,7 +192,7 @@ library Unit requires Core {
 
 			if (target < 0) return;
 
-			thread = CommandThread.create(thread.owner);
+			thread = CommandThread.create(thread.owner, CMDF_EXTEND);
 			GroupEnumUnitsOfPlayer(thread.selection.getGroup(), P(target), null);
 			thread.pushCommands(command);
 			thread.start.execute();
@@ -402,41 +402,41 @@ library Unit requires Core {
 		//! runtextmacro CommandEnd()
 
 		private static method onInit() {
-			Command.register("remove",  thistype.Command_UnitRemove);
-			Command.register("give",    thistype.Command_UnitGive);
-			Command.register("givef",   thistype.Command_UnitGiveForce);
-			Command.register("kill",    thistype.Command_UnitKill);
-			Command.register("explode", thistype.Command_UnitExplode);
-			Command.register("size",    thistype.Command_UnitSize);
-			Command.register("sized",   thistype.Command_UnitSizeDelta);
-			Command.register("fa",      thistype.Command_UnitAngle);
-			Command.register("fd",      thistype.Command_UnitAngleDelta);
-			Command.register("fr",      thistype.Command_UnitAngleRandom);
-			Command.register("movex",   thistype.Command_UnitMoveX);
-			Command.register("movey",   thistype.Command_UnitMoveY);
-			Command.register("move",    thistype.Command_UnitMoveXY);
-			Command.register("posx",    thistype.Command_UnitSetX);
-			Command.register("posy",    thistype.Command_UnitSetY);
-			Command.register("pos",     thistype.Command_UnitSetXY);
-			Command.register("movea",   thistype.Command_UnitMoveDirection);
-			Command.register("tint",    thistype.Command_UnitTint);
-			Command.register("color",   thistype.Command_UnitColor);
-			Command.register("aspeed",  thistype.Command_UnitAnimSpeed);
-			Command.register("speed",   thistype.Command_UnitSpeed);
-			Command.register("buff",    thistype.Command_UnitRemoveBuffs);
-			Command.register("cd",      thistype.Command_UnitRemoveCooldowns);
-			Command.register("play",    thistype.Command_UnitPlayAnim);
-			Command.register("tag",     thistype.Command_Tag);
-			Command.register("playq",   thistype.Command_UnitQueueAnim);
-			Command.register("fly",     thistype.Command_UnitFly);
-			Command.register("flyd",    thistype.Command_UnitFlyDelta);
-			Command.register("path",    thistype.Command_UnitPath);
-			Command.register("step",    thistype.Command_UnitStep);
-			Command.register("id",      thistype.Command_UnitId);
-			Command.register("life",    thistype.Command_UnitLife);
-			Command.register("mana",    thistype.Command_UnitMana);
-			Command.register("ability", thistype.Command_UnitAbility);
-			Command.register("global",  thistype.Command_UnitGlobal);
+			Command.register("remove",  thistype.Command_UnitRemove,          CMD_UNITPROP);
+			Command.register("give",    thistype.Command_UnitGive,            CMD_UNITPROP);
+			Command.register("givef",   thistype.Command_UnitGiveForce,       CMD_UNITPROP);
+			Command.register("kill",    thistype.Command_UnitKill,            CMD_UNITPROP);
+			Command.register("explode", thistype.Command_UnitExplode,         CMD_UNITPROP);
+			Command.register("size",    thistype.Command_UnitSize,            CMD_UNITPROP);
+			Command.register("sized",   thistype.Command_UnitSizeDelta,       CMD_UNITPROP);
+			Command.register("fa",      thistype.Command_UnitAngle,           CMD_UNITPROP);
+			Command.register("fd",      thistype.Command_UnitAngleDelta,      CMD_UNITPROP);
+			Command.register("fr",      thistype.Command_UnitAngleRandom,     CMD_UNITPROP);
+			Command.register("movex",   thistype.Command_UnitMoveX,           CMD_UNITPROP);
+			Command.register("movey",   thistype.Command_UnitMoveY,           CMD_UNITPROP);
+			Command.register("move",    thistype.Command_UnitMoveXY,          CMD_UNITPROP);
+			Command.register("posx",    thistype.Command_UnitSetX,            CMD_UNITPROP);
+			Command.register("posy",    thistype.Command_UnitSetY,            CMD_UNITPROP);
+			Command.register("pos",     thistype.Command_UnitSetXY,           CMD_UNITPROP);
+			Command.register("movea",   thistype.Command_UnitMoveDirection,   CMD_UNITPROP);
+			Command.register("tint",    thistype.Command_UnitTint,            CMD_UNITPROP);
+			Command.register("color",   thistype.Command_UnitColor,           CMD_UNITPROP);
+			Command.register("aspeed",  thistype.Command_UnitAnimSpeed,       CMD_UNITPROP);
+			Command.register("speed",   thistype.Command_UnitSpeed,           CMD_UNITPROP);
+			Command.register("buff",    thistype.Command_UnitRemoveBuffs,     CMD_UNITPROP);
+			Command.register("cd",      thistype.Command_UnitRemoveCooldowns, CMD_UNITPROP);
+			Command.register("play",    thistype.Command_UnitPlayAnim,        CMD_UNITPROP);
+			Command.register("tag",     thistype.Command_Tag,                 CMD_UNITPROP);
+			Command.register("playq",   thistype.Command_UnitQueueAnim,       CMD_UNITPROP);
+			Command.register("fly",     thistype.Command_UnitFly,             CMD_UNITPROP);
+			Command.register("flyd",    thistype.Command_UnitFlyDelta,        CMD_UNITPROP);
+			Command.register("path",    thistype.Command_UnitPath,            CMD_UNITPROP);
+			Command.register("life",    thistype.Command_UnitLife,            CMD_UNITPROP);
+			Command.register("mana",    thistype.Command_UnitMana,            CMD_UNITPROP);
+			Command.register("ability", thistype.Command_UnitAbility,         CMD_UNITPROP);
+			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
+			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
+			Command.register("id",      thistype.Command_UnitId,              CMD_NONE);
 
 			Alias.saveall("gl", "global");
 		}

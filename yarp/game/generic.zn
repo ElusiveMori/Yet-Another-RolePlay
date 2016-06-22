@@ -118,16 +118,15 @@ library Generic requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("alias",    thistype.Command_MakeAlias);
-			Command.register("macro",    thistype.Command_MakeMacro);
-			Command.register("unalias",  thistype.Command_RemoveAlias);
-			Command.register("unmacro",  thistype.Command_RemoveMacro);
-			Command.register("thread",   thistype.Command_ThreadControl);
-			Command.register("wait",     thistype.Command_Wait);
-			Command.register("repeat",   thistype.Command_Repeat);
-			Command.register("seq",      thistype.Command_Sequence);
-	//		Command.register("saveall",  thistype.Command_SaveAll);
-			Command.register("aux",      thistype.Command_Aux);
+			Command.register("alias",    thistype.Command_MakeAlias,     CMD_DIRECT);
+			Command.register("macro",    thistype.Command_MakeMacro,     CMD_DIRECT);
+			Command.register("unalias",  thistype.Command_RemoveAlias,   CMD_DIRECT);
+			Command.register("unmacro",  thistype.Command_RemoveMacro,   CMD_DIRECT);
+			Command.register("aux",      thistype.Command_Aux,           CMD_DIRECT);
+			Command.register("thread",   thistype.Command_ThreadControl, CMD_DIRECT);
+			Command.register("wait",     thistype.Command_Wait,          CMD_NONE);
+			Command.register("repeat",   thistype.Command_Repeat,        CMD_EXEC);
+			Command.register("seq",      thistype.Command_Sequence,      CMD_EXEC);
 		}
 	}
 }
