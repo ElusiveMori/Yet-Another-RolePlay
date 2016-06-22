@@ -114,12 +114,32 @@ library Regions requires Core {
 			thread.selection.run(function thistype.Command_WeatherRegion_aux);
 		}
 
+		private static method Command_RunRegion_aux() {
+			unit what = GetEnumUnit();
+			CommandThread thread;
+
+			if (PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				thread = CommandThread.create(s_thread.owner, CMDF_EXTEND);
+				thread.pushCommands(s_string);
+				GroupEnumUnitsInRect(thread.selection.getGroup(), RegionController[what].rectangle, null);
+				thread.start.execute();
+			}
+		}
+
+		private static method Command_RunRegion(CommandThread thread) {
+			s_string = thread.args.restParsed();
+			s_thread = thread;
+
+			thread.selection.run(function thistype.Command_RunRegion_aux);
+		}
+
 		private static method onInit() {
 			Command.register("region",   thistype.Command_CreateRegion,   CMD_DIRECT);
 			Command.register("save",     thistype.Command_SaveRegion,     CMD_DIRECT);
 			Command.register("fog",      thistype.Command_FogRegion,      CMD_DIRECT);
 			Command.register("lighting", thistype.Command_LightingRegion, CMD_DIRECT);
 			Command.register("weather",  thistype.Command_WeatherRegion,  CMD_DIRECT);
+			Command.register("run",      thistype.Command_RunRegion,      CMD_DIRECT);
 		}
 	}
 	
