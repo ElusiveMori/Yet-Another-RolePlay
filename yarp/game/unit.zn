@@ -134,12 +134,14 @@ library Unit requires Core {
 			unit what = GetEnumUnit();
 			CommandThread thread;
 
-			thread = CommandThread.create(s_thread.owner, CMDF_EXEC);
-			thread.selection.addUnit(what);
-			thread.pushCommands("repeat " + I2S(s_int) + " " + s_string);
-			thread.start.execute();
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				thread = CommandThread.create(s_thread.owner, CMDF_EXEC);
+				thread.selection.addUnit(what);
+				thread.pushCommands("repeat " + I2S(s_int) + " " + s_string);
+				thread.start.execute();
 
-			s_int = s_int + 1;
+				s_int = s_int + 1;
+			}
 		}
 
 		private static method Command_UnitStep(CommandThread thread) {
