@@ -111,6 +111,46 @@ library Generic requires Core {
 			AutoGroups.setGroup(thread.owner, S2I(thread.args.next()));
 		}
 
+		private static method Command_Roll(CommandThread thread) {
+			string one = thread.args.next();
+			string two = thread.args.next();
+
+			integer tmp = 0;
+			integer min = 1;
+			integer max = 1;
+
+			if (SL(two) == 0) {
+				if (SL(one) == 0) {
+					max = 20;
+				} else {
+					max = S2I(one);
+				}
+
+				if (max < 1) max = 1;
+			} else {
+				max = S2I(two);
+				min = S2I(one);
+
+				if (max < 1) max = 1;
+				if (min < 1) min = 1;
+
+				if (min > max) {
+					tmp = max;
+					max = min;
+					min = tmp;
+				}
+			}
+
+			Message(  PlayerName(thread.owner)
+				    + " has rolled " 
+				    + ColorStr(I2S(GetRandomInt(min, max)), GENERIC_HIGHLIGHT) 
+				    + " in the range of [" 
+				    + ColorStr(I2S(min), GENERIC_HIGHLIGHT) 
+				    + ", " 
+				    + ColorStr(I2S(max), GENERIC_HIGHLIGHT) 
+				    + "].");
+		}
+
 		private static method onInit() {
 			Command.register("alias",       thistype.Command_MakeAlias,     CMD_DIRECT);
 			Command.register("macro",       thistype.Command_MakeMacro,     CMD_DIRECT);
@@ -119,6 +159,7 @@ library Generic requires Core {
 			Command.register("thread",      thistype.Command_ThreadControl, CMD_DIRECT);
 			Command.register("autocommand", thistype.Command_AutoCommand,   CMD_DIRECT);
 			Command.register("autogroup",   thistype.Command_AutoGroup,     CMD_DIRECT);
+			Command.register("roll",        thistype.Command_Roll,          CMD_DIRECT);
 			Command.register("wait",        thistype.Command_Wait,          CMD_NONE);
 			Command.register("repeat",      thistype.Command_Repeat,        CMD_EXEC);
 			Command.register("seq",         thistype.Command_Sequence,      CMD_EXEC);
