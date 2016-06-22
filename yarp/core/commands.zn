@@ -21,14 +21,12 @@ library Commands requires Util, CommandParser, Selection, Logs {
 	public constant integer CMD_SPAWNING = 0x01; // for commands that spawn units
 	public constant integer CMD_EXEC     = 0x02; // for commands that execute other commands
 	public constant integer CMD_UNITPROP = 0x04; // for commands that change unit properties
-	public constant integer CMD_CHAT     = 0x08; // for commands that print something into the chat
-	public constant integer CMD_SETTING  = 0x10; // for commands that alter a player's local settings
-	public constant integer CMD_DIRECT   = 0x20; // for other commands forbidden from step, seq, global, etc.
+	public constant integer CMD_DIRECT   = 0x08; // for other commands forbidden from step, seq, global, etc.
 
 	// command filter presets
 	public constant integer CMDF_ANY     = 0xFF; // for normal, permit anything
 	public constant integer CMDF_EXEC    = 0x06; // for step, seq, permit only EXEC and UNITPROP
-	public constant integer CMDF_EXTEND  = 0xDF; // for global, run, don't permit DIRECT
+	public constant integer CMDF_EXTEND  = 0x07; // for global, run, don't permit DIRECT
 
 	public struct Alias[] {
 		private static TableArray aliases;
