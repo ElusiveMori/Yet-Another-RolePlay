@@ -192,10 +192,10 @@ library Unit requires Core {
 
 			if (target < 0) return;
 
-			thread = CommandThread.create(thread.owner, CMDF_EXTEND);
-			GroupEnumUnitsOfPlayer(thread.selection.getGroup(), P(target), null);
-			thread.pushCommands(command);
-			thread.start.execute();
+			newThread = CommandThread.create(thread.owner, CMDF_EXTEND);
+			GroupEnumUnitsOfPlayer(newThread.selection.getGroup(), P(target), null);
+			newThread.pushCommands(command);
+			newThread.start.execute();
 		}
 
 		//! runtextmacro CommandHeader("Command_UnitKill")
