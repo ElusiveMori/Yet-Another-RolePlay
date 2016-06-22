@@ -41,6 +41,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			integer     m_vertexG;
 			integer     m_vertexB;
 			integer     m_vertexA;
+			integer     m_group;
 			playercolor m_color;
 			real        m_size;
 			real        m_animSpeed;
@@ -74,8 +75,10 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 		//! runtextmacro SimpleGetter("vertexA",       "integer")
 		//! runtextmacro SimpleGetter("z",             "real")
 		//! runtextmacro SimpleGetter("allocated",     "boolean")
+		//! runtextmacro SimpleGetter("group",         "integer")
 
 		//! runtextmacro SimpleSetter("realOwner", "integer")
+		//! runtextmacro SimpleSetter("group",     "integer")
 
 		//! runtextmacro ExtendedSetter("animSpeed", "real",        "SetUnitTimeScale", "unit, ", "")
 		//! runtextmacro ExtendedSetter("size",      "real",        "SetUnitScale",     "unit, ", ", 1., 1.")
@@ -144,19 +147,21 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 		}
 
 		method defaultValues() {
-			m_realOwner   = currentOwner;
-			m_z           = 0.0;
-			m_flown       = false;
-			m_allocated   = true;
-			size          = 1.0;
-			animSpeed     = 1.0;
-			color         = GetPlayerColor(P(currentOwner));
-			name          = "";
+			m_realOwner = currentOwner;
+			m_z         = 0.0;
+			m_flown     = false;
+			m_allocated = true;
+			m_group     = AutoGroups.getGroup(currentOwner);
+			size        = 1.0;
+			animSpeed   = 1.0;
+			color       = GetPlayerColor(P(currentOwner));
+			name        = "";
 			setVertexColor(255, 255, 255, 255);
 		}
 
 		private method AIDS_onCreate() {
 			integer id = GetUnitTypeId(unit);
+			CommandThread thread;
 
 			// make buildings unmovable
 			if (IsUnitType(unit, UNIT_TYPE_SUMMONED) && IsUnitType(unit, UNIT_TYPE_MECHANICAL) && !IsUnitType(unit, UNIT_TYPE_ANCIENT)) {
@@ -170,6 +175,11 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			}
 
 			defaultValues();
+
+			thread = CommandThread.create(currentOwner, CMDF_AUTO);
+			thread.selection.addUnit(unit);
+			thread.pushCommands(AutoCommands.getCommand(currentOwner));
+			thread.start.execute();
 		}
 
 		private method AIDS_onDestroy() {

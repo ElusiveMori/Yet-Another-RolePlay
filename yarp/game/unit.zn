@@ -200,6 +200,25 @@ library Unit requires Core {
 			newThread.start.execute();
 		}
 
+		private static method Command_UnitRunGroup_filter() -> boolean {
+			unit what = GetFilterUnit();
+
+			return HasPlayerUnitAccess(s_thread.owner, what) && UnitData[what].group == s_int;
+		}
+
+		private static method Command_UnitRunGroup(CommandThread thread) {
+			string command;
+			CommandThread newThread;
+			s_int = S2I(thread.args.next());
+			command = thread.args.restParsed();
+			s_thread = thread;
+
+			newThread = CommandThread.create(thread.owner, CMDF_EXTEND);
+			GroupEnumUnitsOfPlayer(newThread.selection.getGroup(), P(thread.owner), Filter(function thistype.Command_UnitRunGroup_filter));
+			newThread.pushCommands(command);
+			newThread.start.execute();
+		}
+
 		//! runtextmacro CommandHeader("Command_UnitKill")
 		//! runtextmacro CommandStart("Command_UnitKill")
 			KillUnit(what);
@@ -403,6 +422,12 @@ library Unit requires Core {
 			unitData.mana = s_real1;
 		//! runtextmacro CommandEnd()
 
+		//! runtextmacro CommandHeader("Command_UnitGroup")
+			s_int = S2I(thread.args.next());
+		//! runtextmacro CommandStart("Command_Group")
+			unitData.group = s_int;
+		//! runtextmacro CommandEnd()	
+
 		private static method onInit() {
 			Command.register("remove",  thistype.Command_UnitRemove,          CMD_UNITPROP);
 			Command.register("give",    thistype.Command_UnitGive,            CMD_UNITPROP);
@@ -436,8 +461,10 @@ library Unit requires Core {
 			Command.register("life",    thistype.Command_UnitLife,            CMD_UNITPROP);
 			Command.register("mana",    thistype.Command_UnitMana,            CMD_UNITPROP);
 			Command.register("ability", thistype.Command_UnitAbility,         CMD_UNITPROP);
+			Command.register("group",   thistype.Command_UnitGroup,           CMD_UNITPROP);
 			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
 			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
+			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);
 			Command.register("id",      thistype.Command_UnitId,              CMD_NONE);
 
 			Alias.saveall("gl", "global");

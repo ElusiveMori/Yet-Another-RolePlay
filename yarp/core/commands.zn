@@ -27,6 +27,7 @@ library Commands requires Util, CommandParser, Selection, Logs {
 	public constant integer CMDF_ANY     = 0xFF; // for normal, permit anything
 	public constant integer CMDF_EXEC    = 0x06; // for step, seq, permit only EXEC and UNITPROP
 	public constant integer CMDF_EXTEND  = 0x07; // for global, run, don't permit DIRECT
+	public constant integer CMDF_AUTO    = 0x04; // for autocommand, only permit UNITPROP
 
 	public struct Alias[] {
 		private static TableArray aliases;
@@ -254,9 +255,9 @@ library Commands requires Util, CommandParser, Selection, Logs {
 		static string all[];
 
 		static method register(string command, CommandCallback callback, integer flag) {
-			debug Assert(SL(command) > 0,          "Command.register", "Command length is zero.");
-			debug Assert(callback > 0,             "Command.register", "Invalid callback provided.");
-			debug Assert(!Command.exists(command), "Command.register", "Command with the same name already exists.");
+			debug Assert(SL(command) > 0,          "Command.register - " + command, "Command length is zero.");
+			debug Assert(callback > 0,             "Command.register - " + command, "Invalid callback provided.");
+			debug Assert(!Command.exists(command), "Command.register - " + command, "Command with the same name already exists.");
 
 			all[count] = command;
 			count = count + 1;
@@ -580,26 +581,50 @@ library Commands requires Util, CommandParser, Selection, Logs {
 		}
 	}
 
-	public struct AuxCommands[] {
-		private static string aux[];
+	public struct AutoCommands[] {
+		private static string auto[];
 
-		static method getAux(integer who) -> string {
-			debug Assert(who >= 0 && who < 12, "AuxCommands.get", "Invalid player ID.");
+		static method getCommand(integer who) -> string {
+			debug Assert(who < 12 && who >= 0, "AutoCommands.getCommand", "Invalid player ID.");
 
-			return aux[who];
+			return auto[who];
 		}
 
-		static method setAux(integer who, string str) {
-			debug Assert(who >= 0 && who < 12, "AuxCommands.set", "Invalid player ID.");
+		static method setCommand(integer who, string command) {
+			debug Assert(who < 12 && who >= 0, "AutoCommands.setCommand", "Invalid player ID.");
 
-			aux[who] = str;
+			auto[who] = command;
 		}
 
 		private static method onInit() {
-			integer i;
+			integer i = 0;
 
 			for (0 <= i < 12) {
-				aux[i] = "";
+				auto[i] = "";
+			}
+		}
+	}
+
+	public struct AutoGroups[] {
+		private static integer auto[];
+
+		static method getGroup(integer who) -> integer {
+			debug Assert(who < 12 && who >= 0, "AutoGroups.getGroup", "Invalid player ID.");
+
+			return auto[who];
+		}
+
+		static method setGroup(integer who, integer what) {
+			debug Assert(who < 12 && who >= 0, "AutoGroups.setGroup", "Invalid player ID.");
+
+			auto[who] = what;
+		}
+
+		private static method onInit() {
+			integer i = 0;
+
+			for (0 <= i < 12) {
+				auto[i] = 0;
 			}
 		}
 	}

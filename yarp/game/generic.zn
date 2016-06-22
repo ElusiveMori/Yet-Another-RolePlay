@@ -103,30 +103,28 @@ library Generic requires Core {
 			}
 		}
 
-	//	private static method Command_SaveAll(CommandThread thread) {
-	//		group temp = NewGroup();
-	//		GroupEnumUnitsInRect(temp, WorldBounds.world, null);
-	//		Save.setFilename("saveall");
-	//		Save.setQueue(temp);
-	//		Save.save(thread.owner);
-	//
-	//		temp = null;
-	//	}
+		private static method Command_AutoCommand(CommandThread thread) {
+			AutoCommands.setCommand(thread.owner, thread.args.restParsed());
+		}
 
-		private static method Command_Aux(CommandThread thread) {
-			AuxCommands.setAux(thread.owner, thread.args.restParsed());
+		private static method Command_AutoGroup(CommandThread thread) {
+			AutoGroups.setGroup(thread.owner, S2I(thread.args.next()));
 		}
 
 		private static method onInit() {
-			Command.register("alias",    thistype.Command_MakeAlias,     CMD_DIRECT);
-			Command.register("macro",    thistype.Command_MakeMacro,     CMD_DIRECT);
-			Command.register("unalias",  thistype.Command_RemoveAlias,   CMD_DIRECT);
-			Command.register("unmacro",  thistype.Command_RemoveMacro,   CMD_DIRECT);
-			Command.register("aux",      thistype.Command_Aux,           CMD_DIRECT);
-			Command.register("thread",   thistype.Command_ThreadControl, CMD_DIRECT);
-			Command.register("wait",     thistype.Command_Wait,          CMD_NONE);
-			Command.register("repeat",   thistype.Command_Repeat,        CMD_EXEC);
-			Command.register("seq",      thistype.Command_Sequence,      CMD_EXEC);
+			Command.register("alias",       thistype.Command_MakeAlias,     CMD_DIRECT);
+			Command.register("macro",       thistype.Command_MakeMacro,     CMD_DIRECT);
+			Command.register("unalias",     thistype.Command_RemoveAlias,   CMD_DIRECT);
+			Command.register("unmacro",     thistype.Command_RemoveMacro,   CMD_DIRECT);
+			Command.register("thread",      thistype.Command_ThreadControl, CMD_DIRECT);
+			Command.register("autocommand", thistype.Command_AutoCommand,   CMD_DIRECT);
+			Command.register("autogroup",   thistype.Command_AutoGroup,     CMD_DIRECT);
+			Command.register("wait",        thistype.Command_Wait,          CMD_NONE);
+			Command.register("repeat",      thistype.Command_Repeat,        CMD_EXEC);
+			Command.register("seq",         thistype.Command_Sequence,      CMD_EXEC);
+
+			Alias.saveall("autocmd", "autocommand");
+			Alias.saveall("autogrp", "autogroup");
 		}
 	}
 }
