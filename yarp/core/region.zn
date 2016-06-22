@@ -244,14 +244,6 @@ library Region requires Util, Logs {
 					RegionController[caster].refreshWeather();
 				} else if (spellId == REGION_ABIL_REMOVE) {
 					RemoveUnit(caster);
-				} else if (spellId == REGION_ABIL_AUX) {
-					thread = CommandThread.create(owner, CMDF_EXTEND);
-					thread.pushCommands(AuxCommands.getAux(owner));
-					GroupEnumUnitsInRect(thread.selection.getGroup(), temp, null);
-					thread.start.execute();
-
-					Log.log(owner, TYPE_CMD, "(region) " + AuxCommands.getAux(owner));
-					LogBoard.updateBoard();
 				}
 			}
 
