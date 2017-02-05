@@ -219,6 +219,50 @@ void AutoAddShop(string eId, string name) {
 	}
 }
 
+void QueueUnit(string id) {
+	unitQueue[] = id;
+}
+
+void AddUnitShop(string eId, string name) {
+	int count = 0;
+	int number = 1;
+	eId = "s-" + eId;
+
+	int total = 0;
+	for (int i: unitQueue) total++;
+	int i = 0;
+
+	bool multiple = total > 12;
+
+	shopModel = map.objects[unitQueue[i]].file;
+
+	string sellList = "";
+	while (unitQueue[i] != null) {
+		string id = unitQueue[i];
+		unset(unitQueue[i]);
+		i++;
+
+		if (strlen(sellList) > 0) {
+			sellList = sellList + ",";
+		}
+
+		sellList = sellList + id;
+		count++;
+
+		if (unitQueue[i] == null || count == 12) {
+			if (multiple) {
+				AddShop(eId + number, name + " " + number, sellList);
+			} else {
+				AddShop(eId, name, sellList);
+			}
+
+			sellList = "";
+			count = 0;
+			number++;
+		}
+	}
+}
+
 void PrepareStock() {
 	for (string i: map.objects) {
 		if (isIdCustom(i)) {

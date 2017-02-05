@@ -81,3 +81,5 @@ global array extendedIdsRev = array();
 
 global array buildingQueue = array();
 global array builderQueue = array();
+
+global array unitQueue = array();

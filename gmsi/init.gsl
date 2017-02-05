@@ -6,14 +6,14 @@ include("objects.gsl");
 include("io.gsl");
 include("common.gsl");
 include("string.gsl");
-include("westrings.gsl");
 
+include("yarp/westrings.gsl");
 include("yarp/orders.gsl");
 include("yarp/globals.gsl");
 include("yarp/util.gsl");
-include("yarp/base.gsl");
-include("yarp/generators.gsl");
-include("yarp/data.gsl");
+include("yarp/base_objects.gsl");
+include("yarp/object_generators.gsl");
+include("yarp/yarp_objects.gsl");
 
 void Init() {
 	InitNextCharacters();

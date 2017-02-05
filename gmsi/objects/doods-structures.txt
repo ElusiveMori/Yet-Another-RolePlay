@@ -156,9 +156,9 @@ AddBuilding("dungeonobelisk", "Dungeon Obelisk", "Doodads\\Dungeon\\Props\\Dunge
 AddBuilding("felwoodbrokenobelisk2", "Felwood Broken Obelisk 2", "Doodads\\Felwood\\Props\\FelwoodBrokenObilisk\\FelwoodBrokenObilisk1.mdx");
 AddBuilding("felwoodbrokenobelisk1", "Felwood Broken Obelisk 1", "Doodads\\Felwood\\Props\\FelwoodBrokenObilisk\\FelwoodBrokenObilisk0.mdx");
 AddBuilding("felwoodobelisk", "Felwood Obelisk", "Doodads\\Felwood\\Props\\FelwoodObilisk\\FelwoodObilisk.mdx");
-AddBuilding("icecrownobelisk1", "Ice Crown Obelisk 1", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk0.mdx");
-AddBuilding("icecrownobelisk2", "Ice Crown Obelisk 2", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk1.mdx");
-AddBuilding("icecrownobelisk3", "Ice Crown Obelisk 3", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk2.mdx");
+AddBuilding("icecrownobelisk1", "Icecrown Obelisk 1", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk0.mdx");
+AddBuilding("icecrownobelisk2", "Icecrown Obelisk 2", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk1.mdx");
+AddBuilding("icecrownobelisk3", "Icecrown Obelisk 3", "Doodads\\Icecrown\\Props\\IceCrownObelisk\\IceCrownObelisk2.mdx");
 AddBuilding("obelisk1", "Obelisk 1", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk0.mdx");
 AddBuilding("obelisk2", "Obelisk 2", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk1.mdx");
 AddBuilding("obelisk3", "Obelisk 3", "Doodads\\Ashenvale\\Props\\Obelisk\\obelisk2.mdx");
