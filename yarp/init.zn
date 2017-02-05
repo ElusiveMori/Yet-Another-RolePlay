@@ -9,10 +9,15 @@
 //! import vjass "yarp/ext/aids.j"
 //! import vjass "yarp/ext/argb.j"
 //! import vjass "yarp/ext/board.j"
-//! import vjass "yarp/ext/typecast.j"
-//! import vjass "yarp/ext/memory.j"
-//! import vjass "yarp/ext/version.j"
-//! import vjass "yarp/ext/bitwise.j"
+
+// Below are version-dependent imports
+// ! import vjass "yarp/ext/typecast.j"
+// ! import vjass "yarp/ext/memory.j"
+// ! import vjass "yarp/ext/version.j"
+// ! import vjass "yarp/ext/bitwise.j"
+
+// Below are alternatives for version-dependent imports
+//! import vjass "yarp/ext/bitwise_stable.j"
 
 // Core
 
