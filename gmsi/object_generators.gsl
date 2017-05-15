@@ -72,7 +72,7 @@ void AddBuilder(string eId, string name, string units) {
 	builder.Builds = buildList;
 }
 
-void AddShop(string eId, string name, string units) {
+string AddShop(string eId, string name, string units) {
 	Unit shop = GetBaseShop(shopsCurrentId);
 	shop.file = shopModel;
 	shop.Name = name;
@@ -82,6 +82,7 @@ void AddShop(string eId, string name, string units) {
 
 	extendedIds[eId] = shopsCurrentId;
 	extendedIdsRev[shopsCurrentId] = eId;
+	string returnValue = shopsCurrentId;
 
 	shopsCurrentId = GetNextId(shopsCurrentId);
 	bool first = true;
@@ -108,6 +109,7 @@ void AddShop(string eId, string name, string units) {
 	echoln("Added shop " + eId + " - " + name);
 
 	shop.Sellunits = sellList;
+	return returnValue;
 }
 
 // adds a single builder
@@ -234,10 +236,12 @@ void AddUnitShop(string eId, string name) {
 
 	bool multiple = total > 12;
 
-	shopModel = map.objects[unitQueue[i]].file;
-
 	string sellList = "";
 	while (unitQueue[i] != null) {
+		if (shopModel == null) {
+			shopModel = map.objects[unitQueue[i]].file;
+		}
+
 		string id = unitQueue[i];
 		unset(unitQueue[i]);
 		i++;
@@ -251,20 +255,23 @@ void AddUnitShop(string eId, string name) {
 
 		if (unitQueue[i] == null || count == 12) {
 			if (multiple) {
-				AddShop(eId + number, name + " " + number, sellList);
+				unitShopQueue[] = AddShop(eId + number, name + " " + number, sellList);
 			} else {
-				AddShop(eId, name, sellList);
+				unitShopQueue[] = AddShop(eId, name, sellList);
 			}
 
 			sellList = "";
 			count = 0;
 			number++;
+			shopModel = null;
 		}
 	}
 }
 
+// this sets up stock objects and their properties
 void PrepareStock() {
 	for (string i: map.objects) {
+		// remove all custom objects
 		if (isIdCustom(i)) {
 			unset(map.objects[i]);
 			continue;
@@ -272,15 +279,12 @@ void PrepareStock() {
 
 		Wc3obj o = map.objects[i];
 
+		// remove any modifications from the object
 		for (string j: o) {
 			unset(o[j]);
 		}
 
 		if (o.typetostr == "Unit") {
-			for (string j: o) {
-				unset(o[j]);
-			}
-
 			if (o.isbldg == 1) {
 				bool ancient = false;
 
@@ -291,6 +295,7 @@ void PrepareStock() {
 					}
 				}
 
+				// remove blight dispel from abilities
 				bool blightDispel = false;
 				bool first = true;
 				string newList = "";
@@ -425,5 +430,26 @@ void PreplaceUnits() {
 		for (int j: sch[i]) {
 			placeUnit(map, extendedIds[sch[i][j]], j * gridSize - gridSize * 8, i * gridSize - gridSize * 8, 0, 0, 270);
 		}
+	}
+
+	string shopId = unitShopQueue[];
+	int i = 0;
+	int j = 0;
+	while (shopId != null) {
+		float x = j * gridSize + gridSize * 8;
+		float y = -i * gridSize + gridSize * 8;
+
+		placeUnit(map, shopId, x, y, 0, 0, 270);
+		j++;
+
+		if (j > 16) {
+			i++;
+			j=0;
+		}
+
+		echoln("placed " + shopId);
+
+		unset(unitShopQueue[]);
+		shopId=unitShopQueue[];
 	}
 }

@@ -28,6 +28,7 @@ void Init() {
 	MakeTerrain();
 	MakeDoodad();
 
+	echoln("Starting doodads...");
 	include("yarp/objects/doods.txt");
 	include("yarp/objects/doods-magic.txt");
 	include("yarp/objects/doods-rocks.txt");
@@ -37,6 +38,10 @@ void Init() {
 	include("yarp/objects/doods-archways.txt");
 	include("yarp/objects/doods-graveyard.txt");
 	include("yarp/objects/doods-structures.txt");
+
+	echoln("Starting unit shops...");
+	include("yarp/objects/unitshops-races.txt");
+	include("yarp/objects/unitshops.txt");
 
 	PreplaceUnits();
 	saveMap(map, @outputPath + "/" + map.fileName);
