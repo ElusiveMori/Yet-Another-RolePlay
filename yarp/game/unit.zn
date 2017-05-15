@@ -424,7 +424,7 @@ library Unit requires Core {
 
 		//! runtextmacro CommandHeader("Command_UnitGroup")
 			s_int = S2I(thread.args.next());
-		//! runtextmacro CommandStart("Command_Group")
+		//! runtextmacro CommandStart("Command_UnitGroup")
 			unitData.group = s_int;
 		//! runtextmacro CommandEnd()	
 
