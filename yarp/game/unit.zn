@@ -426,7 +426,18 @@ library Unit requires Core {
 			s_int = S2I(thread.args.next());
 		//! runtextmacro CommandStart("Command_UnitGroup")
 			unitData.group = s_int;
-		//! runtextmacro CommandEnd()	
+		//! runtextmacro CommandEnd()
+
+		//! runtextmacro CommandHeader("Command_UnitPause")
+			string str = thread.args.next();
+			if (str == "off") {
+				s_bool = false;
+			} else {
+				s_bool = true;
+			}
+		//! runtextmacro CommandStart("Command_UnitPause")
+			unitData.paused = s_bool;
+		//! runtextmacro CommandEnd();
 
 		private static method onInit() {
 			Command.register("remove",  thistype.Command_UnitRemove,          CMD_UNITPROP);
@@ -462,12 +473,14 @@ library Unit requires Core {
 			Command.register("mana",    thistype.Command_UnitMana,            CMD_UNITPROP);
 			Command.register("ability", thistype.Command_UnitAbility,         CMD_UNITPROP);
 			Command.register("group",   thistype.Command_UnitGroup,           CMD_UNITPROP);
+			Command.register("pause",   thistype.Command_UnitPause,           CMD_UNITPROP);
 			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
 			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
 			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);
 			Command.register("id",      thistype.Command_UnitId,              CMD_NONE);
 
 			Alias.saveall("gl", "global");
+			Alias.saveall("unpause", "pause off");
 		}
 	}
 }

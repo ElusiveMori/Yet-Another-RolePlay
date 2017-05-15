@@ -60,6 +60,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 		//! runtextmacro FunctionGetter("mana",          "real",     "GetUnitState",     "unit, UNIT_STATE_MANA")
 		//! runtextmacro FunctionGetter("speed",         "real",     "GetUnitMoveSpeed", "unit")
 		//! runtextmacro FunctionGetter("id",            "integer",  "GetUnitTypeId",    "unit")
+		//! runtextmacro FunctionGetter("paused",        "boolean",  "IsUnitPaused",     "unit")
 
 		//! runtextmacro FunctionSetter("life",         "real",   "SetUnitState",       "unit, UNIT_STATE_LIFE, ", "")
 		//! runtextmacro FunctionSetter("mana",         "real",   "SetUnitState",       "unit, UNIT_STATE_MANA, ", "")
@@ -144,6 +145,15 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			Fly.fly(unit);
 			SetUnitFlyHeight(unit, value, 1000000);
 			m_z = value;
+		}
+
+		method operator paused=(boolean value) {
+			PauseUnit(unit, value);
+			if (value) {
+				SetUnitTimeScale(unit, 0);
+			} else {
+				SetUnitTimeScale(unit, m_animSpeed);
+			}
 		}
 
 		method defaultValues() {

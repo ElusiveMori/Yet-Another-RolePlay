@@ -51,6 +51,20 @@ library Util requires AIDS, Alloc, ARGB, Board, GameClock, GroupUtils, StringLib
 			return "false";
 	}
 
+	public function B2I(boolean b) -> integer {
+		if (b)
+			return 1;
+		else
+			return 0;
+	}
+
+	public function I2B(integer i) -> boolean {
+		if (i == 0)
+			return false;
+		else
+			return true;
+	}
+
 	public function IsLocalPlayer(integer who) -> boolean {
 		return LocalPlayer == who;
 	}

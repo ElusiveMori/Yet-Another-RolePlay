@@ -20,6 +20,7 @@ library Loader requires Core {
 			queue.vertexG    = S2I(thread.args.next());
 			queue.vertexB    = S2I(thread.args.next());
 			queue.vertexA    = S2I(thread.args.next());
+			queue.paused     = I2B(S2I(thread.args.next()));
 		}
 
 		private static method Command_LoadAddQueueTile(CommandThread thread) {

@@ -93,7 +93,8 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 			          + I2S(unitData.vertexR) + delim
 			          + I2S(unitData.vertexG) + delim
 			          + I2S(unitData.vertexB) + delim
-			          + I2S(unitData.vertexA));
+			          + I2S(unitData.vertexA) + delim
+			          + I2S(B2I(unitData.paused)));
 
 			count = count + 1;
 		}
@@ -229,6 +230,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 		integer vertexG;
 		integer vertexB;
 		integer vertexA;
+		boolean paused;
 
 		// deformation
 
@@ -320,6 +322,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 									unitData.z = queue.z;
 									unitData.color = ConvertPlayerColor(queue.color);
 									unitData.setVertexColor(queue.vertexR, queue.vertexG, queue.vertexB, queue.vertexA);
+									unitData.paused = queue.paused;
 								}
 							}
 							
