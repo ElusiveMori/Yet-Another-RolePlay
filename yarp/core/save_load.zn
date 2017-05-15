@@ -312,6 +312,8 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 								unitData = UnitData[what];
 
 								if (unitData > 0) {
+									unitData.x = offsetsX[who] + queue.x;
+									unitData.y = offsetsY[who] + queue.y;
 									unitData.size = queue.size;
 									unitData.speed = queue.speed;
 									unitData.animSpeed = queue.animSpeed;
