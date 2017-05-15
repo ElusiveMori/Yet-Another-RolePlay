@@ -43,18 +43,16 @@ library Regions requires Core {
 				return;
 			}
 
-			if (IsLocalPlayer(thread.owner)) {
-				s_thread = thread;
-				s_unit = null;
-				thread.selection.run(function thistype.Command_SaveRegion_aux);
+			s_thread = thread;
+			s_unit = null;
+			thread.selection.run(function thistype.Command_SaveRegion_aux);
 
-				if (s_unit == null) {
-					Message("You must select a Location Specifier!");
-					return;
-				}
-
-				Save.save(thread.owner, RegionController[s_unit].rectangle, filename);
+			if (s_unit == null) {
+				MessageTo(thread.owner, "You must select a Location Specifier!");
+				return;
 			}
+
+			Save.save(thread.owner, RegionController[s_unit].rectangle, filename);
 		}
 
 		private static method Command_FogRegion_aux() {
