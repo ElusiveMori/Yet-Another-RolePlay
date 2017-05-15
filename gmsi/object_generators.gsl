@@ -356,6 +356,21 @@ void PrepareStock() {
 			o.cargoSize = 1;
 			o.unitShadow = "";
 			o.buildingShadow = "_";
+			o.Tip = o.Name;
+			if (o.nameCount == 1) {
+				o.Tip = o.Propernames;
+			}
+			o.Ubertip = "";
+			o.Awakentip = o.Tip;
+			o.Revivetip = o.Tip;
+			o.Requires1 = "";
+			o.Requires2 = "";
+			o.Requires3 = "";
+			o.Requires4 = "";
+			o.Requires5 = "";
+			o.Requires6 = "";
+			o.Requires7 = "";
+			o.Requires8 = "";
 		} else if (o.typetostr == "Ability") {
 			o.checkDep = 0;
 		}
