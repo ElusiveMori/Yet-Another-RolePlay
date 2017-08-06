@@ -32,22 +32,18 @@ QueueUnit("hbot"); //human:Human Transport Ship -- units\creeps\HumanTransportSh
 
 AddUnitShop("ships", "Ships");
 
-QueueUnit("nvk2"); //commoner:Child -- units\critters\VillagerKid1\VillagerKid1
-QueueUnit("nvlk"); //commoner:Child -- units\critters\VillagerKid\VillagerKid
-QueueUnit("nvl2"); //commoner:Villager -- units\critters\VillagerMan1\VillagerMan1
-QueueUnit("nvil"); //commoner:Villager -- units\critters\VillagerMan\VillagerMan
-QueueUnit("nvlw"); //commoner:Villager -- units\critters\VillagerWoman\VillagerWoman
-QueueUnit("hrdh"); //human:Pack Horse -- units\critters\PackHorse\PackHorse
-QueueUnit("hhdl"); //human:Riderless Horse -- units\human\KnightNoRider\KnightNoRider
-
-AddUnitShop("villagers", "Villagers");
-
 QueueUnit("nelb"); //creeps:Berserk Elemental -- units\human\WaterElemental\WaterElemental
 QueueUnit("nele"); //creeps:Enraged Elemental -- units\human\WaterElemental\WaterElemental
 QueueUnit("nrel"); //creeps:Reef Elemental -- Units\Creeps\SeaElemental\SeaElemental
 QueueUnit("nsel"); //creeps:Sea Elemental -- Units\Creeps\SeaElemental\SeaElemental
 
 AddUnitShop("water-elementals", "Water Elementals");
+
+QueueUnit("ngsp"); //creeps:Goblin Sapper -- units\creeps\GoblinSapper\GoblinSapper
+QueueUnit("ngir"); //creeps:Goblin Shredder -- units\creeps\IronGolem\IronGolem
+QueueUnit("nzep"); //creeps:Goblin Zeppelin -- units\creeps\GoblinZeppelin\GoblinZeppelin
+
+AddUnitShop("goblins", "Goblins");
 
 QueueUnit("npfl"); //creeps:Fel Beast -- units\creeps\FelstalkerPurple\FelstalkerPurple
 QueueUnit("npfm"); //creeps:Fel Ravager -- units\creeps\FelstalkerPurple\FelstalkerPurple
@@ -86,13 +82,6 @@ QueueUnit("nina"); //creeps:Infernal Juggernaut -- units\creeps\InfernalCannonFl
 
 AddUnitShop("infernal-cannons", "Infernal Cannons");
 
-QueueUnit("nsra"); //creeps:Stormreaver Apprentice -- units\creeps\OrcWarlock\OrcWarlock
-QueueUnit("nsrh"); //creeps:Stormreaver Hermit -- units\creeps\OrcWarlock\OrcWarlock
-QueueUnit("nsrn"); //creeps:Stormreaver Necrolyte -- units\creeps\OrcWarlock\OrcWarlock
-QueueUnit("nsrw"); //creeps:Stormreaver Warlock -- units\creeps\OrcWarlock\OrcWarlock
-
-AddUnitShop("stormreaver", "Stormreaver Warlocks");
-
 QueueUnit("ndqt"); //creeps:Vile Temptress -- units\demon\Demoness\Demoness
 QueueUnit("ndqn"); //creeps:Succubus -- units\demon\Demoness\Demoness
 QueueUnit("ndqv"); //creeps:Vile Tormentor -- units\demon\DemonessBlue\DemonessBlue
@@ -100,6 +89,14 @@ QueueUnit("ndqp"); //creeps:Maiden of Pain -- units\demon\DemonessBlue\DemonessB
 QueueUnit("ndqs"); //creeps:Queen of Suffering -- units\demon\DemonessBlue\DemonessBlue
 
 AddUnitShop("succubi", "Succubi");
+
+QueueUnit("nsra"); //creeps:Stormreaver Apprentice -- units\creeps\OrcWarlock\OrcWarlock
+QueueUnit("nsrh"); //creeps:Stormreaver Hermit -- units\creeps\OrcWarlock\OrcWarlock
+QueueUnit("nsrn"); //creeps:Stormreaver Necrolyte -- units\creeps\OrcWarlock\OrcWarlock
+QueueUnit("nsrw"); //creeps:Stormreaver Warlock -- units\creeps\OrcWarlock\OrcWarlock
+
+
+AddUnitShop("stormreaver", "Stormreaver Warlocks");
 
 QueueUnit("nstw"); //creeps:Storm Wyrm -- units\creeps\ThunderLizard\ThunderLizard
 QueueUnit("nthl"); //creeps:Thunder Lizard -- units\creeps\ThunderLizard\ThunderLizard
@@ -147,12 +144,6 @@ QueueUnit("nwlg"); //creeps:Giant Wolf -- units\creeps\TimberWolf\TimberWolf
 QueueUnit("nwlt"); //creeps:Timber Wolf -- units\creeps\TimberWolf\TimberWolf
 
 AddUnitShop("wolves", "Wolves");
-
-QueueUnit("ngsp"); //creeps:Goblin Sapper -- units\creeps\GoblinSapper\GoblinSapper
-QueueUnit("ngir"); //creeps:Goblin Shredder -- units\creeps\IronGolem\IronGolem
-QueueUnit("nzep"); //creeps:Goblin Zeppelin -- units\creeps\GoblinZeppelin\GoblinZeppelin
-
-AddUnitShop("goblins", "Goblins");
 
 QueueUnit("nkob"); //creeps:Kobold -- units\creeps\Kobold\Kobold
 QueueUnit("nkog"); //creeps:Kobold Geomancer -- units\creeps\KoboldGeomancer\KoboldGeomancer
@@ -540,7 +531,6 @@ QueueUnit("nfbr"); //critters:Fel Boar -- units\critters\Felboar\Felboar
 QueueUnit("nsea"); //critters:Seal -- units\critters\Seal\Seal
 
 AddUnitShop("critters", "Critters");
-
 
 QueueUnit("nwgs"); //naga:Couatl -- units\naga\WindSerpent\WindSerpent
 QueueUnit("nmyr"); //naga:Naga Myrmidon -- units\naga\NagaMyrmidon\NagaMyrmidon

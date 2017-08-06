@@ -49,12 +49,12 @@ QueueUnit("Hapm"); //human:Paladin -- units\other\Proudmoore\Proudmoore
 
 AddUnitShop("human-paladins", "Human Paladins");
 
+QueueUnit("hhes"); //human:Swordsman -- units\human\TheCaptain\TheCaptain
 QueueUnit("nhea"); //human:Archer -- units\creeps\HighElfArcher\HighElfArcher
 QueueUnit("nbee"); //human:Blood Elf Engineer -- units\critters\HighElfPeasant\HighElfPeasant
 QueueUnit("nbel"); //human:Blood Elf Lieutenant -- units\other\BloodElfLieutenant\BloodElfLieutenant
 QueueUnit("nhef"); //human:High Elf -- units\critters\ElfVillagerWoman\ElfVillagerWoman
 QueueUnit("nhem"); //human:High Elf -- units\critters\HighElfPeasant\HighElfPeasant
-QueueUnit("hhes"); //human:Swordsman -- units\human\TheCaptain\TheCaptain
 QueueUnit("hcth"); //human:Captain -- units\human\TheCaptain\TheCaptain
 QueueUnit("hbew"); //human:Wagon -- units\other\BloodElfWagon\BloodElfWagon
 QueueUnit("nhew"); //human:Worker -- units\critters\HighElfPeasant\HighElfPeasant
@@ -63,6 +63,17 @@ QueueUnit("nmed"); //human:Medivh -- units\creeps\Medivh\Medivh
 
 AddUnitShop("human-campaign", "Human Campaign");
 
+QueueUnit("nvk2"); //commoner:Child -- units\critters\VillagerKid1\VillagerKid1
+QueueUnit("nvlk"); //commoner:Child -- units\critters\VillagerKid\VillagerKid
+QueueUnit("nvl2"); //commoner:Villager -- units\critters\VillagerMan1\VillagerMan1
+QueueUnit("nvil"); //commoner:Villager -- units\critters\VillagerMan\VillagerMan
+QueueUnit("nvlw"); //commoner:Villager -- units\critters\VillagerWoman\VillagerWoman
+QueueUnit("hrdh"); //human:Pack Horse -- units\critters\PackHorse\PackHorse
+QueueUnit("hhdl"); //human:Riderless Horse -- units\human\KnightNoRider\KnightNoRider
+
+AddUnitShop("villagers", "Villagers");
+
+CarryOverUnitShops();
 
 QueueUnit("opeo"); //orc:Peon -- units\orc\Peon\Peon
 QueueUnit("ogru"); //orc:Grunt -- units\orc\Grunt\Grunt
@@ -111,7 +122,9 @@ QueueUnit("oswy"); //orc:Spirit Wyvern -- units\orc\SpiritWyvern\SpiritWyvern
 QueueUnit("ownr"); //orc:Wyvern -- units\orc\RiderlessWyvern\RiderlessWyvern
 
 AddUnitShop("orc-campaign", "Orc Campaign");
+CarryOverUnitShops();
 
+QueueUnit("ewsp"); //nightelf:Wisp -- units\nightelf\Wisp\Wisp
 QueueUnit("earc"); //nightelf:Archer	 -- units\nightelf\Archer\Archer
 QueueUnit("echm"); //nightelf:Chimaera -- units\nightelf\Chimaera\Chimaera
 QueueUnit("edoc"); //nightelf:Druid of the Claw -- units\nightelf\DruidoftheClaw\DruidoftheClaw
@@ -121,31 +134,29 @@ QueueUnit("ebal"); //nightelf:Glaive Thrower -- units\nightelf\Ballista\Ballista
 QueueUnit("ehip"); //nightelf:Hippogryph -- units\nightelf\Hippogryph\Hippogryph
 QueueUnit("ehpr"); //nightelf:Hippogryph Rider -- units\nightelf\RiddenHippogryph\RiddenHippogryph
 QueueUnit("esen"); //nightelf:Huntress -- units\nightelf\Huntress\Huntress
-QueueUnit("ewsp"); //nightelf:Wisp -- units\nightelf\Wisp\Wisp
 QueueUnit("efdr"); //nightelf:Faerie Dragon -- units\nightelf\FaerieDragon\FaerieDragon
 QueueUnit("emtg"); //nightelf:Mountain Giant -- units\nightelf\MountainGiant\MountainGiant
 
 AddUnitShop("nightelf-melee", "Nightelf Melee");
 
+QueueUnit("efon"); //nightelf:Treant -- units\nightelf\Ent\Ent
 QueueUnit("espv"); //nightelf:Avatar of Vengeance -- units\nightelf\SpiritOfVengeance\SpiritOfVengeance
 QueueUnit("even"); //nightelf:Spirit of Vengeance -- units\nightelf\Vengeance\Vengeance
 QueueUnit("nowl"); //nightelf:Owl Scout -- units\nightelf\OwlSCOUT\OwlSCOUT
 QueueUnit("now3"); //nightelf:Owl Scout -- units\nightelf\OwlSCOUT\OwlSCOUT
 QueueUnit("now2"); //nightelf:Owl Scout -- units\nightelf\OwlSCOUT\OwlSCOUT
-QueueUnit("efon"); //nightelf:Treant -- units\nightelf\Ent\Ent
 
 AddUnitShop("nightelf-other", "Nightelf Other");
 
+QueueUnit("Emoo"); //nightelf:Priestess of the Moon -- units\nightelf\HeroMoonPriestess\HeroMoonPriestess
 QueueUnit("Edem"); //nightelf:Demon Hunter -- units\nightelf\HeroDemonHunter\HeroDemonHunter
 QueueUnit("Ekee"); //nightelf:Keeper of the Grove -- units\nightelf\HeroKeeperoftheGrove\HeroKeeperoftheGrove
 QueueUnit("Ewar"); //nightelf:Warden -- units\nightelf\herowarden\herowarden
-QueueUnit("Emoo"); //nightelf:Priestess of the Moon -- units\nightelf\HeroMoonPriestess\HeroMoonPriestess
-QueueUnit("Ecen"); //nightelf:Demigod -- units\nightelf\HeroKeeperoftheGrove\HeroKeeperoftheGrove
 
 AddUnitShop("nightelf-heroes", "Nightelf Heroes");
 
-QueueUnit("ensh"); //nightelf:Naisha -- units\nightelf\Huntress\Huntress
 QueueUnit("enec"); //nightelf:Night Elf Runner -- units\nightelf\Runner\Runner
+QueueUnit("ensh"); //nightelf:Naisha -- units\nightelf\Huntress\Huntress
 QueueUnit("eilw"); //nightelf:Prison Wagon -- units\other\IllidanEvilCaged\IllidanEvilCaged
 QueueUnit("nwat"); //nightelf:Sentry -- units\creeps\watcher\watcher
 QueueUnit("eshd"); //nightelf:Shandris -- units\nightelf\Shandris\Shandris
@@ -154,6 +165,7 @@ QueueUnit("nssn"); //nightelf:Warden -- units\creeps\assassin\assassin
 
 AddUnitShop("nightelf-campaign", "Nightelf Campaign");
 
+QueueUnit("Ecen"); //nightelf:Demigod -- units\nightelf\HeroKeeperoftheGrove\HeroKeeperoftheGrove
 QueueUnit("Eill"); //nightelf:Demon Hunter -- units\nightelf\HeroDemonHunter\HeroDemonHunter
 QueueUnit("Eevi"); //nightelf:Demon Hunter -- units\nightelf\EvilIllidan\IllidanEvil
 QueueUnit("Emfr"); //nightelf:Keeper of the Grove -- units\nightelf\MalFurion\MalFurion
@@ -164,6 +176,7 @@ QueueUnit("Ewrd"); //nightelf:Warden -- units\nightelf\Maiev\Maiev
 QueueUnit("Etyr"); //nightelf:Priestess of the Moon -- units\nightelf\HeroMoonPriestess\HeroMoonPriestess
 
 AddUnitShop("nightelf-campaign-heroes", "Nightelf Campaign Heroes");
+CarryOverUnitShops();
 
 QueueUnit("uaco"); //undead:Acolyte -- units\undead\Acolyte\Acolyte
 QueueUnit("uabo"); //undead:Abomination -- units\undead\Abomination\Abomination
@@ -179,9 +192,8 @@ QueueUnit("ushd"); //undead:Shade -- units\undead\Shade\Shade
 
 AddUnitShop("undead-melee", "Undead Melee");
 
-
-QueueUnit("Ucrl"); //undead:Crypt Lord -- units\undead\HeroCryptLord\HeroCryptLord
 QueueUnit("Udea"); //undead:Death Knight -- units\undead\HeroDeathKnight\HeroDeathKnight
+QueueUnit("Ucrl"); //undead:Crypt Lord -- units\undead\HeroCryptLord\HeroCryptLord
 QueueUnit("Udre"); //undead:Dreadlord -- units\undead\HeroDreadLord\HeroDreadLord
 QueueUnit("Ulic"); //undead:Lich -- units\undead\HeroLich\HeroLich
 
@@ -206,6 +218,7 @@ QueueUnit("Nklj"); //undead:Warlock -- units\demon\Kiljaeden\Kiljaeden
 
 AddUnitShop("undead-campaign-heroes", "Undead Campaign Heroes");
 
+QueueUnit("nzom"); //undead:Zombie -- units\creeps\Zombie\Zombie
 QueueUnit("uskm"); //undead:Skeletal Mage -- units\undead\SkeletonMage\SkeletonMage
 QueueUnit("uske"); //undead:Skeleton Warrior -- units\undead\Skeleton\Skeleton
 QueueUnit("uswb"); //undead:Sylvanas Windrunner -- units\creeps\BansheeGhost\BansheeGhost
@@ -213,6 +226,6 @@ QueueUnit("uarb"); //undead:Sky Barge -- units\undead\UndeadAirBarge\UndeadAirBa
 QueueUnit("ucs3"); //undead:Carrion Beetle -- units\undead\scarab\scarab
 QueueUnit("ucs1"); //undead:Carrion Beetle -- units\undead\scarab\scarab
 QueueUnit("ucs2"); //undead:Carrion Beetle -- units\undead\scarab\scarab
-QueueUnit("nzom"); //undead:Zombie -- units\creeps\Zombie\Zombie
 
 AddUnitShop("undead-other", "Undead Other");
+CarryOverUnitShops();

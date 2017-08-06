@@ -83,4 +83,5 @@ global array buildingQueue = array();
 global array builderQueue = array();
 
 global array unitQueue = array();
+global array unitShopHighQueue = array();
 global array unitShopQueue = array();

@@ -19,13 +19,6 @@ void AddUnit(string eId, string name, string model) {
 	unitsCurrentId = GetNextId(unitsCurrentId);
 }
 
-/*
-	Shortcut scheme:
-	Q W E R
-	A S D F
-	Z X C V
-*/
-
 // last param is a comma-delimeted list of eIds or unit ids
 void AddBuilder(string eId, string name, string units) {
 	Unit builder = GetBaseBuilder(buildersCurrentId);
@@ -223,6 +216,12 @@ void AutoAddShop(string eId, string name) {
 
 void QueueUnit(string id) {
 	unitQueue[] = id;
+}
+
+// this makes all unit shops after be on "a new line"
+void CarryOverUnitShops() {
+	unitShopHighQueue[] = unitShopQueue;
+	unitShopQueue = array();
 }
 
 void AddUnitShop(string eId, string name) {
@@ -432,24 +431,30 @@ void PreplaceUnits() {
 		}
 	}
 
-	string shopId = unitShopQueue[];
 	int i = 0;
-	int j = 0;
-	while (shopId != null) {
-		float x = j * gridSize + gridSize * 8;
-		float y = -i * gridSize + gridSize * 8;
+	while (unitShopQueue != null) {
+		string shopId = unitShopQueue[];
+		int j = 0;
+		while (shopId != null) {
+			float x = j * gridSize + gridSize * 8;
+			float y = -i * gridSize + gridSize * 8;
 
-		placeUnit(map, shopId, x, y, 0, 0, 270);
-		j++;
+			placeUnit(map, shopId, x, y, 0, 0, 270);
+			j++;
 
-		if (j > 16) {
-			i++;
-			j=0;
+			if (j > 15) {
+				j = 0;
+				i++;
+			}
+
+			echoln("placed " + shopId);
+
+			unset(unitShopQueue[]);
+			shopId=unitShopQueue[];
 		}
-
-		echoln("placed " + shopId);
-
-		unset(unitShopQueue[]);
-		shopId=unitShopQueue[];
+		unset(unitShopHighQueue[]);
+		unitShopQueue = unitShopHighQueue[];
+		i++;
+		j = 0;
 	}
 }
