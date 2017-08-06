@@ -479,6 +479,11 @@ library Unit requires Core {
 			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);
 			Command.register("id",      thistype.Command_UnitId,              CMD_NONE);
 
+			Alias.saveall("rm", "remove");
+			Alias.saveall("mv", "move");
+			Alias.saveall("sz", "size");
+			Alias.saveall("szd", "sized");
+
 			Alias.saveall("gl", "global");
 			Alias.saveall("unpause", "pause off");
 		}
