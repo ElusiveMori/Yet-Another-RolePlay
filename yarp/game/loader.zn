@@ -5,9 +5,15 @@ library Loader requires Core {
 
 		private static method Command_LoadAddQueueUnit(CommandThread thread) {
 			LoadQueue queue = Load.addToQueue(thread.owner);
+			string str = thread.args.next();
+
+			if (IdManifest.hasString(str)) {
+				queue.id = IdManifest.getByString(str);
+			} else {
+				queue.id = String2Id(str);
+			}
 
 			queue.objectType = 0;
-			queue.id         = String2Id(thread.args.next());
 			queue.x          = S2R(thread.args.next());
 			queue.y          = S2R(thread.args.next());
 			queue.angle      = S2R(thread.args.next());

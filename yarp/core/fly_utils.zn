@@ -13,7 +13,7 @@ library FlyUtils requires Util {
 				IssueImmediateOrder(what, "unroot");
 				SetUnitAnimation(what, "stand");
 				SetUnitFacing(what, angle);
-			}	
+			}
 		}
 
 		static method fly(unit what) {

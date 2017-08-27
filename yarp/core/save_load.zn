@@ -79,9 +79,16 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 
 		static method writeUnit(unit what) {
 			UnitData unitData = UnitData[what];
+			string id;
+
+			if (IdManifest.hasId(unitData.id)) {
+				id = IdManifest.getById(unitData.id);
+			} else {
+				id = Id2String(unitData.id);
+			}
 
 			writeLine("unit::"
-			          + Id2String(unitData.id) + delim
+			          + id + delim
 			          + R2S(unitData.x - oX) + delim 
 			          + R2S(unitData.y - oY) + delim
 			          + R2S(unitData.angle) + delim

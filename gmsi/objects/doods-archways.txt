@@ -14,7 +14,7 @@ AddBuilding("natarchsunken", "Sunken Archway", "Doodads\\Ruins\\Structures\\SRui
 AddBuilding("natarchcoral1", "Coral Archway 1", "Doodads\\Ruins\\Water\\CoralArch\\CoralArch0.mdx");
 AddBuilding("natarchcoral2", "Coral Archway 2", "Doodads\\Ruins\\Water\\CoralArch\\CoralArch1.mdx");
 AddBuilding("natarchunder", "Underground Archway", "Doodads\\Underground\\Structures\\GRockArch\\GRockArch.mdx");
-AutoAddBuilder("natarch", "Natural Archways");
+AddBuilderMultiple("natarch", "Natural Archways");
 
 //archways-artificial
 icon = "ReplaceableTextures\\CommandButtons\\BTNAdvStruct.blp";
@@ -27,8 +27,8 @@ AddBuilding("artarchsunken1", "Sunken Archway 1", "Doodads\\Ruins\\Structures\\R
 AddBuilding("artarchsunken2", "Sunken Archway 2", "Doodads\\Ruins\\Structures\\RuinsArchway0_\\RuinsArchway0_1.mdx");
 AddBuilding("artarchsunken3", "Sunken Archway 3", "Doodads\\Ruins\\Structures\\RuinsArchway0_\\RuinsArchway0_2.mdx");
 AddBuilding("artarchsunkenruined", "Ruined Sunken Archway", "Doodads\\Ruins\\Structures\\RuinsArchwayBroken00\\RuinsArchwayBroken00.mdx");
-AutoAddBuilder("artarch", "Structure Archways");
+AddBuilderMultiple("artarch", "Structure Archways");
 
 shopScale = 0.25;
-AutoAddShop("arch", "Archways");
+AddBuilderShopMultiple("arch", "Archways");
 shopScale = 0.5;

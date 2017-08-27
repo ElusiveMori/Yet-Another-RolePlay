@@ -22,7 +22,7 @@ AddBuilding("hayrot4", "Rotten Hay 4", "Doodads\\LordaeronSummer\\Props\\RottenH
 AddBuilding("hayrot5", "Rotten Hay 5", "Doodads\\LordaeronSummer\\Props\\RottenHay\\RottenHay4.mdx");
 AddBuilding("wheatburn1", "Burned Wheat 1", "Doodads\\LordaeronSummer\\Plants\\CornWheatScorched\\CornWheatScorched0.mdx");
 AddBuilding("wheatburn2", "Burned Wheat 2", "Doodads\\LordaeronSummer\\Plants\\CornWheatScorched\\CornWheatScorched1.mdx");
-AutoAddBuilder("broken", "Broken");
+AddBuilderMultiple("broken", "Broken");
 
 //broken-dalaran
 AddBuilding("dalaranruin1", "Dalaran Ruin 1", "Doodads\\Ruins\\Props\\DalaranRuinCrystals\\DalaranRuinCrystals.mdx");
@@ -33,7 +33,7 @@ AddBuilding("dalaranruin5", "Dalaran Ruin 5", "Doodads\\Ruins\\Props\\DalaranRui
 AddBuilding("dalaranruin6", "Dalaran Ruin 6", "Doodads\\Ruins\\Props\\DalaranRuinTwoBases\\DalaranRuinTwoBases1.mdx");
 AddBuilding("dalaranruin7", "Dalaran Ruin 7", "Doodads\\Ruins\\Props\\DalaranRuinTwoBases2\\DalaranRuinTwoBases2.mdx");
 AddBuilding("dalaranruin8", "Dalaran Ruin 8", "Doodads\\Ruins\\Props\\DalaranVioletCitadelRuin\\DalaranVioletCitadelRuin.mdx");
-AutoAddBuilder("brokendalaran", "Broken Dalaran");
+AddBuilderMultiple("brokendalaran", "Broken Dalaran");
 
 //broken-city
 AddBuilding("cityruinbase1", "Building Rubble 1", "Doodads\\Cityscape\\Structures\\CityBuildingLarge_0_BaseRuin\\CityBuildingLarge_0_BaseRuin.mdx");
@@ -45,8 +45,8 @@ AddBuilding("cityruin4", "Ruined Building 4", "Doodads\\Cityscape\\Structures\\C
 AddBuilding("cityruin5", "Ruined Building 5", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_0_Ruined\\CityBuildingSmall0_0_Ruined.mdx");
 AddBuilding("cityruin6", "Ruined Building 6", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_1_Ruined\\CityBuildingSmall0_1_Ruined.mdx");
 AddBuilding("cityruin7", "Ruined Building 7", "Doodads\\Cityscape\\Structures\\CityBuildingSmall0_2_Ruined\\CityBuildingSmall0_2_Ruined.mdx");
-AutoAddBuilder("brokencity", "Broken City");
+AddBuilderMultiple("brokencity", "Broken City");
 
 shopScale = 1;
-AutoAddShop("broken", "Broken Stuff");
+AddBuilderShopMultiple("broken", "Broken Stuff");
 shopScale = 0.5;

@@ -16,8 +16,6 @@ Unit GetBaseUnit(string id) {
 	base.manaN = 128;
 	base.goldRep = 0;
 	base.reptm = 1;
-//	base.sight = 1000;
-//	base.nsight = 1000;
 	base.stockMax = 1;
 	base.stockRegen = 0;
 	base.stockStart = 1;

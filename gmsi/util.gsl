@@ -23,6 +23,93 @@ void InitHotkeys() {
 	hotkeys[11] = "V";
 }
 
+void AddEID(string eId, string id) {
+	if (extendedIds[eId] != null) {
+		fail("Overlapping eId " + eId);
+	}
+
+	extendedIds[eId] = id;
+	extendedIdsRev[id] = eId;
+}
+
+void GenerateEIDManifest() {
+	Writer w = openFileWrite(@outputPath + "/yarp-eid-manifest.txt", false);
+
+	write("library IdManifest requires Util {\n");
+	write("\tpublic struct IdManifest {\n");
+	write("\t\tstatic Table string2id;\n");
+	write("\t\tstatic Table id2string;\n\n");
+
+	write("\t\tstatic method getByString(string str) -> integer {\n");
+	write("\t\t\treturn string2id[SH(str)];\n");
+	write("\t\t}\n\n");
+
+	write("\t\tstatic method getById(integer id) -> string {\n");
+	write("\t\t\treturn id2string.string[id];\n");
+	write("\t\t}\n\n");
+
+	write("\t\tstatic method hasString(string str) -> boolean {\n");
+	write("\t\t\treturn string2id.string.has(SH(str));\n");
+	write("\t\t}\n\n");
+
+	write("\t\tstatic method hasId(integer id) -> boolean {\n");
+	write("\t\t\treturn id2string.has(id);\n");
+	write("\t\t}\n\n");
+
+	write("\t\tprivate static method register(integer id, string str) {\n");
+	write("\t\t\tstring2id[SH(str)] = id;\n");
+	write("\t\t\tid2string.string[id] = str;\n");
+	write("\t\t}\n\n");
+
+	int currentSegment = 1;
+	int count = 0;
+	int total = 0;
+	int perSegment = 32;
+	array queue = array();
+	array lines = array();
+
+	for (string id: extendedIdsRev) {
+		queue[] = objectId2Int(id);
+	}
+
+	sortArray(queue);
+
+	for (int i: queue) {
+		string id = int2ObjectId(queue[i]);
+		string eId = extendedIdsRev[id];
+
+		lines[] = "\t\t\tregister('" + id + "', \"" + eId + "\");\n";
+		total++;
+	}
+
+	while (lines[] != null) {
+		write("\t\tstatic method segment" + currentSegment + "() {\n");
+		
+		while (lines[] != null && count < perSegment) {
+			write(lines[]);
+			unset(lines[]);
+			count++;
+		}
+
+		count = 0;
+		write("\t\t}\n\n");
+		currentSegment++;
+	}
+
+	write("\t\tprivate static method onInit() {\n");
+	write("\t\t\tid2string = Table.create();\n");
+	write("\t\t\tstring2id = Table.create();\n\n");
+
+	for (int i = 1; i < currentSegment; i++) {
+		write("\t\t\tsegment" + i + ".execute();\n");
+	}
+
+	write("\t\t}\n");
+
+	write("\t}\n}\n");
+	closeFile(w);
+}
+
 string GetNextId(string id) {
 	int pos = 3;
 	array temp = array();

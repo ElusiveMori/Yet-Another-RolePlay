@@ -2,8 +2,7 @@ void AddBuilding(string eId, string name, string model) {
 	Unit u = GetBaseBuilding(unitsCurrentId);
 	u.file = model;
 	u.Name = name;
-	extendedIds[eId] = unitsCurrentId;
-	extendedIdsRev[unitsCurrentId] = eId;
+	AddEID(eId, unitsCurrentId);
 	buildingQueue[] = unitsCurrentId;
 
 	unitsCurrentId = GetNextId(unitsCurrentId);
@@ -13,10 +12,18 @@ void AddUnit(string eId, string name, string model) {
 	Unit u = GetBaseUnit(unitsCurrentId);
 	u.file = model;
 	u.Name = name;
-	extendedIds[eId] = unitsCurrentId;
-	extendedIdsRev[unitsCurrentId] = eId;
+	AddEID(eId, unitsCurrentId);
 
 	unitsCurrentId = GetNextId(unitsCurrentId);
+}
+
+void AddHero(string eId, string name, string model) {
+	Unit u = GetBaseUnit(heroesCurrentId);
+	u.file = model;
+	u.Name = name;
+	AddEID(eId, heroesCurrentId);
+
+	heroesCurrentId = GetNextId(heroesCurrentId);
 }
 
 // last param is a comma-delimeted list of eIds or unit ids
@@ -28,8 +35,7 @@ void AddBuilder(string eId, string name, string units) {
 	builder.race = "human";
 	builder["type"] = "peon";
 
-	extendedIds[eId] = buildersCurrentId;
-	extendedIdsRev[buildersCurrentId] = eId;
+	AddEID(eId, buildersCurrentId);
 	builderQueue[] = buildersCurrentId;
 
 	buildersCurrentId = GetNextId(buildersCurrentId);
@@ -73,8 +79,7 @@ string AddShop(string eId, string name, string units) {
 	shop.modelScale = shopScale;
 	shop.scale = 3;
 
-	extendedIds[eId] = shopsCurrentId;
-	extendedIdsRev[shopsCurrentId] = eId;
+	AddEID(eId, shopsCurrentId);
 	string returnValue = shopsCurrentId;
 
 	shopsCurrentId = GetNextId(shopsCurrentId);
@@ -106,7 +111,7 @@ string AddShop(string eId, string name, string units) {
 }
 
 // adds a single builder
-void AutoAddBuilderS(string eId, string name) {
+void AddBuilderSingle(string eId, string name) {
 	int count = 0;
 	int number = 1;
 	eId = "b-" + eId;
@@ -115,7 +120,7 @@ void AutoAddBuilderS(string eId, string name) {
 	for (int i: buildingQueue) total++;
 	int i = 0;
 
-	if (total > 11) error("More than 11 buildings for this builder! Rearrange configuration.");
+	if (total > 11) fail("More than 11 buildings for this builder! Rearrange configuration.");
 
 	string buildList = "";
 	while (buildingQueue[i] != null) {
@@ -138,7 +143,7 @@ void AutoAddBuilderS(string eId, string name) {
 }
 
 // automatically adds as many builders as needed
-void AutoAddBuilder(string eId, string name) {
+void AddBuilderMultiple(string eId, string name) {
 	int count = 0;
 	int number = 1;
 	eId = "b-" + eId;
@@ -176,7 +181,7 @@ void AutoAddBuilder(string eId, string name) {
 	}
 }
 
-void AutoAddShop(string eId, string name) {
+void AddBuilderShopMultiple(string eId, string name) {
 	int count = 0;
 	int number = 1;
 	eId = "s-" + eId;
@@ -224,7 +229,7 @@ void CarryOverUnitShops() {
 	unitShopQueue = array();
 }
 
-void AddUnitShop(string eId, string name) {
+void AddUnitShopMultiple(string eId, string name) {
 	int count = 0;
 	int number = 1;
 	eId = "s-" + eId;

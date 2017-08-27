@@ -13,7 +13,7 @@ QueueUnit("npn3"); //creeps:Earth -- Units\Creeps\EarthPandarenBrewmaster\EarthP
 QueueUnit("npn6"); //creeps:Earth -- Units\Creeps\EarthPandarenBrewmaster\EarthPandarenBrewmaster
 QueueUnit("hprt"); //human:Portal -- doodads\cinematic\ShimmeringPortal\ShimmeringPortal
 
-AddUnitShop("unsorted", "Unsorted");
+AddUnitShopMultiple("unsorted", "Unsorted");
 
 QueueUnit("nbsp"); //other:Ship -- doodads\northrend\water\Battleship\Battleship
 QueueUnit("ebsh"); //nightelf:Night Elf Battleship -- units\creeps\NightElfBattleship\NightElfBattleship
@@ -30,20 +30,20 @@ QueueUnit("hbsh"); //human:Human Battleship -- units\creeps\HumanBattleship\Huma
 QueueUnit("hdes"); //human:Human Frigate -- units\creeps\HumanDestroyerShip\HumanDestroyerShip
 QueueUnit("hbot"); //human:Human Transport Ship -- units\creeps\HumanTransportShip\HumanTransportShip
 
-AddUnitShop("ships", "Ships");
+AddUnitShopMultiple("ships", "Ships");
 
 QueueUnit("nelb"); //creeps:Berserk Elemental -- units\human\WaterElemental\WaterElemental
 QueueUnit("nele"); //creeps:Enraged Elemental -- units\human\WaterElemental\WaterElemental
 QueueUnit("nrel"); //creeps:Reef Elemental -- Units\Creeps\SeaElemental\SeaElemental
 QueueUnit("nsel"); //creeps:Sea Elemental -- Units\Creeps\SeaElemental\SeaElemental
 
-AddUnitShop("water-elementals", "Water Elementals");
+AddUnitShopMultiple("water-elementals", "Water Elementals");
 
 QueueUnit("ngsp"); //creeps:Goblin Sapper -- units\creeps\GoblinSapper\GoblinSapper
 QueueUnit("ngir"); //creeps:Goblin Shredder -- units\creeps\IronGolem\IronGolem
 QueueUnit("nzep"); //creeps:Goblin Zeppelin -- units\creeps\GoblinZeppelin\GoblinZeppelin
 
-AddUnitShop("goblins", "Goblins");
+AddUnitShopMultiple("goblins", "Goblins");
 
 QueueUnit("npfl"); //creeps:Fel Beast -- units\creeps\FelstalkerPurple\FelstalkerPurple
 QueueUnit("npfm"); //creeps:Fel Ravager -- units\creeps\FelstalkerPurple\FelstalkerPurple
@@ -51,7 +51,7 @@ QueueUnit("nsw3"); //creeps:Greater Spirit Beast -- units\creeps\FelstalkerPurpl
 QueueUnit("nsw1"); //creeps:Lesser Spirit Beast -- units\creeps\FelstalkerPurple\FelstalkerPurple
 QueueUnit("nsw2"); //creeps:Spirit Beast -- units\creeps\FelstalkerPurple\FelstalkerPurple
 
-AddUnitShop("felstalkers", "Fel Stalkers");
+AddUnitShopMultiple("felstalkers", "Fel Stalkers");
 
 QueueUnit("nerd"); //creeps:Eredar Diabolist -- units\demon\EredarWarlockPurple\EredarWarlockPurple
 QueueUnit("ners"); //creeps:Eredar Sorcerer -- units\demon\EredarWarlock\EredarWarlock
@@ -64,7 +64,7 @@ QueueUnit("nba2"); //demon:Doom Guard -- units\demon\DoomGuard\DoomGuard
 QueueUnit("nbal"); //demon:Doom Guard -- units\demon\DoomGuard\DoomGuard
 QueueUnit("ninf"); //demon:Infernal -- units\demon\Infernal\Infernal
 
-AddUnitShop("demons", "Demons");
+AddUnitShopMultiple("demons", "Demons");
 
 QueueUnit("nfod"); //creeps:Faceless One Deathbringer -- Units\Creeps\FacelessOne\FacelessOne
 QueueUnit("nfot"); //creeps:Faceless One Terror -- Units\Creeps\FacelessOne\FacelessOne
@@ -74,13 +74,13 @@ QueueUnit("nubk"); //creeps:Unbroken Darkhunter -- Units\Creeps\Unbroken\Unbroke
 QueueUnit("nubw"); //creeps:Unbroken Darkweaver -- Units\Creeps\Unbroken\Unbroken
 QueueUnit("nubr"); //creeps:Unbroken Rager -- Units\Creeps\Unbroken\Unbroken
 
-AddUnitShop("faceless-ones", "Faceless Ones");
+AddUnitShopMultiple("faceless-ones", "Faceless Ones");
 
 QueueUnit("ninc"); //creeps:Infernal Contraption -- units\creeps\InfernalCannonCannon\InfernalCannonCannon
 QueueUnit("ninm"); //creeps:Infernal Machine -- units\creeps\InfernalCannonCannon\InfernalCannonCannon
 QueueUnit("nina"); //creeps:Infernal Juggernaut -- units\creeps\InfernalCannonFlame\InfernalCannonFlame
 
-AddUnitShop("infernal-cannons", "Infernal Cannons");
+AddUnitShopMultiple("infernal-cannons", "Infernal Cannons");
 
 QueueUnit("ndqt"); //creeps:Vile Temptress -- units\demon\Demoness\Demoness
 QueueUnit("ndqn"); //creeps:Succubus -- units\demon\Demoness\Demoness
@@ -88,7 +88,7 @@ QueueUnit("ndqv"); //creeps:Vile Tormentor -- units\demon\DemonessBlue\DemonessB
 QueueUnit("ndqp"); //creeps:Maiden of Pain -- units\demon\DemonessBlue\DemonessBlue
 QueueUnit("ndqs"); //creeps:Queen of Suffering -- units\demon\DemonessBlue\DemonessBlue
 
-AddUnitShop("succubi", "Succubi");
+AddUnitShopMultiple("succubi", "Succubi");
 
 QueueUnit("nsra"); //creeps:Stormreaver Apprentice -- units\creeps\OrcWarlock\OrcWarlock
 QueueUnit("nsrh"); //creeps:Stormreaver Hermit -- units\creeps\OrcWarlock\OrcWarlock
@@ -96,7 +96,7 @@ QueueUnit("nsrn"); //creeps:Stormreaver Necrolyte -- units\creeps\OrcWarlock\Orc
 QueueUnit("nsrw"); //creeps:Stormreaver Warlock -- units\creeps\OrcWarlock\OrcWarlock
 
 
-AddUnitShop("stormreaver", "Stormreaver Warlocks");
+AddUnitShopMultiple("stormreaver", "Stormreaver Warlocks");
 
 QueueUnit("nstw"); //creeps:Storm Wyrm -- units\creeps\ThunderLizard\ThunderLizard
 QueueUnit("nthl"); //creeps:Thunder Lizard -- units\creeps\ThunderLizard\ThunderLizard
@@ -107,7 +107,7 @@ QueueUnit("nslh"); //creeps:Salamander Hatchling -- units\creeps\ThunderLizardSa
 QueueUnit("nsll"); //creeps:Salamander Lord -- units\creeps\ThunderLizardSalamander\ThunderLizardSalamander
 QueueUnit("nslv"); //creeps:Salamander Vizier -- units\creeps\ThunderLizardVizier\ThunderLizardVizier
 
-AddUnitShop("lizards", "Lizards");
+AddUnitShopMultiple("lizards", "Lizards");
 
 QueueUnit("ndtr"); //creeps:Dark Troll -- units\creeps\DarkTroll\DarkTroll
 QueueUnit("ndtb"); //creeps:Dark Troll Berserker -- units\creeps\DarkTroll\DarkTroll
@@ -116,7 +116,7 @@ QueueUnit("ndtp"); //creeps:Dark Troll Shadow Priest -- units\creeps\DarkTrollSh
 QueueUnit("ndtt"); //creeps:Dark Troll Trapper -- units\creeps\DarkTrollTrapper\DarkTrollTrapper
 QueueUnit("ndtw"); //creeps:Dark Troll Warlord -- units\creeps\DarkTrollTrapper\DarkTrollTrapper
 
-AddUnitShop("dark-trolls", "Dark Trolls");
+AddUnitShopMultiple("dark-trolls", "Dark Trolls");
 
 QueueUnit("nftr"); //creeps:Forest Troll -- units\creeps\ForestTroll\ForestTroll
 QueueUnit("nftb"); //creeps:Forest Troll Berserker -- units\creeps\ForestTroll\ForestTroll
@@ -125,7 +125,7 @@ QueueUnit("nfsp"); //creeps:Forest Troll Shadow Priest -- units\creeps\ForestTro
 QueueUnit("nftt"); //creeps:Forest Troll Trapper -- units\creeps\ForestTrollTrapper\ForestTrollTrapper
 QueueUnit("nftk"); //creeps:Forest Troll Warlord -- units\creeps\ForestTrollTrapper\ForestTrollTrapper
 
-AddUnitShop("forest-trolls", "Forest Trolls");
+AddUnitShopMultiple("forest-trolls", "Forest Trolls");
 
 QueueUnit("nitr"); //creeps:Ice Troll -- units\creeps\IceTroll\IceTroll
 QueueUnit("nits"); //creeps:Ice Troll Berserker -- units\creeps\IceTroll\IceTroll
@@ -134,7 +134,7 @@ QueueUnit("nitp"); //creeps:Ice Troll Priest -- units\creeps\IceTrollShadowPries
 QueueUnit("nitt"); //creeps:Ice Troll Trapper -- units\creeps\IceTroll\IceTroll
 QueueUnit("nitw"); //creeps:Ice Troll Warlord -- units\creeps\IceTroll\IceTroll
 
-AddUnitShop("ice-trolls", "Ice Trolls");
+AddUnitShopMultiple("ice-trolls", "Ice Trolls");
 
 QueueUnit("nwwd"); //creeps:Dire Frost Wolf -- units\creeps\WhiteWolf\WhiteWolf
 QueueUnit("nwld"); //creeps:Dire Wolf -- units\creeps\DireWolf\DireWolf
@@ -143,7 +143,7 @@ QueueUnit("nwwg"); //creeps:Giant Frost Wolf -- units\creeps\WhiteWolf\WhiteWolf
 QueueUnit("nwlg"); //creeps:Giant Wolf -- units\creeps\TimberWolf\TimberWolf
 QueueUnit("nwlt"); //creeps:Timber Wolf -- units\creeps\TimberWolf\TimberWolf
 
-AddUnitShop("wolves", "Wolves");
+AddUnitShopMultiple("wolves", "Wolves");
 
 QueueUnit("nkob"); //creeps:Kobold -- units\creeps\Kobold\Kobold
 QueueUnit("nkog"); //creeps:Kobold Geomancer -- units\creeps\KoboldGeomancer\KoboldGeomancer
@@ -151,7 +151,7 @@ QueueUnit("nkol"); //creeps:Kobold Taskmaster -- units\creeps\Kobold\Kobold
 QueueUnit("nkot"); //creeps:Kobold Tunneler -- units\creeps\Kobold\Kobold
 QueueUnit("zshv"); //other:Kobold Shoveler -- Units\Critters\Shoveler\Shoveler
 
-AddUnitShop("kobolds", "Kobolds");
+AddUnitShopMultiple("kobolds", "Kobolds");
 
 QueueUnit("nmgd"); //creeps:Magnataur Destroyer -- Units\Creeps\MagnataurBlue\MagnataurBlue
 QueueUnit("nmgr"); //creeps:Magnataur Reaver -- Units\Creeps\Magnataur\Magnataur
@@ -160,7 +160,7 @@ QueueUnit("nmdr"); //creeps:Dire Mammoth -- Units\Creeps\MammothBlack\MammothBla
 QueueUnit("nmit"); //creeps:Icetusk Mammoth -- Units\Creeps\Mammoth\Mammoth
 QueueUnit("nmam"); //creeps:Mammoth -- Units\Creeps\Mammoth\Mammoth
 
-AddUnitShop("mammoths", "Mammoths");
+AddUnitShopMultiple("mammoths", "Mammoths");
 
 QueueUnit("nmfs"); //creeps:Murloc Flesheater -- units\creeps\MurlocFlesheater\MurlocFlesheater
 QueueUnit("nmrr"); //creeps:Murloc Huntsman -- units\creeps\MurlocWarrior\MurlocWarrior
@@ -172,7 +172,7 @@ QueueUnit("nsns"); //creeps:Watery Minion -- Units\Creeps\MurgulShadowCaster\Mur
 QueueUnit("ntws"); //creeps:Watery Minion -- Units\Creeps\MurgulTideWarrior\MurgulTideWarrior
 QueueUnit("ncfs"); //creeps:Watery Minion -- Units\Creeps\MurgulTideWarrior\MurgulTideWarrior
 
-AddUnitShop("murlocs", "Murlocs");
+AddUnitShopMultiple("murlocs", "Murlocs");
 
 QueueUnit("nlds"); //creeps:Makrura Deepseer -- Units\Creeps\Lobstrokkblue\Lobstrokkblue
 QueueUnit("nlpd"); //creeps:Makrura Pooldweller -- Units\Creeps\Lobstrokkred\Lobstrokkred
@@ -185,7 +185,7 @@ QueueUnit("nsc2"); //creeps:Spider Crab Limbripper -- units\creeps\SpiderCrabCre
 QueueUnit("nscb"); //creeps:Spider Crab Shorecrawler -- units\creeps\SpiderCrabCreep\SpiderCrabCreep
 QueueUnit("nlps"); //creeps:Summoned Prawn -- Units\Creeps\Lobstrokkred\Lobstrokkred
 
-AddUnitShop("makrura", "Makrura & Crabs");
+AddUnitShopMultiple("makrura", "Makrura & Crabs");
 
 QueueUnit("nspb"); //creeps:Black Spider -- units\creeps\SpiderBlack\SpiderBlack
 QueueUnit("nspg"); //creeps:Forest Spider -- units\creeps\SpiderGreen\SpiderGreen
@@ -194,7 +194,7 @@ QueueUnit("nsbm"); //creeps:Brood Mother -- units\creeps\SpiderBlue\SpiderBlue
 QueueUnit("nsgt"); //creeps:Giant Spider -- units\creeps\Spider\Spider
 QueueUnit("nspr"); //creeps:Spider -- units\creeps\Spider\Spider
 
-AddUnitShop("spiders", "Spiders");
+AddUnitShopMultiple("spiders", "Spiders");
 
 QueueUnit("nane"); //creeps:Arachnathid Earth-borer -- Units\Creeps\Archnathid\Archnathid
 QueueUnit("nanm"); //creeps:Barbed Arachnathid -- Units\Creeps\Archnathid\Archnathid
@@ -204,7 +204,7 @@ QueueUnit("nanc"); //creeps:Crystal Arachnathid -- Units\Creeps\ArchnathidGreen\
 QueueUnit("nano"); //creeps:Overlord Arachnathid -- Units\Creeps\Archnathidpurple\Archnathidpurple
 QueueUnit("nanw"); //creeps:Warrior Arachnathid -- Units\Creeps\ArchnathidGreen\ArchnathidGreen
 
-AddUnitShop("arachnathids", "Arachnathids");
+AddUnitShopMultiple("arachnathids", "Arachnathids");
 
 QueueUnit("nnws"); //creeps:Nerubian Spider Lord -- units\creeps\NerubianSpiderLord\NerubianSpiderLord
 QueueUnit("nspd"); //creeps:Spiderling -- units\creeps\Nerubian\Nerubian
@@ -213,7 +213,7 @@ QueueUnit("nnwr"); //creeps:Nerubian Seer -- units\creeps\NerubianQueen\Nerubian
 QueueUnit("nnwa"); //creeps:Nerubian Warrior -- units\creeps\Nerubian\Nerubian
 QueueUnit("nnwl"); //creeps:Nerubian Webspinner -- units\creeps\NerubianSpiderLord\NerubianSpiderLord
 
-AddUnitShop("nerubians", "Nerubians");
+AddUnitShopMultiple("nerubians", "Nerubians");
 
 QueueUnit("nskg"); //creeps:Giant Skeleton Warrior -- units\undead\Skeleton\Skeleton
 QueueUnit("nskm"); //creeps:Skeletal Marksman -- units\creeps\SkeletonArcher\SkeletonArcher
@@ -226,7 +226,7 @@ QueueUnit("nske"); //creeps:Skeleton Warrior -- units\undead\Skeleton\Skeleton
 QueueUnit("nsce"); //creeps:Skeleton Warrior -- units\undead\Skeleton\Skeleton
 QueueUnit("nskf"); //creeps:Burning Archer -- units\creeps\SkeletonArcher\SkeletonArcher
 
-AddUnitShop("skeletons", "Skeletons");
+AddUnitShopMultiple("skeletons", "Skeletons");
 
 QueueUnit("nrvd"); //creeps:Death Revenant -- units\creeps\Revenant\Revenant
 QueueUnit("nlrv"); //creeps:Deeplord Revenant -- units\creeps\RevenantOfTheWaves\RevenantOfTheWaves
@@ -238,7 +238,7 @@ QueueUnit("ndrv"); //creeps:Revenant of the Depths -- units\creeps\RevenantOfThe
 QueueUnit("nsrv"); //creeps:Revenant of the Seas -- units\creeps\RevenantOfTheWaves\RevenantOfTheWaves
 QueueUnit("ntrv"); //creeps:Revenant of the Tides -- units\creeps\RevenantOfTheWaves\RevenantOfTheWaves
 
-AddUnitShop("revenants", "Revenants");
+AddUnitShopMultiple("revenants", "Revenants");
 
 QueueUnit("nbda"); //creeps:Blue Dragonspawn Apprentice -- Units\Creeps\DragonSpawnGreen\DragonSpawnGreen
 QueueUnit("nbdm"); //creeps:Blue Dragonspawn Meddler -- Units\Creeps\DragonSpawnBlue\DragonSpawnBlue
@@ -246,43 +246,43 @@ QueueUnit("nbdo"); //creeps:Blue Dragonspawn Overseer -- Units\Creeps\DragonSpaw
 QueueUnit("nbds"); //creeps:Blue Dragonspawn Sorcerer -- Units\Creeps\DragonSpawnGreen\DragonSpawnGreen
 QueueUnit("nbdw"); //creeps:Blue Dragonspawn Warrior -- Units\Creeps\DragonSpawnPurple\DragonSpawnPurple
 
-AddUnitShop("dragonspawn", "Dragonspawn");
+AddUnitShopMultiple("dragonspawn", "Dragonspawn");
 
 QueueUnit("nbwm"); //creeps:Black Dragon -- units\creeps\BlackDragon\BlackDragon
 QueueUnit("nbdr"); //creeps:Black Dragon Whelp -- units\creeps\BlackDragonWelp\BlackDragonWelp
 QueueUnit("nbdk"); //creeps:Black Drake -- units\creeps\BlackDragon\BlackDragon
 
-AddUnitShop("black-dragons", "Black Dragons");
+AddUnitShopMultiple("black-dragons", "Black Dragons");
 
 QueueUnit("nadr"); //creeps:Blue Dragon -- units\creeps\AzureDragon\AzureDragon
 QueueUnit("nadw"); //creeps:Blue Dragon Whelp -- units\creeps\AzureDragonWelp\AzureDragonWelp
 QueueUnit("nadk"); //creeps:Blue Drake -- units\creeps\AzureDragon\AzureDragon
 
-AddUnitShop("blue-dragons", "Blue Dragons");
+AddUnitShopMultiple("blue-dragons", "Blue Dragons");
 
 QueueUnit("nbzd"); //creeps:Bronze Dragon -- units\creeps\BronzeDragon\BronzeDragon
 QueueUnit("nbzw"); //creeps:Bronze Dragon Whelp -- units\creeps\BronzeDragonWelp\BronzeDragonWelp
 QueueUnit("nbzk"); //creeps:Bronze Drake -- units\creeps\BronzeDragon\BronzeDragon
 
-AddUnitShop("bronze-dragons", "Bronze Dragons");
+AddUnitShopMultiple("bronze-dragons", "Bronze Dragons");
 
 QueueUnit("ngrd"); //creeps:Green Dragon -- units\creeps\GreenDragon\GreenDragon
 QueueUnit("ngrw"); //creeps:Green Dragon Whelp -- units\creeps\GreenDragonWelp\GreenDragonWelp
 QueueUnit("ngdk"); //creeps:Green Drake -- units\creeps\GreenDragon\GreenDragon
 
-AddUnitShop("green-dragons", "Green Dragons");
+AddUnitShopMultiple("green-dragons", "Green Dragons");
 
 QueueUnit("nndr"); //creeps:Nether Dragon -- units\creeps\NetherDragon\NetherDragon
 QueueUnit("nnht"); //creeps:Nether Dragon Hatchling -- units\creeps\NetherDragon\NetherDragon
 QueueUnit("nndk"); //creeps:Nether Drake -- units\creeps\NetherDragon\NetherDragon
 
-AddUnitShop("nether-dragons", "Nether Dragons");
+AddUnitShopMultiple("nether-dragons", "Nether Dragons");
 
 QueueUnit("nrwm"); //creeps:Red Dragon -- units\creeps\RedDragon\RedDragon
 QueueUnit("nrdk"); //creeps:Red Dragon Whelp -- units\creeps\RedDragonWelp\RedDragonWelp
 QueueUnit("nrdr"); //creeps:Red Drake -- units\creeps\RedDragon\RedDragon
 
-AddUnitShop("red-dragons", "Red Dragons");
+AddUnitShopMultiple("red-dragons", "Red Dragons");
 
 QueueUnit("nogl"); //creeps:Ogre Lord -- units\creeps\OgreLord\OgreLord
 QueueUnit("nomg"); //creeps:Ogre Magi -- units\creeps\OgreMagi\OgreMagi
@@ -292,7 +292,7 @@ QueueUnit("nogo"); //creeps:Stonemaul Ogre -- units\creeps\OgreOneHeaded\OgreOne
 QueueUnit("nogn"); //creeps:Stonemaul Magi -- units\creeps\OgreMagi\OgreMagi
 QueueUnit("noga"); //creeps:Stonemaul Warchief -- units\creeps\OgreOneHeadedArmored\OgreOneHeadedArmored
 
-AddUnitShop("ogres", "Ogres");
+AddUnitShopMultiple("ogres", "Ogres");
 
 QueueUnit("nrzt"); //creeps:Quillboar -- units\creeps\Bristleback\Bristleback
 QueueUnit("nqbh"); //creeps:Quillboar Hunter -- units\creeps\Bristleback\Bristleback
@@ -301,7 +301,7 @@ QueueUnit("nrzg"); //creeps:Razormane Chieftain -- units\creeps\RazorManeChief\R
 QueueUnit("nrzm"); //creeps:Razormane Medicine Man -- units\creeps\RazorManeChief\RazorManeChief
 QueueUnit("nrzs"); //creeps:Razormane Scout -- units\creeps\RazorMane\RazorMane
 
-AddUnitShop("quillboars", "Quillboars");
+AddUnitShopMultiple("quillboars", "Quillboars");
 
 QueueUnit("nfrl"); //creeps:Furbolg -- units\creeps\Furbolg\Furbolg
 QueueUnit("nfrg"); //creeps:Furbolg Champion -- units\creeps\Furbolg\Furbolg
@@ -310,7 +310,7 @@ QueueUnit("nfrs"); //creeps:Furbolg Shaman -- units\creeps\FurbolgShaman\Furbolg
 QueueUnit("nfrb"); //creeps:Furbolg Tracker -- units\creeps\FurbolgTracker\FurbolgTracker
 QueueUnit("nfra"); //creeps:Furbolg Ursa Warrior -- units\creeps\FurbolgElder\FurbolgElder
 
-AddUnitShop("furbolgs", "Furbolgs");
+AddUnitShopMultiple("furbolgs", "Furbolgs");
 
 QueueUnit("nfpl"); //creeps:Polar Furbolg -- units\creeps\PolarFurbolg\PolarFurbolg
 QueueUnit("nfpc"); //creeps:Polar Furbolg Champion -- units\creeps\PolarFurbolg\PolarFurbolg
@@ -319,7 +319,7 @@ QueueUnit("nfps"); //creeps:Polar Furbolg Shaman -- units\creeps\PolarFurbolgTra
 QueueUnit("nfpt"); //creeps:Polar Furbolg Tracker -- units\creeps\PolarFurbolgTracker\PolarFurbolgTracker
 QueueUnit("nfpu"); //creeps:Polar Furbolg Ursa Warrior -- units\creeps\PolarFurbolg\PolarFurbolg
 
-AddUnitShop("polar-furbolgs", "Polar Furbolgs");
+AddUnitShopMultiple("polar-furbolgs", "Polar Furbolgs");
 
 QueueUnit("ngz1"); //creeps:Bear -- units\creeps\GrizzlyBear\GrizzlyBear
 QueueUnit("nplg"); //creeps:Giant Polar Bear -- units\creeps\PolarBear\PolarBear
@@ -327,7 +327,7 @@ QueueUnit("nplb"); //creeps:Polar Bear -- units\creeps\PolarBear\PolarBear
 QueueUnit("ngz2"); //creeps:Raging Bear -- units\creeps\GrizzlyBear\GrizzlyBear
 QueueUnit("ngz3"); //creeps:Spirit Bear -- units\creeps\GrizzlyBear\GrizzlyBear
 
-AddUnitShop("bears", "Bears");
+AddUnitShopMultiple("bears", "Bears");
 
 QueueUnit("ntrg"); //creeps:Gargantuan Sea Turtle -- Units\Creeps\GiantSeaTurtle\GiantSeaTurtle
 QueueUnit("ntrt"); //creeps:Giant Sea Turtle -- Units\Creeps\GiantSeaTurtleRange\GiantSeaTurtleRange
@@ -335,27 +335,27 @@ QueueUnit("ntrs"); //creeps:Sea Turtle -- Units\Creeps\SeaTurtle\SeaTurtle
 QueueUnit("ntrh"); //creeps:Sea Turtle Hatchling -- Units\Creeps\SeaTurtleRange\SeaTurtleRange
 QueueUnit("ntrd"); //creeps:Dragon Turtle -- Units\Creeps\DragonSeaTurtle\DragonSeaTurtle
 
-AddUnitShop("turtles", "Turtles");
+AddUnitShopMultiple("turtles", "Turtles");
 
 QueueUnit("nsgn"); //creeps:Sea Giant -- Units\Creeps\SeaGiant\SeaGiant
 QueueUnit("nsgb"); //creeps:Sea Giant Behemoth -- Units\Creeps\SeaGiant\SeaGiant
 QueueUnit("nsgh"); //creeps:Sea Giant Hunter -- Units\Creeps\SeaGiantGreen\SeaGiantGreen
 
-AddUnitShop("sea-giants", "Sea Giants");
+AddUnitShopMultiple("sea-giants", "Sea Giants");
 
 QueueUnit("nahy"); //creeps:Ancient Hydra -- Units\Creeps\Hydra\Hydra
 QueueUnit("nehy"); //creeps:Elder Hydra -- Units\Creeps\Hydra\Hydra
 QueueUnit("nhyd"); //creeps:Hydra -- Units\Creeps\Hydra\Hydra
 QueueUnit("nhyh"); //creeps:Hydra Hatchling -- Units\Creeps\Hydra\Hydra
 
-AddUnitShop("hydras", "Hydars");
+AddUnitShopMultiple("hydras", "Hydars");
 
 QueueUnit("nslf"); //creeps:Sludge Flinger -- units\creeps\SludgeMonster\SludgeMonster
 QueueUnit("nslm"); //creeps:Sludge Minion -- units\creeps\SludgeMonster\SludgeMonster
 QueueUnit("nsln"); //creeps:Sludge Monstrosity -- units\creeps\SludgeMonster\SludgeMonster
 QueueUnit("ndrj"); //creeps:Dalaran Reject -- units\other\DalaranReject\DalaranReject
 
-AddUnitShop("sludge", "Sludge");
+AddUnitShopMultiple("sludge", "Sludge");
 
 QueueUnit("narg"); //creeps:Battle Golem -- units\creeps\GolemStatue\GolemStatue
 QueueUnit("nggr"); //creeps:Granite Golem -- units\creeps\RockGolem\RockGolem
@@ -365,7 +365,7 @@ QueueUnit("nsgg"); //creeps:Siege Golem -- units\creeps\GolemStatue\GolemStatue
 QueueUnit("nwrg"); //creeps:War Golem -- units\creeps\GolemStatue\GolemStatue
 QueueUnit("nfgl"); //creeps:Flesh Golem -- units\other\FleshGolem\FleshGolem
 
-AddUnitShop("golems", "Golems");
+AddUnitShopMultiple("golems", "Golems");
 
 QueueUnit("nhrq"); //creeps:Harpy Queen -- units\creeps\HarpyQueen\HarpyQueen
 QueueUnit("nhrr"); //creeps:Harpy Rogue -- units\creeps\Harpy\Harpy
@@ -373,7 +373,7 @@ QueueUnit("nhar"); //creeps:Harpy Scout -- units\creeps\Harpy\Harpy
 QueueUnit("nhrh"); //creeps:Harpy Storm-hag -- units\creeps\HarpyWitch\HarpyWitch
 QueueUnit("nhrw"); //creeps:Harpy Windwitch -- units\creeps\HarpyWitch\HarpyWitch
 
-AddUnitShop("harpies", "Harpies");
+AddUnitShopMultiple("harpies", "Harpies");
 
 QueueUnit("ncea"); //creeps:Centaur Archer -- units\creeps\CentaurArcher\CentaurArcher
 QueueUnit("ncer"); //creeps:Centaur Drudge -- units\creeps\Centaur\Centaur
@@ -382,7 +382,7 @@ QueueUnit("ncnk"); //creeps:Centaur Khan -- units\creeps\CentaurKhan\CentaurKhan
 QueueUnit("ncen"); //creeps:Centaur Outrunner -- units\creeps\Centaur\Centaur
 QueueUnit("ncks"); //creeps:Centaur Sorcerer -- units\creeps\CentaurKhan\CentaurKhan
 
-AddUnitShop("centaurs", "Centaurs");
+AddUnitShopMultiple("centaurs", "Centaurs");
 
 QueueUnit("ngno"); //creeps:Gnoll -- units\creeps\Gnoll\Gnoll
 QueueUnit("ngns"); //creeps:Gnoll Assassin -- units\creeps\GnollArcher\GnollArcher
@@ -391,7 +391,7 @@ QueueUnit("ngnv"); //creeps:Gnoll Overseer -- units\creeps\GnollOverseer\GnollOv
 QueueUnit("ngna"); //creeps:Gnoll Poacher -- units\creeps\GnollArcher\GnollArcher
 QueueUnit("ngnw"); //creeps:Gnoll Warden -- units\creeps\GnollWarden\GnollWarden
 
-AddUnitShop("gnolls", "Gnolls");
+AddUnitShopMultiple("gnolls", "Gnolls");
 
 QueueUnit("ndrf"); //creeps:Draenei Guardian -- units\other\Dranai\Dranai
 QueueUnit("ndrl"); //creeps:Draenei Laborer -- units\other\Dranai\Dranai
@@ -404,33 +404,33 @@ QueueUnit("ndrp"); //creeps:Draenei Protector -- units\other\DranaiWhite\DranaiW
 QueueUnit("ndrd"); //creeps:Draenei Darkslayer -- units\other\DranaiWhite\DranaiWhite
 QueueUnit("ndrn"); //creeps:Draenei Vindicator -- units\other\DranaiWhite\DranaiWhite
 
-AddUnitShop("draenei", "Draenei");
+AddUnitShopMultiple("draenei", "Draenei");
 
 QueueUnit("nwna"); //creeps:Ancient Wendigo -- units\creeps\Wendigo\Wendigo
 QueueUnit("nwnr"); //creeps:Elder Wendigo -- units\creeps\Wendigo\Wendigo
 QueueUnit("nwen"); //creeps:Wendigo -- units\creeps\Wendigo\Wendigo
 QueueUnit("nwns"); //creeps:Wendigo Shaman -- units\creeps\WendigoShaman\WendigoShaman
 
-AddUnitShop("wendigos", "Wendigos");
+AddUnitShopMultiple("wendigos", "Wendigos");
 
 QueueUnit("nsqa"); //creeps:Ancient Sasquatch -- units\creeps\Sasquatch\Sasquatch
 QueueUnit("nsqe"); //creeps:Elder Sasquatch -- units\creeps\SasquatchShaman\SasquatchShaman
 QueueUnit("nsqt"); //creeps:Sasquatch -- units\creeps\Sasquatch\Sasquatch
 QueueUnit("nsqo"); //creeps:Sasquatch Oracle -- units\creeps\Sasquatch\Sasquatch
 
-AddUnitShop("sasquatches", "Sasquatches");
+AddUnitShopMultiple("sasquatches", "Sasquatches");
 
 QueueUnit("nowk"); //creeps:Berserk Wildkin -- units\creeps\Owlbear\Owlbear
 QueueUnit("nowe"); //creeps:Enraged Wildkin -- units\creeps\Owlbear\Owlbear
 QueueUnit("nowb"); //creeps:Wildkin -- units\creeps\Owlbear\Owlbear
 
-AddUnitShop("wildkins", "Wildkins");
+AddUnitShopMultiple("wildkins", "Wildkins");
 
 QueueUnit("njga"); //creeps:Elder Jungle Stalker -- units\creeps\JungleBeast\JungleBeast
 QueueUnit("njgb"); //creeps:Enraged Jungle Stalker -- units\creeps\JungleBeast\JungleBeast
 QueueUnit("njg1"); //creeps:Jungle Stalker -- units\creeps\JungleBeast\JungleBeast
 
-AddUnitShop("jungle-stalkers", "Jungle Stalkers");
+AddUnitShopMultiple("jungle-stalkers", "Jungle Stalkers");
 
 QueueUnit("ntkc"); //creeps:Tuskarr Chieftain -- Units\Creeps\tuskarLord\tuskarLord
 QueueUnit("ntkf"); //creeps:Tuskarr Fighter -- Units\Creeps\tuskar\tuskar
@@ -440,7 +440,7 @@ QueueUnit("ntka"); //creeps:Tuskarr Spearman -- Units\Creeps\tuskarRanged\tuskar
 QueueUnit("ntkt"); //creeps:Tuskarr Trapper -- Units\Creeps\tuskarRanged\tuskarRanged
 QueueUnit("ntkw"); //creeps:Tuskarr Warrior -- Units\Creeps\tuskarLord\tuskarLord
 
-AddUnitShop("tuskarr", "Tuskarr");
+AddUnitShopMultiple("tuskarr", "Tuskarr");
 
 QueueUnit("nsty"); //creeps:Satyr -- units\creeps\Satyr\Satyr
 QueueUnit("nsth"); //creeps:Satyr Hellcaller -- units\creeps\satyrhellcaller\satyrhellcaller
@@ -448,7 +448,7 @@ QueueUnit("nsts"); //creeps:Satyr Shadowdancer -- units\creeps\SatyrTrickster\Sa
 QueueUnit("nstl"); //creeps:Satyr Soulstealer -- units\creeps\Satyr\Satyr
 QueueUnit("nsat"); //creeps:Satyr Trickster -- units\creeps\SatyrTrickster\SatyrTrickster
 
-AddUnitShop("satyrs", "Satyrs");
+AddUnitShopMultiple("satyrs", "Satyrs");
 
 QueueUnit("njks"); //human:Jailor Kassan -- units\creeps\Bandit\Bandit
 QueueUnit("nenf"); //creeps:Enforcer -- units\creeps\Bandit\Bandit
@@ -458,7 +458,7 @@ QueueUnit("nbld"); //creeps:Bandit Lord -- units\creeps\BanditLord\BanditLord
 QueueUnit("nbrg"); //creeps:Brigand -- units\creeps\BanditSpearThrower\BanditSpearThrower
 QueueUnit("nass"); //creeps:Assassin -- units\creeps\BanditSpearThrower\BanditSpearThrower
 
-AddUnitShop("bandits", "Bandits");
+AddUnitShopMultiple("bandits", "Bandits");
 
 QueueUnit("nwzd"); //creeps:Dark Wizard -- units\creeps\BanditMage\BanditMage
 QueueUnit("nwzg"); //creeps:Renegade Wizard -- units\creeps\BanditMage\BanditMage
@@ -468,31 +468,31 @@ QueueUnit("nwiz"); //creeps:Apprentice Wizard -- units\creeps\HumanMage\HumanMag
 QueueUnit("nchp"); //human:Chaplain -- units\creeps\HumanMage\HumanMage
 QueueUnit("nemi"); //human:Emissary -- units\creeps\HumanMage\HumanMage
 
-AddUnitShop("mages", "Mages");
+AddUnitShopMultiple("mages", "Mages");
 
 QueueUnit("nvde"); //creeps:Elder Voidwalker -- units\creeps\VoidWalker\VoidWalker
 QueueUnit("nvdg"); //creeps:Greater Voidwalker -- units\creeps\VoidWalker\VoidWalker
 QueueUnit("nvdl"); //creeps:Lesser Voidwalker -- units\creeps\VoidWalker\VoidWalker
 QueueUnit("nvdw"); //creeps:Voidwalker -- units\creeps\VoidWalker\VoidWalker
 
-AddUnitShop("voidwalkers", "Voidwalkers");
+AddUnitShopMultiple("voidwalkers", "Voidwalkers");
 
 QueueUnit("ngh1"); //creeps:Ghost -- units\creeps\BansheeGhost\BansheeGhost
 QueueUnit("ngh2"); //creeps:Wraith -- units\creeps\BansheeGhost\BansheeGhost
 
-AddUnitShop("banshee", "Banshee");
+AddUnitShopMultiple("banshee", "Banshee");
 
 QueueUnit("nhfp"); //creeps:Fallen Priest -- units\undead\Acolyte\Acolyte
 QueueUnit("nhdc"); //creeps:Deceiver -- units\undead\Acolyte\Acolyte
 QueueUnit("nhhr"); //creeps:Heretic -- units\undead\Acolyte\Acolyte
 
-AddUnitShop("heretics", "Heretics");
+AddUnitShopMultiple("heretics", "Heretics");
 
 QueueUnit("nenc"); //creeps:Corrupted Treant -- units\creeps\CorruptedEnt\CorruptedEnt
 QueueUnit("nepl"); //creeps:Plague Treant -- units\creeps\CorruptedEnt\CorruptedEnt
 QueueUnit("nenp"); //creeps:Poison Treant -- units\creeps\CorruptedEnt\CorruptedEnt
 
-AddUnitShop("treants", "Treants");
+AddUnitShopMultiple("treants", "Treants");
 
 QueueUnit("Nbrn"); //creeps:Dark Ranger -- Units\Creeps\BansheeRanger\BansheeRanger
 QueueUnit("Nalc"); //creeps:Alchemist -- Units\Creeps\HeroGoblinAlchemist\HeroGoblinAlchemist
@@ -506,7 +506,7 @@ QueueUnit("Nngs"); //creeps:Naga Sea Witch -- units\naga\HeroNagaSeawitch\HeroNa
 QueueUnit("Hvsh"); //naga:Naga Sea Witch -- units\naga\LadyVashj\LadyVashj
 QueueUnit("Naka"); //creeps:Elder Sage -- units\other\DranaiAkama\DranaiAkama
 
-AddUnitShop("neutral-heroes", "Neutral Heroes");
+AddUnitShopMultiple("neutral-heroes", "Neutral Heroes");
 
 QueueUnit("nalb"); //critters:Albatross -- units\critters\Albatross\Albatross
 QueueUnit("nech"); //critters:Chicken -- units\critters\EasterChicken\EasterChicken
@@ -530,7 +530,7 @@ QueueUnit("nvul"); //critters:Vulture -- units\critters\Vulture\Vulture
 QueueUnit("nfbr"); //critters:Fel Boar -- units\critters\Felboar\Felboar
 QueueUnit("nsea"); //critters:Seal -- units\critters\Seal\Seal
 
-AddUnitShop("critters", "Critters");
+AddUnitShopMultiple("critters", "Critters");
 
 QueueUnit("nwgs"); //naga:Couatl -- units\naga\WindSerpent\WindSerpent
 QueueUnit("nmyr"); //naga:Naga Myrmidon -- units\naga\NagaMyrmidon\NagaMyrmidon
@@ -540,7 +540,7 @@ QueueUnit("nnsu"); //naga:Summoner -- Units\Naga\NagaSummoner\NagaSummoner
 QueueUnit("nhyc"); //naga:Dragon Turtle -- Units\Creeps\DragonSeaTurtleRange\DragonSeaTurtleRange
 QueueUnit("nsnp"); //naga:Snap Dragon -- units\naga\SnapDragon\SnapDragon
 
-AddUnitShop("naga", "Naga");
+AddUnitShopMultiple("naga", "Naga");
 
 QueueUnit("zmar"); //other:Marine -- Units\Critters\Marine\Marine
 QueueUnit("zjug"); //other:Orc Juggernaught -- Units\Critters\OrcJuggernaught\OrcJuggernaught
@@ -548,7 +548,7 @@ QueueUnit("zcso"); //other:Space Fel Orc -- Units\Critters\ChaosSpaceOrc\ChaosSp
 QueueUnit("zzrg"); //other:Zergling -- Units\Critters\zergling\zergling
 QueueUnit("zhyd"); //other:Hydralisk -- Units\Critters\Hydralisk\Hydralisk
 
-AddUnitShop("starcraft", "Starcraft Units");
+AddUnitShopMultiple("starcraft", "Starcraft Units");
 
 QueueUnit("nqb4"); //other:Berserk Quilbeast -- Units\Creeps\QuillBeast\QuillBeast
 QueueUnit("ndr2"); //other:Dark Minion -- units\undead\Skeleton\Skeleton
@@ -576,5 +576,5 @@ QueueUnit("ncg2"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\Hero
 QueueUnit("ncgb"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\HeroTinkerRobot
 QueueUnit("ncg1"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\HeroTinkerRobot
 
-AddUnitShop("spawns", "Spawnable Units");
+AddUnitShopMultiple("spawns", "Spawnable Units");
 

@@ -12,7 +12,7 @@ AddBuilding("shells7", "Shells 7", "Doodads\\Ruins\\Props\\Ruins_Shells\\Ruins_S
 AddBuilding("shells8", "Shells 8", "Doodads\\Ruins\\Props\\Ruins_Shells\\Ruins_Shells7.mdx");
 AddBuilding("shells9", "Shells 9", "Doodads\\Ruins\\Props\\Ruins_Shells\\Ruins_Shells8.mdx");
 AddBuilding("shells10", "Shells 10", "Doodads\\Ruins\\Props\\Ruins_Shells\\Ruins_Shells9.mdx");
-AutoAddBuilder("water-shells", "Shells");
+AddBuilderMultiple("water-shells", "Shells");
 
 //water-corals
 AddBuilding("corals1", "Corals 1", "Doodads\\Ruins\\Water\\Coral\\Coral0.mdx");
@@ -25,7 +25,7 @@ AddBuilding("corals7", "Corals 7", "Doodads\\Ruins\\Water\\Coral\\Coral6.mdx");
 AddBuilding("corals8", "Corals 8", "Doodads\\Ruins\\Water\\Coral\\Coral7.mdx");
 AddBuilding("corals9", "Corals 9", "Doodads\\Ruins\\Water\\Coral\\Coral8.mdx");
 AddBuilding("corals10", "Corals 10", "Doodads\\Ruins\\Water\\Coral\\Coral9.mdx");
-AutoAddBuilder("water-corals", "Corals");
+AddBuilderMultiple("water-corals", "Corals");
 
 //water-fish
 AddBuilding("fishdead", "Dead Fish", "Doodads\\Felwood\\Props\\Fish_Dead\\Fish_Dead.mdx");
@@ -33,7 +33,7 @@ AddBuilding("fish", "Fish", "Doodads\\Ashenvale\\Water\\Fish\\Fish.mdx");
 AddBuilding("fishschool", "School of Fish", "Doodads\\Ruins\\Water\\FishSchool\\FishSchool.mdx");
 AddBuilding("fishtropical", "Tropical Fish", "Doodads\\Ruins\\Water\\FishTropical\\FishTropical.mdx");
 AddBuilding("whale", "Whale", "Doodads\\Northrend\\Water\\Whale\\Whale.mdx");
-AutoAddBuilder("water-fish", "Fish");
+AddBuilderMultiple("water-fish", "Fish");
 
 //water-seaweed
 AddBuilding("seaweed1", "Seaweed 1", "Doodads\\Ruins\\Water\\Seaweed0\\Seaweed00.mdx");
@@ -41,7 +41,7 @@ AddBuilding("seaweed2", "Seaweed 2", "Doodads\\Ruins\\Water\\Seaweed0\\Seaweed01
 AddBuilding("seaweed3", "Seaweed 3", "Doodads\\Ruins\\Water\\Seaweed0\\Seaweed02.mdx");
 AddBuilding("seaweed4", "Seaweed 4", "Doodads\\Ruins\\Water\\Seaweed0\\Seaweed03.mdx");
 AddBuilding("seaweed5", "Seaweed 5", "Doodads\\Ruins\\Water\\Seaweed0\\Seaweed04.mdx");
-AutoAddBuilder("water-seaweed", "Seaweed");
+AddBuilderMultiple("water-seaweed", "Seaweed");
 
 //water-human
 AddBuilding("wharf", "Wharf", "Doodads\\Terrain\\Wharf\\Wharf.mdx");
@@ -54,7 +54,7 @@ AddBuilding("rowboatbroken", "Destroyed Rowboat", "Doodads\\Northrend\\Water\\Ro
 AddBuilding("floatbox", "Floating Box", "Doodads\\Northrend\\Water\\FloatingBox\\FloatingBox.mdx");
 AddBuilding("floatpanel", "Floating Panel", "Doodads\\Northrend\\Water\\FloatingPanel\\FloatingPanel.mdx");
 AddBuilding("floatplank", "Floating Plank", "Doodads\\Northrend\\Water\\FloatingPlank\\FloatingPlank.mdx");
-AutoAddBuilder("water-human", "Water Junk and Structures");
+AddBuilderMultiple("water-human", "Water Junk and Structures");
 
 //water-other
 AddBuilding("risingwater1", "Rising Water 1", "Doodads\\Cinematic\\RisingWaterDoodad\\RisingWaterDoodad.mdx");
@@ -63,8 +63,8 @@ AddBuilding("bubblesteamgeyser", "Bubble Steam Geyser", "Doodads\\Icecrown\\Wate
 AddBuilding("bubblegeyser", "Bubble Geyser", "Doodads\\Ruins\\Water\\BubbleGeyser\\BubbleGeyser.mdx");
 AddBuilding("icecrownwaterfall", "Icecrown Waterfall", "Doodads\\Terrain\\CliffDoodad\\IceCrownWaterfall\\IceCrownWaterfall.mdx");
 AddBuilding("waterfall", "Waterfall", "Doodads\\Terrain\\CliffDoodad\\Waterfall\\Waterfall.mdx");
-AutoAddBuilder("water-other", "Water Misc");
+AddBuilderMultiple("water-other", "Water Misc");
 
 shopScale = 0.8;
-AutoAddShop("water", "Water Stuff");
+AddBuilderShopMultiple("water", "Water Stuff");
 shopScale = 0.5;

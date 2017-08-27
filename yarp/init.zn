@@ -36,6 +36,7 @@
 //! import zinc "yarp/core/region.zn"
 //! import zinc "yarp/core/lists.zn"
 //! import zinc "yarp/core/deformations.zn"
+//! import zinc "yarp/core/id_manifest.zn"
 
 // Game Management
 
@@ -51,7 +52,20 @@
 //! import zinc "yarp/game/loader.zn"
 
 
-library Core requires Util, Selection, CommandParser, FlyUtils, Logs, SaveLoad, Security, UnitData, UnitTypes, Region, Spawner, Deformations, Lists {
+library Core requires Util, 
+					Selection,
+					CommandParser, 
+					FlyUtils, 
+					Logs, 
+					SaveLoad, 
+					Security,
+					UnitData, 
+					UnitTypes, 
+					Region, 
+					Spawner, 
+					Deformations, 
+					Lists,
+					IdManifest {
 	function onInit() {
 		static if (DEBUG_MODE) {
 		//	ClearTextMessages();

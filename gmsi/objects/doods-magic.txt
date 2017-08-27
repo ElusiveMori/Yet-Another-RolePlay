@@ -10,7 +10,7 @@ AddBuilding("glowingrunes6", "Glowing Runes 6", "Doodads\\Cinematic\\GlowingRune
 AddBuilding("glowingrunes7", "Glowing Runes 7", "Doodads\\Cinematic\\GlowingRunes\\GlowingRunes6.mdx");
 AddBuilding("glowingrunes8", "Glowing Runes 8", "Doodads\\Cinematic\\GlowingRunes\\GlowingRunes7.mdx");
 AddBuilding("glowingrunes9", "Glowing Runes 9", "Doodads\\Cinematic\\GlowingRunes\\GlowingRunes8.mdx");
-AutoAddBuilder("runes", "Runes");
+AddBuilderMultiple("runes", "Runes");
 
 //runes-guldan
 AddBuilding("runesofguldan1", "Guldan Runes 1", "Doodads\\Cinematic\\RunesOfGuldan\\RunesOfGuldan0.mdx");
@@ -19,13 +19,13 @@ AddBuilding("runesofguldan3", "Guldan Runes 3", "Doodads\\Cinematic\\RunesOfGuld
 AddBuilding("runesofguldan4", "Guldan Runes 4", "Doodads\\Cinematic\\RunesOfGuldan\\RunesOfGuldan3.mdx");
 AddBuilding("runesofguldan5", "Guldan Runes 5", "Doodads\\Cinematic\\RunesOfGuldan\\RunesOfGuldan4.mdx");
 AddBuilding("runesofguldan6", "Guldan Runes 6", "Doodads\\Cinematic\\RunesOfGuldan\\RunesOfGuldan5.mdx");
-AutoAddBuilder("guldanrunes", "Guldan Runes");
+AddBuilderMultiple("guldanrunes", "Guldan Runes");
 
 //runes-others
 AddBuilding("magicrunes1", "Magic Runes 1", "Doodads\\Cityscape\\Props\\MagicRunes\\MagicRunes0.mdx");
 AddBuilding("magicrunes2", "Magic Runes 2", "Doodads\\Cityscape\\Props\\MagicRunes\\MagicRunes1.mdx");
 AddBuilding("magicrunes3", "Magic Runes 3", "Doodads\\Cityscape\\Props\\MagicRunes\\MagicRunes2.mdx");
-AutoAddBuilder("magicrunes", "Magic Runes");
+AddBuilderMultiple("magicrunes", "Magic Runes");
 
 icon = "ReplaceableTextures\\CommandButtons\\BTNGlyph.blp";
 //runes-outland
@@ -36,6 +36,6 @@ AddBuilding("blackcitadelrune4", "Black Citadel Rune 4", "Doodads\\BlackCitadel\
 AddBuilding("blackcitadelrune5", "Black Citadel Rune 5", "Doodads\\BlackCitadel\\Props\\RuneArt\\RuneArt4.mdx");
 AddBuilding("blackcitadelrune6", "Black Citadel Rune 6", "Doodads\\BlackCitadel\\Props\\RuneArt\\RuneArt5.mdx");
 AddBuilding("blackcitadelrune7", "Black Citadel Rune 7", "Doodads\\BlackCitadel\\Props\\RuneArt\\RuneArt6.mdx");
-AutoAddBuilder("bcrunes", "Black Citadel Runes");
+AddBuilderMultiple("bcrunes", "Black Citadel Runes");
 
-AutoAddShop("magic", "Magic Stuff");
+AddBuilderShopMultiple("magic", "Magic Stuff");
