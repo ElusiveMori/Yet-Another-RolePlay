@@ -33,7 +33,7 @@ Unit GetBaseUnit(string id) {
 
 Unit GetBaseBuilding(string id) {
 	Unit base = GetBaseUnit(id);
-	base.pathTex = "PathTextures\\2x2Default.tga";
+	base.pathTex = pathingTexture;
 	base.spd = 1;
 	base.manaN = 0;
 	base.isbldg = 1;

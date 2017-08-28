@@ -39,6 +39,9 @@ void Init() {
 	include("yarp/objects/doods-graveyard.txt");
 	include("yarp/objects/doods-structures.txt");
 
+	echoln("Starting custom buildings...");
+	include("yarp/objects/custom-buildings.txt");
+
 	echoln("Starting unit shops...");
 	include("yarp/objects/unitshops-races.txt");
 	include("yarp/objects/unitshops.txt");

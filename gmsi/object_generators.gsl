@@ -78,6 +78,7 @@ string AddShop(string eId, string name, string units) {
 	shop.race = "undead";
 	shop.modelScale = shopScale;
 	shop.scale = 3;
+	shop.uberSplat = "HSMA";
 
 	AddEID(eId, shopsCurrentId);
 	string returnValue = shopsCurrentId;
@@ -430,6 +431,9 @@ void PreplaceUnits() {
 	sch[5][2] = "s-misc3";
 	sch[5][3] = "s-magic";
 
+	sch[6][0] = "s-misc-custom";
+	sch[6][1] = "s-custom-dungeon";
+
 	for (int i: sch) {
 		for (int j: sch[i]) {
 			placeUnit(map, extendedIds[sch[i][j]], j * gridSize - gridSize * 8, i * gridSize - gridSize * 8, 0, 0, 270);
@@ -451,8 +455,6 @@ void PreplaceUnits() {
 				j = 0;
 				i++;
 			}
-
-			echoln("placed " + shopId);
 
 			unset(unitShopQueue[]);
 			shopId=unitShopQueue[];
