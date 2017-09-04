@@ -49,7 +49,7 @@ AddBuilding("dngminestnpill", "Mine Dungeon Stone Pillar", "Buildings\\DungeonWa
 AddBuilding("dngminedempill", "Mine Dungeon Demon Pillar", "Buildings\\DungeonWalls\\Dwall_DemonPillar.mdx");
 AddBuilderMultiple("dungeon-mine", "Mine Dungeon Walls");
 
-AddBuilding("dngstnwall3", "Stone Dungeon Wall", "Buildings\\DungeonWalls\\\DungeonWall_Stone.mdx");
+AddBuilding("dngstnwall3", "Stone Dungeon Wall", "Buildings\\DungeonWalls\\DungeonWall_Stone.mdx");
 AddBuilding("dngstnwallhalf", "Stone Dungeon Half-wall", "Buildings\\DungeonWalls\\DungeonWall_StoneHalf.mdx");
 AddBuilding("dngstnoutcor", "Stone Dungeon Outer Corner", "Buildings\\DungeonWalls\\DungeonWall_StoneOuterCorner.mdx");
 AddBuilding("dngstnincor", "Stone Dungeon Inner Corner", "Buildings\\DungeonWalls\\DungeonWall_StoneInnerCorner.mdx");

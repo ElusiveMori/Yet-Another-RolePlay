@@ -36,7 +36,7 @@ void GenerateEIDManifest() {
 	Writer w = openFileWrite(@outputPath + "/yarp-eid-manifest.txt", false);
 
 	write("library IdManifest requires Util {\n");
-	write("\tpublic struct IdManifest {\n");
+	write("\tpublic struct IdManifest[] {\n");
 	write("\t\tstatic Table string2id;\n");
 	write("\t\tstatic Table id2string;\n\n");
 

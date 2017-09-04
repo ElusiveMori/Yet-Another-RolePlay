@@ -31,7 +31,8 @@ library Unit requires Core {
 		private static integer s_b;
 		private static integer s_a;
 		private static boolean s_bool;
-		private static string s_string;
+		private static string s_string1;
+		private static string s_string2;
 		private static playercolor s_color;
 
 		private static method Command_UnitRemove_aux() {
@@ -137,7 +138,7 @@ library Unit requires Core {
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
 				thread = CommandThread.create(s_thread.owner, CMDF_EXEC);
 				thread.selection.addUnit(what);
-				thread.pushCommands("repeat " + I2S(s_int) + " " + s_string);
+				thread.pushCommands("repeat " + I2S(s_int) + " " + s_string1);
 				thread.start.execute();
 
 				s_int = s_int + 1;
@@ -145,7 +146,7 @@ library Unit requires Core {
 		}
 
 		private static method Command_UnitStep(CommandThread thread) {
-			s_string = thread.args.restParsed();
+			s_string1 = thread.args.restParsed();
 			s_int = 0;
 			s_thread = thread;
 
@@ -352,31 +353,31 @@ library Unit requires Core {
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitPlayAnim")
-			s_string = thread.args.next();
+			s_string1 = thread.args.next();
 			s_int = S2I(thread.args.next()) - 1;
 
 			if (s_int < 0)
 				s_int = 0;
 		//! runtextmacro CommandStart("Command_UnitPlayAnim")
-			unitData.setAnim(s_string);
-			unitData.queueAnimCount(s_string, s_int);
+			unitData.setAnim(s_string1);
+			unitData.queueAnimCount(s_string1, s_int);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitQueueAnim")
-			s_string = thread.args.next();
+			s_string1 = thread.args.next();
 			s_int = S2I(thread.args.next()) - 1;
 
 			if (s_int < 0)
 				s_int = 0;
 		//! runtextmacro CommandStart("Command_UnitQueueAnim")
-			unitData.queueAnimCount(s_string, s_int);
+			unitData.queueAnimCount(s_string1, s_int);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_Tag")
-			s_string = thread.args.next();
+			s_string1 = thread.args.next();
 			s_bool = (thread.args.next() == "off");
 		//! runtextmacro CommandStart("Command_Tag")
-			AddUnitAnimationProperties(what, s_string, !s_bool);
+			AddUnitAnimationProperties(what, s_string1, !s_bool);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitFly")
@@ -439,6 +440,13 @@ library Unit requires Core {
 			unitData.paused = s_bool;
 		//! runtextmacro CommandEnd();
 
+		//! runtextmacro CommandHeader("Command_UnitAttach")
+			s_string1 = ConvertSlashes(thread.args.next());
+			s_string2 = thread.args.next();
+		//! runtextmacro CommandStart("Command_UnitAttach")
+			AddSpecialEffectTarget(s_string1, what, s_string2);
+		//! runtextmacro CommandEnd();
+
 		private static method onInit() {
 			Command.register("remove",  thistype.Command_UnitRemove,          CMD_UNITPROP);
 			Command.register("give",    thistype.Command_UnitGive,            CMD_UNITPROP);
@@ -474,6 +482,7 @@ library Unit requires Core {
 			Command.register("ability", thistype.Command_UnitAbility,         CMD_UNITPROP);
 			Command.register("group",   thistype.Command_UnitGroup,           CMD_UNITPROP);
 			Command.register("pause",   thistype.Command_UnitPause,           CMD_UNITPROP);
+			Command.register("attach",  thistype.Command_UnitAttach,          CMD_UNITPROP);
 			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
 			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
 			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);
