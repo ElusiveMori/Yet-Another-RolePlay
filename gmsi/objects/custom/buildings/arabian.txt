@@ -1,0 +1,32 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNAncestralSpirit.blp";
+
+AddBuilding("arabinn", "Inn", "YARP\\Buildings\\Arabian\\Arabian Inn.mdx");
+AddBuilding("arabuni", "University", "YARP\\Buildings\\Arabian\\Arabian University.mdx");
+AddBuilding("arabwork", "Workshop", "YARP\\Buildings\\Arabian\\Arabian Workshop.mdx");
+AddBuilding("arabpal", "Palace", "YARP\\Buildings\\Arabian\\Arabian palace.mdx");
+AddBuilding("arabtownhall", "Town Hall", "YARP\\Buildings\\Arabian\\Arabian town hall.mdx");
+AddBuilding("arabarch", "Archery", "YARP\\Buildings\\Arabian\\ArabianArchery.mdx");
+AddBuilding("arabbar", "Barracks", "YARP\\Buildings\\Arabian\\ArabianBarrack.mdx");
+AddBuilding("arabdock", "Docks", "YARP\\Buildings\\Arabian\\ArabianDocks.mdx");
+AddBuilding("arabfarm", "Farm", "YARP\\Buildings\\Arabian\\ArabianFarm.mdx");
+AddBuilding("arabgran", "Granary", "YARP\\Buildings\\Arabian\\ArabianGranary.mdx");
+AddBuilding("arabhou", "House", "YARP\\Buildings\\Arabian\\ArabianHouse.mdx");
+AddBuilding("arabmark", "Market", "YARP\\Buildings\\Arabian\\ArabianMarket.mdx");
+AddBuilding("arabsmi", "Smith", "YARP\\Buildings\\Arabian\\ArabianSmith.mdx");
+AddBuilding("arabstab", "Stables", "YARP\\Buildings\\Arabian\\ArabianStables.mdx");
+AddBuilding("arabston", "Stonemace", "YARP\\Buildings\\Arabian\\ArabianStonemace.mdx");
+AddBuilding("arabstor", "Storage", "YARP\\Buildings\\Arabian\\ArabianStorage.mdx");
+AddBuilding("arabmill", "Water Mill", "YARP\\Buildings\\Arabian\\ArabianWaterMill.mdx");
+AddBuilding("arabwcamp", "Woodcamp", "YARP\\Buildings\\Arabian\\ArabianWoodencamp.mdx");
+AddBuilding("arabmosq", "Mosque", "YARP\\Buildings\\Arabian\\Mosque.mdx");
+
+AddBuilderMultiple("arabbld", "Arabian Buildings");
+
+AddBuilding("arabwallv", "Vertical Wall", "YARP\\Buildings\\Arabian\\ArabianWalls V.mdx");
+AddBuilding("arabwall", "Horizontal Wall", "YARP\\Buildings\\Arabian\\ArabianWalls.mdx");
+AddBuilding("arabgate", "Vertical Gate", "YARP\\Buildings\\Arabian\\ArabianGate.mdx");
+AddBuilding("arabgateh", "Horizontal Gate", "YARP\\Buildings\\Arabian\\ArabianGateHorizontal.mdx");
+AddBuilding("arabcan", "Cannon Tower", "YARP\\Buildings\\Arabian\\ArabianCannonTowers.mdx");
+AddBuilding("arabtow", "Tower", "YARP\\Buildings\\Arabian\\ArabianTowers.mdx");
+
+AddBuilderMultiple("arabfort", "Arabian Fortifications");

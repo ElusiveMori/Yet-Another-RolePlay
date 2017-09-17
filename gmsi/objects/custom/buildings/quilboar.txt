@@ -1,0 +1,8 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNRazorback.blp";
+
+AddBuilding("rzr1", "Barracks", "YARP\\Buildings\\Quilboar\\QuilboarBarracks.mdx");
+AddBuilding("rzr2", "Beastiary", "YARP\\Buildings\\Quilboar\\QuilboarBeastiary.mdx");
+AddBuilding("rzr3", "Bunker", "YARP\\Buildings\\Quilboar\\QuilboarBunker.mdx");
+AddBuilding("rzr4", "Watch Tower", "YARP\\Buildings\\Quilboar\\RazormaneWatchTower.mdx");
+
+AddBuilderMultiple("rzrbld", "Quillboar Buildings");

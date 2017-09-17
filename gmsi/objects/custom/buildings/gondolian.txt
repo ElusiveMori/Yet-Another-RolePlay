@@ -1,0 +1,10 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNGuardTower.blp";
+
+AddBuilding("gond1", "Roof", "YARP\\Buildings\\Gondolian\\Gondolian_Roof.mdx");
+AddBuilding("gond2", "Tower", "YARP\\Buildings\\Gondolian\\Gondolian_Tower2.mdx");
+AddBuilding("gond4", "Tower", "YARP\\Buildings\\Gondolian\\Gondolin_Tower.mdx");
+AddBuilding("gond3", "Wall", "YARP\\Buildings\\Gondolian\\Gondolian_Wall.mdx");
+AddBuilding("gond6", "Wall", "YARP\\Buildings\\Gondolian\\MinasWall2.mdx");
+AddBuilding("gond5", "House", "YARP\\Buildings\\Gondolian\\MinasHouse01.mdx");
+
+AddBuilderMultiple("gond", "Gondolian Buildings");

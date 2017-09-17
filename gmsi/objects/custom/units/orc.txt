@@ -1,0 +1,16 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNBattleStations.blp";
+
+AddCustomUnit("orc-beastmist", "Beast Mistress", "YARP\\Units\\Orc\\BeastMistress\\BeastMasterFemale.mdx");
+AddCustomUnit("orc-blademonk1", "Fel Blademonk", "YARP\\Units\\Orc\\Blademonk\\Chaos_Blademaster.mdx");
+AddCustomUnit("orc-blademonk2", "Blademonk", "YARP\\Units\\Orc\\Blademonk\\Dire_Blademaster.mdx");
+AddCustomUnit("orc-shaman", "Elder Shaman", "YARP\\Units\\Orc\\ElderShaman\\DrekThar_Shaman.mdx");
+AddCustomUnit("orc-elder", "Elder", "YARP\\Units\\Orc\\Elder\\ElderDrekThar.mdx");
+AddCustomUnit("orc-femgrunt", "Female Grunt", "YARP\\Units\\Orc\\FemaleGrunt\\GruntFemale.mdx");
+AddCustomUnit("orc-femsham", "Female Shaman", "YARP\\Units\\Orc\\FemaleShaman\\ShamanFemale.mdx");
+AddCustomUnit("orc-spear", "Spearthrower", "YARP\\Units\\Orc\\Spearthrower\\OrcSpearThrower.mdx");
+AddCustomUnit("orc-torntusk", "Torntusk", "YARP\\Units\\Orc\\Torntusk\\Primal Torntusk.mdx");
+AddCustomUnit("orc-warfiend1", "Fel Warfiend", "YARP\\Units\\Orc\\Warfiend\\Hero_Bloodfiend.mdx");
+AddCustomUnit("orc-warfiend2", "Warfiend", "YARP\\Units\\Orc\\Warfiend\\Hero_Warfiend.mdx");
+
+shopModel = "YARP\\Units\\Orc\\ElderShaman\\DrekThar_Shaman.mdx";
+AddCustomUnitShopMultiple("c-orc", "Orcs");

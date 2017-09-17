@@ -1,0 +1,27 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNBLoodMage2.blp";
+
+AddCustomUnit("be-agent", "Assassin", "YARP\\Units\\Bloodelf\\Agent\\FarstriderAssasin.mdx");
+AddCustomUnit("be-apprentice", "Apprentice", "YARP\\Units\\Bloodelf\\Apprentice\\BEApprentice.mdx");
+AddCustomUnit("be-archunt", "Arcane Huntress", "YARP\\Units\\Bloodelf\\ArcaneHuntress\\HeroBEArcaneHuntress.mdx");
+AddCustomUnit("be-bladehound", "Bladehound", "YARP\\Units\\Bloodelf\\Bladehound\\HeroBloodelfRogue.mdx");
+AddCustomUnit("be-mistress", "Bloodmistress", "YARP\\Units\\Bloodelf\\BloodMistress\\BloodMistressS.mdx");
+AddCustomUnit("be-champion", "Champion", "YARP\\Units\\Bloodelf\\Champion\\BloodelfChampion.mdx");
+AddCustomUnit("be-conjurer", "Conjurer", "YARP\\Units\\Bloodelf\\Conjurer\\BloodelfMage.mdx");
+AddCustomUnit("be-flieutenant", "Female Lieutenant", "YARP\\Units\\Bloodelf\\FemaleLieutenant\\FemaleBELieutenant.mdx");
+AddCustomUnit("be-general", "General", "YARP\\Units\\Bloodelf\\General\\BloodMage.mdx");
+AddCustomUnit("be-juggernaut", "Juggernaut", "YARP\\Units\\Bloodelf\\Juggernaut\\BloodelvenWarrior.mdx");
+AddCustomUnit("be-mystic", "Mystic", "YARP\\Units\\Bloodelf\\Mystic\\BloodelfWizard.mdx");
+AddCustomUnit("be-paladin", "Paladin", "YARP\\Units\\Bloodelf\\Paladin\\HeroBloodelvenPaladin.mdx");
+
+shopModel = "YARP\\Units\\Bloodelf\\Agent\\FarstriderAssasin.mdx";
+AddCustomUnitShopMultiple("c-bloodelf1", "Bloodelves");
+
+AddCustomUnit("be-pharcher", "Phoenix Archer", "YARP\\Units\\Bloodelf\\PhoenixArcher\\BloodelfPhoenixArcher.mdx");
+AddCustomUnit("be-phcrusader", "Phoenix Crusader", "YARP\\Units\\Bloodelf\\PhoenixCrusader\\BloodelfPhoenixCrusader.mdx");
+AddCustomUnit("be-phguard", "Phoenix Guard", "YARP\\Units\\Bloodelf\\PhoenixGuard\\BloodelfPhoenixGuard.mdx");
+AddCustomUnit("be-priestess", "Priestess", "YARP\\Units\\Bloodelf\\Priestess\\BloodElfPriestess.mdx");
+AddCustomUnit("be-prince", "Prince", "YARP\\Units\\Bloodelf\\Prince\\Hero_BloodPrince.mdx");
+AddCustomUnit("be-royhunt", "Royal Huntress", "YARP\\Units\\Bloodelf\\RoyalHuntress\\HeroBloodelfRanger.mdx");
+
+shopModel = "YARP\\Units\\Bloodelf\\PhoenixGuard\\BloodelfPhoenixGuard.mdx";
+AddCustomUnitShopMultiple("c-bloodelf2", "Bloodelves");

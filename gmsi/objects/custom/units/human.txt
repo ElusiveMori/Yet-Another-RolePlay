@@ -1,0 +1,48 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNHeroPaladin.blp";
+
+AddCustomUnit("hu-archer", "Archer", "YARP\\Units\\Human\\Archer\\AllianceArcher.mdx");
+AddCustomUnit("hu-archmage", "Archmage", "YARP\\Units\\Human\\Archmage\\HeroArchMageOnFoot.mdx");
+AddCustomUnit("hu-assassin", "Assassin", "YARP\\Units\\Human\\Assassin\\HumanAssassine.mdx");
+AddCustomUnit("hu-banditcros", "Bandit Crossbowman", "YARP\\Units\\Human\\BanditCrossbowman\\BanditCrossbowmanII.mdx");
+AddCustomUnit("hu-femlord", "Female Bandit Lord", "YARP\\Units\\Human\\BanditMistress\\BanditLordFemale.mdx");
+AddCustomUnit("hu-femspear", "Female Bandit Spearthrower", "YARP\\Units\\Human\\BanditWomanSpearthrower\\BanditSpearThrowerFemale.mdx");
+AddCustomUnit("hu-fembandit", "Female Bandit", "YARP\\Units\\Human\\BanditWoman\\BanditFemale.mdx");
+AddCustomUnit("hu-bishop", "Bishop", "YARP\\Units\\Human\\Bishop\\Human Bishop.mdx");
+AddCustomUnit("hu-delegate", "Delegate", "YARP\\Units\\Human\\Delegate\\Hero_Warrior.mdx");
+AddCustomUnit("hu-femfoot", "Female Footman", "YARP\\Units\\Human\\FemaleFootman\\FemaleFootman.mdx");
+AddCustomUnit("hu-fempeas", "Female Peasant", "YARP\\Units\\Human\\FemalePeasant\\PeasantFemale.mdx");
+AddCustomUnit("hu-grandmage1", "Grand Mage", "YARP\\Units\\Human\\Grandmage\\Hero Wizard.mdx");
+
+shopModel = "YARP\\Units\\Human\\BanditCrossbowman\\BanditCrossbowmanII.mdx";
+AddCustomUnitShopMultiple("c-human1", "Humans");
+
+AddCustomUnit("hu-grandmage2", "Grand Mage", "YARP\\Units\\Human\\Grandmage\\Human Wizard.mdx");
+AddCustomUnit("hu-halberd", "Halberdier", "YARP\\Units\\Human\\Halberdier\\Halberdier.mdx");
+AddCustomUnit("hu-king", "King", "YARP\\Units\\Human\\King\\King.mdx");
+AddCustomUnit("hu-lightmist", "Light Misttress", "YARP\\Units\\Human\\LightMistress\\FemalePaladin.mdx");
+AddCustomUnit("hu-magus1", "Royal Magus", "YARP\\Units\\Human\\Magus\\Hero_Antonidas.mdx");
+AddCustomUnit("hu-magus2", "Bandit Magus", "YARP\\Units\\Human\\Magus\\Hero_BanditWizard.mdx");
+AddCustomUnit("hu-magus3", "Grey Magus", "YARP\\Units\\Human\\Magus\\Hero_GreyWizard.mdx");
+AddCustomUnit("hu-magus4", "White Magus", "YARP\\Units\\Human\\Magus\\Hero_WhiteWizard.mdx");
+AddCustomUnit("hu-monk", "Monk", "YARP\\Units\\Human\\Monk\\Monk.mdx");
+AddCustomUnit("hu-mntroyalcapt", "Mounted Royal Captain", "YARP\\Units\\Human\\MountedRoyalCaptain\\Mounted Captain.mdx");
+AddCustomUnit("hu-pikeman", "Pikeman", "YARP\\Units\\Human\\Pikeman\\Human Pikeman.mdx");
+AddCustomUnit("hu-priestlady", "Priest Lady", "YARP\\Units\\Human\\PriestLady\\FemaleMage.mdx");
+
+shopModel = "YARP\\Units\\Human\\PriestLady\\FemaleMage.mdx";
+AddCustomUnitShopMultiple("c-human2", "Humans");
+
+AddCustomUnit("hu-protector", "Protector", "YARP\\Units\\Human\\Protector\\Royal Knight.mdx");
+AddCustomUnit("hu-queen", "Queen", "YARP\\Units\\Human\\Queen\\RoyalQueen.mdx");
+AddCustomUnit("hu-royalcapt", "Royal Captain", "YARP\\Units\\Human\\RoyalCaptain\\Captain.mdx");
+AddCustomUnit("hu-spearman", "Spearman", "YARP\\Units\\Human\\Spearman\\Pikeman.mdx");
+AddCustomUnit("hu-tempexemplar", "Templar Exemplar", "YARP\\Units\\Human\\TemplarExemplar\\TemplarExemplar.mdx");
+AddCustomUnit("hu-tempgath", "Templar Gatherer", "YARP\\Units\\Human\\TemplarGatherer\\Commoner.mdx");
+AddCustomUnit("hu-tempjusticar", "Templar Justicar", "YARP\\Units\\Human\\TemplarJusticar\\TemplarJusticar.mdx");
+AddCustomUnit("hu-tempwarrior", "Templar Warrior", "YARP\\Units\\Human\\TemplarKnight\\TemplarWarrior.mdx");
+AddCustomUnit("hu-tempplaguedoct", "Templar Plague Doctor", "YARP\\Units\\Human\\TemplarPlagueDoctor\\TemplarSurgeon.mdx");
+AddCustomUnit("hu-temprang", "Templar Ranger", "YARP\\Units\\Human\\TemplarRanger\\TemplarArcher.mdx");
+AddCustomUnit("hu-wizard", "Wizard", "YARP\\Units\\Human\\Wizard\\WC2Mage.mdx");
+
+shopModel = "YARP\\Units\\Human\\Protector\\Royal Knight.mdx";
+AddCustomUnitShopMultiple("c-human3", "Humans");

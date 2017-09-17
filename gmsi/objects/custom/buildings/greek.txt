@@ -1,0 +1,14 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNManual2.blp";
+
+AddBuilding("grk01", "Archery Range", "YARP\\Buildings\\Greek\\GreekArcheryRange.mdx");
+AddBuilding("grk02", "Barracks", "YARP\\Buildings\\Greek\\GreekBarracks.mdx");
+AddBuilding("grk03", "Blacksmith", "YARP\\Buildings\\Greek\\GreekBlacksmith.mdx");
+AddBuilding("grk04", "House", "YARP\\Buildings\\Greek\\GreekHouse.mdx");
+AddBuilding("grk05", "Marketplace", "YARP\\Buildings\\Greek\\GreekMarketplace.mdx");
+AddBuilding("grk06", "Stable", "YARP\\Buildings\\Greek\\GreekStable.mdx");
+AddBuilding("grk07", "Stockpile", "YARP\\Buildings\\Greek\\GreekStockpile.mdx");
+AddBuilding("grk08", "Temple", "YARP\\Buildings\\Greek\\GreekTemple.mdx");
+AddBuilding("grk09", "Town Hall", "YARP\\Buildings\\Greek\\GreekTownCenter.mdx");
+AddBuilding("grk10", "Watch Tower", "YARP\\Buildings\\Greek\\GreekWatchtower.mdx");
+
+AddBuilderMultiple("grkbld", "Greek Buildings");

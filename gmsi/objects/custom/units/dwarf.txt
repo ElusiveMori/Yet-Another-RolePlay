@@ -1,0 +1,33 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNHeroMountainKing.blp";
+
+AddCustomUnit("dw-adv", "Adventurer", "YARP\\Units\\Dwarf\\Adventurer\\DwarvenAdventurer.mdx");
+AddCustomUnit("dw-archbi", "Archbishop", "YARP\\Units\\Dwarf\\Archbishop\\Hero_ArchBishop.mdx");
+AddCustomUnit("dw-archi", "Architect", "YARP\\Units\\Dwarf\\Architect\\Architect.mdx");
+AddCustomUnit("dw-bandit", "Bandit", "YARP\\Units\\Dwarf\\Bandit\\Dire_Bandit.mdx");
+AddCustomUnit("dw-baronb", "Black Baron", "YARP\\Units\\Dwarf\\Baron\\Black_Baron.mdx");
+AddCustomUnit("dw-barond", "Dire Baron", "YARP\\Units\\Dwarf\\Baron\\Dire_Baron.mdx");
+AddCustomUnit("dw-baronh", "High Baron", "YARP\\Units\\Dwarf\\Baron\\Hero_Baron.mdx");
+AddCustomUnit("dw-baronw", "White Baron", "YARP\\Units\\Dwarf\\Baron\\White_Baron.mdx");
+AddCustomUnit("dw-battlepriest", "Battlepriest", "YARP\\Units\\Dwarf\\Battlepriest\\Battle Priest .mdx");
+AddCustomUnit("dw-courtmage", "Courtmage", "YARP\\Units\\Dwarf\\Courtmage\\Hero_DwarfGrandMage.mdx");
+AddCustomUnit("dw-footman", "Footman", "YARP\\Units\\Dwarf\\Footman\\Dire_Footman.mdx");
+AddCustomUnit("dw-geomancer", "Geomancer", "YARP\\Units\\Dwarf\\Geomancer\\Hero Sage.mdx");
+
+shopModel = "YARP\\Units\\Dwarf\\Adventurer\\DwarvenAdventurer.mdx";
+AddCustomUnitShopMultiple("c-dwarves1", "Dwarves");
+
+AddCustomUnit("dw-knight", "Knight", "YARP\\Units\\Dwarf\\Knight\\DwarfKnight.mdx");
+AddCustomUnit("dw-militia", "Militia", "YARP\\Units\\Dwarf\\Militia\\DwarvenMilitia.mdx");
+AddCustomUnit("dw-pea1", "Peasant 1", "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale.mdx");
+AddCustomUnit("dw-pea2", "Peasant 2", "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale2.mdx");
+AddCustomUnit("dw-pea3", "Peasant 3", "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale3.mdx");
+AddCustomUnit("dw-pea4", "Peasant 4", "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale4.mdx");
+AddCustomUnit("dw-phalanx", "Phalanx", "YARP\\Units\\Dwarf\\Phalanx\\Dwarven Phalanx.mdx");
+AddCustomUnit("dw-runebreak", "Runebreaker", "YARP\\Units\\Dwarf\\Runebreaker\\DwarfRunebreaker.mdx");
+AddCustomUnit("dw-rifle", "Rifleman", "YARP\\Units\\Dwarf\\Sniper\\Dire_Rifleman.mdx");
+AddCustomUnit("dw-thane", "Thane", "YARP\\Units\\Dwarf\\Thane\\Hero_Thane.mdx");
+AddCustomUnit("dw-warrior", "Warrior", "YARP\\Units\\Dwarf\\Warrior\\DwarvenWarrior.mdx");
+AddCustomUnit("dw-stonemason", "Stonemason", "YARP\\Units\\Dwarf\\Worker\\DwarfStonemason.mdx");
+
+shopModel = "YARP\\Units\\Dwarf\\Militia\\DwarvenMilitia.mdx";
+AddCustomUnitShopMultiple("c-dwarves2", "Dwarves");

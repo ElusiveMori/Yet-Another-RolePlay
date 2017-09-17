@@ -1,0 +1,13 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNGoblinSapper.blp";
+
+AddCustomUnit("gb-alchemist", "Alchemist", "YARP\\Units\\Goblin\\Alchemist\\Hero_Goblin_Alchemist.mdx");
+AddCustomUnit("gb-engineer", "Engineer", "YARP\\Units\\Goblin\\Engineer\\GoblinEngineer.mdx");
+AddCustomUnit("gb-female", "Female", "YARP\\Units\\Goblin\\Female\\GoblinFemale.mdx");
+AddCustomUnit("gb-gunslinger", "Gunslinger", "YARP\\Units\\Goblin\\Gunslinger\\HeroGoblinGunslinger.mdx");
+AddCustomUnit("gb-merchant", "Merchant", "YARP\\Units\\Goblin\\Merchant\\GoblinMerchant.mdx");
+AddCustomUnit("gb-miner", "Miner", "YARP\\Units\\Goblin\\Miner\\GoblinMiner.mdx");
+AddCustomUnit("gb-sorceror1", "Sorceror", "YARP\\Units\\Goblin\\Sorceror\\GoblinMage01.mdx");
+AddCustomUnit("gb-sorceror2", "Sorceror", "YARP\\Units\\Goblin\\Sorceror\\GoblinMage02.mdx");
+
+shopModel = "YARP\\Units\\Goblin\\Engineer\\GoblinEngineer.mdx";
+AddCustomUnitShopMultiple("c-goblins", "Goblins");

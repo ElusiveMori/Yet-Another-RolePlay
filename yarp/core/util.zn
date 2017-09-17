@@ -44,6 +44,25 @@ library Util requires AIDS, Alloc, ARGB, Board, GameClock, GroupUtils, StringLib
 		return SubString(str, i, j);
 	}
 
+	public function ConvertSlashes(string str) -> string {
+		string out = "";
+		string char = "";
+		integer length = SL(str);
+		integer i = 0;
+
+		for (0 <= i < length) {
+			char = Sub(str, i, i + 1);
+
+			if (char == "/") {
+				out = out + "\\";
+			} else {
+				out = out + char;
+			}
+		}
+
+		return out;
+	}
+
 	public function B2S(boolean b) -> string {
 		if (b)
 			return "true";

@@ -1,0 +1,4 @@
+shopScale = 2;
+shopModel = "Objects\\InventoryItems\\QuestionMark\\QuestionMark";
+
+AddBuilderShopMultiple("custbld", "Custom Buildings");

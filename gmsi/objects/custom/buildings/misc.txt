@@ -1,0 +1,20 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNRallyPoint.blp";
+
+AddBuilding("misc12", "Fountain", "YARP\\Buildings\\Misc\\Fountain.mdx");
+AddBuilding("misc02", "Bum Bed 1", "YARP\\Buildings\\Misc\\BumBed0.mdx");
+AddBuilding("misc03", "Bum Bed 2", "YARP\\Buildings\\Misc\\BumBed1.mdx");
+AddBuilding("misc04", "Cathedral Crypt", "YARP\\Buildings\\Misc\\CathedralCrypt.mdx");
+AddBuilding("misc05", "Felucian Fungus", "YARP\\Buildings\\Misc\\FelucianFlora_Fungus.mdx");
+AddBuilding("misc06", "Felucian Bell Flower 1", "YARP\\Buildings\\Misc\\FelucianFlora_GiantBellflower0.mdx");
+AddBuilding("misc07", "Felucian Bell Flower 2", "YARP\\Buildings\\Misc\\FelucianFlora_GiantBellflower1.mdx");
+AddBuilding("misc08", "Felucian Goblet Flowers", "YARP\\Buildings\\Misc\\FelucianFlora_GobletFlowers.mdx");
+AddBuilding("misc09", "Felucian Pixie Wings 1", "YARP\\Buildings\\Misc\\FelucianFlora_PixieWings0.mdx");
+AddBuilding("misc10", "Felucian Pixie Wings 2", "YARP\\Buildings\\Misc\\FelucianFlora_PixieWings1.mdx");
+AddBuilding("misc11", "Felucian Spires", "YARP\\Buildings\\Misc\\FelucianFlora_Spires.mdx");
+AddBuilding("misc01", "Blue Pillow", "YARP\\Buildings\\Misc\\BluePillow.mdx");
+AddBuilding("misc13", "Purple Pillow", "YARP\\Buildings\\Misc\\PurplePillow.mdx");
+AddBuilding("misc14", "Carpet 1", "YARP\\Buildings\\Misc\\carpet3a.mdx");
+AddBuilding("misc15", "Carpet 2", "YARP\\Buildings\\Misc\\carpet3c.mdx");
+AddBuilding("misc16", "Carpet 3", "YARP\\Buildings\\Misc\\carpet3e.mdx");
+
+AddBuilderMultiple("misccust", "Misc Stuff");

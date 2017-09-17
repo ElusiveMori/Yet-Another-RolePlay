@@ -1,0 +1,10 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNSludgeCreature.blp";
+
+AddCustomUnit("ed-bonelord", "Bonelord", "YARP\\Units\\Edgy\\Bonelord\\Hero_Bonelord.mdx");
+AddCustomUnit("ed-darkarch", "Dark Archon", "YARP\\Units\\Edgy\\DarkArchon\\Dark Elven Archon.mdx");
+AddCustomUnit("ed-darksorc", "Dark Sorceress", "YARP\\Units\\Edgy\\DarkSorceress\\Dark Elven Sorceress.mdx");
+AddCustomUnit("ed-flameraven", "Flaming Raven", "YARP\\Units\\Edgy\\FlamingRaven\\FlamingRaven.mdx");
+AddCustomUnit("ed-hatelord", "Hatelord", "YARP\\Units\\Edgy\\Hatelord\\Hero_Hatelord.mdx");
+
+shopModel = "YARP\\Units\\Edgy\\Bonelord\\Hero_Bonelord.mdx";
+AddCustomUnitShopMultiple("c-edgy", "COOL STUFF");

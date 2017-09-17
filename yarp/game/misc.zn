@@ -27,7 +27,7 @@ library Misc requires Core {
 			if (GetOctet(id, 3) == 112 && GetOctet(id, 2) == 83) {
 				SetUnitOwner(filtered, Player(13), true);
 				SetUnitColor(filtered, GetPlayerColor(Player(13)));
-				SetUnitTimeScale(filtered, 0);
+				SetUnitTimeScale(filtered, 0.1);
 			}
 
 			filtered = null;

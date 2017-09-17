@@ -70,6 +70,7 @@ global string shopsCurrentId    = "pS00";
 global string icon = "ReplaceableTextures\\CommandButtons\\BTNAdvStruct.blp";
 global string builderModel = "units\\human\\Peasant\\Peasant";
 global string shopModel = "buildings\\human\\HumanBarracks\\HumanBarracks";
+global string pathingTexture = "PathTextures\\2x2Default.tga";
 global float shopScale = 0.5;
 
 // extended ids
@@ -82,6 +83,7 @@ global array extendedIdsRev = array();
 global array buildingQueue = array();
 global array builderQueue = array();
 
+global array customUnitQueue = array();
 global array unitQueue = array();
 global array unitShopHighQueue = array();
 global array unitShopQueue = array();
