@@ -1,0 +1,21 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNCastle.blp";
+
+AddBuilding("fort01", "Big Tower", "YARP\\Buildings\\Fortification\\FortificationBigTower.mdx");
+AddBuilding("fort02", "Drum Tower", "YARP\\Buildings\\Fortification\\FortificationDrumTower.mdx");
+AddBuilding("fort03", "Gate", "YARP\\Buildings\\Fortification\\FortificationGate.mdx");
+AddBuilding("fort04", "Big Gate", "YARP\\Buildings\\Fortification\\FortificationGateBig.mdx");
+AddBuilding("fort09", "Stairs", "YARP\\Buildings\\Fortification\\FortificationStairs.mdx");
+AddBuilding("fort10", "Tower", "YARP\\Buildings\\Fortification\\FortificationTower.mdx");
+AddBuilding("fort11", "Wall", "YARP\\Buildings\\Fortification\\FortificationWall.mdx");
+AddBuilding("fort12", "Inner Edge", "YARP\\Buildings\\Fortification\\FortificationWallInnerEdge.mdx");
+AddBuilding("fort13", "Outer Edge", "YARP\\Buildings\\Fortification\\FortificationWallOuterEdge.mdx");
+AddBuilding("fort14", "Square Wall", "YARP\\Buildings\\Fortification\\FortificationWallSquare.mdx");
+AddBuilding("fort15", "Siege Ladder", "YARP\\Buildings\\Fortification\\SiegeLadder.mdx");
+AddBuilderMultiple("fortreg", "Fortification Structures");
+
+icon = "ReplaceableTextures\\CommandButtons\\BTNEnsnare.blp";
+AddBuilding("fort05", "Palisade Wall", "YARP\\Buildings\\Fortification\\FortificationPalisade.mdx");
+AddBuilding("fort06", "Palisade Gate", "YARP\\Buildings\\Fortification\\FortificationPalisadeGate.mdx");
+AddBuilding("fort07", "Palisade Inner Edge", "YARP\\Buildings\\Fortification\\FortificationPalisadeInnerEdge.mdx");
+AddBuilding("fort08", "Palisade Outer Edge", "YARP\\Buildings\\Fortification\\FortificationPalisadeOuterEdge.mdx");
+AddBuilderMultiple("fortpal", "Palisade Structures");

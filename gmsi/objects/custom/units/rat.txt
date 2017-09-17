@@ -1,0 +1,8 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNYouDirtyRat!.blp";
+
+AddCustomUnit("rat-monk", "Monk", "YARP\\Units\\Ratman\\Monk\\Monk.mdx");
+AddCustomUnit("rat-ranger", "Ranger", "YARP\\Units\\Ratman\\Ranger\\Ranger.mdx");
+AddCustomUnit("rat-runner", "Runner", "YARP\\Units\\Ratman\\Runner\\Runner.mdx");
+
+shopModel = "YARP\\Units\\Ratman\\Monk\\Monk.mdx";
+AddCustomUnitShopMultiple("c-rats", "Ratmen");

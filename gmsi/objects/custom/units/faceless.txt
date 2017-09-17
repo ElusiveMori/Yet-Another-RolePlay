@@ -1,0 +1,10 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNForgottenOne.blp";
+
+AddCustomUnit("fl-cultist", "Cultist", "YARP\\Units\\Faceless\\Cultist\\FacelessOneCultist.mdx");
+AddCustomUnit("fl-scorp", "Scorpion", "YARP\\Units\\Faceless\\Scorpion\\FacelessOneScorpion.mdx");
+AddCustomUnit("fl-widow", "Widow", "YARP\\Units\\Faceless\\Widow\\FacelessOneWidow.mdx");
+AddCustomUnit("fl-worker", "Worker", "YARP\\Units\\Faceless\\Worker\\FacelessOneWorker.mdx");
+AddCustomUnit("fl-kid", "Kid", "YARP\\Units\\Faceless\\Youngling\\FacelessOneKid.mdx");
+
+shopModel = "YARP\\Units\\Faceless\\Cultist\\FacelessOneCultist.mdx";
+AddCustomUnitShopMultiple("c-faceless", "Faceless");

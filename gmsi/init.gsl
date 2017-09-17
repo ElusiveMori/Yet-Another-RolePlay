@@ -29,22 +29,58 @@ void Init() {
 	MakeDoodad();
 
 	echoln("Starting doodads...");
-	include("yarp/objects/doods.txt");
-	include("yarp/objects/doods-magic.txt");
-	include("yarp/objects/doods-rocks.txt");
-	include("yarp/objects/doods-water.txt");
-	include("yarp/objects/doods-broken.txt");
-	include("yarp/objects/doods-nature.txt");
-	include("yarp/objects/doods-archways.txt");
-	include("yarp/objects/doods-graveyard.txt");
-	include("yarp/objects/doods-structures.txt");
+	include("yarp/objects/stock/doods.txt");
+	include("yarp/objects/stock/doods-magic.txt");
+	include("yarp/objects/stock/doods-rocks.txt");
+	include("yarp/objects/stock/doods-water.txt");
+	include("yarp/objects/stock/doods-broken.txt");
+	include("yarp/objects/stock/doods-nature.txt");
+	include("yarp/objects/stock/doods-archways.txt");
+	include("yarp/objects/stock/doods-graveyard.txt");
+	include("yarp/objects/stock/doods-structures.txt");
+
+	echoln("Starting custom buildings...");
+	include("yarp/objects/custom/buildings/arabian.txt");
+	include("yarp/objects/custom/buildings/celtic.txt");
+	include("yarp/objects/custom/buildings/customwalls.txt");
+	include("yarp/objects/custom/buildings/dungeon.txt");
+	include("yarp/objects/custom/buildings/fortification.txt");
+	include("yarp/objects/custom/buildings/gondolian.txt");
+	include("yarp/objects/custom/buildings/greek.txt");
+	include("yarp/objects/custom/buildings/massivemaster.txt");
+	include("yarp/objects/custom/buildings/mike.txt");
+	include("yarp/objects/custom/buildings/misc.txt");
+	include("yarp/objects/custom/buildings/quilboar.txt");
+	include("yarp/objects/custom/buildings/tranquil.txt");
+	include("yarp/objects/custom/buildings/villa.txt");
+	include("yarp/objects/custom/buildings/final.txt");
+
+	echoln("Starting custom units...");
+	include("yarp/objects/custom/units/animal.txt");
+	include("yarp/objects/custom/units/bloodelf.txt");
+	include("yarp/objects/custom/units/dwarf.txt");
+	include("yarp/objects/custom/units/edgy.txt");
+	include("yarp/objects/custom/units/faceless.txt");
+	include("yarp/objects/custom/units/goblin.txt");
+	include("yarp/objects/custom/units/highelf.txt");
+	include("yarp/objects/custom/units/human.txt");
+	include("yarp/objects/custom/units/misc.txt");
+	include("yarp/objects/custom/units/nightelf.txt");
+	include("yarp/objects/custom/units/orc.txt");
+	include("yarp/objects/custom/units/rat.txt");
+	include("yarp/objects/custom/units/troll.txt");
+	include("yarp/objects/custom/units/undead.txt");
+	include("yarp/objects/custom/units/villager.txt");
 
 	echoln("Starting unit shops...");
-	include("yarp/objects/unitshops-races.txt");
-	include("yarp/objects/unitshops.txt");
+	include("yarp/objects/stock/unitshops-races.txt");
+	include("yarp/objects/stock/unitshops.txt");
 
+	echoln("Preplacing units...");
 	PreplaceUnits();
-	GenerateEIDManifest();
+	echoln("Generating manifests...");
+	GenerateManifests();
+	echoln("Saving map...");
 	saveMap(map, @outputPath + "/" + map.fileName);
 }
 

@@ -33,10 +33,7 @@ void AddEID(string eId, string id) {
 }
 
 void GenerateEIDManifest() {
-	Writer w = openFileWrite(@outputPath + "/yarp-eid-manifest.txt", false);
-
-	write("library IdManifest requires Util {\n");
-	write("\tpublic struct IdManifest {\n");
+	write("\tpublic struct IdManifest[] {\n");
 	write("\t\tstatic Table string2id;\n");
 	write("\t\tstatic Table id2string;\n\n");
 
@@ -63,7 +60,6 @@ void GenerateEIDManifest() {
 
 	int currentSegment = 1;
 	int count = 0;
-	int total = 0;
 	int perSegment = 32;
 	array queue = array();
 	array lines = array();
@@ -79,7 +75,6 @@ void GenerateEIDManifest() {
 		string eId = extendedIdsRev[id];
 
 		lines[] = "\t\t\tregister('" + id + "', \"" + eId + "\");\n";
-		total++;
 	}
 
 	while (lines[] != null) {
@@ -105,8 +100,78 @@ void GenerateEIDManifest() {
 	}
 
 	write("\t\t}\n");
+	write("\t}\n\n");
+}
 
-	write("\t}\n}\n");
+void GenerateModelManifest() {
+	write("\tpublic struct ModelManifest[] {\n");
+	write("\t\tstatic Table id2model;\n");
+
+	write("\t\tstatic method getById(integer id) -> string {\n");
+	write("\t\t\treturn id2model.string[id];\n");
+	write("\t\t}\n\n");
+
+	write("\t\tprivate static method register(integer id, string str) {\n");
+	write("\t\t\tid2model.string[id] = str;\n");
+	write("\t\t}\n\n");
+
+	int currentSegment = 1;
+	int count = 0;
+	int perSegment = 64;
+	array lines = array();
+	array queue = array();
+
+	for (string i: map.objects) {
+		Wc3obj o = map.objects[i];
+
+		if (o.typetostr == "Unit") {
+			queue[] = objectId2Int(i);
+		}
+	}
+
+	sortArray(queue);
+
+	for (int i: queue) {
+		string id = int2ObjectId(queue[i]);
+		if (map.objects[id].file != null) {
+			lines[] = "\t\t\tregister('" + id + "', \"" + map.objects[id].file + "\");\n";
+		}
+	}
+
+	while (lines[] != null) {
+		write("\t\tstatic method segment" + currentSegment + "() {\n");
+		
+		while (lines[] != null && count < perSegment) {
+			write(lines[]);
+			unset(lines[]);
+			count++;
+		}
+
+		count = 0;
+		write("\t\t}\n\n");
+		currentSegment++;
+	}
+
+	write("\t\tprivate static method onInit() {\n");
+	write("\t\t\tid2model = Table.create();\n");
+
+	for (int i = 1; i < currentSegment; i++) {
+		write("\t\t\tsegment" + i + ".execute();\n");
+	}
+
+	write("\t\t}\n");
+	write("\t}\n\n");
+}
+
+void GenerateManifests() {
+	Writer w = openFileWrite(@outputPath + "/yarp-eid-manifest.txt", false);
+
+	write("library Manifests requires Util {\n");
+	
+	GenerateEIDManifest();
+	GenerateModelManifest();
+
+	write("}\n");
 	closeFile(w);
 }
 

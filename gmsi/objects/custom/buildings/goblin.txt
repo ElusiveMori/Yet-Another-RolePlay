@@ -1,0 +1,9 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNCastle.blp";
+
+AddBuilding("gob1", "Barracks", "YARP\\Buildings\\Goblin\\GoblinBarracks.mdx");
+AddBuilding("gob2", "Factory", "YARP\\Buildings\\Goblin\\GoblinFactory.mdx");
+AddBuilding("gob3", "Fuel Pump", "YARP\\Buildings\\Goblin\\GoblinFuelPump.mdx");
+AddBuilding("gob4", "Outpost", "YARP\\Buildings\\Goblin\\GoblinOutpost.mdx");
+AddBuilding("gob5", "Tower", "YARP\\Buildings\\Goblin\\GoblinTower.mdx");
+
+AddBuilderMultiple("gob", "Goblin Buildings");

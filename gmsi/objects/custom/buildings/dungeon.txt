@@ -1,0 +1,36 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNCage.blp";
+
+AddBuilding("dng03", "Wall", "YARP\\Buildings\\Dungeon\\DungeonWall.mdx");
+AddBuilding("dng05", "Inner Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_Corner.mdx");
+AddBuilding("dng06", "Outer Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_CornerOuter.mdx");
+AddBuilding("dng01", "Bookshelf Secret Entrance 1", "YARP\\Buildings\\Dungeon\\Bookshelf and Secret Entrance.mdx");
+AddBuilding("dng02", "Bookshelf Secret Entrance 2", "YARP\\Buildings\\Dungeon\\Bookshelf and Secret Entrance2.mdx");
+AddBuilding("dng04", "Column Entrance", "YARP\\Buildings\\Dungeon\\DungeonWall_ColumnEntrance.mdx");
+AddBuilding("dng07", "Destructible Wall", "YARP\\Buildings\\Dungeon\\DungeonWall_Destructible.mdx");
+AddBuilding("dng09", "Doorway", "YARP\\Buildings\\Dungeon\\DungeonWall_DoorWay.mdx");
+AddBuilding("dng10", "Doorway w. Door", "YARP\\Buildings\\Dungeon\\DungeonWall_DoorWayWDoor.mdx");
+AddBuilding("dng12", "Porticulus", "YARP\\Buildings\\Dungeon\\DungeonWall_DorwayPortStone.mdx");
+AddBuilding("dng14", "Half-wall", "YARP\\Buildings\\Dungeon\\DungeonWall_Half.mdx");
+AddBuilderMultiple("dngnorm", "Dungeon Structures");
+
+AddBuilding("dng19", "Stone Wall", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone.mdx");
+AddBuilding("dng20", "Stone Half-wall", "YARP\\Buildings\\Dungeon\\DungeonWall_StoneHalf.mdx");
+AddBuilding("dng21", "Stone Inner Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_StoneInnerCorner.mdx");
+AddBuilding("dng22", "Stone Outer Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_StoneOuterCorner.mdx");
+AddBuilding("dng23", "Stone Catacomb 1", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone_Catacomb.mdx");
+AddBuilding("dng24", "Stone Catacomb 2", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone_Catacomb2.mdx");
+AddBuilding("dng25", "Stone Doorway 1", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone_DoorWay.mdx");
+AddBuilding("dng26", "Stone Doorway 2", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone_DoorWay2.mdx");
+AddBuilding("dng27", "Stone Doorway w. Door", "YARP\\Buildings\\Dungeon\\DungeonWall_Stone_DoorWayWDoor.mdx");
+AddBuilding("dng29", "Stone Pillar", "YARP\\Buildings\\Dungeon\\Dwall_StonePillar.mdx");
+AddBuilding("dng13", "Blank", "YARP\\Buildings\\Dungeon\\DungeonWall_Empty.mdx");
+AddBuilderMultiple("dngstn", "Stone Dungeon Structures");
+
+AddBuilding("dng28", "Hell Pillar", "YARP\\Buildings\\Dungeon\\Dwall_DemonPillar.mdx");
+AddBuilding("dng08", "Hell Doorway", "YARP\\Buildings\\Dungeon\\DungeonWall_DoorWay Hell.mdx");
+AddBuilding("dng15", "Hell Wall", "YARP\\Buildings\\Dungeon\\DungeonWall_Hell.mdx");
+AddBuilding("dng16", "Hell Half-wall", "YARP\\Buildings\\Dungeon\\DungeonWall_Hell_Half.mdx");
+AddBuilding("dng17", "Hell Inner Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_Hell_InnerCorner.mdx");
+AddBuilding("dng18", "Hell Outer Corner", "YARP\\Buildings\\Dungeon\\DungeonWall_Hell_OuterCorner.mdx");
+AddBuilding("dng11", "Hell Porticulus", "YARP\\Buildings\\Dungeon\\DungeonWall_DoorWay_W_Porticulus Hell.mdx");
+AddBuilderMultiple("dnghell", "Hell Dungeon Structures");

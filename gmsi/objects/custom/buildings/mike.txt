@@ -1,0 +1,36 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNPotionPurple.blp";
+
+AddBuilding("mike01", "Archery", "YARP\\Buildings\\MikeBuildings\\Archery.mdx");
+AddBuilding("mike02", "Barracks", "YARP\\Buildings\\MikeBuildings\\Barracks.mdx");
+AddBuilding("mike03", "Blacksmith", "YARP\\Buildings\\MikeBuildings\\Blacksmith.mdx");
+AddBuilding("mike04", "Cathedral", "YARP\\Buildings\\MikeBuildings\\Cathedral.mdx");
+AddBuilding("mike05", "Docks", "YARP\\Buildings\\MikeBuildings\\Docks.mdx");
+AddBuilding("mike06", "Encampment", "YARP\\Buildings\\MikeBuildings\\Encampment.mdx");
+AddBuilding("mike07", "Farm", "YARP\\Buildings\\MikeBuildings\\Farms.mdx");
+AddBuilding("mike09", "Granary", "YARP\\Buildings\\MikeBuildings\\Granary.mdx");
+AddBuilding("mike10", "House", "YARP\\Buildings\\MikeBuildings\\Houses.mdx");
+AddBuilding("mike11", "Lumbermill", "YARP\\Buildings\\MikeBuildings\\Lumbermills.mdx");
+AddBuilding("mike12", "Market", "YARP\\Buildings\\MikeBuildings\\Market.mdx");
+AddBuilding("mike13", "Market Stand", "YARP\\Buildings\\MikeBuildings\\MarketStand.mdx");
+AddBuilding("mike14", "Market Stand", "YARP\\Buildings\\MikeBuildings\\MarketStand2.mdx");
+AddBuilding("mike15", "Marquee", "YARP\\Buildings\\MikeBuildings\\Marquee.mdx");
+AddBuilding("mike16", "Mine", "YARP\\Buildings\\MikeBuildings\\Mine.mdx");
+AddBuilding("mike17", "Mines", "YARP\\Buildings\\MikeBuildings\\Mines.mdx");
+AddBuilding("mike18", "Siege Workshop", "YARP\\Buildings\\MikeBuildings\\Siege workshop.mdx");
+AddBuilding("mike19", "Smith", "YARP\\Buildings\\MikeBuildings\\Smith.mdx");
+AddBuilding("mike20", "Stables", "YARP\\Buildings\\MikeBuildings\\Stables.mdx");
+AddBuilding("mike21", "Stonemason", "YARP\\Buildings\\MikeBuildings\\Stonemason.mdx");
+AddBuilding("mike22", "Storage", "YARP\\Buildings\\MikeBuildings\\Storage.mdx");
+AddBuilding("mike23", "Tavern", "YARP\\Buildings\\MikeBuildings\\Tavern.mdx");
+AddBuilding("mike27", "Town Hall", "YARP\\Buildings\\MikeBuildings\\Town hall.mdx");
+AddBuilding("mike28", "Universal Farm", "YARP\\Buildings\\MikeBuildings\\UniversalFarm.mdx");
+AddBuilding("mike29", "University", "YARP\\Buildings\\MikeBuildings\\University.mdx");
+AddBuilding("mike32", "Water Mill", "YARP\\Buildings\\MikeBuildings\\WaterMill.mdx");
+AddBuilding("mike30", "Horizontal Walls", "YARP\\Buildings\\MikeBuildings\\Walls.mdx");
+AddBuilding("mike31", "Vertical Wall", "YARP\\Buildings\\MikeBuildings\\WallsVertical.mdx");
+AddBuilding("mike24", "Round Tower", "YARP\\Buildings\\MikeBuildings\\TowersRound.mdx");
+AddBuilding("mike08", "Gate", "YARP\\Buildings\\MikeBuildings\\Gate.mdx");
+AddBuilding("mike26", "Big Square Tower", "YARP\\Buildings\\MikeBuildings\\TowersSquareBig.mdx");
+AddBuilding("mike25", "Square Tower", "YARP\\Buildings\\MikeBuildings\\TowersSquare.mdx");
+
+AddBuilderMultiple("mikebld", "Mike's Buildings");

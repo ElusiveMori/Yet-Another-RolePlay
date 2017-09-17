@@ -1,0 +1,9 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcher.blp";
+
+AddCustomUnit("ne-archer", "Archer", "YARP\\Units\\Nightelf\\Archer\\NightElvenArcher.mdx");
+AddCustomUnit("ne-battlemaid", "Battle Maiden", "YARP\\Units\\Nightelf\\BattleMaiden\\GlaiveMaiden.mdx");
+AddCustomUnit("ne-captain", "Captain", "YARP\\Units\\Nightelf\\Captain\\NECaptain.mdx");
+AddCustomUnit("ne-nymph", "Nymph", "YARP\\Units\\Nightelf\\Nymph\\Nymph.mdx");
+
+shopModel = "YARP\\Units\\Nightelf\\Archer\\NightElvenArcher.mdx";
+AddCustomUnitShopMultiple("c-nightelf", "Nightelves");

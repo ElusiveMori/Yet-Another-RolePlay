@@ -1,0 +1,20 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNSkeletonArcher.blp";
+
+AddCustomUnit("ud-archnecro1", "Arch Necromancer", "YARP\\Units\\Undead\\ArchNercromancer\\Hero_KelThuzad.mdx");
+AddCustomUnit("ud-archnecro2", "Arch Necromancer", "YARP\\Units\\Undead\\ArchNercromancer\\Hero_Necromancer.mdx");
+AddCustomUnit("ud-deathlord", "Deathlord", "YARP\\Units\\Undead\\DeathLord\\UndeadArthasNoHorse.mdx");
+AddCustomUnit("ud-deathbaron", "Dreadbaron", "YARP\\Units\\Undead\\Dreadbaron\\HeroDreadLordRemake.mdx");
+AddCustomUnit("ud-dwarfbaron1", "Dwarven Baron", "YARP\\Units\\Undead\\DwarfBaron\\Plague_Baron.mdx");
+AddCustomUnit("ud-dwarfbaron2", "Dwarven Baron", "YARP\\Units\\Undead\\DwarfBaron\\Scourge_Baron.mdx");
+AddCustomUnit("ud-necropriest1", "Necropriest", "YARP\\Units\\Undead\\Necropriest\\NecromancerBlack.mdx");
+AddCustomUnit("ud-necropriest2", "Necropriest", "YARP\\Units\\Undead\\Necropriest\\NecromancerRed.mdx");
+AddCustomUnit("ud-femnecro", "Female Necromancer", "YARP\\Units\\Undead\\Witch\\FemaleNecromancer.mdx");
+AddCustomUnit("ud-horse1", "Horse", "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseArthas.mdx");
+AddCustomUnit("ud-horse2", "Horse", "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseDK.mdx");
+AddCustomUnit("ud-miniabo", "Tiny Abomination", "YARP\\Units\\Undead\\Miniabo\\VillagerAbomination.MDX");
+AddCustomUnit("ud-skelpeas", "Skeletal Peasant", "YARP\\Units\\Undead\\Peasant\\SkeletonPeasant.mdx");
+AddCustomUnit("ud-skelknight", "Skeletal Knight", "YARP\\Units\\Undead\\SkeletonKnight\\SkeletalKnight.mdx");
+AddCustomUnit("ud-skelchild", "Skeletal Child", "YARP\\Units\\Undead\\Child\\SkeletalChild.mdx");
+
+shopModel = "YARP\\Units\\Undead\\DeathLord\\UndeadArthasNoHorse.mdx";
+AddCustomUnitShopMultiple("c-undead", "Undead");
