@@ -67,13 +67,7 @@ library Core requires Util,
 					Lists,
 					Manifests {
 	function onInit() {
-		static if (DEBUG_MODE) {
-		//	ClearTextMessages();
-		//	TriggerSleepAction(1.0);
-		//	ClearTextMessages();
-		//	Message("This is a debug build of YARP.");
-		//	Message("This means that there may be debug messages left over, and performance may suffer due to lots of redundancy checks. Recompile the script without debug mode if performance problems are present.");
-		}
+		SetTimeOfDayScale(0.25);
 	}
 }
 

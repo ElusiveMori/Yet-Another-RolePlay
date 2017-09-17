@@ -151,6 +151,55 @@ library Generic requires Core {
 				    + "].");
 		}
 
+		private static method Command_Time(CommandThread thread) {
+			string arg = thread.args.next();
+
+			if (arg == "noon" || arg == "day") {
+				SetTimeOfDay(12);
+			} else if (arg == "evening" || arg == "dusk") {
+				SetTimeOfDay(18);
+			} else if (arg == "morning" || arg == "dawn") {
+				SetTimeOfDay(6);
+			} else if (arg == "midnight" || arg == "night") {
+				SetTimeOfDay(0);
+			} else if (arg == "lock") {
+				SuspendTimeOfDay(true);
+			} else if (arg == "unlock") {
+				SuspendTimeOfDay(false);
+			} else {
+				SetTimeOfDay(S2R(arg));
+			}
+		}
+
+		private static method Command_Alliance(CommandThread thread) {
+			string arg = thread.args.next();
+			integer target = PlayerIdFromString(thread.args.next());
+			boolean state = false;
+			alliancetype allianceType;
+
+			if (target >= 0) {
+				if (arg == "ally") {
+					state = true;
+					allianceType = ALLIANCE_PASSIVE;
+				} else if (arg == "vision") {
+					state = true;
+					allianceType = ALLIANCE_SHARED_VISION;
+				} else if (arg == "unally") {
+					state = false;
+					allianceType = ALLIANCE_PASSIVE;
+				} else if (arg == "unvision") {
+					state = false;
+					allianceType = ALLIANCE_SHARED_VISION;
+				} else {
+					return;
+				}
+
+				SetPlayerAlliance(P(thread.owner), P(target), allianceType, state);
+			}
+
+			allianceType = null;
+		}
+
 		private static method onInit() {
 			Command.register("alias",       thistype.Command_MakeAlias,     CMD_DIRECT);
 			Command.register("macro",       thistype.Command_MakeMacro,     CMD_DIRECT);
@@ -160,10 +209,16 @@ library Generic requires Core {
 			Command.register("autocommand", thistype.Command_AutoCommand,   CMD_DIRECT);
 			Command.register("autogroup",   thistype.Command_AutoGroup,     CMD_DIRECT);
 			Command.register("roll",        thistype.Command_Roll,          CMD_DIRECT);
+			Command.register("time",        thistype.Command_Time,          CMD_DIRECT);
+			Command.register("alliance",    thistype.Command_Alliance,      CMD_DIRECT);
 			Command.register("wait",        thistype.Command_Wait,          CMD_NONE);
 			Command.register("repeat",      thistype.Command_Repeat,        CMD_EXEC);
 			Command.register("seq",         thistype.Command_Sequence,      CMD_EXEC);
 
+			Alias.saveall("unally", "alliance unally");
+			Alias.saveall("ally", "alliance ally");
+			Alias.saveall("vision", "alliance vision");
+			Alias.saveall("unvision", "alliance unvision");
 			Alias.saveall("autocmd", "autocommand");
 			Alias.saveall("autogrp", "autogroup");
 		}
