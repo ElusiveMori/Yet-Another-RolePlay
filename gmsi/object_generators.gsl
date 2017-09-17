@@ -387,6 +387,8 @@ void PrepareStock() {
 				o.spd = 1;
 				o.elevPts = 4;
 				o.elevRad = 50;
+				o.maxPitch = 0;
+				o.maxRoll = 0;
 			} else {
 				bool isWorker = false;
 

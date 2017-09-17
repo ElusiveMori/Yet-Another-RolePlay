@@ -46,11 +46,11 @@ void GenerateEIDManifest() {
 	write("\t\t}\n\n");
 
 	write("\t\tstatic method hasString(string str) -> boolean {\n");
-	write("\t\t\treturn string2id.string.has(SH(str));\n");
+	write("\t\t\treturn string2id.has(SH(str));\n");
 	write("\t\t}\n\n");
 
 	write("\t\tstatic method hasId(integer id) -> boolean {\n");
-	write("\t\t\treturn id2string.has(id);\n");
+	write("\t\t\treturn id2string.string.has(id);\n");
 	write("\t\t}\n\n");
 
 	write("\t\tprivate static method register(integer id, string str) {\n");
