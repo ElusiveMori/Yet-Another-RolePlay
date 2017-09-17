@@ -1,0 +1,10 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNAdvancedStrengthOfTheMoon.blp";
+
+AddBuilding("celt1", "Barracks", "YARP\\Buildings\\Celtic\\CelticBarracks.mdx");
+AddBuilding("celt2", "Docks", "YARP\\Buildings\\Celtic\\CelticDockyard.mdx");
+AddBuilding("celt3", "House", "YARP\\Buildings\\Celtic\\CelticHouse.mdx");
+AddBuilding("celt4", "Stables", "YARP\\Buildings\\Celtic\\CelticStables.mdx");
+AddBuilding("celt5", "Store", "YARP\\Buildings\\Celtic\\CelticStorehouse.mdx");
+AddBuilding("celt6", "Town Hall", "YARP\\Buildings\\Celtic\\CelticTownCenter.mdx");
+
+AddBuilderMultiple("celtbld", "Celtic Buildings");

@@ -1,0 +1,19 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNProudMoore.blp";
+
+AddCustomUnit("vlg-barbarian", "Barbarian", "YARP\\Units\\Villager\\Barbarian\\BarbarianVillager.mdx");
+AddCustomUnit("vlg-blondeelf", "Blonde Elf", "YARP\\Units\\Villager\\BlondeBloodelf\\Blood Elf Villager.mdx");
+AddCustomUnit("vlg-redheadelf", "Redhead Elf", "YARP\\Units\\Villager\\RedheadBloodelf\\Redhead Blood Elf Villager.mdx");
+AddCustomUnit("vlg-bulky", "Fatso", "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx");
+AddCustomUnit("vlg-draenei", "Draenei", "YARP\\Units\\Villager\\Draenei\\VillagerDraenei.MDX");
+AddCustomUnit("vlg-druid", "Druid", "YARP\\Units\\Villager\\Druid\\VillagerDruid.MDX");
+AddCustomUnit("vlg-dwarf", "Dwarf", "YARP\\Units\\Villager\\Dwarf\\VillagerDwarf.MDX");
+AddCustomUnit("vlg-nelf", "Nightelf", "YARP\\Units\\Villager\\Nightelf\\Night Elf Villager.mdx");
+AddCustomUnit("vlg-peon", "Peon", "YARP\\Units\\Villager\\Orc\\VillagerPeon.MDX");
+AddCustomUnit("vlg-tauren", "Tauren", "YARP\\Units\\Villager\\Tauren\\VillagerTauren.MDX");
+AddCustomUnit("vlg-troll", "Troll", "YARP\\Units\\Villager\\Troll\\VillagerTroll.MDX");
+AddCustomUnit("vlg-tauchild", "Tauren Child", "YARP\\Units\\Villager\\TaurenChild\\TaurenChild.mdx");
+AddCustomUnit("vlg-trochild", "Troll Child", "YARP\\Units\\Villager\\TrollChild\\TrollChild.mdx");
+AddCustomUnit("vlg-orcchild", "Orc Child", "YARP\\Units\\Villager\\OrcChild\\OrcChild_v3.mdx");
+
+shopModel = "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx";
+AddCustomUnitShopMultiple("c-villager", "Villagers");

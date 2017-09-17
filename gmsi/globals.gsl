@@ -83,6 +83,7 @@ global array extendedIdsRev = array();
 global array buildingQueue = array();
 global array builderQueue = array();
 
+global array customUnitQueue = array();
 global array unitQueue = array();
 global array unitShopHighQueue = array();
 global array unitShopQueue = array();

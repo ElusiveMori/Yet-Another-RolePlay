@@ -36,7 +36,7 @@
 //! import zinc "yarp/core/region.zn"
 //! import zinc "yarp/core/lists.zn"
 //! import zinc "yarp/core/deformations.zn"
-//! import zinc "yarp/core/id_manifest.zn"
+//! import zinc "yarp/core/manifests.zn"
 
 // Game Management
 
@@ -65,7 +65,7 @@ library Core requires Util,
 					Spawner, 
 					Deformations, 
 					Lists,
-					IdManifest {
+					Manifests {
 	function onInit() {
 		static if (DEBUG_MODE) {
 		//	ClearTextMessages();
@@ -78,4 +78,7 @@ library Core requires Util,
 }
 
 //! endzinc
-//! external FileImporter .\content_unmodified\
+
+// uncomment one of these to import content
+///! external FileImporter .\content_unmodified\
+///! external FileImporter .\content\

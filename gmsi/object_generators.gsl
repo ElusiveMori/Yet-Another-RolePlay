@@ -8,22 +8,33 @@ void AddBuilding(string eId, string name, string model) {
 	unitsCurrentId = GetNextId(unitsCurrentId);
 }
 
-void AddUnit(string eId, string name, string model) {
-	Unit u = GetBaseUnit(unitsCurrentId);
+string AddUnit(string eId, string name, string model) {
+	string oldId = unitsCurrentId;
+	Unit u = GetBaseCustomUnit(unitsCurrentId);
 	u.file = model;
 	u.Name = name;
+	u.Tip = OVERTIP_COLOR + name + "|r";
 	AddEID(eId, unitsCurrentId);
 
 	unitsCurrentId = GetNextId(unitsCurrentId);
+	return oldId;
 }
 
 void AddHero(string eId, string name, string model) {
-	Unit u = GetBaseUnit(heroesCurrentId);
+	Unit u = GetBaseCustomUnit(heroesCurrentId);
 	u.file = model;
 	u.Name = name;
+	u.Tip = OVERTIP_COLOR + name + "|r";
 	AddEID(eId, heroesCurrentId);
 
 	heroesCurrentId = GetNextId(heroesCurrentId);
+}
+
+void AddCustomUnit(string eId, string name, string model) {
+	string id = AddUnit(eId, name, model);
+	AddHero(eId + "-h", name, model);
+
+	customUnitQueue[] = id;
 }
 
 // last param is a comma-delimeted list of eIds or unit ids
@@ -273,6 +284,50 @@ void AddUnitShopMultiple(string eId, string name) {
 	}
 }
 
+void AddCustomUnitShopMultiple(string eId, string name) {
+	int count = 0;
+	int number = 1;
+	eId = "s-" + eId;
+
+	int total = 0;
+	for (int i: customUnitQueue) total++;
+	int i = 0;
+
+	bool multiple = total > 12;
+
+	string sellList = "";
+	while (customUnitQueue[i] != null) {
+		if (shopModel == null) {
+			shopModel = map.objects[customUnitQueue[i]].file;
+		}
+
+		string id = customUnitQueue[i];
+		unset(customUnitQueue[i]);
+		i++;
+
+		if (strlen(sellList) > 0) {
+			sellList = sellList + ",";
+		}
+
+		sellList = sellList + id;
+		count++;
+
+		if (customUnitQueue[i] == null || count == 12) {
+			if (multiple) {
+				AddShop(eId + number, name + " " + number, sellList);
+			} else {
+				AddShop(eId, name, sellList);
+			}
+
+			sellList = "";
+			count = 0;
+			number++;
+			shopModel = null;
+		}
+	}
+}
+
+
 // this sets up stock objects and their properties
 void PrepareStock() {
 	for (string i: map.objects) {
@@ -431,11 +486,38 @@ void PreplaceUnits() {
 	sch[5][2] = "s-misc3";
 	sch[5][3] = "s-magic";
 
-	sch[6][0] = "s-misc-custom";
-	sch[6][1] = "s-custom-dungeon";
+	sch[6][0] = "s-custbld1";
+	sch[6][1] = "s-custbld2";
+	sch[6][2] = "s-custbld3";
+
+	sch[8][0] = "s-c-bloodelf1";
+	sch[8][1] = "s-c-bloodelf2";
+	sch[8][2] = "s-c-dwarves1";
+	sch[8][3] = "s-c-dwarves2";
+	sch[8][4] = "s-c-highelf1";
+
+	sch[9][0] = "s-c-human1";
+	sch[9][1] = "s-c-human2";
+	sch[9][2] = "s-c-human3";
+	sch[9][3] = "s-c-villager1";
+	sch[9][4] = "s-c-villager2";
+	sch[9][5] = "s-c-misc";
+
+	sch[10][0] = "s-c-nightelf";
+	sch[10][1] = "s-c-orc";
+	sch[10][2] = "s-c-troll";
+	sch[10][3] = "s-c-rats";
+	sch[10][3] = "s-c-undead1";
+	sch[10][3] = "s-c-undead2";
+
+	sch[11][0] = "s-c-animals";
+	sch[11][1] = "s-c-edgy";
+	sch[11][2] = "s-c-faceless";
+	sch[11][3] = "s-c-goblins";
 
 	for (int i: sch) {
 		for (int j: sch[i]) {
+			echoln("Preplacing " + sch[i][j]);
 			placeUnit(map, extendedIds[sch[i][j]], j * gridSize - gridSize * 8, i * gridSize - gridSize * 8, 0, 0, 270);
 		}
 	}

@@ -1,0 +1,8 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNUnholyArmor.blp";
+
+AddBuilding("sunchp1", "Door", "YARP\\Buildings\\SunchipsHouse\\House Door.mdx");
+AddBuilding("sunchp2", "Wall", "YARP\\Buildings\\SunchipsHouse\\House Wall 1.mdx");
+AddBuilding("sunchp3", "Wall", "YARP\\Buildings\\SunchipsHouse\\House Wall 2.mdx");
+AddBuilding("sunchp4", "Window", "YARP\\Buildings\\SunchipsHouse\\House Wall Window.mdx");
+
+AddBuilderMultiple("sunchpbld", "Sunchip's House Components");

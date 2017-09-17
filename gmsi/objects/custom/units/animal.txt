@@ -1,0 +1,12 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNZergling.blp";
+
+AddCustomUnit("an-panther", "Panther", "YARP\\Units\\Animal\\BlackPanther\\Panther.mdx");
+AddCustomUnit("an-nelfcat", "Cat", "YARP\\Units\\Animal\\BluePanther\\NelfDruidCat.mdx");
+AddCustomUnit("an-taurcat", "Horned Cat", "YARP\\Units\\Animal\\HornedLion\\TaurenDruidCat.mdx");
+AddCustomUnit("an-lynx", "Lynx", "YARP\\Units\\Animal\\Lynx\\EversongLynx.mdx");
+AddCustomUnit("an-raven", "Raven", "YARP\\Units\\Animal\\Raven\\Raven.mdx");
+AddCustomUnit("an-tiger", "Tiger", "YARP\\Units\\Animal\\Tiger\\Tiger.mdx");
+
+shopScale = 1;
+shopModel = "YARP\\Units\\Animal\\BlackPanther\\Panther.mdx";
+AddCustomUnitShopMultiple("c-animals", "Animals");

@@ -1,0 +1,13 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNWitchDoctor.blp";
+
+AddCustomUnit("tr-dreg", "Dreg", "YARP\\Units\\Troll\\Dreg\\ForestTrollDreg.mdx");
+AddCustomUnit("tr-miner", "Miner", "YARP\\Units\\Troll\\Miner\\ForestTrollLaborerVer2.4.mdx");
+AddCustomUnit("tr-outrider", "Outrider", "YARP\\Units\\Troll\\Outrider\\ForestTrollOutrider.mdx");
+AddCustomUnit("tr-pillager", "Pillager", "YARP\\Units\\Troll\\Pillager\\ForestTrollPillager.mdx");
+AddCustomUnit("tr-shadeweaver", "Shadeweaver", "YARP\\Units\\Troll\\Shadeweaver\\Hero_ShadeWeaver.mdx");
+AddCustomUnit("tr-femshadowpriest", "Female Shadeweaver", "YARP\\Units\\Troll\\ShadowPriestFemale\\ForestTrollShadowPriestFemale.mdx");
+AddCustomUnit("tr-shadowpriest", "Shadowpriest", "YARP\\Units\\Troll\\ShadowPriest\\ForestTrollShadowPriest.mdx");
+AddCustomUnit("tr-voohunter", "Voodoo Hunter", "YARP\\Units\\Troll\\VoodooHunter\\HeroTrollVoodooHunter.mdx");
+
+shopModel = "YARP\\Units\\Troll\\Dreg\\ForestTrollDreg.mdx";
+AddCustomUnitShopMultiple("c-troll", "Trolls");

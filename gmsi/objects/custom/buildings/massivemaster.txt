@@ -1,0 +1,12 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNElvenFarm.blp";
+
+AddBuilding("msvmas1", "Castle", "YARP\\Buildings\\MassiveMasterBuildings\\Castle.mdx");
+AddBuilding("msvmas2", "City House", "YARP\\Buildings\\MassiveMasterBuildings\\CitizenHouse.mdx");
+AddBuilding("msvmas4", "Farmer House", "YARP\\Buildings\\MassiveMasterBuildings\\PeasantHouse.mdx");
+AddBuilding("msvmas3", "Hut", "YARP\\Buildings\\MassiveMasterBuildings\\MultiHut.mdx");
+AddBuilding("msvmas5", "Stable", "YARP\\Buildings\\MassiveMasterBuildings\\Stable.mdx");
+AddBuilding("msvmas6", "Thatched Cottage", "YARP\\Buildings\\MassiveMasterBuildings\\ThatchedCottages.mdx");
+AddBuilding("msvmas7", "Village House", "YARP\\Buildings\\MassiveMasterBuildings\\VillageHouse.mdx");
+AddBuilding("msvmas8", "Village Square", "YARP\\Buildings\\MassiveMasterBuildings\\VillageSquare.mdx");
+
+AddBuilderMultiple("msvmas", "Massive Master's Buildings");

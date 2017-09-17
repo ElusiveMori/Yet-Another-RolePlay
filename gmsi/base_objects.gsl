@@ -31,6 +31,50 @@ Unit GetBaseUnit(string id) {
 	return base;
 }
 
+Unit GetBaseCustomUnit(string id) {
+	Unit base = createObject(map, "hfoo", id, true);
+	base.Art = icon;
+	base.abilList = "";
+	base.run = 256;
+	base.walk = 256;
+	base.spd = 256;
+	base.turnRate = 1;
+	base.upgrades = "";
+	base.bldtm = 1;
+	base.bountyplus = 0;
+	base.bountydice = 0;
+	base.bountysides = 0;
+	base.goldcost = 0;
+	base.HP = 512;
+	base.regenHP = 0;
+	base.level = 0;
+	base.manaN = 512;
+	base.mana0 = 512;
+	base.regenMana = 0;
+	base.goldRep = 0;
+	base.reptm = 1;
+	base.stockMax = 1;
+	base.stockRegen = 0;
+	base.stockStart = 1;
+	base.cargoSize = 1;
+	base.unitSound = "";
+	base.elevPts = 0;
+	base.elevRad = 0;
+	base.Tip = "";
+	base.Ubertip = "";
+	base.unitShadow = "";
+	base.buildingShadow = "_";
+	base.backSw1 = 0.5;
+	base.dmgpt1 = 0.5;
+	base.cool1 = 1;
+	base.dmgplus1 = 16;
+	base.dice1 = 1;
+	base.sides1 = 1;
+	base.fused = 0;
+
+	return base;
+}
+
 Unit GetBaseBuilding(string id) {
 	Unit base = GetBaseUnit(id);
 	base.pathTex = pathingTexture;

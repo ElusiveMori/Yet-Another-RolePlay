@@ -1,0 +1,19 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNArcaniteArchitecture.blp";
+
+AddBuilding("cwall1", "Altar Wall", "YARP\\Buildings\\ExtraWalls\\AltarWall.mdx");
+AddBuilding("cwall2", "City Wall", "YARP\\Buildings\\ExtraWalls\\CityWall.mdx");
+AddBuilding("cwall3", "Dalaran Wall", "YARP\\Buildings\\ExtraWalls\\DalaranWall.mdx");
+AddBuilding("cwall4", "Felwood Wall", "YARP\\Buildings\\ExtraWalls\\FelwoodWall.mdx");
+AddBuilding("cwall5", "Fort Wall", "YARP\\Buildings\\ExtraWalls\\FortWall.mdx");
+AddBuilding("cwall6", "Fortified Steel Wall", "YARP\\Buildings\\ExtraWalls\\FortifiedSteelWall.mdx");
+AddBuilding("cwall7", "Iron Wall", "YARP\\Buildings\\ExtraWalls\\IronWall.mdx");
+AddBuilding("cwall8", "Mithril Wall", "YARP\\Buildings\\ExtraWalls\\MithrilWall.mdx");
+AddBuilding("cwall9", "Mithril Wall", "YARP\\Buildings\\ExtraWalls\\MithrilWall2.mdx");
+AddBuilding("cwall10", "Northrend Wall", "YARP\\Buildings\\ExtraWalls\\NorthrendWall.mdx");
+AddBuilding("cwall11", "Outland Wall", "YARP\\Buildings\\ExtraWalls\\OutlandWall.mdx");
+AddBuilding("cwall12", "Rock Wall", "YARP\\Buildings\\ExtraWalls\\RockWall.mdx");
+AddBuilding("cwall13", "Steel Wall", "YARP\\Buildings\\ExtraWalls\\SteelWall.mdx");
+AddBuilding("cwall14", "Sunken Wall", "YARP\\Buildings\\ExtraWalls\\SunkenWall.mdx");
+AddBuilding("cwall15", "Wooden Wall", "YARP\\Buildings\\ExtraWalls\\WoodWall.mdx");
+
+AddBuilderMultiple("cwalls", "Custom Walls");

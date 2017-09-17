@@ -1,0 +1,8 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNBlood&GhostKey.blp";
+
+AddCustomUnit("misc-wagon", "Wagon", "YARP\\Units\\Misc\\Wagon\\Wagon.mdx");
+
+shopModel = "YARP\\Units\\Misc\\Wagon\\Wagon.mdx";
+shopScale = 0.5;
+AddCustomUnitShopMultiple("c-misc", "Misc");
+shopScale = 1.0;

@@ -1,0 +1,10 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNHauntedMine.blp";
+
+AddBuilding("villa1", "Villa House 1", "YARP\\Buildings\\VillaHouses\\HouseVar01.mdx");
+AddBuilding("villa2", "Villa House 2", "YARP\\Buildings\\VillaHouses\\HouseVar02.mdx");
+AddBuilding("villa3", "Villa House 3", "YARP\\Buildings\\VillaHouses\\HouseVar1Up1.mdx");
+AddBuilding("villa4", "Villa House 4", "YARP\\Buildings\\VillaHouses\\HouseVar1Up2.mdx");
+AddBuilding("villa5", "Villa House 5", "YARP\\Buildings\\VillaHouses\\HouseVar2Up1.mdx");
+AddBuilding("villa6", "Villa House 6", "YARP\\Buildings\\VillaHouses\\HouseVar2Up2.mdx");
+
+AddBuilderMultiple("villabld", "Villa Buildings");

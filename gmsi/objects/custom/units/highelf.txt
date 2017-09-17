@@ -1,0 +1,17 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNPriest.blp";
+
+AddCustomUnit("he-agent", "Agent", "YARP\\Units\\Highelf\\Agent\\BlackSunAssasin.mdx");
+AddCustomUnit("he-arcanist", "Arcanist", "YARP\\Units\\Highelf\\Arcanist\\HeroArcanist.mdx");
+AddCustomUnit("he-archer", "Archer", "YARP\\Units\\Highelf\\Archer\\HighElvenArcher.mdx");
+AddCustomUnit("he-conjurer", "Conjurer", "YARP\\Units\\Highelf\\Conjurer\\HighElfPriestess.mdx");
+AddCustomUnit("he-elementalist", "Elementalist", "YARP\\Units\\Highelf\\Elementalist\\BlackSunElementalist.mdx");
+AddCustomUnit("he-enforcer", "Enforcer", "YARP\\Units\\Highelf\\Enforcer\\HighElfSpellThief.mdx");
+AddCustomUnit("he-flieutenant", "Lieutenant", "YARP\\Units\\Highelf\\FemaleLieutenant\\FemaleCaptain.mdx");
+AddCustomUnit("he-general", "General", "YARP\\Units\\Highelf\\General\\HighMage.mdx");
+AddCustomUnit("he-magehuntress", "Mage Huntress", "YARP\\Units\\Highelf\\MageHuntress\\HeroMageHuntressV_2.1.mdx");
+AddCustomUnit("he-priestess", "Priestess", "YARP\\Units\\Highelf\\Priestess\\HighElfPriest.mdx");
+AddCustomUnit("he-rogue", "Rogue", "YARP\\Units\\Highelf\\Rogue\\Hero Rogue.mdx");
+AddCustomUnit("he-spellbreaker", "Spellbreaker", "YARP\\Units\\Highelf\\Spellbreaker\\BlackSunSpellbreaker.mdx");
+
+shopModel = "YARP\\Units\\Highelf\\Arcanist\\HeroArcanist.mdx";
+AddCustomUnitShopMultiple("c-highelf1", "High Elves");
