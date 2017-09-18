@@ -229,3 +229,4 @@ QueueUnit("ucs2"); //undead:Carrion Beetle -- units\undead\scarab\scarab
 
 AddUnitShopMultiple("undead-other", "Undead Other");
 CarryOverUnitShops();
+CarryOverUnitShops();

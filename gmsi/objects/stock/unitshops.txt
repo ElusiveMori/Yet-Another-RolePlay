@@ -516,7 +516,6 @@ QueueUnit("nshf"); //critters:Flying Sheep -- units\critters\FlyingSheep\FlyingS
 QueueUnit("nfro"); //critters:Frog -- units\critters\Frog\Frog
 QueueUnit("nhmc"); //critters:Hermit Crab -- units\critters\HermitCrab\HermitCrab
 QueueUnit("npng"); //critters:Penguin -- units\critters\Penguin\Penguin
-QueueUnit("npnw"); //critters:Penguin -- units\critters\Penguin\Penguin
 QueueUnit("npig"); //critters:Pig -- units\critters\Pig\Pig
 QueueUnit("necr"); //critters:Rabbit -- units\critters\EasterRabbit\EasterRabbit
 QueueUnit("nrac"); //critters:Raccoon -- units\critters\Raccoon\Raccoon

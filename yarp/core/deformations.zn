@@ -28,7 +28,7 @@ library Deformations requires Util {
 				y = I2R(R2I((y - 64) / 128)) * 128;
 			}
 
-			this.deformation = TerrainDeformCrater(x, y, radius, -magnitude, 0, true);
+			this.deformation = TerrainDeformCrater(x, y, radius, -magnitude, 50, true);
 			this.x = x;
 			this.y = y;
 			this.magnitude = magnitude;
