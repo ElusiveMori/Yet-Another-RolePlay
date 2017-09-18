@@ -1,15 +1,5 @@
-library Region requires Util, Logs {
+library Region requires Util, Logs, Constants {
 	// behold the horrible spaghetti code
-
-	public {
-		constant integer REGION_ID              = 'pU01';
-		constant integer REGION_ABIL_INC_WIDTH  = 'pA05';
-		constant integer REGION_ABIL_INC_HEIGHT = 'pA06';
-		constant integer REGION_ABIL_DEC_WIDTH  = 'pA07';
-		constant integer REGION_ABIL_DEC_HEIGHT = 'pA08';
-		constant integer REGION_ABIL_REMOVE     = 'pA09';
-		constant integer REGION_ABIL_AUX        = 'pA0a';
-	}
 
 	struct RegionHighlighter[] {
 		module Alloc;

@@ -28,6 +28,31 @@ void MakeIndexer() {
 	indexer.Name = "Unit Indexing";
 }
 
+void MakeWaygate() {
+	Ability waygate = createObject(map, "Awrp", WAYGATE_PASSIVE, true);
+	waygate.Name = "YARP Waygate (reduced)";
+	// reduce the size of the waygate
+	waygate.DataA1 = 50;
+	waygate.DataB1 = 50;
+
+	Ability targeter = GetBaseAbility(WAYGATE_TARGET);
+	targeter.Area1 = 80;
+	targeter.DataB1 = 2;
+	targeter.DataE1 = 0;
+	targeter.DataF1 = GetFreeOrder();
+	targeter.DataD1 = 0; // art duration
+	targeter.DataC1 = 1;
+	targeter.Hotkey = "Z";
+	targeter.Name = "Set Waygate Target";
+	targeter.Tip = MakeHotkeyTip("Z") + "Set Waygate Target";
+	targeter.DataA1 = 0; // follow through time
+	targeter.Ubertip = "Sets the target of this waygate.";
+	targeter.Art = "ReplaceableTextures\\CommandButtons\\BTNBansheeMaster.blp";
+	targeter.Rng1 = 65536;
+	targeter.CasterArt = "";
+	targeter.EffectArt = "";
+}
+
 void MakeSpawner() {
 	Unit spawner = createObject(map, "hfoo", SPAWNER_ID, true);
 	spawner["Name"      ] = "Spawner";
@@ -496,10 +521,10 @@ void MakeDoodad() {
 	Ability abil = createObject(map, "Aspb", DOODAD_SPELLBOOK, true);
 	abil.Tip = MakeHotkeyTip("R") + "Doodad Tools";
 	abil.Hotkey = "R";
-	abil.DataD1 = 4;
-	abil.DataC1 = 4;
+	abil.DataD1 = 5;
+	abil.DataC1 = 5;
 	abil.DataE1 = GetFreeOrder();
-	abil.DataA1 = "pA0w,pA0x,pA0y,pA0z";
+	abil.DataA1 = "pA0w,pA0x,pA0y,pA0z,pA10";
 	abil.Buttonpos = 1;
 	abil.Buttonpos1 = 2;
 	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
@@ -567,6 +592,23 @@ void MakeDoodad() {
 	abil.Tip = MakeHotkeyTip("R") + "Sample Doodad";
 	abil.DataA1 = 0; // follow through time
 	abil.Ubertip = "Samples a doodad to place later.";
+	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
+	abil.Rng1 = 4096;
+	abil.CasterArt = "";
+	abil.EffectArt = "";
+
+	abil = GetBaseAbility(DOODAD_REVIVE);
+	abil.Area1 = 256;
+	abil.DataB1 = 2;
+	abil.DataE1 = 0;
+	abil.DataF1 = GetFreeOrder();
+	abil.DataD1 = 0; // art duration
+	abil.DataC1 = 3;
+	abil.Hotkey = "A";
+	abil.Name = "Revive Doodad";
+	abil.Tip = MakeHotkeyTip("A") + "Revive Doodad";
+	abil.DataA1 = 0; // follow through time
+	abil.Ubertip = "Revives doodads.";
 	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNAcorn.blp";
 	abil.Rng1 = 4096;
 	abil.CasterArt = "";

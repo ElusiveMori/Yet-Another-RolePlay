@@ -18,6 +18,8 @@ library Unit requires Core {
 
 	//! textmacro CommandEnd
 			}
+
+			what = null;
 		}
 	//! endtextmacro
 
@@ -41,6 +43,8 @@ library Unit requires Core {
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
 				RemoveUnit(what);
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitRemove(CommandThread thread) {
@@ -80,6 +84,8 @@ library Unit requires Core {
 
 				unitData.currentOwner = s_int;
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitGive(CommandThread thread) {
@@ -112,6 +118,8 @@ library Unit requires Core {
 
 				unitData.currentOwner = s_int;
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitGiveForce(CommandThread thread) {
@@ -143,6 +151,8 @@ library Unit requires Core {
 
 				s_int = s_int + 1;
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitStep(CommandThread thread) {
@@ -155,23 +165,41 @@ library Unit requires Core {
 
 		private static method Command_UnitAbility_aux_add() {
 			unit what = GetEnumUnit();
+			integer id = String2Id(s_string1);
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				UnitAddAbility(what, s_int);
+				// handle some special cases first
+				if (s_string1 == "waygate") {
+					UnitAddAbility(what, WAYGATE_PASSIVE);
+					UnitAddAbility(what, WAYGATE_TARGET);
+				} else {
+					UnitAddAbility(what, id);
+				}
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitAbility_aux_rem() {
 			unit what = GetEnumUnit();
+			integer id = String2Id(s_string1);
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				UnitRemoveAbility(what, s_int);
+				// handle some special cases first
+				if (s_string1 == "waygate") {
+					UnitRemoveAbility(what, WAYGATE_PASSIVE);
+					UnitRemoveAbility(what, WAYGATE_TARGET);
+				} else {
+					UnitRemoveAbility(what, id);
+				}
 			}
+
+			what = null;
 		}
 
 		private static method Command_UnitAbility(CommandThread thread) {
 			string str = thread.args.next();
-			s_int = String2Id(thread.args.next());
+			s_string1 = thread.args.next();
 			s_thread = thread;
 
 			if (str == "add") {
@@ -492,6 +520,12 @@ library Unit requires Core {
 			Alias.saveall("mv", "move");
 			Alias.saveall("sz", "size");
 			Alias.saveall("szd", "sized");
+
+			Macro.saveall("'", "aa");
+			Macro.saveall("@", "ar");
+
+			Alias.saveall("aa", "ability add");
+			Alias.saveall("ar", "ability remove");
 
 			Alias.saveall("gl", "global");
 			Alias.saveall("unpause", "pause off");

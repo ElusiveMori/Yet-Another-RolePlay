@@ -1,13 +1,20 @@
 library Misc requires Core {
-	struct Misc {
+	struct Misc[] {
 		private static method onPurchase() {
 			unit sold = GetSoldUnit();
-			unit spawner = Spawner.get(PID(GetOwningPlayer(sold)));
+			integer who = PID(GetOwningPlayer(sold));
+			unit spawner = Spawner.get(who);
 
 			if (GetOctet(GetUnitTypeId(GetSellingUnit()), 3) == 112) {
 				SetUnitX(sold, GetUnitX(spawner));
 				SetUnitY(sold, GetUnitY(spawner));
 			}
+
+			if (!Limits.canPlayerSpawn(who)) {
+				RemoveUnit(sold);
+			}
+
+			Limits.onPlayerSpawn(who);
 
 			sold = null;
 			spawner = null;
@@ -34,6 +41,28 @@ library Misc requires Core {
 			return false;
 		}
 
+		private static method initSandbox() {
+			rect sandbox = Areas.sandbox();
+			real minx = GetRectMinX(sandbox);
+			real miny = GetRectMinY(sandbox);
+			real maxx = GetRectMaxX(sandbox);
+			real maxy = GetRectMaxY(sandbox);
+			real x = minx;
+			real y = miny;
+
+			while (x < maxx) {
+				while (y < maxy) {
+					SetTerrainType(x, y, '0000', -1, 4, 1);
+					y = y + 512;
+				}
+
+				y = miny;
+				x = x + 512;
+			}
+
+			sandbox = null;
+		}
+
 		private static method onInit() {
 			trigger purchaseTrigger = CreateTrigger();
 			trigger leaveTrigger = CreateTrigger();
@@ -58,6 +87,9 @@ library Misc requires Core {
 			SetCameraPosition(WorldBounds.centerX, WorldBounds.centerY);
 			FogEnable(false);
 			FogMaskEnable(false);
+			SetTimeOfDayScale(0.25);
+
+			initSandbox.execute();
 
 			purchaseTrigger = null;
 			leaveTrigger = null;

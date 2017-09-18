@@ -3,7 +3,6 @@ shopModel = null;
 
 // unsorted
 QueueUnit("ndmu"); //creeps:Dalaran Mutant -- units\other\DalaranMutant\DalaranMutant
-QueueUnit("nspp"); //creeps:Spirit Pig -- units\creeps\SpiritPig\SpiritPig
 QueueUnit("nfrp"); //creeps:Pandaren -- units\creeps\FurbolgPanda\FurbolgPanda
 QueueUnit("npn5"); //creeps:Storm -- Units\Creeps\StormPandarenBrewmaster\StormPandarenBrewmaster
 QueueUnit("npn2"); //creeps:Storm -- Units\Creeps\StormPandarenBrewmaster\StormPandarenBrewmaster
@@ -543,7 +542,6 @@ QueueUnit("nsnp"); //naga:Snap Dragon -- units\naga\SnapDragon\SnapDragon
 AddUnitShopMultiple("naga", "Naga");
 
 QueueUnit("zmar"); //other:Marine -- Units\Critters\Marine\Marine
-QueueUnit("zjug"); //other:Orc Juggernaught -- Units\Critters\OrcJuggernaught\OrcJuggernaught
 QueueUnit("zcso"); //other:Space Fel Orc -- Units\Critters\ChaosSpaceOrc\ChaosSpaceOrc
 QueueUnit("zzrg"); //other:Zergling -- Units\Critters\zergling\zergling
 QueueUnit("zhyd"); //other:Hydralisk -- Units\Critters\Hydralisk\Hydralisk
@@ -571,6 +569,7 @@ QueueUnit("nqb3"); //other:Raging Quilbeast -- Units\Creeps\QuillBeast\QuillBeas
 QueueUnit("nwe3"); //other:Spirit Hawk -- units\creeps\WarEagle\WarEagle
 QueueUnit("nwe2"); //other:Thunder Hawk -- units\creeps\WarEagle\WarEagle
 QueueUnit("ntor"); //other:Tornado -- Abilities\Spells\Other\Tornado\TornadoElemental
+QueueUnit("nspp"); //creeps:Spirit Pig -- units\creeps\SpiritPig\SpiritPig
 QueueUnit("ncg3"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\HeroTinkerRobot
 QueueUnit("ncg2"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\HeroTinkerRobot
 QueueUnit("ncgb"); //other:Clockwerk Goblin -- Units\Creeps\HeroTinkerRobot\HeroTinkerRobot

@@ -27,6 +27,7 @@ void Init() {
 	MakeFlierUtils();
 	MakeTerrain();
 	MakeDoodad();
+	MakeWaygate();
 
 	echoln("Starting doodads...");
 	include("yarp/objects/stock/doods.txt");

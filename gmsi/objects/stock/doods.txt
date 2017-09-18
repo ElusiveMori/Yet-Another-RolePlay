@@ -210,7 +210,6 @@ AddBuilding("icetorch", "Icy Torch", "Doodads\\Icecrown\\Props\\IceTorch\\IceTor
 AddBuilding("brazier2", "Brazier", "Doodads\\LordaeronSummer\\Props\\brazier\\brazier.mdx");
 AddBuilding("brazier3", "Glowing Brazier", "Doodads\\LordaeronSummer\\Props\\brazierOmni\\brazierOmni.mdx");
 AddBuilding("torchhuman1", "Torch", "Doodads\\LordaeronSummer\\Props\\TorchHuman\\TorchHuman.mdx");
-AddBuilding("torchhuman2", "Glowing Torch", "Doodads\\LordaeronSummer\\Props\\TorchHumanOmni\\TorchHumanOmni.mdx");
 AddBuilding("firepit", "Fire Pit", "Doodads\\Northrend\\Props\\FirePit\\FirePit.mdx");
 AddBuilding("firepitpig", "Fire Pit \\w Pig", "Doodads\\Northrend\\Props\\FirePitPig\\FirePitPig.mdx");
 AddBuilding("firepittrashed", "Trashed Fire Pit", "Doodads\\Northrend\\Props\\FirePitTrashed\\FirePitTrashed.mdx");

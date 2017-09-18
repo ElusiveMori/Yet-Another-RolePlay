@@ -1,11 +1,4 @@
-library Security requires Util, UnitData, UnitTypes {
-	public {
-		constant integer ACCESS_LVL_PASSIVE = -1;
-		constant integer ACCESS_LVL_REGULAR = 0;
-		constant integer ACCESS_LVL_ADMIN   = 1;
-		constant integer ACCESS_LVL_HOST    = 2;
-	}
-
+library Security requires Util, UnitData, UnitTypes, Constants {
 	integer accesses[];
 
 	public function GetPlayerAccessLevel(integer who) -> integer {

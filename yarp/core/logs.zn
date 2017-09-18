@@ -1,9 +1,4 @@
-library Logs requires Util {
-	public constant integer TYPE_OOC = 0;
-	public constant integer TYPE_IC  = 1;
-	public constant integer TYPE_CMD = 2;
-	public constant integer linesPerLog = 2048;
-
+library Logs requires Util, Constants {
 	public struct Log[] {
 		public {
 			static string logs[];
@@ -14,31 +9,31 @@ library Logs requires Util {
 
 		static method getMessage(integer logType, integer number) -> string {
 			debug Assert(logType < 3 && logType >= 0,  "Log.getMessage", "Invalid log type.");
-			debug Assert(number >= 0 && number < linesPerLog, "Log.getMessage", "Invalid message id.");
+			debug Assert(number >= 0 && number < LINES_PER_LOG, "Log.getMessage", "Invalid message id.");
 
-			return logs[logType * linesPerLog + number];
+			return logs[logType * LINES_PER_LOG + number];
 		}
 
 		static method getTalker(integer logType, integer number) -> integer {
 			debug Assert(logType < 3 && logType >= 0,  "Log.getTalker", "Invalid log type.");
-			debug Assert(number >= 0 && number < linesPerLog, "Log.getTalker", "Invalid message id.");
+			debug Assert(number >= 0 && number < LINES_PER_LOG, "Log.getTalker", "Invalid message id.");
 
-			return talkers[logType * linesPerLog + number];
+			return talkers[logType * LINES_PER_LOG + number];
 		}
 
 		static method getName(integer number) -> string {
-			debug Assert(number >= 0 && number < linesPerLog, "Log.getName", "Invalid message id.");
+			debug Assert(number >= 0 && number < LINES_PER_LOG, "Log.getName", "Invalid message id.");
 			
 			return names[number];
 		}
 
 		static method shiftMessage(integer logType) {
 			integer i;
-			integer offset = logType * linesPerLog;
+			integer offset = logType * LINES_PER_LOG;
 
 			debug Assert(logType < 3 && logType >= 0,  "Log.shiftMessage", "Invalid log type.");
 
-			for (offset + linesPerLog - 2 >= i >= offset) {
+			for (offset + LINES_PER_LOG - 2 >= i >= offset) {
 				logs[i+1] = logs[i];
 			}
 
@@ -47,11 +42,11 @@ library Logs requires Util {
 
 		static method shiftTalker(integer logType) {
 			integer i;
-			integer offset = logType * linesPerLog;
+			integer offset = logType * LINES_PER_LOG;
 
 			debug Assert(logType < 3 && logType >= 0,  "Log.shiftTalker", "Invalid log type.");
 
-			for (offset + linesPerLog - 2 >= i >= offset) {
+			for (offset + LINES_PER_LOG - 2 >= i >= offset) {
 				talkers[i+1] = talkers[i];
 			}
 		}
@@ -59,7 +54,7 @@ library Logs requires Util {
 		static method shiftNames() {
 			integer i;
 
-			for (linesPerLog - 2 >= i >= 0) {
+			for (LINES_PER_LOG - 2 >= i >= 0) {
 				names[i+1] = names[i];
 			}
 		}
@@ -71,8 +66,8 @@ library Logs requires Util {
 			shiftMessage.execute(logType);
 			shiftTalker.execute(logType);
 
-			logs[logType * linesPerLog] = message;
-			talkers[logType * linesPerLog] = talker;
+			logs[logType * LINES_PER_LOG] = message;
+			talkers[logType * LINES_PER_LOG] = talker;
 		}
 
 		static method logName(string name) {

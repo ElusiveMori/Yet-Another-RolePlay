@@ -1,31 +1,4 @@
 library Terrain requires Core {
-	constant integer TERRAIN_SAMPLE  = 'pA0c';
-	constant integer TERRAIN_CIRCLE1 = 'pA0d';
-	constant integer TERRAIN_CIRCLE2 = 'pA0e';
-	constant integer TERRAIN_CIRCLE3 = 'pA0f';
-	constant integer TERRAIN_CIRCLE4 = 'pA0g';
-	constant integer TERRAIN_SQUARE1 = 'pA0h';
-	constant integer TERRAIN_SQUARE2 = 'pA0i';
-	constant integer TERRAIN_SQUARE3 = 'pA0j';
-	constant integer TERRAIN_SQUARE4 = 'pA0k';
-
-	constant integer HEIGHT_RAISEPOINT    = 'pA0m';
-	constant integer HEIGHT_LOWERPOINT    = 'pA0n';
-	constant integer HEIGHT_RAISECIRCLE1  = 'pA0o';
-	constant integer HEIGHT_LOWERCIRCLE1  = 'pA0p';
-	constant integer HEIGHT_RAISECIRCLE2  = 'pA0q';
-	constant integer HEIGHT_LOWERCIRCLE2  = 'pA0r';
-	constant integer HEIGHT_RAISECIRCLE3  = 'pA0s';
-	constant integer HEIGHT_LOWERCIRCLE3  = 'pA0t';
-	constant integer HEIGHT_REMOVEDEFORMS = 'pA0u';
-
-	constant integer DOODAD_PLACE  = 'pA0w';
-	constant integer DOODAD_REMOVE = 'pA0x';
-	constant integer DOODAD_KILL   = 'pA0y';
-	constant integer DOODAD_SAMPLE = 'pA0z';
-
-	constant integer BUILD_DOODAD = 'pA0v';
-
 	struct Terrain[] {
 		static integer sampled[];
 		static integer sampledDoods[];
@@ -98,6 +71,10 @@ library Terrain requires Core {
 			sampledDoods[sampleWho] = GetDestructableTypeId(GetEnumDestructable());
 		}
 
+		private static method aux_reviveDood() {
+			DestructableRestoreLife(GetEnumDestructable(), 100, true);
+		}
+
 		private static method onCast() {
 			integer spellId = GetSpellAbilityId();
 			unit caster = GetTriggerUnit();
@@ -109,6 +86,14 @@ library Terrain requires Core {
 			if (Spawner.isSpawner(caster)) {
 				x = GetSpellTargetX();
 				y = GetSpellTargetY();
+
+				// only allow sampling spells inside spawn
+				if (spellId != TERRAIN_SAMPLE && spellId != DOODAD_SAMPLE) {
+					if (Areas.isPointInSpawn(x, y)) {
+						caster = null;
+						return;
+					}
+				}
 
 				if (spellId == TERRAIN_SAMPLE) {
 					sampled[owner] = GetTerrainType(x, y);
@@ -185,8 +170,17 @@ library Terrain requires Core {
 					EnumDestructablesInRect(area, null, function thistype.aux_sampleDood);
 					RemoveRect(area);
 					area = null;
+				} else if (spellId == DOODAD_REVIVE) {
+					area = Rect(0, 0, 512, 512);
+					MoveRectTo(area, x, y);
+					sampleWho = owner;
+					EnumDestructablesInRect(area, null, function thistype.aux_reviveDood);
+					RemoveRect(area);
+					area = null;
 				}
 			}
+
+			caster = null;
 		}
 
 		private static method Command_Height(CommandThread thread) {

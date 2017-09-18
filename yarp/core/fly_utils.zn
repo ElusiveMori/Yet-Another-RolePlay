@@ -1,8 +1,4 @@
-library FlyUtils requires Util {
-	public constant integer ABIL_UNITFLY       = 'Amrf';
-	public constant integer ABIL_BUILDFLY_BOOK = 'pA01';
-	public constant integer ABIL_BUILDFLY      = 'Aro1';
-
+library FlyUtils requires Util, Constants {
 	public struct Fly[] {
 		static method uproot(unit what) {
 			real angle;

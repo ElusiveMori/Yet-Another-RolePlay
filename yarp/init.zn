@@ -37,6 +37,9 @@
 //! import zinc "yarp/core/lists.zn"
 //! import zinc "yarp/core/deformations.zn"
 //! import zinc "yarp/core/manifests.zn"
+//! import zinc "yarp/core/areas.zn"
+//! import zinc "yarp/core/limits.zn"
+//! import zinc "yarp/core/constants.zn"
 
 // Game Management
 
@@ -50,6 +53,8 @@
 //! import zinc "yarp/game/misc.zn"
 //! import zinc "yarp/game/regions.zn"
 //! import zinc "yarp/game/loader.zn"
+//! import zinc "yarp/game/quest.zn"
+//! import zinc "yarp/game/waygate.zn"
 
 
 library Core requires Util, 
@@ -65,9 +70,11 @@ library Core requires Util,
 					Spawner, 
 					Deformations, 
 					Lists,
-					Manifests {
+					Manifests,
+					Areas,
+					Limits,
+					Constants {
 	function onInit() {
-		SetTimeOfDayScale(0.25);
 	}
 }
 
