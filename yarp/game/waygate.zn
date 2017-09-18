@@ -1,0 +1,22 @@
+library Waygate requires Core {
+	struct Waygate[] {
+		private static method onCast() {
+			integer spellId = GetSpellAbilityId();
+			unit caster = GetTriggerUnit();
+
+			if (spellId == WAYGATE_TARGET) {
+				WaygateActivate(caster, true);
+				WaygateSetDestination(caster, GetSpellTargetX(), GetSpellTargetY());
+				IssueImmediateOrder(caster, "stop");
+			}
+
+			caster = null;
+		}
+
+		private static method onInit() {
+			trigger castTrigger = CreateTrigger();
+			TriggerAddAction(castTrigger, function thistype.onCast);
+			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
+		}
+	}
+}

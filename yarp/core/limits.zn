@@ -1,0 +1,65 @@
+library Limits requires Util, Security {
+	public struct Limits[] {
+		public static integer playerSpawnPerMinute = 48;
+		private static real period = 15;
+		private static integer unitLimits[];
+		private static boolean spammers[];
+
+		static method canPlayerSpawn(integer who) -> boolean {
+			return unitLimits[who] > 0;
+		}
+
+		static method resetPlayerSpawnLimit(integer who) {
+			unitLimits[who] = unitLimits[who] + R2I((period / 60) * I2R(playerSpawnPerMinute));
+
+			if (unitLimits[who] > playerSpawnPerMinute) {
+				unitLimits[who] = playerSpawnPerMinute;
+			}
+
+			if (spammers[who]) {
+				MessageTo(who, "You can spawn units again.");
+				spammers[who] = false;
+			}
+		}
+
+		static method onPlayerSpawn(integer who) {
+			unitLimits[who] = unitLimits[who] - 1;
+
+			if (unitLimits[who] == 0) {
+				WarningMessageTo(who, "Whoa! Slow down, you're spawning too much.");
+				spammers[who] = true;
+				warnAdmins(who);
+			}
+		}
+
+		static method warnAdmins(integer who) {
+			integer i;
+
+			for (0 <= i <= 11) {
+				if (GetPlayerAccessLevel(i) >= ACCESS_LVL_ADMIN) {
+					WarningMessageTo(i, PlayerName(who) + " has been spawning too much!");
+				}
+			}
+		}
+
+		private static method resetPlayerSpawnLimits() {
+			integer i;
+
+			for (0 <= i <= 11) {
+				resetPlayerSpawnLimit(i);
+			}
+		}
+
+		private static method onInit() {
+			integer i;
+			timer limitResetter = CreateTimer();
+			TimerStart(limitResetter, period, true, function thistype.resetPlayerSpawnLimits);
+			limitResetter = null;
+
+			for (0 <= i <= 11) {
+				unitLimits[i] = playerSpawnPerMinute;
+				spammers[i] = false;
+			}
+		}
+	}
+}

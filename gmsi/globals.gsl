@@ -57,6 +57,9 @@ global string DOODAD_PLACE         = "pA0w";
 global string DOODAD_REMOVE        = "pA0x";
 global string DOODAD_KILL          = "pA0y";
 global string DOODAD_SAMPLE        = "pA0z";
+global string DOODAD_REVIVE        = "pA10";
+global string WAYGATE_PASSIVE      = "pA11";
+global string WAYGATE_TARGET       = "pA12";
 
 // unit ID starts
 

@@ -1,0 +1,20 @@
+library Areas requires Util {
+	public struct Areas[] {
+		static method spawn() -> rect {
+			return gg_rct_Spawn;
+		}
+
+		static method isPointInSpawn(real x, real y) -> boolean {
+			real minx = GetRectMinX(gg_rct_Spawn) - 512;
+			real miny = GetRectMinY(gg_rct_Spawn) - 512;
+			real maxx = GetRectMaxX(gg_rct_Spawn) + 512;
+			real maxy = GetRectMaxY(gg_rct_Spawn) + 512;
+
+			return x > minx && x < maxx && y > miny && y < maxy;
+		}
+
+		static method sandbox() -> rect {
+			return gg_rct_Sandbox;
+		}
+	}
+}

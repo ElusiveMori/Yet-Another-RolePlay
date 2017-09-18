@@ -1,0 +1,13 @@
+library Quest requires Core {
+	struct Quest[] {
+		private static method onInit() {
+			quest help = CreateQuest();
+			QuestSetTitle(help, "Introduction!");
+			QuestSetIconPath(help, "ReplaceableTextures\\CommandButtons\\BTN3M3.blp");
+			QuestSetDescription(help, "Due to the sheer amount of commands and features, help has been externalized in a more convenient form at this link:|n" + 
+				"https://goo.gl/NwmPQQ|n|n" +
+				"While I tried to keep most commands similar to RoTRP and SotDRP, there are many " +
+				"subtle differences, so make sure to check out the wiki above!");
+		}
+	}
+}

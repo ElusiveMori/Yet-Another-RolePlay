@@ -1,6 +1,4 @@
-library Spawner requires Util {
-	public constant integer SPAWNER_ID = 'pU00';
-
+library Spawner requires Util, Constants {
 	public struct Spawner {
 		static integer sampled[];
 		static unit spawners[];

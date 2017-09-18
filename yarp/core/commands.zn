@@ -1,33 +1,5 @@
-library Commands requires Util, CommandParser, Selection, Logs {
+library Commands requires Util, CommandParser, Selection, Logs, Constants {
 	type CommandCallback extends function(CommandThread);
-
-	public constant integer ERR_NONE = 0;
-
-	public constant integer ERR_ALIAS_ZERO_LENGTH = 1;
-	public constant integer ERR_ALIAS_CONFLICT_COMMAND = 2;
-	public constant integer ERR_ALIAS_CONFLICT_ALIAS = 3;
-	public constant integer ERR_ALIAS_CONFLICT_MACRO = 4;
-	public constant integer ERR_ALIAS_FORBIDDEN = 5;
-
-	public constant integer ERR_MACRO_ZERO_LENGTH = 1;
-	public constant integer ERR_MACRO_LIMIT_EXHAUSTED = 2;
-	public constant integer ERR_MACRO_CONFLICT_COMMAND = 3;
-	public constant integer ERR_MACRO_CONFLICT_ALIAS = 4;
-	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
-	public constant integer ERR_MACRO_FORBIDDEN = 6;
-
-	// command flags
-	public constant integer CMD_NONE     = 0x00; // no special flags
-	public constant integer CMD_SPAWNING = 0x01; // for commands that spawn units
-	public constant integer CMD_EXEC     = 0x02; // for commands that execute other commands
-	public constant integer CMD_UNITPROP = 0x04; // for commands that change unit properties
-	public constant integer CMD_DIRECT   = 0x08; // for other commands forbidden from step, seq, global, etc.
-
-	// command filter presets
-	public constant integer CMDF_ANY     = 0xFF; // for normal, permit anything
-	public constant integer CMDF_EXEC    = 0x06; // for step, seq, permit only EXEC and UNITPROP
-	public constant integer CMDF_EXTEND  = 0x07; // for global, run, don't permit DIRECT
-	public constant integer CMDF_AUTO    = 0x04; // for autocommand, only permit UNITPROP
 
 	public struct Alias[] {
 		private static TableArray aliases;
@@ -573,11 +545,6 @@ library Commands requires Util, CommandParser, Selection, Logs {
 			restarters = Table.create();
 			TimerStart(quotaDecreaser, 0.1, true, function thistype.decreaseQuotas);
 			quotaDecreaser = null;
-
-			static if (DEBUG_MODE) {
-				maxThreadQuota = 16384;
-				maxPlayerQuota = 16384;
-			}
 		}
 	}
 

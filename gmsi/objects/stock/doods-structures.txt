@@ -242,8 +242,7 @@ AddBuilderMultiple("gates", "Gates");
 
 //huts and tents
 AddBuilding("centaurtent1", "Centaur Tent 1", "buildings\\Other\\CentaurTent\\CentaurTent.mdx");
-AddBuilding("centaurtent2", "Centaur Tent 2", "buildings\\Other\\CentaurTent1\\CentaurTent1.mdx");
-AddBuilding("centaurtent3", "Centaur Tent 3", "buildings\\Other\\CentaurTent2\\CentaurTent2.mdx");
+AddBuilding("centaurtent2", "Centaur Tent 2", "buildings\\Other\\CentaurTent2\\CentaurTent2.mdx");
 AddBuilding("draeneihut1", "Draenei Hut 1", "buildings\\Other\\ChieftainHut\\ChieftainHut.mdx");
 AddBuilding("draeneihut2", "Draenei Hut 2", "buildings\\Other\\DraneiHut0\\DraneiHut0.mdx");
 AddBuilding("draeneihut3", "Draenei Hut 3", "buildings\\Other\\DraneiHut1\\DraneiHut1.mdx");
@@ -358,7 +357,6 @@ AddBuilding("fountain1", "Fountain 1", "buildings\\Other\\FountainOfLife\\Founta
 AddBuilding("fountain2", "Fountain 2", "buildings\\Other\\FountainOfLifeBlood\\FountainOfLifeBlood.mdx");
 AddBuilding("fountain3", "Fountain 3", "buildings\\Other\\FountainOfLifeDefiled\\FountainOfLifeDefiled.mdx");
 AddBuilding("fountain4", "Fountain 4", "buildings\\Other\\FountainOfMana\\FountainOfMana.mdx");
-AddBuilding("fountain5", "Fountain 5", "buildings\\Other\\FountainOfPower\\FountainOfPower.mdx");
 AddBuilding("frostmourne", "Frostmourne", "buildings\\Other\\Frostmourne\\Frostmourne.mdx");
 AddBuilding("fruitstand", "Fruit Stand", "buildings\\Other\\FruitStand\\FruitStand.mdx");
 AddBuilding("goblinshipyard", "Goblin Shipyard", "buildings\\Other\\GoblinShipyard\\GoblinShipyard.mdx");

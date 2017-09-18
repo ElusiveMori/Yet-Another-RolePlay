@@ -1,0 +1,85 @@
+library Constants {
+	public constant integer WAYGATE_PASSIVE = 'pA11';
+	public constant integer WAYGATE_TARGET  = 'pA12';
+
+	public constant integer TERRAIN_SAMPLE  = 'pA0c';
+	public constant integer TERRAIN_CIRCLE1 = 'pA0d';
+	public constant integer TERRAIN_CIRCLE2 = 'pA0e';
+	public constant integer TERRAIN_CIRCLE3 = 'pA0f';
+	public constant integer TERRAIN_CIRCLE4 = 'pA0g';
+	public constant integer TERRAIN_SQUARE1 = 'pA0h';
+	public constant integer TERRAIN_SQUARE2 = 'pA0i';
+	public constant integer TERRAIN_SQUARE3 = 'pA0j';
+	public constant integer TERRAIN_SQUARE4 = 'pA0k';
+
+	public constant integer HEIGHT_RAISEPOINT    = 'pA0m';
+	public constant integer HEIGHT_LOWERPOINT    = 'pA0n';
+	public constant integer HEIGHT_RAISECIRCLE1  = 'pA0o';
+	public constant integer HEIGHT_LOWERCIRCLE1  = 'pA0p';
+	public constant integer HEIGHT_RAISECIRCLE2  = 'pA0q';
+	public constant integer HEIGHT_LOWERCIRCLE2  = 'pA0r';
+	public constant integer HEIGHT_RAISECIRCLE3  = 'pA0s';
+	public constant integer HEIGHT_LOWERCIRCLE3  = 'pA0t';
+	public constant integer HEIGHT_REMOVEDEFORMS = 'pA0u';
+
+	public constant integer DOODAD_PLACE  = 'pA0w';
+	public constant integer DOODAD_REMOVE = 'pA0x';
+	public constant integer DOODAD_KILL   = 'pA0y';
+	public constant integer DOODAD_SAMPLE = 'pA0z';
+	public constant integer DOODAD_REVIVE = 'pA10';
+
+	public constant integer ABIL_UNITFLY       = 'Amrf';
+	public constant integer ABIL_BUILDFLY_BOOK = 'pA01';
+	public constant integer ABIL_BUILDFLY      = 'Aro1';
+
+	public constant integer REGION_ID              = 'pU01';
+	public constant integer REGION_ABIL_INC_WIDTH  = 'pA05';
+	public constant integer REGION_ABIL_INC_HEIGHT = 'pA06';
+	public constant integer REGION_ABIL_DEC_WIDTH  = 'pA07';
+	public constant integer REGION_ABIL_DEC_HEIGHT = 'pA08';
+	public constant integer REGION_ABIL_REMOVE     = 'pA09';
+	public constant integer REGION_ABIL_AUX        = 'pA0a';
+
+	public constant integer SPAWNER_ID = 'pU00';
+
+	// error codes for aliases/macros
+	public constant integer ERR_NONE = 0;
+
+	public constant integer ERR_ALIAS_ZERO_LENGTH = 1;
+	public constant integer ERR_ALIAS_CONFLICT_COMMAND = 2;
+	public constant integer ERR_ALIAS_CONFLICT_ALIAS = 3;
+	public constant integer ERR_ALIAS_CONFLICT_MACRO = 4;
+	public constant integer ERR_ALIAS_FORBIDDEN = 5;
+
+	public constant integer ERR_MACRO_ZERO_LENGTH = 1;
+	public constant integer ERR_MACRO_LIMIT_EXHAUSTED = 2;
+	public constant integer ERR_MACRO_CONFLICT_COMMAND = 3;
+	public constant integer ERR_MACRO_CONFLICT_ALIAS = 4;
+	public constant integer ERR_MACRO_CONFLICT_MACRO = 5;
+	public constant integer ERR_MACRO_FORBIDDEN = 6;
+
+	// command flags
+	public constant integer CMD_NONE     = 0x00; // no special flags
+	public constant integer CMD_SPAWNING = 0x01; // for commands that spawn units
+	public constant integer CMD_EXEC     = 0x02; // for commands that execute other commands
+	public constant integer CMD_UNITPROP = 0x04; // for commands that change unit properties
+	public constant integer CMD_DIRECT   = 0x08; // for other commands forbidden from step, seq, global, etc.
+
+	// command filter presets
+	public constant integer CMDF_ANY     = 0xFF; // for normal, permit anything
+	public constant integer CMDF_EXEC    = 0x06; // for step, seq, permit only EXEC and UNITPROP
+	public constant integer CMDF_EXTEND  = 0x07; // for global, run, don't permit DIRECT
+	public constant integer CMDF_AUTO    = 0x04; // for autocommand, only permit UNITPROP
+
+	public constant integer TYPE_OOC = 0;
+	public constant integer TYPE_IC  = 1;
+	public constant integer TYPE_CMD = 2;
+	public constant integer LINES_PER_LOG = 2048;
+
+	public constant integer ACCESS_LVL_PASSIVE = -1;
+	public constant integer ACCESS_LVL_REGULAR = 0;
+	public constant integer ACCESS_LVL_ADMIN   = 1;
+	public constant integer ACCESS_LVL_HOST    = 2;
+
+
+}

@@ -46,9 +46,14 @@ library Spawn requires Core {
 				y = GetUnitY(spawner);
 
 				for (0 <= i < count) {
-					spawned = CreateUnit(P(thread.owner), unitId, x, y, 270);
-					SetUnitX(spawned, x);
-					SetUnitY(spawned, y);
+					if (Limits.canPlayerSpawn(thread.owner)) {
+						spawned = CreateUnit(P(thread.owner), unitId, x, y, 270);
+						SetUnitX(spawned, x);
+						SetUnitY(spawned, y);
+						Limits.onPlayerSpawn(thread.owner);
+					} else {
+						break;
+					}
 				}
 
 				spawned = null;
@@ -66,20 +71,24 @@ library Spawn requires Core {
 			UnitData cloneData;
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				originalData = UnitData[what];
-				clone = CreateUnit(P(s_thread.owner), GetUnitTypeId(what), 0, 0, originalData.angle);
-				cloneData = UnitData[clone];
+				if (Limits.canPlayerSpawn(s_thread.owner)) {
+					originalData = UnitData[what];
+					clone = CreateUnit(P(s_thread.owner), GetUnitTypeId(what), 0, 0, originalData.angle);
+					cloneData = UnitData[clone];
 
-				cloneData.x         = s_sx + (x - s_ox);
-				cloneData.y         = s_sy + (y - s_oy);
-				cloneData.life      = originalData.life;
-				cloneData.mana      = originalData.mana;
-				cloneData.speed     = originalData.speed;
-				cloneData.size      = originalData.size;
-				cloneData.animSpeed = originalData.animSpeed;
-				cloneData.color     = originalData.color;
-				cloneData.z         = originalData.z;
-				cloneData.setVertexColor(originalData.vertexR, originalData.vertexG, originalData.vertexB, originalData.vertexA);
+					cloneData.x         = s_sx + (x - s_ox);
+					cloneData.y         = s_sy + (y - s_oy);
+					cloneData.life      = originalData.life;
+					cloneData.mana      = originalData.mana;
+					cloneData.speed     = originalData.speed;
+					cloneData.size      = originalData.size;
+					cloneData.animSpeed = originalData.animSpeed;
+					cloneData.color     = originalData.color;
+					cloneData.z         = originalData.z;
+					cloneData.setVertexColor(originalData.vertexR, originalData.vertexG, originalData.vertexB, originalData.vertexA);
+
+					Limits.onPlayerSpawn(s_thread.owner);
+				}
 			}
 		}
 
