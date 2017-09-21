@@ -1,0 +1,53 @@
+library HashAlloc requires Table {
+	//! textmacro SetupHashAllocStart takes COUNT
+		private static Table recycler;
+		private static TableArray fields;
+
+		static method allocate() -> thistype {
+			thistype this = recycler[0];
+
+			if (!recycler.has(this)) {
+				recycler[0] = this + 1;
+			} else {
+				recycler[0] = recycler[this];
+			}
+
+			return this;
+		}
+
+		method deallocate() {
+			recycler[this] = recycler[0];
+			recycler[0] = this;
+		}
+
+		private static method onInit() {
+			recycler = Table.create();
+			recycler[0] = 1;
+			fields = TableArray[$COUNT$];
+	//! endtextmacro
+
+	//! textmacro SetupHashAllocEnd
+		}
+	//! endtextmacro
+
+	//! textmacro SetupFieldThistype takes ID, NAME
+		method operator $NAME$() -> thistype {
+			return fields[$ID$].integer[this];
+		}
+
+		method operator $NAME$=(thistype arg) {
+			fields[$ID$].integer[this] = arg;
+		}
+	//! endtextmacro
+
+
+	//! textmacro SetupField takes ID, NAME, TYPE
+		method operator $NAME$() -> $TYPE$ {
+			return fields[$ID$].$TYPE$[this];
+		}
+
+		method operator $NAME$=($TYPE$ arg) {
+			fields[$ID$].$TYPE$[this] = arg;
+		}
+	//! endtextmacro
+}

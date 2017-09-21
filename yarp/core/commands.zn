@@ -607,6 +607,10 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			string end = Sub(str, length - 1, length);
 			CommandThread thread;
 
+			if (start == "_") {
+				return;
+			}
+
 			if (start == "-" && end == "-") {
 				if (SL(str) + SL(delayed[who]) > 1920) {
 					WarningMessageTo(who, "Your delayed command length exceeds 1920.");

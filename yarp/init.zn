@@ -40,6 +40,7 @@
 //! import zinc "yarp/core/areas.zn"
 //! import zinc "yarp/core/limits.zn"
 //! import zinc "yarp/core/constants.zn"
+//! import zinc "yarp/core/hash_alloc.zn"
 
 // Game Management
 

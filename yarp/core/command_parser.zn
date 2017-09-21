@@ -1,4 +1,4 @@
-library CommandParser requires Alloc {
+library CommandParser requires Alloc, Util {
 	// common parser template
 	module Parser {
 		module Alloc;
@@ -140,6 +140,28 @@ library CommandParser requires Alloc {
 			}
 
 			return arg;
+		}
+	}
+
+	public struct SpaceSplitter[] {
+		module Parser;
+
+		method next() -> string {
+			integer start = pos;
+			string char;
+
+			while (pos < StringLength(input)) {
+				char = this[pos];
+
+				if (char == " ") {
+					pos = pos + 1;
+					return Sub(input, start, pos - 1);
+				} else {
+					pos = pos + 1;
+				}
+			}
+
+			return Sub(input, start, pos);
 		}
 	}
 }

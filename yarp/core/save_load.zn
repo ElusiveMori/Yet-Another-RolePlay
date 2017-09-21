@@ -1,4 +1,4 @@
-library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
+library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, HashAlloc {
 	public struct Save[] {
 		private {
 			static real oX = 0;
@@ -210,39 +210,43 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 	}
 
 	public struct LoadQueue[] {
-		module Alloc;
+		//! runtextmacro SetupHashAllocStart("18")
+		//! runtextmacro SetupHashAllocEnd()
 
 		static thistype tops[]; // first in queue for each player
 		static integer sizes[]; // queue sizes for each player
-		thistype next;
-		thistype prev;
-		integer owner;
-		integer objectType; // 0 for unit, 1 for tile, 2 for deform
+
+		// header
+
+		//! runtextmacro SetupFieldThistype("0", "next")
+		//! runtextmacro SetupFieldThistype("1", "prev")
+		//! runtextmacro SetupField("2", "owner",      "integer")
+		//! runtextmacro SetupField("3", "objectType", "integer")
 
 		// shared
 
-		integer id;
-		real x;
-		real y;
+		//! runtextmacro SetupField("4", "id", "integer")
+		//! runtextmacro SetupField("5", "x", "real")
+		//! runtextmacro SetupField("6", "y", "real")
 
 		// unit
 
-		real angle;
-		real size;
-		real speed;
-		real animSpeed;
-		real z;
-		integer color;
-		integer vertexR;
-		integer vertexG;
-		integer vertexB;
-		integer vertexA;
-		boolean paused;
+		//! runtextmacro SetupField("7", "angle",      "real")
+		//! runtextmacro SetupField("8", "size",       "real")
+		//! runtextmacro SetupField("9", "speed",      "real")
+		//! runtextmacro SetupField("10", "animSpeed", "real")
+		//! runtextmacro SetupField("11", "z",         "real")
+		//! runtextmacro SetupField("12", "color",     "integer")
+		//! runtextmacro SetupField("13", "vertexR",   "integer")
+		//! runtextmacro SetupField("14", "vertexG",   "integer")
+		//! runtextmacro SetupField("15", "vertexB",   "integer")
+		//! runtextmacro SetupField("16", "vertexA",   "integer")
+		//! runtextmacro SetupField("17", "paused",    "boolean")
 
-		// deformation
+		// deform
 
-		real magnitude;
-		real radius;
+		//! runtextmacro SetupField("7", "magnitude",  "real")
+		//! runtextmacro SetupField("8", "radius",     "real")
 
 		static method create() -> thistype {
 			thistype this = allocate();
@@ -268,10 +272,13 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 	}
 
 	public struct Load[] {
+		static integer counters[];
 		static real offsetsX[];
 		static real offsetsY[];
 		static Table processors;
 		static boolean pasting[];
+
+		static constant real delay = 0.015625;
 
 		static method setOffset(integer who, real x, real y) {
 			offsetsX[who] = x;
@@ -295,9 +302,18 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 		}
 
 		static method clearQueue(integer who) {
-			while (LoadQueue.tops[who] > 0) {
+			integer count = 0;
+
+			while (LoadQueue.tops[who] > 0 && count < 128) {
 				LoadQueue.tops[who].destroy();
+				count = count + 1;
 			}
+
+			if (LoadQueue.tops[who] > 0) {
+				clearQueue.execute(who);
+			}
+
+			counters[who] = 0;
 		}
 
 		static method process() {
@@ -335,16 +351,20 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 							
 							what = null;
 						}
+
 					} else if (queue.objectType == 1) {
+
 						SetTerrainType(offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.id, -1, 1, 0);
 					} else if (queue.objectType == 2) {
 						DeformationList.create(who, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.magnitude, queue.radius);
 					}
 
+					counters[who] = counters[who] + 1;
 					queue.destroy();
 
-					TimerStart(processor, 0.015625, false, function thistype.process);
+					TimerStart(processor, delay, false, function thistype.process);
 				} else {
+					MessageTo(who, "Pasting has finished! Total objects: " + I2S(counters[who]));
 					DestroyTimer(processor);
 					pasting[who] = false;
 					processors.remove(id);
@@ -362,7 +382,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations {
 			if (!pasting[who]) {	
 				processor = CreateTimer();
 				processors[GetHandleId(processor)] = who;
-				TimerStart(processor, 0.015625, false, function thistype.process);
+				TimerStart(processor, delay, false, function thistype.process);
 				pasting[who] = true;
 			}
 		}

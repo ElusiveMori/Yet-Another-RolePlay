@@ -1,5 +1,5 @@
 library Lists requires Util {
-	public struct Listing {
+	public struct Listing[] {
 		static Table terrainDNC;
 		static Table unitDNC;
 		static Table weather;

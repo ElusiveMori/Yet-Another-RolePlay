@@ -1,6 +1,14 @@
-library Table /* made by Bribe, special thanks to Vexorian & Nestharus, version 3.1.0.3
+
+library Table /* made by Bribe, special thanks to Vexorian & Nestharus, version 4.1.0.1.
     
-    One map, one hashtable. Welcome to NewTable 3.2
+    One map, one hashtable. Welcome to NewTable 4.1.0.1
+    
+    This newest iteration of Table introduces the new HashTable struct.
+    You can now instantiate HashTables which enables the use of large
+    parent and large child keys, just like a standard hashtable. Previously,
+    the user would have to instantiate a Table to do this on their own which -
+    while doable - is something the user should not have to do if I can add it
+    to this resource myself (especially if they are inexperienced).
     
     This library was originally called NewTable so it didn't conflict with
     the API of Table by Vexorian. However, the damage is done and it's too
@@ -88,7 +96,7 @@ private struct agents extends array
     endmethod
 endstruct
     
-//! textmacro NEW_ARRAY takes SUPER, FUNC, TYPE
+//! textmacro NEW_ARRAY_BASIC takes SUPER, FUNC, TYPE
 private struct $TYPE$s extends array
     method operator [] takes integer key returns $TYPE$
         return Load$FUNC$(ht, this, key)
@@ -110,53 +118,75 @@ private module $TYPE$m
 endmodule
 //! endtextmacro
     
+//! textmacro NEW_ARRAY takes FUNC, TYPE
+private struct $TYPE$s extends array
+    method operator [] takes integer key returns $TYPE$
+        return Load$FUNC$Handle(ht, this, key)
+    endmethod
+    method operator []= takes integer key, $TYPE$ value returns nothing
+        call Save$FUNC$Handle(ht, this, key, value)
+    endmethod
+    method has takes integer key returns boolean
+        return HaveSavedHandle(ht, this, key)
+    endmethod
+    method remove takes integer key returns nothing
+        call RemoveSavedHandle(ht, this, key)
+    endmethod
+endstruct
+private module $TYPE$m
+    method operator $TYPE$ takes nothing returns $TYPE$s
+        return this
+    endmethod
+endmodule
+//! endtextmacro
+    
 //Run these textmacros to include the entire hashtable API as wrappers.
 //Don't be intimidated by the number of macros - Vexorian's map optimizer is
 //supposed to kill functions which inline (all of these functions inline).
-//! runtextmacro NEW_ARRAY("Real", "Real", "real")
-//! runtextmacro NEW_ARRAY("Boolean", "Boolean", "boolean")
-//! runtextmacro NEW_ARRAY("String", "Str", "string")
+//! runtextmacro NEW_ARRAY_BASIC("Real", "Real", "real")
+//! runtextmacro NEW_ARRAY_BASIC("Boolean", "Boolean", "boolean")
+//! runtextmacro NEW_ARRAY_BASIC("String", "Str", "string")
 //New textmacro to allow table.integer[] syntax for compatibility with textmacros that might desire it.
-//! runtextmacro NEW_ARRAY("Integer", "Integer", "integer")
+//! runtextmacro NEW_ARRAY_BASIC("Integer", "Integer", "integer")
     
-//! runtextmacro NEW_ARRAY("Handle", "PlayerHandle", "player")
-//! runtextmacro NEW_ARRAY("Handle", "WidgetHandle", "widget")
-//! runtextmacro NEW_ARRAY("Handle", "DestructableHandle", "destructable")
-//! runtextmacro NEW_ARRAY("Handle", "ItemHandle", "item")
-//! runtextmacro NEW_ARRAY("Handle", "UnitHandle", "unit")
-//! runtextmacro NEW_ARRAY("Handle", "AbilityHandle", "ability")
-//! runtextmacro NEW_ARRAY("Handle", "TimerHandle", "timer")
-//! runtextmacro NEW_ARRAY("Handle", "TriggerHandle", "trigger")
-//! runtextmacro NEW_ARRAY("Handle", "TriggerConditionHandle", "triggercondition")
-//! runtextmacro NEW_ARRAY("Handle", "TriggerActionHandle", "triggeraction")
-//! runtextmacro NEW_ARRAY("Handle", "TriggerEventHandle", "event")
-//! runtextmacro NEW_ARRAY("Handle", "ForceHandle", "force")
-//! runtextmacro NEW_ARRAY("Handle", "GroupHandle", "group")
-//! runtextmacro NEW_ARRAY("Handle", "LocationHandle", "location")
-//! runtextmacro NEW_ARRAY("Handle", "RectHandle", "rect")
-//! runtextmacro NEW_ARRAY("Handle", "BooleanExprHandle", "boolexpr")
-//! runtextmacro NEW_ARRAY("Handle", "SoundHandle", "sound")
-//! runtextmacro NEW_ARRAY("Handle", "EffectHandle", "effect")
-//! runtextmacro NEW_ARRAY("Handle", "UnitPoolHandle", "unitpool")
-//! runtextmacro NEW_ARRAY("Handle", "ItemPoolHandle", "itempool")
-//! runtextmacro NEW_ARRAY("Handle", "QuestHandle", "quest")
-//! runtextmacro NEW_ARRAY("Handle", "QuestItemHandle", "questitem")
-//! runtextmacro NEW_ARRAY("Handle", "DefeatConditionHandle", "defeatcondition")
-//! runtextmacro NEW_ARRAY("Handle", "TimerDialogHandle", "timerdialog")
-//! runtextmacro NEW_ARRAY("Handle", "LeaderboardHandle", "leaderboard")
-//! runtextmacro NEW_ARRAY("Handle", "MultiboardHandle", "multiboard")
-//! runtextmacro NEW_ARRAY("Handle", "MultiboardItemHandle", "multiboarditem")
-//! runtextmacro NEW_ARRAY("Handle", "TrackableHandle", "trackable")
-//! runtextmacro NEW_ARRAY("Handle", "DialogHandle", "dialog")
-//! runtextmacro NEW_ARRAY("Handle", "ButtonHandle", "button")
-//! runtextmacro NEW_ARRAY("Handle", "TextTagHandle", "texttag")
-//! runtextmacro NEW_ARRAY("Handle", "LightningHandle", "lightning")
-//! runtextmacro NEW_ARRAY("Handle", "ImageHandle", "image")
-//! runtextmacro NEW_ARRAY("Handle", "UbersplatHandle", "ubersplat")
-//! runtextmacro NEW_ARRAY("Handle", "RegionHandle", "region")
-//! runtextmacro NEW_ARRAY("Handle", "FogStateHandle", "fogstate")
-//! runtextmacro NEW_ARRAY("Handle", "FogModifierHandle", "fogmodifier")
-//! runtextmacro NEW_ARRAY("Handle", "HashtableHandle", "hashtable")
+//! runtextmacro NEW_ARRAY("Player", "player")
+//! runtextmacro NEW_ARRAY("Widget", "widget")
+//! runtextmacro NEW_ARRAY("Destructable", "destructable")
+//! runtextmacro NEW_ARRAY("Item", "item")
+//! runtextmacro NEW_ARRAY("Unit", "unit")
+//! runtextmacro NEW_ARRAY("Ability", "ability")
+//! runtextmacro NEW_ARRAY("Timer", "timer")
+//! runtextmacro NEW_ARRAY("Trigger", "trigger")
+//! runtextmacro NEW_ARRAY("TriggerCondition", "triggercondition")
+//! runtextmacro NEW_ARRAY("TriggerAction", "triggeraction")
+//! runtextmacro NEW_ARRAY("TriggerEvent", "event")
+//! runtextmacro NEW_ARRAY("Force", "force")
+//! runtextmacro NEW_ARRAY("Group", "group")
+//! runtextmacro NEW_ARRAY("Location", "location")
+//! runtextmacro NEW_ARRAY("Rect", "rect")
+//! runtextmacro NEW_ARRAY("BooleanExpr", "boolexpr")
+//! runtextmacro NEW_ARRAY("Sound", "sound")
+//! runtextmacro NEW_ARRAY("Effect", "effect")
+//! runtextmacro NEW_ARRAY("UnitPool", "unitpool")
+//! runtextmacro NEW_ARRAY("ItemPool", "itempool")
+//! runtextmacro NEW_ARRAY("Quest", "quest")
+//! runtextmacro NEW_ARRAY("QuestItem", "questitem")
+//! runtextmacro NEW_ARRAY("DefeatCondition", "defeatcondition")
+//! runtextmacro NEW_ARRAY("TimerDialog", "timerdialog")
+//! runtextmacro NEW_ARRAY("Leaderboard", "leaderboard")
+//! runtextmacro NEW_ARRAY("Multiboard", "multiboard")
+//! runtextmacro NEW_ARRAY("MultiboardItem", "multiboarditem")
+//! runtextmacro NEW_ARRAY("Trackable", "trackable")
+//! runtextmacro NEW_ARRAY("Dialog", "dialog")
+//! runtextmacro NEW_ARRAY("Button", "button")
+//! runtextmacro NEW_ARRAY("TextTag", "texttag")
+//! runtextmacro NEW_ARRAY("Lightning", "lightning")
+//! runtextmacro NEW_ARRAY("Image", "image")
+//! runtextmacro NEW_ARRAY("Ubersplat", "ubersplat")
+//! runtextmacro NEW_ARRAY("Region", "region")
+//! runtextmacro NEW_ARRAY("FogState", "fogstate")
+//! runtextmacro NEW_ARRAY("FogModifier", "fogmodifier")
+//! runtextmacro NEW_ARRAY("Hashtable", "hashtable")
     
 struct Table extends array
     
@@ -390,4 +420,48 @@ struct TableArray extends array
     
 endstruct
     
+//NEW: Added in Table 4.0. A fairly simple struct but allows you to do more
+//than that which was previously possible.
+struct HashTable extends array
+
+    //Enables myHash[parentKey][childKey] syntax.
+    //Basically, it creates a Table in the place of the parent key if
+    //it didn't already get created earlier.
+    method operator [] takes integer index returns Table
+        local Table t = Table(this)[index]
+        if t == 0 then
+            set t = Table.create()
+            set Table(this)[index] = t //whoops! Forgot that line. I'm out of practice!
+        endif
+        return t
+    endmethod
+
+    //You need to call this on each parent key that you used if you
+    //intend to destroy the HashTable or simply no longer need that key.
+    method remove takes integer index returns nothing
+        local Table t = Table(this)[index]
+        if t != 0 then
+            call t.destroy()
+            call Table(this).remove(index)
+        endif
+    endmethod
+    
+    //Added in version 4.1
+    method has takes integer index returns boolean
+        return Table(this).has(index)
+    endmethod
+    
+    //HashTables are just fancy Table indices.
+    method destroy takes nothing returns nothing
+        call Table(this).destroy()
+    endmethod
+    
+    //Like I said above...
+    static method create takes nothing returns thistype
+        return Table.create()
+    endmethod
+
+endstruct
+
 endlibrary
+ 

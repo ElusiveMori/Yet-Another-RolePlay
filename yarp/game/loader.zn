@@ -2,10 +2,12 @@ library Loader requires Core {
 	struct Loader[] {
 		private static real s_x;
 		private static real s_y;
+		private static integer s_tcount;
+		private static integer s_towner;
 
-		private static method Command_LoadAddQueueUnit(CommandThread thread) {
-			LoadQueue queue = Load.addToQueue(thread.owner);
-			string str = thread.args.next();
+		private static method addQueueUnit(SpaceSplitter args, integer owner) {
+			LoadQueue queue = Load.addToQueue(owner);
+			string str = args.next();
 
 			if (IdManifest.hasString(str)) {
 				queue.id = IdManifest.getByString(str);
@@ -14,73 +16,109 @@ library Loader requires Core {
 			}
 
 			queue.objectType = 0;
-			queue.x          = S2R(thread.args.next());
-			queue.y          = S2R(thread.args.next());
-			queue.angle      = S2R(thread.args.next());
-			queue.size       = S2R(thread.args.next());
-			queue.speed      = S2R(thread.args.next());
-			queue.animSpeed  = S2R(thread.args.next());
-			queue.z          = S2R(thread.args.next());
-			queue.color      = S2I(thread.args.next());
-			queue.vertexR    = S2I(thread.args.next());
-			queue.vertexG    = S2I(thread.args.next());
-			queue.vertexB    = S2I(thread.args.next());
-			queue.vertexA    = S2I(thread.args.next());
-			queue.paused     = I2B(S2I(thread.args.next()));
+			queue.x          = S2R(args.next());
+			queue.y          = S2R(args.next());
+			queue.angle      = S2R(args.next());
+			queue.size       = S2R(args.next());
+			queue.speed      = S2R(args.next());
+			queue.animSpeed  = S2R(args.next());
+			queue.z          = S2R(args.next());
+			queue.color      = S2I(args.next());
+			queue.vertexR    = S2I(args.next());
+			queue.vertexG    = S2I(args.next());
+			queue.vertexB    = S2I(args.next());
+			queue.vertexA    = S2I(args.next());
+			queue.paused     = I2B(S2I(args.next()));
 		}
 
-		private static method Command_LoadAddQueueTile(CommandThread thread) {
-			LoadQueue queue = Load.addToQueue(thread.owner);
+		private static method addQueueTile(SpaceSplitter args, integer owner) {
+			LoadQueue queue = Load.addToQueue(owner);
 
 			queue.objectType = 1;
-			queue.x          = S2R(thread.args.next()) * 128;
-			queue.y          = S2R(thread.args.next()) * 128;
-			queue.id         = String2Id(thread.args.next());
+			queue.x          = S2R(args.next()) * 128;
+			queue.y          = S2R(args.next()) * 128;
+			queue.id         = String2Id(args.next());
 		}
 
-		private static method Command_LoadAddQueueDeform(CommandThread thread) {
-			LoadQueue queue = Load.addToQueue(thread.owner);
+		private static method addQueueDeform(SpaceSplitter args, integer owner) {
+			LoadQueue queue = Load.addToQueue(owner);
 
 			queue.objectType = 2;
-			queue.x          = S2R(thread.args.next());
-			queue.y          = S2R(thread.args.next());
-			queue.magnitude  = S2R(thread.args.next());
-			queue.radius     = S2R(thread.args.next());
+			queue.x          = S2R(args.next());
+			queue.y          = S2R(args.next());
+			queue.magnitude  = S2R(args.next());
+			queue.radius     = S2R(args.next());
 		}
 
-		private static method Command_LoadClearQueue(CommandThread thread) {
-			Load.clearQueue(thread.owner);
+		private static method clearQueue(SpaceSplitter args, integer owner) {
+			Load.clearQueue(owner);
 		}
 
-		private static method Command_LoadStartPaste(CommandThread thread) {
-			Load.startPaste(thread.owner);
+		private static method startPaste(SpaceSplitter args, integer owner) {
+			Load.startPaste(owner);
 		}
 
-		private static method Command_LoadSetOffset_aux() {
-			unit what = GetEnumUnit();
+		private static method setOffset_aux() -> boolean {
+			unit what = GetFilterUnit();
 
 			if (GetUnitTypeId(what) == REGION_ID) {
 				s_x = GetUnitX(what);
 				s_y = GetUnitY(what);
 			}
+
+			return false;
 		}
 
-		private static method Command_LoadSetOffset(CommandThread thread) {
-			s_x = S2R(thread.args.next());
-			s_y = S2R(thread.args.next());
+		private static method setOffset(SpaceSplitter args, integer owner) {
+			group selection = NewGroup();
+			s_x = S2R(args.next());
+			s_y = S2R(args.next());
+			GroupEnumUnitsSelected(selection, P(owner), function thistype.setOffset_aux);
+			ReleaseGroup(selection);
 
-			thread.selection.run(function thistype.Command_LoadSetOffset_aux);
+			Load.setOffset(owner, s_x, s_y);
+		}
 
-			Load.setOffset(thread.owner, s_x, s_y);
+		private static method dispatch(string input, integer owner) {
+			string op = Sub(input, 1, 3);
+			SpaceSplitter args = SpaceSplitter.create(input);
+			args.next();
+
+			if (op == "au") {
+				addQueueUnit(args, owner);
+			} else if (op == "at") {
+				addQueueTile(args, owner);
+			} else if (op == "ad") {
+				addQueueDeform(args, owner);
+			} else if (op == "cq") {
+				clearQueue(args, owner);
+			} else if (op == "sp") {
+				startPaste(args, owner);
+			} else if (op == "so") {
+				setOffset(args, owner);
+			}
+		}
+
+		private static method onChat() {
+			string input = GetEventPlayerChatString();
+			integer owner = PID(GetTriggerPlayer());
+
+			if (Sub(input, 0, 1) == "_") {
+				dispatch(input, owner);
+			}
 		}
 
 		private static method onInit() {
-			Command.register("_au", thistype.Command_LoadAddQueueUnit,   CMD_DIRECT);
-			Command.register("_at", thistype.Command_LoadAddQueueTile,   CMD_DIRECT);
-			Command.register("_ad", thistype.Command_LoadAddQueueDeform, CMD_DIRECT);
-			Command.register("_cq", thistype.Command_LoadClearQueue,     CMD_DIRECT);
-			Command.register("_sp", thistype.Command_LoadStartPaste,     CMD_DIRECT);
-			Command.register("_so", thistype.Command_LoadSetOffset,      CMD_DIRECT);
+			integer i = 0;
+			trigger chatTrigger = CreateTrigger();
+
+			TriggerAddAction(chatTrigger, function thistype.onChat);
+			
+			for (0 <= i < 12) {
+				TriggerRegisterPlayerChatEvent(chatTrigger, Player(i), "", false);
+			}
+
+			chatTrigger = null;
 		}
 	}
 }
