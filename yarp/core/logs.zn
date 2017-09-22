@@ -214,7 +214,7 @@ library Logs requires Util, Constants {
 	public function MessageIC(integer who, string name, string message) {
 		debug Assert(who < 12 && who >= 0, "MessageIC", "Invalid player ID.");
 
-		SimpleMessage("|c00678f32IC >>|r " + PColorStr(name, who) + " " + message);
+		SimpleMessage(PColorStr(name, who) + " " + message);
 		Log.log(who, TYPE_IC, message);
 		Log.logName(name);        
 	}
