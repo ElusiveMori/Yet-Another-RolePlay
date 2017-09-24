@@ -4,6 +4,7 @@ library Spawn requires Core {
 		private static real s_oy;
 		private static real s_sx;
 		private static real s_sy;
+		private static integer s_int;
 		private static CommandThread s_thread;
 
 		private static method Command_Spawn(CommandThread thread) {
@@ -67,23 +68,28 @@ library Spawn requires Core {
 			unit clone;
 			real x = GetUnitX(what);
 			real y = GetUnitY(what);
+			integer i;
 			UnitData originalData;
 			UnitData cloneData;
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				if (Limits.canPlayerSpawn(s_thread.owner)) {
-					originalData = UnitData[what];
-					clone = originalData.clone(s_thread.owner);
-					cloneData = UnitData[clone];
+				for (0 <= i <= s_int) {
+					if (Limits.canPlayerSpawn(s_thread.owner)) {
+						originalData = UnitData[what];
+						clone = originalData.clone(s_thread.owner);
+						cloneData = UnitData[clone];
+						cloneData.x = (x - s_ox) + s_sx;
+						cloneData.y = (y - s_oy) + s_sy;
 
-					Limits.onPlayerSpawn(s_thread.owner);
+						Limits.onPlayerSpawn(s_thread.owner);
+					}
 				}
 			}
 		}
 
 		private static method Command_Clone(CommandThread thread) {
 			unit spawner = Spawner.get(thread.owner);
-
+			s_int = S2I(thread.args.next());
 			if (spawner == null) return;
 
 			thread.selection.calcOrigin();
@@ -97,9 +103,46 @@ library Spawn requires Core {
 			thread.selection.run(function thistype.Command_Clone_aux);	
 		}
 
+		private static method Command_Stack_aux() {
+			unit what = GetEnumUnit();
+			unit clone;
+			integer i;
+			real x = GetUnitX(what);
+			real y = GetUnitY(what);
+			UnitData originalData;
+			UnitData cloneData;
+
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
+				for (0 <= i <= s_int) {
+					if (Limits.canPlayerSpawn(s_thread.owner)) {
+						originalData = UnitData[what];
+						clone = originalData.clone(s_thread.owner);
+						cloneData = UnitData[clone];
+						cloneData.x = x;
+						cloneData.y = y;
+
+						Limits.onPlayerSpawn(s_thread.owner);
+					}
+				}
+			}
+		}
+
+		private static method Command_Stack(CommandThread thread) {
+			unit spawner = Spawner.get(thread.owner);
+			s_int = S2I(thread.args.next());
+
+			if (spawner == null) return;
+
+			s_thread = thread;
+
+			thread.selection.run(function thistype.Command_Stack_aux);	
+		}
+
+
 		private static method onInit() {
 			Command.register("spawn", thistype.Command_Spawn, CMD_SPAWNING);
 			Command.register("clone", thistype.Command_Clone, CMD_SPAWNING);
+			Command.register("stack", thistype.Command_Stack, CMD_SPAWNING);
 		}
 	}
 
