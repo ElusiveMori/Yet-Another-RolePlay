@@ -358,6 +358,18 @@ library Unit requires Core {
 			unitData.setVertexColor(s_r, s_g, s_b, s_a);
 		//! runtextmacro CommandEnd()
 
+		//! runtextmacro CommandHeader("Command_UnitTintDelta")
+			s_r = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_g = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_b = R2I(S2R(thread.args.next()) * 255 / 100);
+			s_a = R2I(S2R(thread.args.next()) * 255 / 100);
+		//! runtextmacro CommandStart("Command_UnitTintDelta")
+			unitData.setVertexColor(unitData.vertexR + s_r, 
+									unitData.vertexG + s_g, 
+									unitData.vertexB + s_b, 
+									unitData.vertexA - s_a);
+		//! runtextmacro CommandEnd()
+
 		//! runtextmacro CommandHeader("Command_UnitColor")
 			integer id = PlayerIdFromString(thread.args.restParsed());
 
@@ -525,6 +537,7 @@ library Unit requires Core {
 			Command.register("pos",     thistype.Command_UnitSetXY,           CMD_UNITPROP);
 			Command.register("movea",   thistype.Command_UnitMoveDirection,   CMD_UNITPROP);
 			Command.register("tint",    thistype.Command_UnitTint,            CMD_UNITPROP);
+			Command.register("tintd",   thistype.Command_UnitTintDelta,       CMD_UNITPROP);
 			Command.register("color",   thistype.Command_UnitColor,           CMD_UNITPROP);
 			Command.register("aspeed",  thistype.Command_UnitAnimSpeed,       CMD_UNITPROP);
 			Command.register("speed",   thistype.Command_UnitSpeed,           CMD_UNITPROP);

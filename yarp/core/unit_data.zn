@@ -121,10 +121,10 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 		}
 
 		method setVertexColor(integer r, integer g, integer b, integer a) {
-			m_vertexR = r;
-			m_vertexG = g;
-			m_vertexB = b;
-			m_vertexA = a;
+			m_vertexR = ClampInteger(r, 0, 255);
+			m_vertexG = ClampInteger(g, 0, 255);
+			m_vertexB = ClampInteger(b, 0, 255);
+			m_vertexA = ClampInteger(a, 0, 255);
 
 			SetUnitVertexColor(unit, r, g, b, a);
 		}
