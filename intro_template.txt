@@ -1,0 +1,11 @@
+YARP <version> - <map>
+
+<timestamp>
+Welcome to YARP!
+YARP is an advanced RP sandbox map, heavily inspired by RoTRP and SotDRP.
+Unlike RoTRP, this map supports SAVE and LOAD of builds between games, amongst others big and small improvements and new features!
+
+I hope you find the changes just as welcome as I do.
+Make sure to check out Quests (F9) to get acquianted!
+
+<terrain> by <author>
