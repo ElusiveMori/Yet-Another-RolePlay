@@ -451,7 +451,8 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			    && m_queueSize < maxCommandQueue
 			    && m_quota < maxThreadQuota
 			    && playerQuotas[m_owner] < maxPlayerQuota
-			    && IsPlayerIngame(m_owner);
+			    && IsPlayerIngame(m_owner)
+			    && !m_forceStop;
 		}
 
 		// restarts postponed threads
