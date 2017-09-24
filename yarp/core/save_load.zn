@@ -102,7 +102,8 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 			          + I2S(unitData.vertexB) + delim
 			          + I2S(unitData.vertexA) + delim
 			          + I2S(B2I(unitData.paused)) + delim
-			          + unitData.tag);
+			          + unitData.tag + delim
+			          + I2S(unitData.group));
 
 			count = count + 1;
 		}
@@ -244,6 +245,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		//! runtextmacro SetupField("16", "vertexA",   "integer")
 		//! runtextmacro SetupField("17", "paused",    "boolean")
 		//! runtextmacro SetupField("18", "tag",       "string")
+		//! runtextmacro SetupField("19", "group",     "integer")
 
 		// deform
 
@@ -349,6 +351,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 									unitData.setVertexColor(queue.vertexR, queue.vertexG, queue.vertexB, queue.vertexA);
 									unitData.paused = queue.paused;
 									unitData.tag = queue.tag;
+									unitData.group = queue.group;
 								}
 							}
 							
