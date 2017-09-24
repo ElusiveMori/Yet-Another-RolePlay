@@ -73,16 +73,18 @@ library Unit requires Core {
 
 		private static method Command_UnitGive_aux() {
 			unit what = GetEnumUnit();
-			UnitData unitData = 0;
+			UnitData unitData;
 
-			if (HasPlayerUnitAccess(s_thread.owner, what) && unitData.realOwner == s_thread.owner) {
+			if (HasPlayerUnitAccess(s_thread.owner, what)) {
 				unitData = UnitData[what];
 
-				if (s_bool) {
-					unitData.realOwner = s_int;
-				}
+				if (unitData.realOwner == s_thread.owner) {
+					if (s_bool) {
+						unitData.realOwner = s_int;
+					}
 
-				unitData.currentOwner = s_int;
+					unitData.currentOwner = s_int;
+				}
 			}
 
 			what = null;
