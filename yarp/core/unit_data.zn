@@ -51,6 +51,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 			real        m_angle;
 			real        m_lastAngle;
 			LocustList  m_locust;
+			string      m_tag;
 		}
 
 		string name;
@@ -79,6 +80,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 		//! runtextmacro SimpleGetter("allocated",     "boolean")
 		//! runtextmacro SimpleGetter("group",         "integer")
 		//! runtextmacro SimpleGetter("locust",        "LocustList")
+		//! runtextmacro SimpleGetter("tag",           "string")
 
 		//! runtextmacro SimpleSetter("realOwner", "integer")
 		//! runtextmacro SimpleSetter("group",     "integer")
@@ -118,6 +120,15 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 			unit new = clone(m_realOwner);
 			RemoveUnit(unit);
 			return new;
+		}
+
+		method operator tag=(string value) {
+			if (SL(m_tag) > 0) {
+				AddUnitAnimationProperties(unit, m_tag, false);
+			}
+
+			m_tag = value;
+			AddUnitAnimationProperties(unit, value, true);
 		}
 
 		method setVertexColor(integer r, integer g, integer b, integer a) {

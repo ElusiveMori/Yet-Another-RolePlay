@@ -425,10 +425,9 @@ library Unit requires Core {
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_Tag")
-			s_string1 = thread.args.next();
-			s_bool = (thread.args.next() == "off");
+			s_string1 = thread.args.restSimple();
 		//! runtextmacro CommandStart("Command_Tag")
-			AddUnitAnimationProperties(what, s_string1, !s_bool);
+			unitData.tag = s_string1;
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitFly")
