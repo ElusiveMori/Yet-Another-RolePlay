@@ -279,6 +279,15 @@ library Unit requires Core {
 			unitData.angle = s_real1;
 		//! runtextmacro CommandEnd()
 
+		//! runtextmacro CommandHeader("Command_UnitAngleSpawner")
+			s_real1 = GetUnitX(Spawner.get(thread.owner));
+			s_real2 = GetUnitY(Spawner.get(thread.owner));
+
+		//! runtextmacro CommandStart("Command_UnitAngleSpawner")
+			unitData.angle = Rad2Deg(Atan2(s_real2 - unitData.y, s_real1 - unitData.x));
+		//! runtextmacro CommandEnd()
+
+
 		//! runtextmacro CommandHeader("Command_UnitAngleDelta")
 			s_real1 = S2R(thread.args.next());
 		//! runtextmacro CommandStart("Command_UnitAngleDelta")
@@ -507,6 +516,7 @@ library Unit requires Core {
 			Command.register("fa",      thistype.Command_UnitAngle,           CMD_UNITPROP);
 			Command.register("fd",      thistype.Command_UnitAngleDelta,      CMD_UNITPROP);
 			Command.register("fr",      thistype.Command_UnitAngleRandom,     CMD_UNITPROP);
+			Command.register("fs",      thistype.Command_UnitAngleSpawner,    CMD_UNITPROP);
 			Command.register("movex",   thistype.Command_UnitMoveX,           CMD_UNITPROP);
 			Command.register("movey",   thistype.Command_UnitMoveY,           CMD_UNITPROP);
 			Command.register("move",    thistype.Command_UnitMoveXY,          CMD_UNITPROP);
