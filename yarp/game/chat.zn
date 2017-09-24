@@ -32,7 +32,7 @@ library Chat requires Core {
 
 		private static method Command_SetName(CommandThread thread) {
 			string macro = thread.args.next();
-			string expansion = "ic [" + thread.args.restSimple() + "]";
+			string expansion = "ic [[" + thread.args.restSimple() + "]]";
 			integer result;
 
 			if (Macro.exists(thread.owner, macro)) {
