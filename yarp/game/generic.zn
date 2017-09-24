@@ -200,6 +200,15 @@ library Generic requires Core {
 			allianceType = null;
 		}
 
+		private static method onInit_aliases() {
+			Alias.saveall("unally", "alliance unally");
+			Alias.saveall("ally", "alliance ally");
+			Alias.saveall("vision", "alliance vision");
+			Alias.saveall("unvision", "alliance unvision");
+			Alias.saveall("autocmd", "autocommand");
+			Alias.saveall("autogrp", "autogroup");
+		}
+
 		private static method onInit() {
 			Command.register("alias",       thistype.Command_MakeAlias,     CMD_DIRECT);
 			Command.register("macro",       thistype.Command_MakeMacro,     CMD_DIRECT);
@@ -215,12 +224,7 @@ library Generic requires Core {
 			Command.register("repeat",      thistype.Command_Repeat,        CMD_EXEC);
 			Command.register("seq",         thistype.Command_Sequence,      CMD_EXEC);
 
-			Alias.saveall("unally", "alliance unally");
-			Alias.saveall("ally", "alliance ally");
-			Alias.saveall("vision", "alliance vision");
-			Alias.saveall("unvision", "alliance unvision");
-			Alias.saveall("autocmd", "autocommand");
-			Alias.saveall("autogrp", "autogroup");
+			onInit_aliases.execute();
 		}
 	}
 }

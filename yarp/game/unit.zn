@@ -475,6 +475,25 @@ library Unit requires Core {
 			AddSpecialEffectTarget(s_string1, what, s_string2);
 		//! runtextmacro CommandEnd();
 
+		private static method onInit_aliases() {
+			Alias.saveall("rm", "remove");
+			Alias.saveall("mv", "move");
+			Alias.saveall("sz", "size");
+			Alias.saveall("szd", "sized");
+
+			Macro.saveall("'", "aa");
+			Macro.saveall("@", "ar");
+
+			Alias.saveall("aa", "ability add");
+			Alias.saveall("ar", "ability remove");
+
+			Alias.saveall("gl", "global");
+			Alias.saveall("unpause", "pause off");
+
+			Alias.saveall("nc", "path off");
+			Alias.saveall("cn", "path on");
+		}
+
 		private static method onInit() {
 			Command.register("remove",  thistype.Command_UnitRemove,          CMD_UNITPROP);
 			Command.register("give",    thistype.Command_UnitGive,            CMD_UNITPROP);
@@ -516,19 +535,7 @@ library Unit requires Core {
 			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);
 			Command.register("id",      thistype.Command_UnitId,              CMD_NONE);
 
-			Alias.saveall("rm", "remove");
-			Alias.saveall("mv", "move");
-			Alias.saveall("sz", "size");
-			Alias.saveall("szd", "sized");
-
-			Macro.saveall("'", "aa");
-			Macro.saveall("@", "ar");
-
-			Alias.saveall("aa", "ability add");
-			Alias.saveall("ar", "ability remove");
-
-			Alias.saveall("gl", "global");
-			Alias.saveall("unpause", "pause off");
+			onInit_aliases.execute();
 		}
 	}
 }
