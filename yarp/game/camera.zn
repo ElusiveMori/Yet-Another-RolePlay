@@ -76,6 +76,8 @@ library Camera requires Core {
 
 			if (adjusted_aoa)
 				SetCameraField(CAMERA_FIELD_ANGLE_OF_ATTACK, aoa, 0);
+
+			resetter = null;
 		}
 
 		private static method onInit() {
