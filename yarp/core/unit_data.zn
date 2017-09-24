@@ -29,7 +29,7 @@
 	}
 //! endtextmacro
 
-library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust {
+library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 	public struct UnitData[] {
 		//! runtextmacro AIDS_zinc()
 
@@ -122,6 +122,25 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 			return new;
 		}
 
+		method uproot() {
+			real angle;
+
+			if (IsUnitType(unit, UNIT_TYPE_STRUCTURE) && GetUnitAbilityLevel(unit, ABIL_BUILDFLY) == 0) {
+				angle = GetUnitFacing(unit);
+				UnitAddAbility(unit, ABIL_BUILDFLY_BOOK);
+				IssueImmediateOrder(unit, "unroot");
+				SetUnitAnimation(unit, "stand " + m_tag);
+				SetUnitFacing(unit, angle);
+			}
+		}
+
+		method fly() {
+			uproot();
+
+			if (UnitAddAbility(unit, ABIL_UNITFLY))
+				UnitRemoveAbility(unit, ABIL_UNITFLY);
+		}
+
 		method operator tag=(string value) {
 			if (SL(m_tag) > 0) {
 				AddUnitAnimationProperties(unit, m_tag, false);
@@ -156,17 +175,17 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 		}
 
 		method operator x=(real value) {
-			Fly.uproot(unit);
+			uproot();
 			SetUnitX(unit, ClampReal(value, I2R(WorldBounds.minX) + WORLD_MARGIN, I2R(WorldBounds.maxX) - WORLD_MARGIN));
 		}
 
 		method operator y=(real value) {
-			Fly.uproot(unit);
+			uproot();
 			SetUnitY(unit, ClampReal(value, I2R(WorldBounds.minY) + WORLD_MARGIN, I2R(WorldBounds.maxY) - WORLD_MARGIN));
 		}
 
 		method operator z=(real value) {
-			Fly.fly(unit);
+			fly();
 			SetUnitFlyHeight(unit, value, 1000000);
 			m_z = value;
 		}
@@ -247,6 +266,13 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust
 				return false;
 
 			return true;
+		}
+
+		private static method AIDS_onInit() {
+			integer i;
+
+			for (0 <= i <= 12)
+				SetPlayerAbilityAvailable(Player(i), ABIL_BUILDFLY_BOOK, false);
 		}
 	}
 }

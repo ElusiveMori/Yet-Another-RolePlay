@@ -29,7 +29,6 @@
 //! import zinc "yarp/core/unit_data.zn"
 //! import zinc "yarp/core/unit_types.zn"
 //! import zinc "yarp/core/security.zn"
-//! import zinc "yarp/core/fly_utils.zn"
 //! import zinc "yarp/core/save_load.zn"
 //! import zinc "yarp/core/logs.zn"
 //! import zinc "yarp/core/spawner.zn"
@@ -62,7 +61,6 @@
 library Core requires Util, 
 					Selection,
 					CommandParser, 
-					FlyUtils, 
 					Logs, 
 					SaveLoad, 
 					Security,
