@@ -13,6 +13,26 @@ void MakeSpawnerCargo() {
 	cargoUnload.Effectsound = "";
 }
 
+void MakeUnlocust() {
+	Ability unlocust = GetBaseAbility(UNLOCUST);
+	unlocust.Area1 = 768;
+	unlocust.DataB1 = 2;
+	unlocust.DataE1 = 0;
+	unlocust.DataF1 = GetFreeOrder();
+	unlocust.DataD1 = 0; // art duration
+	unlocust.DataC1 = 3;
+	unlocust.Hotkey = "X";
+	unlocust.Name = "Solidify";
+	unlocust.Tip = MakeHotkeyTip("X") + "Solidify Units";
+	unlocust.DataA1 = 0; // follow through time
+	unlocust.Ubertip = "Solidifes units in the area. Undoes the `locust` effect.";
+	unlocust.Art = "ReplaceableTextures\\CommandButtons\\BTNAcidBomb.blp";
+	unlocust.Rng1 = 4096;
+	unlocust.CasterArt = "";
+	unlocust.EffectArt = "";
+	unlocust.race = "orc";
+}
+
 void MakeFlierUtils() {
 	Ability buildingFlier = createObject(map, "Aspb", BUILDING_FLIER_ID, true);
 	buildingFlier.DataD1 = 1;
@@ -81,7 +101,7 @@ void MakeSpawner() {
 	spawner["Tip"       ] = "";
 	spawner["Ubertip"   ] = "This is a Spawner.";
 	spawner["type"      ] = "peon";
-	spawner["abilList"  ] = "Avul,pA02,pA03,pA04,pA0b,pA0l,pA0v";
+	spawner["abilList"  ] = "Avul,pA02,pA03,pA04,pA0b,pA0l,pA0v,pA13";
 	spawner["blend"     ] = 0;
 	spawner["castbsw"   ] = 0;
 	spawner["castpt"    ] = 0;

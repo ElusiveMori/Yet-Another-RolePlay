@@ -1,0 +1,50 @@
+library Locust requires Util {
+	/*
+		Struct used to keep track of locusted units, since it is impossible
+		to track them using positional searches like enumming in rects
+	*/
+	public struct LocustList[] {
+		module Alloc;
+
+		private thistype m_next;
+		private thistype m_prev;
+		private unit m_unit;
+
+		static thistype top;
+
+		static method add(unit what) -> thistype {
+			thistype this = allocate();
+
+			m_unit = what;
+			m_prev = 0;
+			m_next = 0;
+
+			if (top != 0) {
+				top.m_prev = this;
+				this.m_next = top;
+				top = this; 
+			} else {
+				top = this;
+			}
+
+			return this;
+		}
+
+		method destroy() {
+			if (m_next != 0) {
+				m_next.m_prev = m_prev;
+			}
+
+			if (m_prev != 0) {
+				m_prev.m_next = m_next;
+			}
+
+			if (top == this) {
+				top = m_next;
+			}
+
+			deallocate();
+		}
+
+	}
+}

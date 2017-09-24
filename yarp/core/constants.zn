@@ -40,6 +40,8 @@ library Constants {
 	public constant integer REGION_ABIL_REMOVE     = 'pA09';
 	public constant integer REGION_ABIL_AUX        = 'pA0a';
 
+	public constant integer ABIL_UNLOCUST = 'pA13';
+
 	public constant integer SPAWNER_ID = 'pU00';
 
 	// error codes for aliases/macros

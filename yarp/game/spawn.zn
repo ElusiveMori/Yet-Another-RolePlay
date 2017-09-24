@@ -73,19 +73,8 @@ library Spawn requires Core {
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
 				if (Limits.canPlayerSpawn(s_thread.owner)) {
 					originalData = UnitData[what];
-					clone = CreateUnit(P(s_thread.owner), GetUnitTypeId(what), 0, 0, originalData.angle);
+					clone = originalData.clone(s_thread.owner);
 					cloneData = UnitData[clone];
-
-					cloneData.x         = s_sx + (x - s_ox);
-					cloneData.y         = s_sy + (y - s_oy);
-					cloneData.life      = originalData.life;
-					cloneData.mana      = originalData.mana;
-					cloneData.speed     = originalData.speed;
-					cloneData.size      = originalData.size;
-					cloneData.animSpeed = originalData.animSpeed;
-					cloneData.color     = originalData.color;
-					cloneData.z         = originalData.z;
-					cloneData.setVertexColor(originalData.vertexR, originalData.vertexG, originalData.vertexB, originalData.vertexA);
 
 					Limits.onPlayerSpawn(s_thread.owner);
 				}

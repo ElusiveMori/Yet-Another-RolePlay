@@ -29,7 +29,7 @@
 	}
 //! endtextmacro
 
-library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
+library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils, Locust {
 	public struct UnitData[] {
 		//! runtextmacro AIDS_zinc()
 
@@ -50,6 +50,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			boolean     m_allocated;
 			real        m_angle;
 			real        m_lastAngle;
+			LocustList  m_locust;
 		}
 
 		string name;
@@ -77,6 +78,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 		//! runtextmacro SimpleGetter("z",             "real")
 		//! runtextmacro SimpleGetter("allocated",     "boolean")
 		//! runtextmacro SimpleGetter("group",         "integer")
+		//! runtextmacro SimpleGetter("locust",        "LocustList")
 
 		//! runtextmacro SimpleSetter("realOwner", "integer")
 		//! runtextmacro SimpleSetter("group",     "integer")
@@ -105,6 +107,17 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			} else {
 				return m_angle;
 			}
+		}
+
+		method locust() {
+			UnitAddAbility(unit, 'Aloc');
+			m_locust = LocustList.add(unit);
+		}
+
+		method unlocust() -> unit {
+			unit new = clone(m_realOwner);
+			RemoveUnit(unit);
+			return new;
 		}
 
 		method setVertexColor(integer r, integer g, integer b, integer a) {
@@ -157,6 +170,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 		}
 
 		method defaultValues() {
+			m_locust    = 0;
 			m_realOwner = currentOwner;
 			m_z         = 0.0;
 			m_flown     = false;
@@ -167,6 +181,24 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 			color       = GetPlayerColor(P(currentOwner));
 			name        = "";
 			setVertexColor(255, 255, 255, 255);
+		}
+
+		method clone(integer newOwner) -> unit {
+			unit clone = CreateUnit(P(newOwner), GetUnitTypeId(unit), x, y, angle);
+			thistype cloneData = thistype[clone];
+
+			cloneData.x         = x;
+			cloneData.y         = y;
+			cloneData.life      = life;
+			cloneData.mana      = mana;
+			cloneData.speed     = speed;
+			cloneData.size      = size;
+			cloneData.animSpeed = animSpeed;
+			cloneData.color     = color;
+			cloneData.z         = z;
+			cloneData.setVertexColor(vertexR, vertexG, vertexB, vertexA);
+
+			return clone;
 		}
 
 		private method AIDS_onCreate() {
@@ -194,6 +226,9 @@ library UnitData requires Util, UnitTypes, Selection, Commands, FlyUtils {
 
 		private method AIDS_onDestroy() {
 			m_allocated = false;
+			if (m_locust > 0) {
+				m_locust.destroy();
+			}
 		}
 
 		private static method AIDS_filter(unit what) -> boolean {

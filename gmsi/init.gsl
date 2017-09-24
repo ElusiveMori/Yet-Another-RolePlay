@@ -28,6 +28,7 @@ void Init() {
 	MakeTerrain();
 	MakeDoodad();
 	MakeWaygate();
+	MakeUnlocust();
 
 	echoln("Starting doodads...");
 	include("yarp/objects/stock/doods.txt");
@@ -54,6 +55,7 @@ void Init() {
 	include("yarp/objects/custom/buildings/quilboar.txt");
 	include("yarp/objects/custom/buildings/tranquil.txt");
 	include("yarp/objects/custom/buildings/villa.txt");
+	include("yarp/objects/custom/buildings/sunchips.txt");
 	include("yarp/objects/custom/buildings/final.txt");
 
 	echoln("Starting custom units...");

@@ -1,4 +1,4 @@
-library Util requires AIDS, Alloc, ARGB, Board, GameClock, GroupUtils, StringLib, Table, WorldBounds {
+library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, StringLib, Table, WorldBounds {
 	public constant string  DEBUG_PREFIX      = "|c0036a97dDebug >> |r";
 	public constant string  WARNING_PREFIX    = "|c00b65e2bWarning >> |r";
 	public constant string  MESSAGE_PREFIX    = "|c006d619e>> |r";

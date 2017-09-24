@@ -41,6 +41,7 @@
 //! import zinc "yarp/core/limits.zn"
 //! import zinc "yarp/core/constants.zn"
 //! import zinc "yarp/core/hash_alloc.zn"
+//! import zinc "yarp/core/locust.zn"
 
 // Game Management
 
@@ -74,7 +75,8 @@ library Core requires Util,
 					Manifests,
 					Areas,
 					Limits,
-					Constants {
+					Constants,
+					Locust {
 	function onInit() {
 	}
 }
