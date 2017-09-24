@@ -74,11 +74,23 @@ library Generic requires Core {
 
 		private static method Command_ThreadControl(CommandThread thread) {
 			string cmd = thread.args.next();
+			integer target = PlayerIdFromString(thread.args.next());
+			integer i;
+
+			if (target < 0) {
+				target = thread.owner;
+			}
 
 			if (cmd == "stop") {
 				thread.stop();
 			} else if (cmd == "stopall") {
-				CommandThread.stopAll(thread.owner);
+				if (GetPlayerAccessLevel(thread.owner) > GetPlayerAccessLevel(target) || thread.owner == target) {
+					CommandThread.stopAll(thread.owner);
+				}
+			} else if (cmd == "stopeveryone") {
+				for (0 <= i <= 11) {
+					CommandThread.stopAll(thread.owner);
+				}
 			}
 		}
 
