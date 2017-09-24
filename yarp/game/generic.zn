@@ -10,13 +10,15 @@ library Generic requires Core {
 
 			integer result = Alias.getAvailability(thread.owner, alias);
 
-			if (result == ERR_NONE) {
+			if (result == ERR_NONE || result == ERR_ALIAS_CONFLICT_ALIAS) {
+				if (result == ERR_ALIAS_CONFLICT_ALIAS) {
+					Alias.remove(thread.owner, alias);
+				}
+
 				Alias.save(thread.owner, alias, expansion);
 				MessageTo(thread.owner, "Successfully created alias [" + ColorStr(alias, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
 			} else if (result == ERR_ALIAS_CONFLICT_COMMAND) {
 				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing command.");
-			} else if (result == ERR_ALIAS_CONFLICT_ALIAS) {
-				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing alias.");
 			} else if (result == ERR_ALIAS_CONFLICT_MACRO) {
 				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing macro.");
 			} else if (result == ERR_ALIAS_ZERO_LENGTH) {
