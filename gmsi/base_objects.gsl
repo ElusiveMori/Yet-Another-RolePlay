@@ -21,12 +21,14 @@ Unit GetBaseUnit(string id) {
 	base.stockStart = 1;
 	base.cargoSize = 1;
 	base.unitSound = "";
-	base.elevPts = 0;
-	base.elevRad = 0;
 	base.Tip = "";
 	base.Ubertip = "";
 	base.unitShadow = "";
 	base.buildingShadow = "_";
+	base.elevPts = 4;
+	base.elevRad = 50;
+	base.maxPitch = 0;
+	base.maxRoll = 0;
 
 	return base;
 }
