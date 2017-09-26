@@ -1,0 +1,9 @@
+* text=auto
+*.txt  text eol=lf
+*.zn   text eol=lf
+*.gsl  text eol=lf
+*.j    text eol=lf
+*.html text eol=lf
+*.lua  text eol=lf
+.gitattributes text eol=lf
+.gitmodules text eol=lf
