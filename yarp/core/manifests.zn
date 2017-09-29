@@ -25,44 +25,44 @@ library Manifests requires Util {
 		}
 
 		static method segment1() {
-			register('0119', "hu-spearman");
-			register('0118', "hu-royalcapt");
-			register('0111', "hu-magus4");
-			register('0110', "hu-magus3");
-			register('0113', "hu-mntroyalcapt");
-			register('0112', "hu-monk");
-			register('0115', "hu-priestlady");
-			register('0114', "hu-pikeman");
-			register('0117', "hu-queen");
-			register('0116', "hu-protector");
-			register('010h', "he-spellbreaker");
-			register('010g', "he-rogue");
-			register('010j', "hu-archmage");
-			register('010i', "hu-archer");
-			register('010l', "hu-banditcros");
-			register('010k', "hu-assassin");
-			register('0120', "tr-dreg");
-			register('010n', "hu-femspear");
-			register('010m', "hu-femlord");
-			register('010b', "he-enforcer");
-			register('010a', "he-elementalist");
-			register('010d', "he-general");
-			register('010c', "he-flieutenant");
-			register('010f', "he-priestess");
-			register('010e', "he-magehuntress");
-			register('0108', "he-archer");
-			register('0107', "he-arcanist");
-			register('0109', "he-conjurer");
-			register('0100', "gb-female");
-			register('0102', "gb-merchant");
-			register('0101', "gb-gunslinger");
-			register('0104', "gb-sorceror1");
+			register('0119', "hu-priestlady");
+			register('0118', "hu-pikeman");
+			register('0111', "hu-lightmist");
+			register('0110', "hu-king");
+			register('0113', "hu-magus2");
+			register('0112', "hu-magus1");
+			register('0115', "hu-magus4");
+			register('0114', "hu-magus3");
+			register('0117', "hu-mntroyalcapt");
+			register('0116', "hu-monk");
+			register('010h', "he-general");
+			register('010g', "he-flieutenant");
+			register('010j', "he-priestess");
+			register('010i', "he-magehuntress");
+			register('010l', "he-spellbreaker");
+			register('010k', "he-rogue");
+			register('0120', "orc-warfiend2");
+			register('010n', "hu-archmage");
+			register('010m', "hu-archer");
+			register('010b', "he-arcanist");
+			register('010a', "he-agent");
+			register('010d', "he-conjurer");
+			register('010c', "he-archer");
+			register('010f', "he-enforcer");
+			register('010e', "he-elementalist");
+			register('0108', "gb-sorceror1");
+			register('0107', "gb-miner");
+			register('0109', "gb-sorceror2");
+			register('0100', "fl-worker");
+			register('0102', "gb-alchemist");
+			register('0101', "fl-kid");
+			register('0104', "gb-female");
 		}
 
 		static method segment2() {
-			register('0103', "gb-miner");
-			register('0106', "he-agent");
-			register('0105', "gb-sorceror2");
+			register('0103', "gb-engineer");
+			register('0106', "gb-merchant");
+			register('0105', "gb-gunslinger");
 			register('009z', "icecrownsnowrock8");
 			register('009y', "icecrownsnowrock7");
 			register('009b', "icecrowncrystal1");
@@ -787,67 +787,67 @@ library Manifests requires Util {
 			register('pS03', "s-magic");
 			register('pS02', "s-misc3");
 			register('pS01', "s-misc2");
-			register('00zz', "gb-engineer");
-			register('00zc', "dw-knight");
-			register('00zb', "dw-geomancer");
-			register('00ze', "dw-pea1");
-			register('00zd', "dw-militia");
+			register('00zz', "fl-widow");
+			register('00zc', "dw-battlepriest");
+			register('00zb', "dw-baronw");
+			register('00ze', "dw-footman");
+			register('00zd', "dw-courtmage");
 		}
 
 		static method segment23() {
-			register('00zg', "dw-pea3");
-			register('00zf', "dw-pea2");
-			register('00zi', "dw-phalanx");
-			register('00zh', "dw-pea4");
-			register('00yz', "be-royhunt");
-			register('00yy', "be-prince");
-			register('00za', "dw-footman");
-			register('00zs', "ed-hatelord");
-			register('00zr', "ed-flameraven");
-			register('00zu', "fl-scorp");
-			register('00zt', "fl-cultist");
-			register('00zw', "fl-worker");
-			register('00zv', "fl-widow");
-			register('00zy', "gb-alchemist");
-			register('00zx', "fl-kid");
-			register('00zk', "dw-rifle");
-			register('00zj', "dw-runebreak");
-			register('00zm', "dw-warrior");
-			register('00zl', "dw-thane");
-			register('00zo', "ed-bonelord");
-			register('00zn', "dw-stonemason");
-			register('00zq', "ed-darksorc");
-			register('00zp', "ed-darkarch");
+			register('00zg', "dw-knight");
+			register('00zf', "dw-geomancer");
+			register('00zi', "dw-pea1");
+			register('00zh', "dw-militia");
+			register('00yz', "be-phcrusader");
+			register('00yy', "be-pharcher");
+			register('00za', "dw-baronh");
+			register('00zs', "ed-bonelord");
+			register('00zr', "dw-stonemason");
+			register('00zu', "ed-darksorc");
+			register('00zt', "ed-darkarch");
+			register('00zw', "ed-hatelord");
+			register('00zv', "ed-flameraven");
+			register('00zy', "fl-scorp");
+			register('00zx', "fl-cultist");
+			register('00zk', "dw-pea3");
+			register('00zj', "dw-pea2");
+			register('00zm', "dw-phalanx");
+			register('00zl', "dw-pea4");
+			register('00zo', "dw-rifle");
+			register('00zn', "dw-runebreak");
+			register('00zq', "dw-warrior");
+			register('00zp', "dw-thane");
 			register('00yb', "villa6");
 			register('00ya', "villa5");
-			register('00yd', "an-nelfcat");
-			register('00yc', "an-panther");
-			register('00yf', "an-lynx");
-			register('00ye', "an-taurcat");
-			register('00yh', "an-tiger");
-			register('00yg', "an-raven");
+			register('00yd', "sunchp2");
+			register('00yc', "sunchp1");
+			register('00yf', "sunchp4");
+			register('00ye', "sunchp3");
+			register('00yh', "an-nelfcat");
+			register('00yg', "an-panther");
 			register('00xy', "trnql28");
 		}
 
 		static method segment24() {
 			register('00xx', "trnql27");
 			register('00xz', "trnql29");
-			register('00yr', "be-juggernaut");
-			register('00yq', "be-general");
-			register('00yt', "be-paladin");
-			register('00ys', "be-mystic");
-			register('00yv', "be-phcrusader");
-			register('00yu', "be-pharcher");
-			register('00yx', "be-priestess");
-			register('00yw', "be-phguard");
-			register('00yj', "be-apprentice");
-			register('00yi', "be-agent");
-			register('00yl', "be-bladehound");
-			register('00yk', "be-archunt");
-			register('00yn', "be-champion");
-			register('00ym', "be-mistress");
-			register('00yp', "be-flieutenant");
-			register('00yo', "be-conjurer");
+			register('00yr', "be-champion");
+			register('00yq', "be-mistress");
+			register('00yt', "be-flieutenant");
+			register('00ys', "be-conjurer");
+			register('00yv', "be-juggernaut");
+			register('00yu', "be-general");
+			register('00yx', "be-paladin");
+			register('00yw', "be-mystic");
+			register('00yj', "an-lynx");
+			register('00yi', "an-taurcat");
+			register('00yl', "an-tiger");
+			register('00yk', "an-raven");
+			register('00yn', "be-apprentice");
+			register('00ym', "be-agent");
+			register('00yp', "be-bladehound");
+			register('00yo', "be-archunt");
 			register('00xa', "trnql03");
 			register('00xc', "trnql06");
 			register('00xb', "trnql04");
@@ -860,24 +860,24 @@ library Manifests requires Util {
 			register('00ww', "misc10");
 			register('00wz', "misc13");
 			register('00wy', "misc01");
-			register('00z3', "dw-bandit");
+			register('00z3', "be-royhunt");
 			register('00xq', "trnql20");
 		}
 
 		static method segment25() {
-			register('00z2', "dw-archi");
+			register('00z2', "be-prince");
 			register('00xp', "trnql19");
-			register('00z5', "dw-barond");
+			register('00z5', "dw-archbi");
 			register('00xs', "trnql22");
-			register('00z4', "dw-baronb");
+			register('00z4', "dw-adv");
 			register('00xr', "trnql21");
-			register('00z7', "dw-baronw");
+			register('00z7', "dw-bandit");
 			register('00xu', "trnql24");
-			register('00z6', "dw-baronh");
+			register('00z6', "dw-archi");
 			register('00xt', "trnql23");
-			register('00z9', "dw-courtmage");
+			register('00z9', "dw-barond");
 			register('00xw', "trnql26");
-			register('00z8', "dw-battlepriest");
+			register('00z8', "dw-baronb");
 			register('00xv', "trnql25");
 			register('00xi', "trnql12");
 			register('00xh', "trnql10");
@@ -885,9 +885,9 @@ library Manifests requires Util {
 			register('00xj', "trnql13");
 			register('00xm', "trnql16");
 			register('00xl', "trnql15");
-			register('00z1', "dw-archbi");
+			register('00z1', "be-priestess");
 			register('00xo', "trnql18");
-			register('00z0', "dw-adv");
+			register('00z0', "be-phguard");
 			register('00xn', "trnql17");
 			register('00wb', "mike22");
 			register('00wa', "mike21");
@@ -1825,6 +1825,7 @@ library Manifests requires Util {
 			register('103y', "b-dnghell");
 			register('103z', "b-fortreg");
 			register('104e', "b-villabld");
+			register('104f', "b-sunchpbld");
 			register('103a', "b-citywall");
 			register('103b', "b-gates1");
 			register('103c', "b-gates2");
@@ -1841,10 +1842,10 @@ library Manifests requires Util {
 			register('102x', "b-walls-sunken-ruined");
 			register('102y', "b-walls-sunken-regular");
 			register('102z', "b-walls-fences");
-			register('103l', "b-pillarsother");
 		}
 
 		static method segment53() {
+			register('103l', "b-pillarsother");
 			register('103m', "b-campaign1");
 			register('103n', "b-campaign2");
 			register('103o', "b-campaign3");
@@ -1876,10 +1877,10 @@ library Manifests requires Util {
 			register('1039', "b-structure2");
 			register('101w', "b-water-human");
 			register('101x', "b-water-other");
-			register('101y', "b-broken1");
 		}
 
 		static method segment54() {
+			register('101y', "b-broken1");
 			register('102k', "b-graveyard-bones-ribs");
 			register('102l', "b-graveyard-bones-stick");
 			register('102m', "b-graveyard-bones-north");
@@ -1911,10 +1912,10 @@ library Manifests requires Util {
 			register('1025', "b-nature-animals");
 			register('100s', "b-magicrunes");
 			register('1026', "b-nature-logs");
-			register('100t', "b-bcrunes");
 		}
 
 		static method segment55() {
+			register('100t', "b-bcrunes");
 			register('1027', "b-nature-lilies1");
 			register('100u', "b-rocks-ashen1");
 			register('1028', "b-nature-lilies2");
@@ -1946,10 +1947,10 @@ library Manifests requires Util {
 			register('1013', "b-rocks-underground2");
 			register('1014', "b-rocks-chunks-under");
 			register('1015', "b-rocks-felwood1");
-			register('1016', "b-rocks-felwood2");
 		}
 
 		static method segment56() {
+			register('1016', "b-rocks-felwood2");
 			register('1017', "b-rocks-felwood3");
 			register('1018', "b-rocks-icecrown1");
 			register('1019', "b-rocks-icecrown2");
@@ -1981,92 +1982,96 @@ library Manifests requires Util {
 			register('1006', "b-fx3");
 			register('1007', "b-sunken");
 			register('1008', "b-sewer");
-			register('1010', "b-rocks-dungeon1");
 		}
 
 		static method segment57() {
+			register('1010', "b-rocks-dungeon1");
 			register('1011', "b-rocks-dungeon2");
-			register('012z', "vlg-trochild");
-			register('012y', "vlg-tauchild");
-			register('012r', "vlg-draenei");
-			register('012q', "vlg-bulky");
-			register('012t', "vlg-dwarf");
-			register('012s', "vlg-druid");
-			register('012v', "vlg-peon");
-			register('012u', "vlg-nelf");
-			register('012x', "vlg-troll");
-			register('012w', "vlg-tauren");
+			register('012z', "vlg-peon");
+			register('012y', "vlg-nelf");
+			register('012r', "vlg-barbarian");
+			register('012q', "ud-skelchild");
+			register('012t', "vlg-redheadelf");
+			register('012s', "vlg-blondeelf");
+			register('012v', "vlg-draenei");
+			register('012u', "vlg-bulky");
+			register('012x', "vlg-dwarf");
+			register('012w', "vlg-druid");
 			register('1000', "b-misc");
-			register('011y', "rat-ranger");
-			register('011x', "rat-monk");
-			register('011z', "rat-runner");
-			register('011q', "orc-elder");
-			register('011p', "orc-shaman");
-			register('011s', "orc-femsham");
-			register('011r', "orc-femgrunt");
-			register('011u', "orc-torntusk");
-			register('011t', "orc-spear");
-			register('011w', "orc-warfiend2");
-			register('011v', "orc-warfiend1");
-			register('012j', "ud-miniabo");
-			register('012i', "ud-horse2");
-			register('012l', "ud-skelknight");
-			register('012k', "ud-skelpeas");
-			register('012n', "vlg-barbarian");
-			register('012m', "ud-skelchild");
-			register('012p', "vlg-redheadelf");
-			register('012o', "vlg-blondeelf");
-			register('012b', "ud-deathbaron");
+			register('011y', "orc-torntusk");
+			register('011x', "orc-spear");
+			register('011z', "orc-warfiend1");
+			register('0133', "vlg-trochild");
+			register('011q', "orc-beastmist");
+			register('0132', "vlg-tauchild");
+			register('011p', "ne-nymph");
+			register('011s', "orc-blademonk2");
+			register('0134', "vlg-orcchild");
+			register('011r', "orc-blademonk1");
+			register('011u', "orc-elder");
+			register('011t', "orc-shaman");
+			register('011w', "orc-femsham");
+			register('011v', "orc-femgrunt");
+			register('012j', "ud-necropriest2");
+			register('012i', "ud-necropriest1");
+			register('012l', "ud-horse1");
+			register('012k', "ud-femnecro");
+			register('012n', "ud-miniabo");
 		}
 
 		static method segment58() {
-			register('012a', "ud-deathlord");
-			register('012d', "ud-dwarfbaron2");
-			register('012c', "ud-dwarfbaron1");
-			register('012f', "ud-necropriest2");
-			register('012e', "ud-necropriest1");
-			register('012h', "ud-horse1");
-			register('012g', "ud-femnecro");
-			register('010x', "hu-lightmist");
-			register('0129', "ud-archnecro2");
-			register('010w', "hu-king");
-			register('010z', "hu-magus2");
-			register('010y', "hu-magus1");
-			register('0122', "tr-outrider");
-			register('010p', "hu-bishop");
-			register('0121', "tr-miner");
-			register('010o', "hu-fembandit");
-			register('0124', "tr-shadeweaver");
-			register('010r', "hu-femfoot");
-			register('0123', "tr-pillager");
-			register('010q', "hu-delegate");
-			register('0126', "tr-shadowpriest");
-			register('010t', "hu-grandmage1");
-			register('0125', "tr-femshadowpriest");
-			register('010s', "hu-fempeas");
-			register('0128', "ud-archnecro1");
-			register('010v', "hu-halberd");
-			register('0127', "tr-voohunter");
-			register('010u', "hu-grandmage2");
-			register('011i', "ne-archer");
-			register('011h', "misc-wagon");
-			register('011k', "ne-captain");
-			register('011j', "ne-battlemaid");
+			register('012m', "ud-horse2");
+			register('012p', "ud-skelknight");
+			register('012o', "ud-skelpeas");
+			register('012b', "tr-voohunter");
+			register('012a', "tr-shadowpriest");
+			register('012d', "ud-archnecro2");
+			register('012c', "ud-archnecro1");
+			register('012f', "ud-deathbaron");
+			register('012e', "ud-deathlord");
+			register('012h', "ud-dwarfbaron2");
+			register('012g', "ud-dwarfbaron1");
+			register('010x', "hu-grandmage1");
+			register('0129', "tr-femshadowpriest");
+			register('010w', "hu-fempeas");
+			register('010z', "hu-halberd");
+			register('010y', "hu-grandmage2");
+			register('0122', "rat-ranger");
+			register('010p', "hu-banditcros");
+			register('0121', "rat-monk");
+			register('010o', "hu-assassin");
+			register('0124', "tr-dreg");
+			register('010r', "hu-femspear");
+			register('0123', "rat-runner");
+			register('010q', "hu-femlord");
+			register('0126', "tr-outrider");
+			register('010t', "hu-bishop");
+			register('0125', "tr-miner");
+			register('010s', "hu-fembandit");
+			register('0128', "tr-shadeweaver");
+			register('010v', "hu-femfoot");
+			register('0127', "tr-pillager");
+			register('010u', "hu-delegate");
 		}
 
 		static method segment59() {
-			register('011m', "orc-beastmist");
-			register('011l', "ne-nymph");
-			register('011o', "orc-blademonk2");
-			register('0130', "vlg-orcchild");
-			register('011n', "orc-blademonk1");
-			register('011a', "hu-tempexemplar");
-			register('011c', "hu-tempjusticar");
-			register('011b', "hu-tempgath");
-			register('011e', "hu-tempplaguedoct");
-			register('011d', "hu-tempwarrior");
-			register('011g', "hu-wizard");
-			register('011f', "hu-temprang");
+			register('011i', "hu-tempplaguedoct");
+			register('011h', "hu-tempwarrior");
+			register('011k', "hu-wizard");
+			register('011j', "hu-temprang");
+			register('011m', "ne-archer");
+			register('011l', "misc-wagon");
+			register('0131', "vlg-troll");
+			register('011o', "ne-captain");
+			register('0130', "vlg-tauren");
+			register('011n', "ne-battlemaid");
+			register('011a', "hu-protector");
+			register('011c', "hu-royalcapt");
+			register('011b', "hu-queen");
+			register('011e', "hu-tempexemplar");
+			register('011d', "hu-spearman");
+			register('011g', "hu-tempjusticar");
+			register('011f', "hu-tempgath");
 		}
 
 		private static method onInit() {
@@ -2363,76 +2368,76 @@ library Manifests requires Util {
 			register('nqbh', "units\\creeps\\Bristleback\\Bristleback");
 			register('Eilm', "units\\nightelf\\HeroDemonHunter\\HeroDemonHunter");
 			register('Eill', "units\\nightelf\\HeroDemonHunter\\HeroDemonHunter");
-			register('00zz', "YARP\\Units\\Goblin\\Engineer\\GoblinEngineer.mdx");
+			register('00zz', "YARP\\Units\\Faceless\\Widow\\FacelessOneWidow.mdx");
 			register('nhrw', "units\\creeps\\HarpyWitch\\HarpyWitch");
 			register('nhrq', "units\\creeps\\HarpyQueen\\HarpyQueen");
 			register('nhrr', "units\\creeps\\Harpy\\Harpy");
 			register('nhrh', "units\\creeps\\HarpyWitch\\HarpyWitch");
-			register('00zc', "YARP\\Units\\Dwarf\\Knight\\DwarfKnight.mdx");
-			register('00zb', "YARP\\Units\\Dwarf\\Geomancer\\Hero Sage.mdx");
-			register('00ze', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale.mdx");
-			register('00zd', "YARP\\Units\\Dwarf\\Militia\\DwarvenMilitia.mdx");
-			register('00zg', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale3.mdx");
-			register('00zf', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale2.mdx");
-			register('00zi', "YARP\\Units\\Dwarf\\Phalanx\\Dwarven Phalanx.mdx");
+			register('00zc', "YARP\\Units\\Dwarf\\Battlepriest\\Battle Priest .mdx");
+			register('00zb', "YARP\\Units\\Dwarf\\Baron\\White_Baron.mdx");
+			register('00ze', "YARP\\Units\\Dwarf\\Footman\\Dire_Footman.mdx");
+			register('00zd', "YARP\\Units\\Dwarf\\Courtmage\\Hero_DwarfGrandMage.mdx");
+			register('00zg', "YARP\\Units\\Dwarf\\Knight\\DwarfKnight.mdx");
+			register('00zf', "YARP\\Units\\Dwarf\\Geomancer\\Hero Sage.mdx");
+			register('00zi', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale.mdx");
 			register('Hart', "units\\human\\Arthas\\Arthas");
-			register('00zh', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale4.mdx");
-			register('00yz', "YARP\\Units\\Bloodelf\\RoyalHuntress\\HeroBloodelfRanger.mdx");
-			register('00yy', "YARP\\Units\\Bloodelf\\Prince\\Hero_BloodPrince.mdx");
+			register('00zh', "YARP\\Units\\Dwarf\\Militia\\DwarvenMilitia.mdx");
+			register('00yz', "YARP\\Units\\Bloodelf\\PhoenixCrusader\\BloodelfPhoenixCrusader.mdx");
+			register('00yy', "YARP\\Units\\Bloodelf\\PhoenixArcher\\BloodelfPhoenixArcher.mdx");
 			register('ocat', "units\\orc\\catapult\\catapult");
-			register('00za', "YARP\\Units\\Dwarf\\Footman\\Dire_Footman.mdx");
-			register('00zs', "YARP\\Units\\Edgy\\Hatelord\\Hero_Hatelord.mdx");
+			register('00za', "YARP\\Units\\Dwarf\\Baron\\Hero_Baron.mdx");
+			register('00zs', "YARP\\Units\\Edgy\\Bonelord\\Hero_Bonelord.mdx");
 			register('Harf', "units\\human\\ArthaswithSword\\ArthaswithSword");
-			register('00zr', "YARP\\Units\\Edgy\\FlamingRaven\\FlamingRaven.mdx");
-			register('00zu', "YARP\\Units\\Faceless\\Scorpion\\FacelessOneScorpion.mdx");
-			register('00zt', "YARP\\Units\\Faceless\\Cultist\\FacelessOneCultist.mdx");
-			register('00zw', "YARP\\Units\\Faceless\\Worker\\FacelessOneWorker.mdx");
-			register('00zv', "YARP\\Units\\Faceless\\Widow\\FacelessOneWidow.mdx");
-			register('00zy', "YARP\\Units\\Goblin\\Alchemist\\Hero_Goblin_Alchemist.mdx");
-			register('00zx', "YARP\\Units\\Faceless\\Youngling\\FacelessOneKid.mdx");
-			register('00zk', "YARP\\Units\\Dwarf\\Sniper\\Dire_Rifleman.mdx");
+			register('00zr', "YARP\\Units\\Dwarf\\Worker\\DwarfStonemason.mdx");
+			register('00zu', "YARP\\Units\\Edgy\\DarkSorceress\\Dark Elven Sorceress.mdx");
+			register('00zt', "YARP\\Units\\Edgy\\DarkArchon\\Dark Elven Archon.mdx");
+			register('00zw', "YARP\\Units\\Edgy\\Hatelord\\Hero_Hatelord.mdx");
+			register('00zv', "YARP\\Units\\Edgy\\FlamingRaven\\FlamingRaven.mdx");
+			register('00zy', "YARP\\Units\\Faceless\\Scorpion\\FacelessOneScorpion.mdx");
+			register('00zx', "YARP\\Units\\Faceless\\Cultist\\FacelessOneCultist.mdx");
+			register('00zk', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale3.mdx");
 			register('nqb3', "Units\\Creeps\\QuillBeast\\QuillBeast");
-			register('00zj', "YARP\\Units\\Dwarf\\Runebreaker\\DwarfRunebreaker.mdx");
+			register('00zj', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale2.mdx");
 			register('nqb4', "Units\\Creeps\\QuillBeast\\QuillBeast");
-			register('00zm', "YARP\\Units\\Dwarf\\Warrior\\DwarvenWarrior.mdx");
-			register('00zl', "YARP\\Units\\Dwarf\\Thane\\Hero_Thane.mdx");
-			register('00zo', "YARP\\Units\\Edgy\\Bonelord\\Hero_Bonelord.mdx");
-			register('00zn', "YARP\\Units\\Dwarf\\Worker\\DwarfStonemason.mdx");
-			register('00zq', "YARP\\Units\\Edgy\\DarkSorceress\\Dark Elven Sorceress.mdx");
+			register('00zm', "YARP\\Units\\Dwarf\\Phalanx\\Dwarven Phalanx.mdx");
+			register('00zl', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale4.mdx");
+			register('00zo', "YARP\\Units\\Dwarf\\Sniper\\Dire_Rifleman.mdx");
+			register('00zn', "YARP\\Units\\Dwarf\\Runebreaker\\DwarfRunebreaker.mdx");
+			register('00zq', "YARP\\Units\\Dwarf\\Warrior\\DwarvenWarrior.mdx");
 			register('nqb1', "Units\\Creeps\\QuillBeast\\QuillBeast");
-			register('00zp', "YARP\\Units\\Edgy\\DarkArchon\\Dark Elven Archon.mdx");
+			register('00zp', "YARP\\Units\\Dwarf\\Thane\\Hero_Thane.mdx");
 			register('nqb2', "Units\\Creeps\\QuillBeast\\QuillBeast");
 			register('00yb', "YARP\\Buildings\\VillaHouses\\HouseVar2Up2.mdx");
 			register('00ya', "YARP\\Buildings\\VillaHouses\\HouseVar2Up1.mdx");
-			register('00yd', "YARP\\Units\\Animal\\BluePanther\\NelfDruidCat.mdx");
-			register('00yc', "YARP\\Units\\Animal\\BlackPanther\\Panther.mdx");
-			register('00yf', "YARP\\Units\\Animal\\Lynx\\EversongLynx.mdx");
-			register('00ye', "YARP\\Units\\Animal\\HornedLion\\TaurenDruidCat.mdx");
+			register('00yd', "YARP\\Buildings\\SunchipsHouse\\House Wall 1.mdx");
+			register('00yc', "YARP\\Buildings\\SunchipsHouse\\House Door.mdx");
+			register('00yf', "YARP\\Buildings\\SunchipsHouse\\House Wall Window.mdx");
+			register('00ye', "YARP\\Buildings\\SunchipsHouse\\House Wall 2.mdx");
 			register('ocbw', "buildings\\orc\\TrollBurrow\\TrollBurrow");
-			register('00yh', "YARP\\Units\\Animal\\Tiger\\Tiger.mdx");
-			register('00yg', "YARP\\Units\\Animal\\Raven\\Raven.mdx");
+			register('00yh', "YARP\\Units\\Animal\\BluePanther\\NelfDruidCat.mdx");
+			register('00yg', "YARP\\Units\\Animal\\BlackPanther\\Panther.mdx");
 		}
 
 		static method segment5() {
 			register('00xy', "YARP\\Buildings\\TranquilBuildings\\Wall Window Royal Glass.mdx");
 			register('00xx', "YARP\\Buildings\\TranquilBuildings\\Wall Window Grate.mdx");
 			register('00xz', "YARP\\Buildings\\TranquilBuildings\\Window Big 01.mdx");
-			register('00yr', "YARP\\Units\\Bloodelf\\Juggernaut\\BloodelvenWarrior.mdx");
-			register('00yq', "YARP\\Units\\Bloodelf\\General\\BloodMage.mdx");
-			register('00yt', "YARP\\Units\\Bloodelf\\Paladin\\HeroBloodelvenPaladin.mdx");
-			register('00ys', "YARP\\Units\\Bloodelf\\Mystic\\BloodelfWizard.mdx");
-			register('00yv', "YARP\\Units\\Bloodelf\\PhoenixCrusader\\BloodelfPhoenixCrusader.mdx");
-			register('00yu', "YARP\\Units\\Bloodelf\\PhoenixArcher\\BloodelfPhoenixArcher.mdx");
-			register('00yx', "YARP\\Units\\Bloodelf\\Priestess\\BloodElfPriestess.mdx");
-			register('00yw', "YARP\\Units\\Bloodelf\\PhoenixGuard\\BloodelfPhoenixGuard.mdx");
-			register('00yj', "YARP\\Units\\Bloodelf\\Apprentice\\BEApprentice.mdx");
-			register('00yi', "YARP\\Units\\Bloodelf\\Agent\\FarstriderAssasin.mdx");
-			register('00yl', "YARP\\Units\\Bloodelf\\Bladehound\\HeroBloodelfRogue.mdx");
-			register('00yk', "YARP\\Units\\Bloodelf\\ArcaneHuntress\\HeroBEArcaneHuntress.mdx");
-			register('00yn', "YARP\\Units\\Bloodelf\\Champion\\BloodelfChampion.mdx");
-			register('00ym', "YARP\\Units\\Bloodelf\\BloodMistress\\BloodMistressS.mdx");
-			register('00yp', "YARP\\Units\\Bloodelf\\FemaleLieutenant\\FemaleBELieutenant.mdx");
-			register('00yo', "YARP\\Units\\Bloodelf\\Conjurer\\BloodelfMage.mdx");
+			register('00yr', "YARP\\Units\\Bloodelf\\Champion\\BloodelfChampion.mdx");
+			register('00yq', "YARP\\Units\\Bloodelf\\BloodMistress\\BloodMistressS.mdx");
+			register('00yt', "YARP\\Units\\Bloodelf\\FemaleLieutenant\\FemaleBELieutenant.mdx");
+			register('00ys', "YARP\\Units\\Bloodelf\\Conjurer\\BloodelfMage.mdx");
+			register('00yv', "YARP\\Units\\Bloodelf\\Juggernaut\\BloodelvenWarrior.mdx");
+			register('00yu', "YARP\\Units\\Bloodelf\\General\\BloodMage.mdx");
+			register('00yx', "YARP\\Units\\Bloodelf\\Paladin\\HeroBloodelvenPaladin.mdx");
+			register('00yw', "YARP\\Units\\Bloodelf\\Mystic\\BloodelfWizard.mdx");
+			register('00yj', "YARP\\Units\\Animal\\Lynx\\EversongLynx.mdx");
+			register('00yi', "YARP\\Units\\Animal\\HornedLion\\TaurenDruidCat.mdx");
+			register('00yl', "YARP\\Units\\Animal\\Tiger\\Tiger.mdx");
+			register('00yk', "YARP\\Units\\Animal\\Raven\\Raven.mdx");
+			register('00yn', "YARP\\Units\\Bloodelf\\Apprentice\\BEApprentice.mdx");
+			register('00ym', "YARP\\Units\\Bloodelf\\Agent\\FarstriderAssasin.mdx");
+			register('00yp', "YARP\\Units\\Bloodelf\\Bladehound\\HeroBloodelfRogue.mdx");
+			register('00yo', "YARP\\Units\\Bloodelf\\ArcaneHuntress\\HeroBEArcaneHuntress.mdx");
 			register('00xa', "YARP\\Buildings\\TranquilBuildings\\Door 4.mdx");
 			register('00xc', "YARP\\Buildings\\TranquilBuildings\\Drawbridge 3.mdx");
 			register('00xb', "YARP\\Buildings\\TranquilBuildings\\Door Big.mdx");
@@ -2446,22 +2451,22 @@ library Manifests requires Util {
 			register('00wz', "YARP\\Buildings\\Misc\\PurplePillow.mdx");
 			register('00wy', "YARP\\Buildings\\Misc\\BluePillow.mdx");
 			register('Hapm', "units\\other\\Proudmoore\\Proudmoore");
-			register('00z3', "YARP\\Units\\Dwarf\\Bandit\\Dire_Bandit.mdx");
+			register('00z3', "YARP\\Units\\Bloodelf\\RoyalHuntress\\HeroBloodelfRanger.mdx");
 			register('00xq', "YARP\\Buildings\\TranquilBuildings\\Wall Door Tall Passage.mdx");
-			register('00z2', "YARP\\Units\\Dwarf\\Architect\\Architect.mdx");
+			register('00z2', "YARP\\Units\\Bloodelf\\Prince\\Hero_BloodPrince.mdx");
 			register('00xp', "YARP\\Buildings\\TranquilBuildings\\Wall Door Small.mdx");
-			register('00z5', "YARP\\Units\\Dwarf\\Baron\\Dire_Baron.mdx");
+			register('00z5', "YARP\\Units\\Dwarf\\Archbishop\\Hero_ArchBishop.mdx");
 			register('00xs', "YARP\\Buildings\\TranquilBuildings\\Wall Niche.mdx");
 			register('otau', "units\\orc\\Tauren\\Tauren");
-			register('00z4', "YARP\\Units\\Dwarf\\Baron\\Black_Baron.mdx");
+			register('00z4', "YARP\\Units\\Dwarf\\Adventurer\\DwarvenAdventurer.mdx");
 			register('00xr', "YARP\\Buildings\\TranquilBuildings\\Wall Long.mdx");
-			register('00z7', "YARP\\Units\\Dwarf\\Baron\\White_Baron.mdx");
+			register('00z7', "YARP\\Units\\Dwarf\\Bandit\\Dire_Bandit.mdx");
 			register('00xu', "YARP\\Buildings\\TranquilBuildings\\Wall Short.mdx");
-			register('00z6', "YARP\\Units\\Dwarf\\Baron\\Hero_Baron.mdx");
+			register('00z6', "YARP\\Units\\Dwarf\\Architect\\Architect.mdx");
 			register('00xt', "YARP\\Buildings\\TranquilBuildings\\Wall Pillar.mdx");
-			register('00z9', "YARP\\Units\\Dwarf\\Courtmage\\Hero_DwarfGrandMage.mdx");
+			register('00z9', "YARP\\Units\\Dwarf\\Baron\\Dire_Baron.mdx");
 			register('00xw', "YARP\\Buildings\\TranquilBuildings\\Wall Window Glass.mdx");
-			register('00z8', "YARP\\Units\\Dwarf\\Battlepriest\\Battle Priest .mdx");
+			register('00z8', "YARP\\Units\\Dwarf\\Baron\\Black_Baron.mdx");
 			register('00xv', "YARP\\Buildings\\TranquilBuildings\\Wall Torch.mdx");
 			register('Hjai', "units\\human\\Jaina\\Jaina");
 			register('00xi', "YARP\\Buildings\\TranquilBuildings\\Tower Animated.mdx");
@@ -2471,9 +2476,9 @@ library Manifests requires Util {
 			register('00xm', "YARP\\Buildings\\TranquilBuildings\\Wall Contrafforte.mdx");
 			register('nhmc', "units\\critters\\HermitCrab\\HermitCrab");
 			register('00xl', "YARP\\Buildings\\TranquilBuildings\\Wall Banner.mdx");
-			register('00z1', "YARP\\Units\\Dwarf\\Archbishop\\Hero_ArchBishop.mdx");
+			register('00z1', "YARP\\Units\\Bloodelf\\Priestess\\BloodElfPriestess.mdx");
 			register('00xo', "YARP\\Buildings\\TranquilBuildings\\Wall Door Grate.mdx");
-			register('00z0', "YARP\\Units\\Dwarf\\Adventurer\\DwarvenAdventurer.mdx");
+			register('00z0', "YARP\\Units\\Bloodelf\\PhoenixGuard\\BloodelfPhoenixGuard.mdx");
 			register('00xn', "YARP\\Buildings\\TranquilBuildings\\Wall Door Big.mdx");
 			register('00wb', "YARP\\Buildings\\MikeBuildings\\Storage.mdx");
 			register('00wa', "YARP\\Buildings\\MikeBuildings\\Stonemason.mdx");
@@ -3478,127 +3483,131 @@ library Manifests requires Util {
 			register('ngh2', "units\\creeps\\BansheeGhost\\BansheeGhost");
 			register('nowk', "units\\creeps\\Owlbear\\Owlbear");
 			register('nowl', "units\\nightelf\\OwlSCOUT\\OwlSCOUT");
-			register('012z', "YARP\\Units\\Villager\\TrollChild\\TrollChild.mdx");
-			register('012y', "YARP\\Units\\Villager\\TaurenChild\\TaurenChild.mdx");
-			register('012r', "YARP\\Units\\Villager\\Draenei\\VillagerDraenei.MDX");
+			register('012z', "YARP\\Units\\Villager\\Orc\\VillagerPeon.MDX");
+			register('012y', "YARP\\Units\\Villager\\Nightelf\\Night Elf Villager.mdx");
+			register('012r', "YARP\\Units\\Villager\\Barbarian\\BarbarianVillager.mdx");
 			register('nggr', "units\\creeps\\RockGolem\\RockGolem");
-			register('012q', "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx");
+			register('012q', "YARP\\Units\\Undead\\Child\\SkeletalChild.mdx");
 		}
 
 		static method segment21() {
-			register('012t', "YARP\\Units\\Villager\\Dwarf\\VillagerDwarf.MDX");
-			register('012s', "YARP\\Units\\Villager\\Druid\\VillagerDruid.MDX");
-			register('012v', "YARP\\Units\\Villager\\Orc\\VillagerPeon.MDX");
-			register('012u', "YARP\\Units\\Villager\\Nightelf\\Night Elf Villager.mdx");
-			register('012x', "YARP\\Units\\Villager\\Troll\\VillagerTroll.MDX");
-			register('012w', "YARP\\Units\\Villager\\Tauren\\VillagerTauren.MDX");
-			register('011y', "YARP\\Units\\Ratman\\Ranger\\Ranger.mdx");
-			register('011x', "YARP\\Units\\Ratman\\Monk\\Monk.mdx");
-			register('011z', "YARP\\Units\\Ratman\\Runner\\Runner.mdx");
-			register('011q', "YARP\\Units\\Orc\\Elder\\ElderDrekThar.mdx");
-			register('011p', "YARP\\Units\\Orc\\ElderShaman\\DrekThar_Shaman.mdx");
+			register('012t', "YARP\\Units\\Villager\\RedheadBloodelf\\Redhead Blood Elf Villager.mdx");
+			register('012s', "YARP\\Units\\Villager\\BlondeBloodelf\\Blood Elf Villager.mdx");
+			register('012v', "YARP\\Units\\Villager\\Draenei\\VillagerDraenei.MDX");
+			register('012u', "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx");
+			register('012x', "YARP\\Units\\Villager\\Dwarf\\VillagerDwarf.MDX");
+			register('012w', "YARP\\Units\\Villager\\Druid\\VillagerDruid.MDX");
+			register('011y', "YARP\\Units\\Orc\\Torntusk\\Primal Torntusk.mdx");
+			register('011x', "YARP\\Units\\Orc\\Spearthrower\\OrcSpearThrower.mdx");
+			register('011z', "YARP\\Units\\Orc\\Warfiend\\Hero_Bloodfiend.mdx");
+			register('0133', "YARP\\Units\\Villager\\TrollChild\\TrollChild.mdx");
+			register('011q', "YARP\\Units\\Orc\\BeastMistress\\BeastMasterFemale.mdx");
+			register('0132', "YARP\\Units\\Villager\\TaurenChild\\TaurenChild.mdx");
+			register('011p', "YARP\\Units\\Nightelf\\Nymph\\Nymph.mdx");
 			register('ojgn', "Units\\Critters\\OrcJuggernaught\\OrcJuggernaught");
-			register('011s', "YARP\\Units\\Orc\\FemaleShaman\\ShamanFemale.mdx");
-			register('011r', "YARP\\Units\\Orc\\FemaleGrunt\\GruntFemale.mdx");
-			register('011u', "YARP\\Units\\Orc\\Torntusk\\Primal Torntusk.mdx");
+			register('011s', "YARP\\Units\\Orc\\Blademonk\\Dire_Blademaster.mdx");
+			register('0134', "YARP\\Units\\Villager\\OrcChild\\OrcChild_v3.mdx");
+			register('011r', "YARP\\Units\\Orc\\Blademonk\\Chaos_Blademaster.mdx");
+			register('011u', "YARP\\Units\\Orc\\Elder\\ElderDrekThar.mdx");
 			register('ngdk', "units\\creeps\\GreenDragon\\GreenDragon");
-			register('011t', "YARP\\Units\\Orc\\Spearthrower\\OrcSpearThrower.mdx");
-			register('011w', "YARP\\Units\\Orc\\Warfiend\\Hero_Warfiend.mdx");
-			register('011v', "YARP\\Units\\Orc\\Warfiend\\Hero_Bloodfiend.mdx");
-			register('012j', "YARP\\Units\\Undead\\Miniabo\\VillagerAbomination.MDX");
+			register('011t', "YARP\\Units\\Orc\\ElderShaman\\DrekThar_Shaman.mdx");
+			register('011w', "YARP\\Units\\Orc\\FemaleShaman\\ShamanFemale.mdx");
+			register('011v', "YARP\\Units\\Orc\\FemaleGrunt\\GruntFemale.mdx");
+			register('012j', "YARP\\Units\\Undead\\Necropriest\\NecromancerRed.mdx");
 			register('now2', "units\\nightelf\\OwlSCOUT\\OwlSCOUT");
-			register('012i', "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseDK.mdx");
+			register('012i', "YARP\\Units\\Undead\\Necropriest\\NecromancerBlack.mdx");
 			register('now3', "units\\nightelf\\OwlSCOUT\\OwlSCOUT");
-			register('012l', "YARP\\Units\\Undead\\SkeletonKnight\\SkeletalKnight.mdx");
-			register('012k', "YARP\\Units\\Undead\\Peasant\\SkeletonPeasant.mdx");
-			register('012n', "YARP\\Units\\Villager\\Barbarian\\BarbarianVillager.mdx");
-			register('012m', "YARP\\Units\\Undead\\Child\\SkeletalChild.mdx");
-			register('012p', "YARP\\Units\\Villager\\RedheadBloodelf\\Redhead Blood Elf Villager.mdx");
-			register('012o', "YARP\\Units\\Villager\\BlondeBloodelf\\Blood Elf Villager.mdx");
-			register('012b', "YARP\\Units\\Undead\\Dreadbaron\\HeroDreadLordRemake.mdx");
-			register('012a', "YARP\\Units\\Undead\\DeathLord\\UndeadArthasNoHorse.mdx");
-			register('012d', "YARP\\Units\\Undead\\DwarfBaron\\Scourge_Baron.mdx");
-			register('012c', "YARP\\Units\\Undead\\DwarfBaron\\Plague_Baron.mdx");
-			register('012f', "YARP\\Units\\Undead\\Necropriest\\NecromancerRed.mdx");
-			register('012e', "YARP\\Units\\Undead\\Necropriest\\NecromancerBlack.mdx");
-			register('012h', "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseArthas.mdx");
-			register('012g', "YARP\\Units\\Undead\\Witch\\FemaleNecromancer.mdx");
-			register('010x', "YARP\\Units\\Human\\LightMistress\\FemalePaladin.mdx");
-			register('0129', "YARP\\Units\\Undead\\ArchNercromancer\\Hero_Necromancer.mdx");
-			register('010w', "YARP\\Units\\Human\\King\\King.mdx");
-			register('010z', "YARP\\Units\\Human\\Magus\\Hero_BanditWizard.mdx");
-			register('010y', "YARP\\Units\\Human\\Magus\\Hero_Antonidas.mdx");
-			register('0122', "YARP\\Units\\Troll\\Outrider\\ForestTrollOutrider.mdx");
-			register('010p', "YARP\\Units\\Human\\Bishop\\Human Bishop.mdx");
-			register('0121', "YARP\\Units\\Troll\\Miner\\ForestTrollLaborerVer2.4.mdx");
-			register('010o', "YARP\\Units\\Human\\BanditWoman\\BanditFemale.mdx");
-			register('0124', "YARP\\Units\\Troll\\Shadeweaver\\Hero_ShadeWeaver.mdx");
-			register('010r', "YARP\\Units\\Human\\FemaleFootman\\FemaleFootman.mdx");
-			register('0123', "YARP\\Units\\Troll\\Pillager\\ForestTrollPillager.mdx");
-			register('010q', "YARP\\Units\\Human\\Delegate\\Hero_Warrior.mdx");
-			register('0126', "YARP\\Units\\Troll\\ShadowPriest\\ForestTrollShadowPriest.mdx");
-			register('010t', "YARP\\Units\\Human\\Grandmage\\Hero Wizard.mdx");
-			register('0125', "YARP\\Units\\Troll\\ShadowPriestFemale\\ForestTrollShadowPriestFemale.mdx");
-			register('010s', "YARP\\Units\\Human\\FemalePeasant\\PeasantFemale.mdx");
-			register('0128', "YARP\\Units\\Undead\\ArchNercromancer\\Hero_KelThuzad.mdx");
-			register('010v', "YARP\\Units\\Human\\Halberdier\\Halberdier.mdx");
-			register('0127', "YARP\\Units\\Troll\\VoodooHunter\\HeroTrollVoodooHunter.mdx");
-			register('010u', "YARP\\Units\\Human\\Grandmage\\Human Wizard.mdx");
-			register('011i', "YARP\\Units\\Nightelf\\Archer\\NightElvenArcher.mdx");
-			register('011h', "YARP\\Units\\Misc\\Wagon\\Wagon.mdx");
-			register('011k', "YARP\\Units\\Nightelf\\Captain\\NECaptain.mdx");
-			register('011j', "YARP\\Units\\Nightelf\\BattleMaiden\\GlaiveMaiden.mdx");
-			register('011m', "YARP\\Units\\Orc\\BeastMistress\\BeastMasterFemale.mdx");
-			register('011l', "YARP\\Units\\Nightelf\\Nymph\\Nymph.mdx");
+			register('012l', "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseArthas.mdx");
+			register('012k', "YARP\\Units\\Undead\\Witch\\FemaleNecromancer.mdx");
+			register('012n', "YARP\\Units\\Undead\\Miniabo\\VillagerAbomination.MDX");
+			register('012m', "YARP\\Units\\Undead\\Horse\\RiderlessUndeadHorseDK.mdx");
+			register('012p', "YARP\\Units\\Undead\\SkeletonKnight\\SkeletalKnight.mdx");
+			register('012o', "YARP\\Units\\Undead\\Peasant\\SkeletonPeasant.mdx");
+			register('012b', "YARP\\Units\\Troll\\VoodooHunter\\HeroTrollVoodooHunter.mdx");
+			register('012a', "YARP\\Units\\Troll\\ShadowPriest\\ForestTrollShadowPriest.mdx");
+			register('012d', "YARP\\Units\\Undead\\ArchNercromancer\\Hero_Necromancer.mdx");
+			register('012c', "YARP\\Units\\Undead\\ArchNercromancer\\Hero_KelThuzad.mdx");
+			register('012f', "YARP\\Units\\Undead\\Dreadbaron\\HeroDreadLordRemake.mdx");
+			register('012e', "YARP\\Units\\Undead\\DeathLord\\UndeadArthasNoHorse.mdx");
+			register('012h', "YARP\\Units\\Undead\\DwarfBaron\\Scourge_Baron.mdx");
+			register('012g', "YARP\\Units\\Undead\\DwarfBaron\\Plague_Baron.mdx");
+			register('010x', "YARP\\Units\\Human\\Grandmage\\Hero Wizard.mdx");
+			register('0129', "YARP\\Units\\Troll\\ShadowPriestFemale\\ForestTrollShadowPriestFemale.mdx");
+			register('010w', "YARP\\Units\\Human\\FemalePeasant\\PeasantFemale.mdx");
+			register('010z', "YARP\\Units\\Human\\Halberdier\\Halberdier.mdx");
+			register('010y', "YARP\\Units\\Human\\Grandmage\\Human Wizard.mdx");
+			register('0122', "YARP\\Units\\Ratman\\Ranger\\Ranger.mdx");
+			register('010p', "YARP\\Units\\Human\\BanditCrossbowman\\BanditCrossbowmanII.mdx");
+			register('0121', "YARP\\Units\\Ratman\\Monk\\Monk.mdx");
+			register('010o', "YARP\\Units\\Human\\Assassin\\HumanAssassine.mdx");
+			register('0124', "YARP\\Units\\Troll\\Dreg\\ForestTrollDreg.mdx");
+			register('010r', "YARP\\Units\\Human\\BanditWomanSpearthrower\\BanditSpearThrowerFemale.mdx");
+			register('0123', "YARP\\Units\\Ratman\\Runner\\Runner.mdx");
+			register('010q', "YARP\\Units\\Human\\BanditMistress\\BanditLordFemale.mdx");
+			register('0126', "YARP\\Units\\Troll\\Outrider\\ForestTrollOutrider.mdx");
+			register('010t', "YARP\\Units\\Human\\Bishop\\Human Bishop.mdx");
+			register('0125', "YARP\\Units\\Troll\\Miner\\ForestTrollLaborerVer2.4.mdx");
+			register('010s', "YARP\\Units\\Human\\BanditWoman\\BanditFemale.mdx");
+			register('0128', "YARP\\Units\\Troll\\Shadeweaver\\Hero_ShadeWeaver.mdx");
+			register('010v', "YARP\\Units\\Human\\FemaleFootman\\FemaleFootman.mdx");
+			register('0127', "YARP\\Units\\Troll\\Pillager\\ForestTrollPillager.mdx");
+			register('010u', "YARP\\Units\\Human\\Delegate\\Hero_Warrior.mdx");
+			register('011i', "YARP\\Units\\Human\\TemplarPlagueDoctor\\TemplarSurgeon.mdx");
+			register('011h', "YARP\\Units\\Human\\TemplarKnight\\TemplarWarrior.mdx");
+			register('011k', "YARP\\Units\\Human\\Wizard\\WC2Mage.mdx");
 		}
 
 		static method segment22() {
-			register('011o', "YARP\\Units\\Orc\\Blademonk\\Dire_Blademaster.mdx");
-			register('0130', "YARP\\Units\\Villager\\OrcChild\\OrcChild_v3.mdx");
-			register('011n', "YARP\\Units\\Orc\\Blademonk\\Chaos_Blademaster.mdx");
-			register('011a', "YARP\\Units\\Human\\TemplarExemplar\\TemplarExemplar.mdx");
-			register('011c', "YARP\\Units\\Human\\TemplarJusticar\\TemplarJusticar.mdx");
-			register('011b', "YARP\\Units\\Human\\TemplarGatherer\\Commoner.mdx");
-			register('011e', "YARP\\Units\\Human\\TemplarPlagueDoctor\\TemplarSurgeon.mdx");
-			register('011d', "YARP\\Units\\Human\\TemplarKnight\\TemplarWarrior.mdx");
-			register('011g', "YARP\\Units\\Human\\Wizard\\WC2Mage.mdx");
-			register('011f', "YARP\\Units\\Human\\TemplarRanger\\TemplarArcher.mdx");
-			register('0119', "YARP\\Units\\Human\\Spearman\\Pikeman.mdx");
-			register('0118', "YARP\\Units\\Human\\RoyalCaptain\\Captain.mdx");
-			register('0111', "YARP\\Units\\Human\\Magus\\Hero_WhiteWizard.mdx");
-			register('0110', "YARP\\Units\\Human\\Magus\\Hero_GreyWizard.mdx");
-			register('0113', "YARP\\Units\\Human\\MountedRoyalCaptain\\Mounted Captain.mdx");
-			register('0112', "YARP\\Units\\Human\\Monk\\Monk.mdx");
-			register('0115', "YARP\\Units\\Human\\PriestLady\\FemaleMage.mdx");
-			register('0114', "YARP\\Units\\Human\\Pikeman\\Human Pikeman.mdx");
-			register('0117', "YARP\\Units\\Human\\Queen\\RoyalQueen.mdx");
-			register('0116', "YARP\\Units\\Human\\Protector\\Royal Knight.mdx");
+			register('011j', "YARP\\Units\\Human\\TemplarRanger\\TemplarArcher.mdx");
+			register('011m', "YARP\\Units\\Nightelf\\Archer\\NightElvenArcher.mdx");
+			register('011l', "YARP\\Units\\Misc\\Wagon\\Wagon.mdx");
+			register('0131', "YARP\\Units\\Villager\\Troll\\VillagerTroll.MDX");
+			register('011o', "YARP\\Units\\Nightelf\\Captain\\NECaptain.mdx");
+			register('0130', "YARP\\Units\\Villager\\Tauren\\VillagerTauren.MDX");
+			register('011n', "YARP\\Units\\Nightelf\\BattleMaiden\\GlaiveMaiden.mdx");
+			register('011a', "YARP\\Units\\Human\\Protector\\Royal Knight.mdx");
+			register('011c', "YARP\\Units\\Human\\RoyalCaptain\\Captain.mdx");
+			register('011b', "YARP\\Units\\Human\\Queen\\RoyalQueen.mdx");
+			register('011e', "YARP\\Units\\Human\\TemplarExemplar\\TemplarExemplar.mdx");
+			register('011d', "YARP\\Units\\Human\\Spearman\\Pikeman.mdx");
+			register('011g', "YARP\\Units\\Human\\TemplarJusticar\\TemplarJusticar.mdx");
+			register('011f', "YARP\\Units\\Human\\TemplarGatherer\\Commoner.mdx");
+			register('0119', "YARP\\Units\\Human\\PriestLady\\FemaleMage.mdx");
+			register('0118', "YARP\\Units\\Human\\Pikeman\\Human Pikeman.mdx");
+			register('0111', "YARP\\Units\\Human\\LightMistress\\FemalePaladin.mdx");
+			register('0110', "YARP\\Units\\Human\\King\\King.mdx");
+			register('0113', "YARP\\Units\\Human\\Magus\\Hero_BanditWizard.mdx");
+			register('0112', "YARP\\Units\\Human\\Magus\\Hero_Antonidas.mdx");
+			register('0115', "YARP\\Units\\Human\\Magus\\Hero_WhiteWizard.mdx");
+			register('0114', "YARP\\Units\\Human\\Magus\\Hero_GreyWizard.mdx");
+			register('0117', "YARP\\Units\\Human\\MountedRoyalCaptain\\Mounted Captain.mdx");
+			register('0116', "YARP\\Units\\Human\\Monk\\Monk.mdx");
 			register('ngbl', "units\\creeps\\IronGolem\\IronGolem");
-			register('010h', "YARP\\Units\\Highelf\\Spellbreaker\\BlackSunSpellbreaker.mdx");
-			register('010g', "YARP\\Units\\Highelf\\Rogue\\Hero Rogue.mdx");
-			register('010j', "YARP\\Units\\Human\\Archmage\\HeroArchMageOnFoot.mdx");
-			register('010i', "YARP\\Units\\Human\\Archer\\AllianceArcher.mdx");
-			register('010l', "YARP\\Units\\Human\\BanditCrossbowman\\BanditCrossbowmanII.mdx");
-			register('010k', "YARP\\Units\\Human\\Assassin\\HumanAssassine.mdx");
-			register('0120', "YARP\\Units\\Troll\\Dreg\\ForestTrollDreg.mdx");
-			register('010n', "YARP\\Units\\Human\\BanditWomanSpearthrower\\BanditSpearThrowerFemale.mdx");
-			register('010m', "YARP\\Units\\Human\\BanditMistress\\BanditLordFemale.mdx");
-			register('010b', "YARP\\Units\\Highelf\\Enforcer\\HighElfSpellThief.mdx");
-			register('010a', "YARP\\Units\\Highelf\\Elementalist\\BlackSunElementalist.mdx");
-			register('010d', "YARP\\Units\\Highelf\\General\\HighMage.mdx");
-			register('010c', "YARP\\Units\\Highelf\\FemaleLieutenant\\FemaleCaptain.mdx");
-			register('010f', "YARP\\Units\\Highelf\\Priestess\\HighElfPriest.mdx");
-			register('010e', "YARP\\Units\\Highelf\\MageHuntress\\HeroMageHuntressV_2.1.mdx");
-			register('0108', "YARP\\Units\\Highelf\\Archer\\HighElvenArcher.mdx");
-			register('0107', "YARP\\Units\\Highelf\\Arcanist\\HeroArcanist.mdx");
-			register('0109', "YARP\\Units\\Highelf\\Conjurer\\HighElfPriestess.mdx");
-			register('0100', "YARP\\Units\\Goblin\\Female\\GoblinFemale.mdx");
-			register('0102', "YARP\\Units\\Goblin\\Merchant\\GoblinMerchant.mdx");
-			register('0101', "YARP\\Units\\Goblin\\Gunslinger\\HeroGoblinGunslinger.mdx");
-			register('0104', "YARP\\Units\\Goblin\\Sorceror\\GoblinMage01.mdx");
-			register('0103', "YARP\\Units\\Goblin\\Miner\\GoblinMiner.mdx");
-			register('0106', "YARP\\Units\\Highelf\\Agent\\BlackSunAssasin.mdx");
-			register('0105', "YARP\\Units\\Goblin\\Sorceror\\GoblinMage02.mdx");
+			register('010h', "YARP\\Units\\Highelf\\General\\HighMage.mdx");
+			register('010g', "YARP\\Units\\Highelf\\FemaleLieutenant\\FemaleCaptain.mdx");
+			register('010j', "YARP\\Units\\Highelf\\Priestess\\HighElfPriest.mdx");
+			register('010i', "YARP\\Units\\Highelf\\MageHuntress\\HeroMageHuntressV_2.1.mdx");
+			register('010l', "YARP\\Units\\Highelf\\Spellbreaker\\BlackSunSpellbreaker.mdx");
+			register('010k', "YARP\\Units\\Highelf\\Rogue\\Hero Rogue.mdx");
+			register('0120', "YARP\\Units\\Orc\\Warfiend\\Hero_Warfiend.mdx");
+			register('010n', "YARP\\Units\\Human\\Archmage\\HeroArchMageOnFoot.mdx");
+			register('010m', "YARP\\Units\\Human\\Archer\\AllianceArcher.mdx");
+			register('010b', "YARP\\Units\\Highelf\\Arcanist\\HeroArcanist.mdx");
+			register('010a', "YARP\\Units\\Highelf\\Agent\\BlackSunAssasin.mdx");
+			register('010d', "YARP\\Units\\Highelf\\Conjurer\\HighElfPriestess.mdx");
+			register('010c', "YARP\\Units\\Highelf\\Archer\\HighElvenArcher.mdx");
+			register('010f', "YARP\\Units\\Highelf\\Enforcer\\HighElfSpellThief.mdx");
+			register('010e', "YARP\\Units\\Highelf\\Elementalist\\BlackSunElementalist.mdx");
+			register('0108', "YARP\\Units\\Goblin\\Sorceror\\GoblinMage01.mdx");
+			register('0107', "YARP\\Units\\Goblin\\Miner\\GoblinMiner.mdx");
+			register('0109', "YARP\\Units\\Goblin\\Sorceror\\GoblinMage02.mdx");
+			register('0100', "YARP\\Units\\Faceless\\Worker\\FacelessOneWorker.mdx");
+			register('0102', "YARP\\Units\\Goblin\\Alchemist\\Hero_Goblin_Alchemist.mdx");
+			register('0101', "YARP\\Units\\Faceless\\Youngling\\FacelessOneKid.mdx");
+			register('0104', "YARP\\Units\\Goblin\\Female\\GoblinFemale.mdx");
+			register('0103', "YARP\\Units\\Goblin\\Engineer\\GoblinEngineer.mdx");
+			register('0106', "YARP\\Units\\Goblin\\Merchant\\GoblinMerchant.mdx");
+			register('0105', "YARP\\Units\\Goblin\\Gunslinger\\HeroGoblinGunslinger.mdx");
 			register('uktg', "units\\undead\\KelThuzadGhost\\KelThuzadGhost");
 			register('ngad', "buildings\\other\\AmmoDump\\AmmoDump");
 			register('uktn', "units\\undead\\Kelthuzad\\Kelthuzad");
@@ -3613,13 +3622,13 @@ library Manifests requires Util {
 			register('Odrt', "units\\orc\\HeroFarSeer\\HeroFarSeer");
 			register('Nalm', "Units\\Creeps\\HeroGoblinAlchemist\\HeroGoblinAlchemist");
 			register('Nalc', "Units\\Creeps\\HeroGoblinAlchemist\\HeroGoblinAlchemist");
+		}
+
+		static method segment23() {
 			register('Hhkl', "units\\human\\HeroPaladinBoss\\HeroPaladinBoss");
 			register('edob', "buildings\\nightelf\\HuntersHall\\HuntersHall");
 			register('edoc', "units\\nightelf\\DruidoftheClaw\\DruidoftheClaw");
 			register('pU01', "buildings\\other\\CircleOfPower\\CircleOfPower");
-		}
-
-		static method segment23() {
 			register('Nrob', "Units\\Creeps\\HeroTinker\\HeroTinker");
 			register('pU00', "Objects\\StartLocation\\StartLocation.mdl");
 			register('nwzg', "units\\creeps\\BanditMage\\BanditMage");
@@ -3680,13 +3689,13 @@ library Manifests requires Util {
 			register('nwrg', "units\\creeps\\GolemStatue\\GolemStatue");
 			register('nfr2', "buildings\\other\\FurbolgHut2\\FurbolgHut2");
 			register('nfps', "units\\creeps\\PolarFurbolgTracker\\PolarFurbolgTracker");
+		}
+
+		static method segment24() {
 			register('nfpl', "units\\creeps\\PolarFurbolg\\PolarFurbolg");
 			register('nfr1', "buildings\\other\\FurbolgHut\\FurbolgHut");
 			register('orai', "units\\orc\\WolfRider\\WolfRider");
 			register('nwnr', "units\\creeps\\Wendigo\\Wendigo");
-		}
-
-		static method segment24() {
 			register('nwns', "units\\creeps\\WendigoShaman\\WendigoShaman");
 			register('009z', "Doodads\\Icecrown\\Rocks\\Ice_SnowRock\\Ice_SnowRock7.mdx");
 			register('009y', "Doodads\\Icecrown\\Rocks\\Ice_SnowRock\\Ice_SnowRock6.mdx");
@@ -3747,13 +3756,13 @@ library Manifests requires Util {
 			register('008k', "Doodads\\Felwood\\Rocks\\FelwoodRock\\FelwoodRock8.mdx");
 			register('008j', "Doodads\\Felwood\\Rocks\\FelwoodRock\\FelwoodRock7.mdx");
 			register('008m', "Doodads\\Felwood\\Rocks\\Felwood_Spires\\Felwood_Spires0.mdx");
+		}
+
+		static method segment25() {
 			register('008l', "Doodads\\Felwood\\Rocks\\FelwoodRock\\FelwoodRock9.mdx");
 			register('nwlt', "units\\creeps\\TimberWolf\\TimberWolf");
 			register('008o', "Doodads\\Felwood\\Rocks\\Felwood_Spires\\Felwood_Spires2.mdx");
 			register('008n', "Doodads\\Felwood\\Rocks\\Felwood_Spires\\Felwood_Spires1.mdx");
-		}
-
-		static method segment25() {
 			register('007b', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock5.mdx");
 			register('007a', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock4.mdx");
 			register('007d', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock7.mdx");
@@ -3814,13 +3823,13 @@ library Manifests requires Util {
 			register('Q03g', "YARP\\Units\\Orc\\FemaleShaman\\ShamanFemale.mdx");
 			register('0077', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock1.mdx");
 			register('005u', "Doodads\\BlackCitadel\\Props\\RuneArt\\RuneArt6.mdx");
+		}
+
+		static method segment26() {
 			register('Q03d', "YARP\\Units\\Orc\\ElderShaman\\DrekThar_Shaman.mdx");
 			register('005x', "Doodads\\Ashenvale\\Rocks\\AshenRock\\AshenRock1.mdx");
 			register('Q03e', "YARP\\Units\\Orc\\Elder\\ElderDrekThar.mdx");
 			register('0079', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock3.mdx");
-		}
-
-		static method segment26() {
 			register('005w', "Doodads\\Ashenvale\\Rocks\\AshenRock\\AshenRock0.mdx");
 			register('Q03j', "YARP\\Units\\Orc\\Warfiend\\Hero_Bloodfiend.mdx");
 			register('005z', "Doodads\\Ashenvale\\Rocks\\AshenRock\\AshenRock3.mdx");
@@ -3881,13 +3890,13 @@ library Manifests requires Util {
 			register('0067', "Doodads\\Ashenvale\\Structures\\AshenRubble\\AshenRubble1.mdx");
 			register('004u', "Doodads\\Northrend\\Water\\North_Iceberg4\\North_Iceberg4.mdx");
 			register('Q04h', "YARP\\Units\\Villager\\Dwarf\\VillagerDwarf.MDX");
+		}
+
+		static method segment27() {
 			register('0066', "Doodads\\Ashenvale\\Structures\\AshenRubble\\AshenRubble0.mdx");
 			register('004t', "Doodads\\Northrend\\Water\\North_Iceberg3\\North_Iceberg3.mdx");
 			register('Q04e', "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx");
 			register('0069', "Doodads\\Barrens\\Structures\\RuinedArch\\RuinedArch0.mdx");
-		}
-
-		static method segment27() {
 			register('004w', "Doodads\\Northrend\\Water\\North_IceFloe2\\North_IceFloe2.mdx");
 			register('Q04f', "YARP\\Units\\Villager\\Draenei\\VillagerDraenei.MDX");
 			register('0068', "Doodads\\Ashenvale\\Structures\\AshenRubble\\AshenRubble2.mdx");
@@ -3948,13 +3957,13 @@ library Manifests requires Util {
 			register('nnwa', "units\\creeps\\Nerubian\\Nerubian");
 			register('Q031', "YARP\\Units\\Human\\TemplarKnight\\TemplarWarrior.mdx");
 			register('Q01o', "YARP\\Units\\Goblin\\Female\\GoblinFemale.mdx");
+		}
+
+		static method segment28() {
 			register('004b', "Doodads\\Northrend\\Props\\FirePitPig\\FirePitPig.mdx");
 			register('Q01d', "YARP\\Units\\Edgy\\DarkArchon\\Dark Elven Archon.mdx");
 			register('0056', "Doodads\\Cinematic\\GlowingRunes\\GlowingRunes0.mdx");
 			register('003t', "Doodads\\LordaeronSummer\\Terrain\\Barricade\\Barricade1.mdx");
-		}
-
-		static method segment28() {
 			register('Q01e', "YARP\\Units\\Edgy\\DarkSorceress\\Dark Elven Sorceress.mdx");
 			register('0055', "Doodads\\LordaeronSummer\\Props\\TutorialOrcBanner\\TutorialOrcBanner.mdx");
 			register('003s', "Doodads\\LordaeronSummer\\Terrain\\Barricade\\Barricade0.mdx");
@@ -4015,13 +4024,13 @@ library Manifests requires Util {
 			register('Q00w', "YARP\\Units\\Dwarf\\Battlepriest\\Battle Priest .mdx");
 			register('004i', "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock1.mdx");
 			register('Q00x', "YARP\\Units\\Dwarf\\Courtmage\\Hero_DwarfGrandMage.mdx");
+		}
+
+		static method segment29() {
 			register('004h', "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock0.mdx");
 			register('Q027', "YARP\\Units\\Human\\Archmage\\HeroArchMageOnFoot.mdx");
 			register('Q00u', "YARP\\Units\\Dwarf\\Baron\\Hero_Baron.mdx");
 			register('004k', "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock3.mdx");
-		}
-
-		static method segment29() {
 			register('Q028', "YARP\\Units\\Human\\Assassin\\HumanAssassine.mdx");
 			register('Q00v', "YARP\\Units\\Dwarf\\Baron\\White_Baron.mdx");
 			register('004j', "Doodads\\Icecrown\\Terrain\\ClearIceRock\\ClearIceRock2.mdx");
@@ -4082,13 +4091,13 @@ library Manifests requires Util {
 			register('0054', "Doodads\\LordaeronSummer\\Props\\BannerOrc\\BannerOrc1.mdx");
 			register('003r', "Doodads\\Ruins\\Props\\RuinsTrash\\RuinsTrash1.mdx");
 			register('nwiz', "units\\creeps\\HumanMage\\HumanMage");
+		}
+
+		static method segment30() {
 			register('0053', "Doodads\\LordaeronSummer\\Props\\BannerOrc\\BannerOrc0.mdx");
 			register('003q', "Doodads\\Ruins\\Props\\RuinsTrash\\RuinsTrash0.mdx");
 			register('Q036', "YARP\\Units\\Nightelf\\Archer\\NightElvenArcher.mdx");
 			register('Q01t', "YARP\\Units\\Goblin\\Sorceror\\GoblinMage02.mdx");
-		}
-
-		static method segment30() {
 			register('003d', "Doodads\\Terrain\\DalaranMagicalPenWall\\DalaranMagicalPenWall.mdx");
 			register('Q037', "YARP\\Units\\Nightelf\\BattleMaiden\\GlaiveMaiden.mdx");
 			register('Q01u', "YARP\\Units\\Highelf\\Agent\\BlackSunAssasin.mdx");
@@ -4149,13 +4158,13 @@ library Manifests requires Util {
 			register('Q004', "YARP\\Units\\Animal\\Raven\\Raven.mdx");
 			register('002b', "Doodads\\Outland\\Props\\Obstacle\\Obstacle4.mdx");
 			register('Q001', "YARP\\Units\\Animal\\BluePanther\\NelfDruidCat.mdx");
+		}
+
+		static method segment31() {
 			register('002e', "Doodads\\Outland\\Props\\Standard\\Standard0.mdx");
 			register('Q002', "YARP\\Units\\Animal\\HornedLion\\TaurenDruidCat.mdx");
 			register('002d', "Doodads\\Outland\\Props\\Stake\\Stake1.mdx");
 			register('Q007', "YARP\\Units\\Bloodelf\\Apprentice\\BEApprentice.mdx");
-		}
-
-		static method segment31() {
 			register('002g', "Doodads\\Cityscape\\Props\\CityStoneBench\\CityStoneBench.mdx");
 			register('Q008', "YARP\\Units\\Bloodelf\\ArcaneHuntress\\HeroBEArcaneHuntress.mdx");
 			register('002f', "Doodads\\Outland\\Props\\Standard\\Standard1.mdx");
@@ -4216,13 +4225,13 @@ library Manifests requires Util {
 			register('Q014', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale3.mdx");
 			register('001b', "Doodads\\Ruins\\Props\\RuinsBloodyAltar\\RuinsBloodyAltar.mdx");
 			register('Q015', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale4.mdx");
+		}
+
+		static method segment32() {
 			register('001a', "Doodads\\Cinematic\\CavernDust\\CavernDust.mdx");
 			register('nwgs', "units\\naga\\WindSerpent\\WindSerpent");
 			register('Q012', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale.mdx");
 			register('001d', "Doodads\\Ruins\\Props\\RuinFountain\\RuinFountain.mdx");
-		}
-
-		static method segment32() {
 			register('nwgt', "buildings\\other\\Waygate\\Waygate");
 			register('Q013', "YARP\\Units\\Dwarf\\Peasant\\DwarfNoviceMale2.mdx");
 			register('001c', "Doodads\\Ruins\\Props\\Ruins_NagaCircle\\Ruins_NagaCircle.mdx");
@@ -4283,13 +4292,13 @@ library Manifests requires Util {
 			register('0010', "Doodads\\Cinematic\\FrostTrapUp\\FrostTrapUp.mdx");
 			register('nwen', "units\\creeps\\Wendigo\\Wendigo");
 			register('nntg', "buildings\\naga\\TidalGuardian\\TidalGuardian");
+		}
+
+		static method segment33() {
 			register('usep', "buildings\\undead\\Crypt\\Crypt");
 			register('ubdd', "units\\undead\\FrostWyrm\\FrostWyrm");
 			register('ubdr', "units\\creeps\\AzureDragon\\AzureDragon");
 			register('nfac', "Units\\Creeps\\HeroTinkerFactory\\HeroTinkerFactory");
-		}
-
-		static method segment33() {
 			register('nnrg', "units\\naga\\NagaRoyalGuard\\NagaRoyalGuard");
 			register('nwe1', "units\\creeps\\WarEagle\\WarEagle");
 			register('nwe2', "units\\creeps\\WarEagle\\WarEagle");
@@ -4350,13 +4359,13 @@ library Manifests requires Util {
 			register('uaod', "buildings\\undead\\AltarOfDarkness\\AltarOfDarkness");
 			register('Udth', "units\\undead\\HeroDreadLord\\HeroDreadLord");
 			register('nele', "units\\human\\WaterElemental\\WaterElemental");
+		}
+
+		static method segment34() {
 			register('nvl2', "units\\critters\\VillagerMan1\\VillagerMan1");
 			register('nehy', "Units\\Creeps\\Hydra\\Hydra");
 			register('nmyr', "units\\naga\\NagaMyrmidon\\NagaMyrmidon");
 			register('nmys', "units\\naga\\NagaMyrmidon\\NagaMyrmidon");
-		}
-
-		static method segment34() {
 			register('Ocb2', "units\\orc\\HeroTaurenChieftainCIN\\HeroTaurenChieftainCIN");
 			register('Ocbh', "units\\orc\\HeroTaurenChieftainCIN\\HeroTaurenChieftainCIN");
 			register('Otch', "units\\orc\\HeroTaurenChieftain\\HeroTaurenChieftain");
@@ -4417,13 +4426,13 @@ library Manifests requires Util {
 			register('nmr0', "buildings\\other\\Mercenary\\Mercenary");
 			register('uaco', "units\\undead\\Acolyte\\Acolyte");
 			register('nmr2', "buildings\\other\\Mercenary\\Mercenary");
+		}
+
+		static method segment35() {
 			register('nmpe', "units\\creeps\\MurgulSlave\\MurgulSlave");
 			register('nmpg', "units\\creeps\\MurlocMutant\\MurlocMutant");
 			register('htow', "buildings\\human\\TownHall\\TownHall");
 			register('pS1y', "doodads\\northrend\\water\\Battleship\\Battleship");
-		}
-
-		static method segment35() {
 			register('pS1x', "units\\other\\DalaranMutant\\DalaranMutant");
 			register('pS39', "units\\creeps\\Owlbear\\Owlbear");
 			register('pS1w', "units\\creeps\\Zombie\\Zombie");
@@ -4484,13 +4493,13 @@ library Manifests requires Util {
 			register('pS3m', "units\\naga\\WindSerpent\\WindSerpent");
 			register('pS3l', "units\\critters\\Rat\\Rat");
 			register('pS3c', "units\\creeps\\Satyr\\Satyr");
+		}
+
+		static method segment36() {
 			register('pS3b', "Units\\Creeps\\tuskarLord\\tuskarLord");
 			register('pS3a', "units\\creeps\\JungleBeast\\JungleBeast");
 			register('pS3g', "units\\creeps\\BansheeGhost\\BansheeGhost");
 			register('pS3f', "units\\creeps\\VoidWalker\\VoidWalker");
-		}
-
-		static method segment36() {
 			register('pS3e', "units\\creeps\\BanditMage\\BanditMage");
 			register('pS3d', "units\\creeps\\Bandit\\Bandit");
 			register('pS19', "YARP\\Units\\Undead\\DeathLord\\UndeadArthasNoHorse.mdx");
@@ -4551,13 +4560,13 @@ library Manifests requires Util {
 			register('pS1j', "units\\orc\\Peon\\Peon");
 			register('pS1a', "YARP\\Units\\Undead\\Peasant\\SkeletonPeasant.mdx");
 			register('pS1e', "units\\human\\Militia\\Militia");
+		}
+
+		static method segment37() {
 			register('pS1d', "units\\human\\Peasant\\Peasant");
 			register('pS1c', "YARP\\Units\\Villager\\TrollChild\\TrollChild.mdx");
 			register('pS1b', "YARP\\Units\\Villager\\Bulky\\Bulkyman.Mdx");
 			register('ndwm', "units\\critters\\DuneWorm\\DuneWorm");
-		}
-
-		static method segment37() {
 			register('pS08', "Doodads\\Icecrown\\Rocks\\Ice_SnowRock\\Ice_SnowRock0");
 			register('pS07', "Doodads\\Felwood\\Rocks\\FelwoodRock\\FelwoodRock0");
 			register('pS06', "Doodads\\Dungeon\\Rocks\\DungeonRock\\DungeonRock0");
@@ -4618,13 +4627,13 @@ library Manifests requires Util {
 			register('ndt2', "buildings\\other\\TowerDefenseTower\\TowerDefenseTower");
 			register('ndrp', "units\\other\\DranaiWhite\\DranaiWhite");
 			register('ndrr', "buildings\\other\\DragonBuilding\\DragonBuilding");
+		}
+
+		static method segment38() {
 			register('ndrs', "units\\other\\DranaiMage\\DranaiMage");
 			register('ndrl', "units\\other\\Dranai\\Dranai");
 			register('ndrm', "units\\other\\DranaiMage\\DranaiMage");
 			register('ndrn', "units\\other\\DranaiWhite\\DranaiWhite");
-		}
-
-		static method segment38() {
 			register('ndt1', "buildings\\other\\TowerDefenseTower\\TowerDefenseTower");
 			register('ndro', "buildings\\other\\DragonBuildingBlack\\DragonBuildingBlack");
 			register('ogre', "buildings\\orc\\GreatHall\\GreatHall");
@@ -4685,13 +4694,13 @@ library Manifests requires Util {
 			register('Utic', "units\\undead\\Tichondrius\\Tichondrius");
 			register('eate', "buildings\\nightelf\\AltarOfElders\\AltarOfElders");
 			register('Hvsh', "units\\naga\\LadyVashj\\LadyVashj");
+		}
+
+		static method segment39() {
 			register('hsor', "units\\human\\Sorceress\\Sorceress");
 			register('oosc', "units\\orc\\KotoBeastNoRider\\KotoBeastNoRider");
 			register('nlpd', "Units\\Creeps\\Lobstrokkred\\Lobstrokkred");
 			register('earc', "units\\nightelf\\Archer\\Archer");
-		}
-
-		static method segment39() {
 			register('hbla', "buildings\\human\\Blacksmith\\Blacksmith");
 			register('Emfr', "units\\nightelf\\MalFurion\\MalFurion");
 			register('nlkl', "Units\\Creeps\\Lobstrokkgreen\\Lobstrokkgreen");
@@ -4752,13 +4761,13 @@ library Manifests requires Util {
 			register('ntkw', "Units\\Creeps\\tuskarLord\\tuskarLord");
 			register('nthl', "units\\creeps\\ThunderLizard\\ThunderLizard");
 			register('onzg', "units\\orc\\WolfRider\\WolfRider");
+		}
+
+		static method segment40() {
 			register('ncfs', "Units\\Creeps\\MurgulTideWarrior\\MurgulTideWarrior");
 			register('nthr', "units\\creeps\\GreenDragon\\GreenDragon");
 			register('ncgb', "Units\\Creeps\\HeroTinkerRobot\\HeroTinkerRobot");
 			register('Hmkg', "units\\human\\HeroMountainKing\\HeroMountainKing");
-		}
-
-		static method segment40() {
 			register('uplg', "units\\undead\\PlagueCloud\\PlagueCloud");
 			register('nchp', "units\\creeps\\HumanMage\\HumanMage");
 			register('nchr', "units\\demon\\ChaosWolfRider\\ChaosWolfRider");
@@ -4786,6 +4795,7 @@ library Manifests requires Util {
 			register('ncer', "units\\creeps\\Centaur\\Centaur");
 			register('hatw', "buildings\\human\\HumanTower\\HumanTower");
 			register('104e', "units\\human\\Peasant\\Peasant");
+			register('104f', "units\\human\\Peasant\\Peasant");
 			register('eilw', "units\\other\\IllidanEvilCaged\\IllidanEvilCaged");
 			register('103a', "units\\human\\Peasant\\Peasant");
 			register('103b', "units\\human\\Peasant\\Peasant");
@@ -4818,14 +4828,14 @@ library Manifests requires Util {
 			register('103h', "units\\human\\Peasant\\Peasant");
 			register('103i', "units\\human\\Peasant\\Peasant");
 			register('103j', "units\\human\\Peasant\\Peasant");
+		}
+
+		static method segment41() {
 			register('103k', "units\\human\\Peasant\\Peasant");
 			register('Hmgd', "units\\human\\HeroPaladin\\HeroPaladin");
 			register('101z', "units\\human\\Peasant\\Peasant");
 			register('nten', "buildings\\other\\Tent\\Tent");
 			register('102a', "units\\human\\Peasant\\Peasant");
-		}
-
-		static method segment41() {
 			register('102b', "units\\human\\Peasant\\Peasant");
 			register('1034', "units\\human\\Peasant\\Peasant");
 			register('101r', "units\\human\\Peasant\\Peasant");
@@ -4885,14 +4895,14 @@ library Manifests requires Util {
 			register('1026', "units\\human\\Peasant\\Peasant");
 			register('100t', "units\\human\\Peasant\\Peasant");
 			register('ncb4', "buildings\\other\\CityBuildingSmall90_1\\CityBuildingSmall90_1");
+		}
+
+		static method segment42() {
 			register('1027', "units\\human\\Peasant\\Peasant");
 			register('100u', "units\\human\\Peasant\\Peasant");
 			register('1028', "units\\human\\Peasant\\Peasant");
 			register('100v', "units\\human\\Peasant\\Peasant");
 			register('1029', "units\\human\\Peasant\\Peasant");
-		}
-
-		static method segment42() {
 			register('100w', "units\\human\\Peasant\\Peasant");
 			register('100x', "units\\human\\Peasant\\Peasant");
 			register('ncb0', "buildings\\other\\CityBuildingSmall45_0\\CityBuildingSmall45_0");
@@ -4952,14 +4962,14 @@ library Manifests requires Util {
 			register('100f', "units\\human\\Peasant\\Peasant");
 			register('100g', "units\\human\\Peasant\\Peasant");
 			register('100h', "units\\human\\Peasant\\Peasant");
+		}
+
+		static method segment43() {
 			register('1009', "units\\human\\Peasant\\Peasant");
 			register('ugrm', "units\\undead\\Gargoyle\\Gargoyle");
 			register('1001', "units\\human\\Peasant\\Peasant");
 			register('1002', "units\\human\\Peasant\\Peasant");
 			register('1003', "units\\human\\Peasant\\Peasant");
-		}
-
-		static method segment43() {
 			register('1004', "units\\human\\Peasant\\Peasant");
 			register('1005', "units\\human\\Peasant\\Peasant");
 			register('1006', "units\\human\\Peasant\\Peasant");
