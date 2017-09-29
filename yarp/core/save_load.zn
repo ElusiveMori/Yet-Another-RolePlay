@@ -212,7 +212,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 	}
 
 	public struct LoadQueue[] {
-		//! runtextmacro SetupHashAllocStart("18")
+		//! runtextmacro SetupHashAllocStart("20")
 		//! runtextmacro SetupHashAllocEnd()
 
 		static thistype tops[]; // first in queue for each player

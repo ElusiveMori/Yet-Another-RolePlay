@@ -509,8 +509,8 @@ void PreplaceUnits() {
 	sch[10][1] = "s-c-orc";
 	sch[10][2] = "s-c-troll";
 	sch[10][3] = "s-c-rats";
-	sch[10][3] = "s-c-undead1";
-	sch[10][3] = "s-c-undead2";
+	sch[10][4] = "s-c-undead1";
+	sch[10][5] = "s-c-undead2";
 
 	sch[11][0] = "s-c-animals";
 	sch[11][1] = "s-c-edgy";
