@@ -61,6 +61,7 @@ global string DOODAD_REVIVE        = "pA10";
 global string WAYGATE_PASSIVE      = "pA11";
 global string WAYGATE_TARGET       = "pA12";
 global string UNLOCUST             = "pA13";
+global string SUPERBLINK           = "pA14";
 
 // unit ID starts
 

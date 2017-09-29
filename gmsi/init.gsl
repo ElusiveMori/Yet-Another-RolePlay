@@ -29,6 +29,7 @@ void Init() {
 	MakeDoodad();
 	MakeWaygate();
 	MakeUnlocust();
+	MakeSuperblink();
 
 	echoln("Starting doodads...");
 	include("yarp/objects/stock/doods.txt");

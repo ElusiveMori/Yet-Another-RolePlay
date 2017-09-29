@@ -42,6 +42,8 @@ library Constants {
 
 	public constant integer ABIL_UNLOCUST = 'pA13';
 
+	public constant integer ABIL_SUPERBLINK = 'pA14';
+
 	public constant integer SPAWNER_ID = 'pU00';
 
 	// error codes for aliases/macros

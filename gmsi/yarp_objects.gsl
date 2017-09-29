@@ -13,6 +13,29 @@ void MakeSpawnerCargo() {
 	cargoUnload.Effectsound = "";
 }
 
+void MakeSuperblink() {
+	Ability superblink = GetBaseAbility(SUPERBLINK);
+	superblink.Animnames = "spell,throw";
+	superblink.Areaeffectart = "Abilities\\Spells\\NightElf\\Blink\\BlinkTarget.mdl";
+	superblink.SpecialArt = "Abilities\\Spells\\NightElf\\Blink\\BlinkCaster.mdl";
+	superblink.DataB1 = 2;
+	superblink.DataE1 = 0;
+	superblink.DataF1 = GetFreeOrder();
+	superblink.DataD1 = 0; // art duration
+	superblink.DataC1 = 1;
+	superblink.Hotkey = "F";
+	superblink.Name = "Superblink";
+	superblink.Tip = MakeHotkeyTip("F") + "Superblink";
+	superblink.DataA1 = 0; // follow through time
+	superblink.Ubertip = "Instantly teleports a unit to any point on the map.";
+	superblink.Art = "ReplaceableTextures\\CommandButtons\\BTNBlink.blp";
+	superblink.Cast1 = 0.1; // cast time
+	superblink.Rng1 = 4096;
+	superblink.CasterArt = "";
+	superblink.EffectArt = "";
+	superblink.race = "orc";
+}
+
 void MakeUnlocust() {
 	Ability unlocust = GetBaseAbility(UNLOCUST);
 	unlocust.Area1 = 512;

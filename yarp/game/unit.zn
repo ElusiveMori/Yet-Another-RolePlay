@@ -204,6 +204,10 @@ library Unit requires Core {
 			s_string1 = thread.args.next();
 			s_thread = thread;
 
+			if (s_string1 == "superblink") {
+				s_string1 = Id2String(ABIL_SUPERBLINK);
+			}
+
 			if (str == "add") {
 				thread.selection.run(function thistype.Command_UnitAbility_aux_add);
 			} else if (str == "remove") {

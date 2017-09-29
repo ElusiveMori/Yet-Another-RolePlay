@@ -1,0 +1,43 @@
+library Superblink requires Core {
+	struct Superblink[] {
+		private static method onStartCast() {
+			integer spellId = GetSpellAbilityId();
+			unit caster = GetTriggerUnit();
+			real tx = GetSpellTargetX();
+			real ty = GetSpellTargetY();
+			real ux = GetUnitX(caster);
+			real uy = GetUnitY(caster);
+
+			if (spellId == ABIL_SUPERBLINK) {
+				AddSpellEffectById(ABIL_SUPERBLINK, EFFECT_TYPE_SPECIAL, ux, uy);
+				AddSpellEffectById(ABIL_SUPERBLINK, EFFECT_TYPE_AREA_EFFECT, tx, ty);
+			}
+
+			caster = null;
+		}
+
+		private static method onCast() {
+			integer spellId = GetSpellAbilityId();
+			unit caster = GetTriggerUnit();
+			real tx = GetSpellTargetX();
+			real ty = GetSpellTargetY();
+
+			if (spellId == ABIL_SUPERBLINK) {
+				SetUnitX(caster, tx);
+				SetUnitY(caster, ty);
+			}
+
+			caster = null;
+		}
+
+		private static method onInit() {
+			trigger castTrigger = CreateTrigger();
+			trigger startCastTrigger = CreateTrigger();
+			TriggerAddAction(castTrigger, function thistype.onCast);
+			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
+
+			TriggerAddAction(startCastTrigger, function thistype.onStartCast);
+			TriggerRegisterAnyUnitEventBJ(startCastTrigger, EVENT_PLAYER_UNIT_SPELL_CHANNEL);
+		}
+	}
+}
