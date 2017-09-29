@@ -15,7 +15,7 @@ void MakeSpawnerCargo() {
 
 void MakeUnlocust() {
 	Ability unlocust = GetBaseAbility(UNLOCUST);
-	unlocust.Area1 = 768;
+	unlocust.Area1 = 512;
 	unlocust.DataB1 = 2;
 	unlocust.DataE1 = 0;
 	unlocust.DataF1 = GetFreeOrder();

@@ -497,6 +497,11 @@ library Unit requires Core {
 			AddSpecialEffectTarget(s_string1, what, s_string2);
 		//! runtextmacro CommandEnd();
 
+		//! runtextmacro CommandHeader("Command_UnitLocust")
+		//! runtextmacro CommandStart("Command_UnitLocust")
+			unitData.locust();
+		//! runtextmacro CommandEnd();
+
 		private static method onInit_aliases() {
 			Alias.saveall("rm", "remove");
 			Alias.saveall("mv", "move");
@@ -554,6 +559,11 @@ library Unit requires Core {
 			Command.register("group",   thistype.Command_UnitGroup,           CMD_UNITPROP);
 			Command.register("pause",   thistype.Command_UnitPause,           CMD_UNITPROP);
 			Command.register("attach",  thistype.Command_UnitAttach,          CMD_UNITPROP);
+
+			// to prevent autocmd locust from spawning an infinite loop when a locust is removed
+			// CMD_SPAWNING is used
+			Command.register("locust",  thistype.Command_UnitLocust,          CMD_SPAWNING);
+
 			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
 			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
 			Command.register("grun",    thistype.Command_UnitRunGroup,        CMD_EXEC);

@@ -88,11 +88,16 @@ library Terrain requires Core {
 				y = GetSpellTargetY();
 
 				// only allow sampling spells inside spawn
-				if (spellId != TERRAIN_SAMPLE && spellId != DOODAD_SAMPLE) {
+				if (spellId != TERRAIN_SAMPLE && spellId != DOODAD_SAMPLE && spellId != ABIL_UNLOCUST) {
 					if (Areas.isPointInSpawn(x, y)) {
 						caster = null;
 						return;
 					}
+				}
+
+				// this shouldn't really be here, but it will do for now
+				if (spellId == ABIL_UNLOCUST) {
+					LocustUtil.unlocustRegion(x, y, 512, owner);
 				}
 
 				if (spellId == TERRAIN_SAMPLE) {

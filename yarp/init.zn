@@ -74,7 +74,8 @@ library Core requires Util,
 					Areas,
 					Limits,
 					Constants,
-					Locust {
+					Locust,
+					LocustUtil {
 	function onInit() {
 	}
 }

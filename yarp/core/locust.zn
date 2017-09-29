@@ -6,22 +6,22 @@ library Locust requires Util {
 	public struct LocustList[] {
 		module Alloc;
 
-		private thistype m_next;
-		private thistype m_prev;
-		private unit m_unit;
+		public thistype next;
+		public thistype prev;
+		public unit unit;
 
-		static thistype top;
+		public static thistype top = 0;
 
 		static method add(unit what) -> thistype {
 			thistype this = allocate();
 
-			m_unit = what;
-			m_prev = 0;
-			m_next = 0;
+			unit = what;
+			prev = 0;
+			next = 0;
 
 			if (top != 0) {
-				top.m_prev = this;
-				this.m_next = top;
+				top.prev = this;
+				this.next = top;
 				top = this; 
 			} else {
 				top = this;
@@ -31,20 +31,70 @@ library Locust requires Util {
 		}
 
 		method destroy() {
-			if (m_next != 0) {
-				m_next.m_prev = m_prev;
+			if (next != 0) {
+				next.prev = prev;
 			}
 
-			if (m_prev != 0) {
-				m_prev.m_next = m_next;
+			if (prev != 0) {
+				prev.next = next;
 			}
 
 			if (top == this) {
-				top = m_next;
+				top = next;
 			}
 
 			deallocate();
 		}
+	}
+}
 
+library LocustUtil requires UnitData, Locust, Security {
+	public struct LocustUtil[] {
+		static LocustList s_cur;
+		static real s_ox;
+		static real s_oy;
+		static real s_squareRadius;
+		static integer s_owner;
+
+		static method unlocustRegion_aux() {
+			integer i = 0;
+			real x, y;
+			UnitData unitData;
+
+			debug DebugMessage("s_cur = " + I2S(s_cur));
+
+			while (i < 256 && s_cur != 0) {
+				unitData = UnitData[s_cur.unit];
+				debug DebugMessage("Locusting " + I2S(unitData));
+				s_cur = s_cur.next;
+				i = i + 1;
+
+				if (HasPlayerUnitAccess(s_owner, unitData.unit)) {
+					x = unitData.x - s_ox;
+					y = unitData.y - s_oy;
+
+					if (x * x + y * y < s_squareRadius) {
+						unitData.unlocust();
+					}
+				}
+			}
+
+			if (s_cur != 0) {
+				unlocustRegion_aux.execute();
+			}
+		}
+
+		static method unlocustRegion(real x, real y, real radius, integer owner) {
+			debug DebugMessage("Preparing to locust units");
+			radius = radius * radius;
+			s_squareRadius = radius;
+			s_ox = x;
+			s_oy = y;
+			s_owner = owner;
+			s_cur = LocustList.top;
+
+			debug DebugMessage("Starting to locust units");
+			unlocustRegion_aux.execute();
+		}
 	}
 }
