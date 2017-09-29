@@ -1,3 +1,4 @@
 [submodule "yarp-content"]
 	path = yarp-content
 	url = https://github.com/SamuelMoriarty/yarp-content.git
+	ignore = dirty
