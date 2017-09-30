@@ -355,14 +355,14 @@ void PrepareStock() {
 					}
 				}
 
-				// remove blight dispel from abilities
-				bool blightDispel = false;
+				// remove some stupid abilities
+				bool removedAbilities = false;
 				bool first = true;
 				string newList = "";
 
 				for (string j: o.abilList) {
-					if (j == "Abdl" || j == "Abds") {
-						blightDispel = true;
+					if (j == "Abdl" || j == "Abds" || j == "Abgl" || j == "Abgs") {
+						removedAbilities = true;
 					} else {
 						if (first) {
 							newList = j;
@@ -373,7 +373,7 @@ void PrepareStock() {
 					}
 				}
 
-				if (blightDispel) {
+				if (removedAbilities) {
 					o.abilList = newList;
 				}
 
@@ -382,6 +382,7 @@ void PrepareStock() {
 				}
 
 				o.preventPlace = "";
+				o.requirePlace = "";
 				o.uberSplat = "";
 				o.turnRate = 1.0;
 				o.spd = 1;
