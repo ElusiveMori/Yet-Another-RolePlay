@@ -84,6 +84,14 @@ library Misc requires Core {
 			TriggerAddAction(leaveTrigger, function thistype.onLeave);		
 			GroupEnumUnitsInRect(temp, GetWorldBounds(), Condition(function thistype.transferShop));
 
+			SetCameraBounds(WorldBounds.minX,
+						    WorldBounds.minY, 
+						    WorldBounds.maxX, 
+						    WorldBounds.maxY, 
+						    WorldBounds.minX, 
+						    WorldBounds.maxY, 
+						    WorldBounds.maxX, 
+						    WorldBounds.minY);
 			SetCameraPosition(WorldBounds.centerX, WorldBounds.centerY);
 			FogEnable(false);
 			FogMaskEnable(false);

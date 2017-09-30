@@ -34,7 +34,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 		//! runtextmacro AIDS_zinc()
 
 		private {
-			static constant real WORLD_MARGIN = 0;
+			static constant real WORLD_MARGIN = 128;
 
 			integer     m_realOwner;
 			integer     m_vertexR;
