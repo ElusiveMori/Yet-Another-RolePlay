@@ -38,7 +38,6 @@ library Constants {
 	public constant integer REGION_ABIL_DEC_WIDTH  = 'pA07';
 	public constant integer REGION_ABIL_DEC_HEIGHT = 'pA08';
 	public constant integer REGION_ABIL_REMOVE     = 'pA09';
-	public constant integer REGION_ABIL_AUX        = 'pA0a';
 
 	public constant integer ABIL_UNLOCUST = 'pA13';
 

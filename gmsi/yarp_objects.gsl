@@ -149,7 +149,7 @@ void MakeLocation() {
 	location.Tip = "";
 	location.Ubertip = "This is a Location Specifier.";
 	location["type"] = "peon";
-	location.abilList = "Avul,pA05,pA06,pA07,pA08,pA09,pA0a";
+	location.abilList = "Avul,pA05,pA06,pA07,pA08,pA09";
 	location.castbsw = 0;
 	location.castpt = 0;
 	location.blend = 0;
@@ -214,18 +214,6 @@ void MakeLocation() {
 	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNCancel.blp";
 	abil.Buttonpos = 3;
 	abil.Buttonpos1 = 2;
-
-	abil = GetBaseAbility(LOCATION_AUX);
-	abil.DataF1 = GetFreeOrder();
-	abil.DataD1 = 0;
-	abil.Hotkey = "";
-	abil.Name = "Run Command on Units";
-	abil.Tip = "Run Command on Units";
-	abil.DataA1 = 0;
-	abil.Ubertip = "Runs your 'abil' command (specified using the 'abil' command) on all the units within this region.";
-	abil.Art = "ReplaceableTextures\\CommandButtons\\BTNBox.blp";
-	abil.Buttonpos = 3;
-	abil.Buttonpos1 = 0;
 }
 
 void MakeTerrain() {

@@ -31,7 +31,6 @@ global string LOCATION_INC_HEIGHT  = "pA06";
 global string LOCATION_DEC_WIDTH   = "pA07";
 global string LOCATION_DEC_HEIGHT  = "pA08";
 global string LOCATION_REMOVE      = "pA09";
-global string LOCATION_AUX         = "pA0a";
 global string TERRAIN_SPELLBOOK    = "pA0b";
 global string TERRAIN_SAMPLE       = "pA0c";
 global string TERRAIN_CIRCLE1      = "pA0d";
