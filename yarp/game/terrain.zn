@@ -189,7 +189,7 @@ library Terrain requires Core {
 		}
 
 		private static method Command_Height(CommandThread thread) {
-			heights[thread.owner] = S2R(thread.args.next());
+			heights[thread.owner] = ClampReal(S2R(thread.args.next()), 0, 512);
 		}
 
 		private static method Command_RemoveDeforms(CommandThread thread) {
