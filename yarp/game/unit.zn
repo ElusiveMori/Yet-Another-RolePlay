@@ -506,6 +506,12 @@ library Unit requires Core {
 			unitData.locust();
 		//! runtextmacro CommandEnd();
 
+		//! runtextmacro CommandHeader("Command_UnitUnlocust")
+		//! runtextmacro CommandStart("Command_UnitUnlocust")
+			unitData.unlocust();
+		//! runtextmacro CommandEnd();
+
+
 		private static method onInit_aliases() {
 			Alias.saveall("rm", "remove");
 			Alias.saveall("mv", "move");
@@ -567,6 +573,7 @@ library Unit requires Core {
 			// to prevent autocmd locust from spawning an infinite loop when a locust is removed
 			// CMD_SPAWNING is used
 			Command.register("locust",  thistype.Command_UnitLocust,          CMD_SPAWNING);
+			Command.register("unlocust",  thistype.Command_UnitUnlocust,      CMD_SPAWNING);
 
 			Command.register("step",    thistype.Command_UnitStep,            CMD_EXEC);
 			Command.register("global",  thistype.Command_UnitGlobal,          CMD_EXEC);
