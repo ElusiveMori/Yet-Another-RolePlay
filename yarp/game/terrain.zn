@@ -101,6 +101,7 @@ library Terrain requires Core {
 				}
 
 				if (spellId == TERRAIN_SAMPLE) {
+					MessageTo(owner, "You have sampled " + Id2String(GetTerrainType(x, y)));
 					sampled[owner] = GetTerrainType(x, y);
 				}
 
@@ -169,11 +170,12 @@ library Terrain requires Core {
 					RemoveRect(area);
 					area = null;
 				} else if (spellId == DOODAD_SAMPLE) {
-					area = Rect(0, 0, 512, 512);
+					area = Rect(0, 0, 64, 64);
 					MoveRectTo(area, x, y);
 					sampleWho = owner;
 					EnumDestructablesInRect(area, null, function thistype.aux_sampleDood);
 					RemoveRect(area);
+					MessageTo(owner, "You have sampled " + Id2String(sampledDoods[owner]));
 					area = null;
 				} else if (spellId == DOODAD_REVIVE) {
 					area = Rect(0, 0, 512, 512);
