@@ -50,7 +50,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 			boolean     m_allocated;
 			real        m_angle;
 			real        m_lastAngle;
-			LocustList  m_locust;
+			LocustList  m_locustList;
 			string      m_tag;
 		}
 
@@ -79,7 +79,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 		//! runtextmacro SimpleGetter("z",             "real")
 		//! runtextmacro SimpleGetter("allocated",     "boolean")
 		//! runtextmacro SimpleGetter("group",         "integer")
-		//! runtextmacro SimpleGetter("locust",        "LocustList")
+		//! runtextmacro SimpleGetter("locustList",    "LocustList")
 		//! runtextmacro SimpleGetter("tag",           "string")
 
 		//! runtextmacro SimpleSetter("realOwner", "integer")
@@ -112,8 +112,10 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 		}
 
 		method locust() {
-			UnitAddAbility(unit, 'Aloc');
-			m_locust = LocustList.add(unit);
+			if (IsUnitType(unit, UNIT_TYPE_STRUCTURE)) {
+				UnitAddAbility(unit, 'Aloc');
+				m_locustList = LocustList.add(unit);
+			}
 		}
 
 		method unlocust() -> unit {
@@ -200,7 +202,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 		}
 
 		method defaultValues() {
-			m_locust    = 0;
+			m_locustList    = 0;
 			m_realOwner = currentOwner;
 			m_z         = 0.0;
 			m_flown     = false;
@@ -256,8 +258,8 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 
 		private method AIDS_onDestroy() {
 			m_allocated = false;
-			if (m_locust > 0) {
-				m_locust.destroy();
+			if (m_locustList > 0) {
+				m_locustList.destroy();
 			}
 		}
 

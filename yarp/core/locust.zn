@@ -61,15 +61,12 @@ library LocustUtil requires UnitData, Locust, Security {
 			real x, y;
 			UnitData unitData;
 
-			debug DebugMessage("s_cur = " + I2S(s_cur));
-
 			while (i < 256 && s_cur != 0) {
 				unitData = UnitData[s_cur.unit];
-				debug DebugMessage("Locusting " + I2S(unitData));
 				s_cur = s_cur.next;
 				i = i + 1;
 
-				if (HasPlayerUnitAccess(s_owner, unitData.unit)) {
+				if (HasPlayerUnitAccess(s_owner, unitData.unit) && unitData.locustList > 0) {
 					x = unitData.x - s_ox;
 					y = unitData.y - s_oy;
 
