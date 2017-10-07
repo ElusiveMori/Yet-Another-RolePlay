@@ -73,7 +73,7 @@ library Spawn requires Core {
 			UnitData cloneData;
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				for (0 <= i <= s_int) {
+				for (0 <= i < s_int) {
 					if (Limits.canPlayerSpawn(s_thread.owner)) {
 						originalData = UnitData[what];
 						clone = originalData.clone(s_thread.owner);
@@ -113,7 +113,7 @@ library Spawn requires Core {
 			UnitData cloneData;
 
 			if (HasPlayerUnitAccess(s_thread.owner, what)) {
-				for (0 <= i <= s_int) {
+				for (0 <= i < s_int) {
 					if (Limits.canPlayerSpawn(s_thread.owner)) {
 						originalData = UnitData[what];
 						clone = originalData.clone(s_thread.owner);
