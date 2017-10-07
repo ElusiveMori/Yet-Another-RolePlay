@@ -30,7 +30,7 @@ void MakeSuperblink() {
 	superblink.Ubertip = "Instantly teleports a unit to any point on the map.";
 	superblink.Art = "ReplaceableTextures\\CommandButtons\\BTNBlink.blp";
 	superblink.Cast1 = 0.1; // cast time
-	superblink.Rng1 = 4096;
+	superblink.Rng1 = 99999;
 	superblink.CasterArt = "";
 	superblink.EffectArt = "";
 	superblink.race = "orc";
