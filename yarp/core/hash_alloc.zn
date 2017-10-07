@@ -1,12 +1,134 @@
 library HashAlloc requires Table {
-	//! textmacro SetupHashAllocStart takes COUNT
+	// shamelessly stolen from Bribe's Table
+	//! textmacro HA_MODULE_BASIC takes SUPER, FUNC, TYPE
+	public module HA_$TYPE$ {
+	    method $TYPE$Load(integer k1, integer k2) -> $TYPE$ {
+	        return Load$FUNC$(this.ht, k1, k2);
+	    }
+	    method $TYPE$Save(integer k1, integer k2, $TYPE$ value) {
+	        Save$FUNC$(this.ht, k1, k2, value);
+	    }
+	    method $TYPE$Has(integer k1, integer k2) -> boolean {
+	        return HaveSaved$SUPER$(this.ht, k1, k2);
+	    }
+	    method $TYPE$Remove(integer k1, integer k2) {
+	        RemoveSaved$SUPER$(this.ht, k1, k2);
+	    }
+	}
+	//! endtextmacro
+	    
+	//! textmacro HA_MODULE takes FUNC, TYPE
+	public module HA_$TYPE$ { 
+	    method $TYPE$Load(integer k1, integer k2) -> $TYPE$ {
+	        return Load$FUNC$Handle(this.ht, k1, k2);
+	    }
+	    method $TYPE$Save(integer k1, integer k2, $TYPE$ value) {
+	        Save$FUNC$Handle(this.ht, k1, k2, value);
+	    }
+	    method $TYPE$Has(integer k1, integer k2) -> boolean {
+	        return HaveSavedHandle(this.ht, k1, k2);
+	    }
+	    method $TYPE$Remove(integer k1, integer k2) {
+	        RemoveSavedHandle(this.ht, k1, k2);
+	    }
+	}
+	//! endtextmacro
+
+	//! runtextmacro HA_MODULE_BASIC("Real", "Real", "real")
+	//! runtextmacro HA_MODULE_BASIC("Boolean", "Boolean", "boolean")
+	//! runtextmacro HA_MODULE_BASIC("String", "Str", "string")
+	//! runtextmacro HA_MODULE_BASIC("Integer", "Integer", "integer")
+
+	//! runtextmacro HA_MODULE("Player", "player")
+	//! runtextmacro HA_MODULE("Widget", "widget")
+	//! runtextmacro HA_MODULE("Destructable", "destructable")
+	//! runtextmacro HA_MODULE("Item", "item")
+	//! runtextmacro HA_MODULE("Unit", "unit")
+	//! runtextmacro HA_MODULE("Ability", "ability")
+	//! runtextmacro HA_MODULE("Timer", "timer")
+	//! runtextmacro HA_MODULE("Trigger", "trigger")
+	//! runtextmacro HA_MODULE("TriggerCondition", "triggercondition")
+	//! runtextmacro HA_MODULE("TriggerAction", "triggeraction")
+	//! runtextmacro HA_MODULE("TriggerEvent", "event")
+	//! runtextmacro HA_MODULE("Force", "force")
+	//! runtextmacro HA_MODULE("Group", "group")
+	//! runtextmacro HA_MODULE("Location", "location")
+	//! runtextmacro HA_MODULE("Rect", "rect")
+	//! runtextmacro HA_MODULE("BooleanExpr", "boolexpr")
+	//! runtextmacro HA_MODULE("Sound", "sound")
+	//! runtextmacro HA_MODULE("Effect", "effect")
+	//! runtextmacro HA_MODULE("UnitPool", "unitpool")
+	//! runtextmacro HA_MODULE("ItemPool", "itempool")
+	//! runtextmacro HA_MODULE("Quest", "quest")
+	//! runtextmacro HA_MODULE("QuestItem", "questitem")
+	//! runtextmacro HA_MODULE("DefeatCondition", "defeatcondition")
+	//! runtextmacro HA_MODULE("TimerDialog", "timerdialog")
+	//! runtextmacro HA_MODULE("Leaderboard", "leaderboard")
+	//! runtextmacro HA_MODULE("Multiboard", "multiboard")
+	//! runtextmacro HA_MODULE("MultiboardItem", "multiboarditem")
+	//! runtextmacro HA_MODULE("Trackable", "trackable")
+	//! runtextmacro HA_MODULE("Dialog", "dialog")
+	//! runtextmacro HA_MODULE("Button", "button")
+	//! runtextmacro HA_MODULE("TextTag", "texttag")
+	//! runtextmacro HA_MODULE("Lightning", "lightning")
+	//! runtextmacro HA_MODULE("Image", "image")
+	//! runtextmacro HA_MODULE("Ubersplat", "ubersplat")
+	//! runtextmacro HA_MODULE("Region", "region")
+	//! runtextmacro HA_MODULE("FogState", "fogstate")
+	//! runtextmacro HA_MODULE("FogModifier", "fogmodifier")
+	//! runtextmacro HA_MODULE("Hashtable", "hashtable")
+
+	//! textmacro SetupHashAllocStart
+		private static hashtable ht;
 		private static Table recycler;
-		private static TableArray fields;
+
+		module HA_real;
+	    module HA_integer;
+	    module HA_boolean;
+	    module HA_string;
+	    module HA_player;
+	    module HA_widget;
+	    module HA_destructable;
+	    module HA_item;
+	    module HA_unit;
+	    module HA_ability;
+	    module HA_timer;
+	    module HA_trigger;
+	    module HA_triggercondition;
+	    module HA_triggeraction;
+	    module HA_event;
+	    module HA_force;
+	    module HA_group;
+	    module HA_location;
+	    module HA_rect;
+	    module HA_boolexpr;
+	    module HA_sound;
+	    module HA_effect;
+	    module HA_unitpool;
+	    module HA_itempool;
+	    module HA_quest;
+	    module HA_questitem;
+	    module HA_defeatcondition;
+	    module HA_timerdialog;
+	    module HA_leaderboard;
+	    module HA_multiboard;
+	    module HA_multiboarditem;
+	    module HA_trackable;
+	    module HA_dialog;
+	    module HA_button;
+	    module HA_texttag;
+	    module HA_lightning;
+	    module HA_image;
+	    module HA_ubersplat;
+	    module HA_region;
+	    module HA_fogstate;
+	    module HA_fogmodifier;
+	    module HA_hashtable;
 
 		static method allocate() -> thistype {
 			thistype this = recycler[0];
 
-			if (!recycler.has(this)) {
+			if (recycler[this] == 0) {
 				recycler[0] = this + 1;
 			} else {
 				recycler[0] = recycler[this];
@@ -18,36 +140,41 @@ library HashAlloc requires Table {
 		method deallocate() {
 			recycler[this] = recycler[0];
 			recycler[0] = this;
+			FlushChildHashtable(ht, this);
 		}
 
 		private static method onInit() {
+			ht = InitHashtable();
 			recycler = Table.create();
 			recycler[0] = 1;
-			fields = TableArray[$COUNT$];
 	//! endtextmacro
 
 	//! textmacro SetupHashAllocEnd
 		}
 	//! endtextmacro
 
-	//! textmacro SetupFieldThistype takes ID, NAME
+	//! textmacro SetupFieldThistype takes NAME
+		private static key $NAME$_KEY;
+
 		method operator $NAME$() -> thistype {
-			return fields[$ID$].integer[this];
+			return integerLoad(this, $NAME$_KEY);
 		}
 
 		method operator $NAME$=(thistype arg) {
-			fields[$ID$].integer[this] = arg;
+			integerSave(this, $NAME$_KEY, arg);
 		}
 	//! endtextmacro
 
 
-	//! textmacro SetupField takes ID, NAME, TYPE
+	//! textmacro SetupField takes NAME, TYPE
+		private static key $NAME$_KEY;
+
 		method operator $NAME$() -> $TYPE$ {
-			return fields[$ID$].$TYPE$[this];
+			return $TYPE$Load(this, $NAME$_KEY);
 		}
 
 		method operator $NAME$=($TYPE$ arg) {
-			fields[$ID$].$TYPE$[this] = arg;
+			$TYPE$Save(this, $NAME$_KEY, arg);
 		}
 	//! endtextmacro
 }

@@ -144,7 +144,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 
 			while (curDeform > 0 && count < 384) {
 				if (curDeform.x > minx && curDeform.x < maxx && curDeform.y > miny && curDeform.y < maxy) {
-					writeDeform(curDeform.x, curDeform.y, curDeform.magnitude, curDeform.radius);
+					writeDeform(curDeform.x - oX, curDeform.y - oY, curDeform.magnitude, curDeform.radius);
 				}
 
 				count = count + 1;
@@ -212,7 +212,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 	}
 
 	public struct LoadQueue[] {
-		//! runtextmacro SetupHashAllocStart("20")
+		//! runtextmacro SetupHashAllocStart()
 		//! runtextmacro SetupHashAllocEnd()
 
 		static thistype tops[]; // first in queue for each player
@@ -220,37 +220,37 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 
 		// header
 
-		//! runtextmacro SetupFieldThistype("0", "next")
-		//! runtextmacro SetupFieldThistype("1", "prev")
-		//! runtextmacro SetupField("2", "owner",      "integer")
-		//! runtextmacro SetupField("3", "objectType", "integer")
+		//! runtextmacro SetupFieldThistype("next")
+		//! runtextmacro SetupFieldThistype("prev")
+		//! runtextmacro SetupField("owner",      "integer")
+		//! runtextmacro SetupField("objectType", "integer")
 
 		// shared
 
-		//! runtextmacro SetupField("4", "id", "integer")
-		//! runtextmacro SetupField("5", "x", "real")
-		//! runtextmacro SetupField("6", "y", "real")
+		//! runtextmacro SetupField("id", "integer")
+		//! runtextmacro SetupField("x", "real")
+		//! runtextmacro SetupField("y", "real")
 
 		// unit
 
-		//! runtextmacro SetupField("7", "angle",      "real")
-		//! runtextmacro SetupField("8", "size",       "real")
-		//! runtextmacro SetupField("9", "speed",      "real")
-		//! runtextmacro SetupField("10", "animSpeed", "real")
-		//! runtextmacro SetupField("11", "z",         "real")
-		//! runtextmacro SetupField("12", "color",     "integer")
-		//! runtextmacro SetupField("13", "vertexR",   "integer")
-		//! runtextmacro SetupField("14", "vertexG",   "integer")
-		//! runtextmacro SetupField("15", "vertexB",   "integer")
-		//! runtextmacro SetupField("16", "vertexA",   "integer")
-		//! runtextmacro SetupField("17", "paused",    "boolean")
-		//! runtextmacro SetupField("18", "tag",       "string")
-		//! runtextmacro SetupField("19", "group",     "integer")
+		//! runtextmacro SetupField("angle",      "real")
+		//! runtextmacro SetupField("size",       "real")
+		//! runtextmacro SetupField("speed",      "real")
+		//! runtextmacro SetupField("animSpeed", "real")
+		//! runtextmacro SetupField("z",         "real")
+		//! runtextmacro SetupField("color",     "integer")
+		//! runtextmacro SetupField("vertexR",   "integer")
+		//! runtextmacro SetupField("vertexG",   "integer")
+		//! runtextmacro SetupField("vertexB",   "integer")
+		//! runtextmacro SetupField("vertexA",   "integer")
+		//! runtextmacro SetupField("paused",    "boolean")
+		//! runtextmacro SetupField("tag",       "string")
+		//! runtextmacro SetupField("group",     "integer")
 
 		// deform
 
-		//! runtextmacro SetupField("7", "magnitude",  "real")
-		//! runtextmacro SetupField("8", "radius",     "real")
+		//! runtextmacro SetupField("magnitude",  "real")
+		//! runtextmacro SetupField("radius",     "real")
 
 		static method create() -> thistype {
 			thistype this = allocate();
@@ -282,6 +282,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		static Table processors;
 		static boolean pasting[];
 
+//		static constant real delay = 0.001;
 		static constant real delay = 0.015625;
 
 		static method setOffset(integer who, real x, real y) {
@@ -308,7 +309,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		static method clearQueue(integer who) {
 			integer count = 0;
 
-			while (LoadQueue.tops[who] > 0 && count < 128) {
+			while (LoadQueue.tops[who] > 0 && count < 64) {
 				LoadQueue.tops[who].destroy();
 				count = count + 1;
 			}
@@ -359,7 +360,6 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 						}
 
 					} else if (queue.objectType == 1) {
-
 						SetTerrainType(offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.id, -1, 1, 0);
 					} else if (queue.objectType == 2) {
 						DeformationList.create(who, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.magnitude, queue.radius);

@@ -2,8 +2,6 @@ library Loader requires Core {
 	struct Loader[] {
 		private static real s_x;
 		private static real s_y;
-		private static integer s_tcount;
-		private static integer s_towner;
 
 		private static method addQueueUnit(SpaceSplitter args, integer owner) {
 			LoadQueue queue = Load.addToQueue(owner);
@@ -29,6 +27,8 @@ library Loader requires Core {
 			queue.vertexB    = S2I(args.next());
 			queue.vertexA    = S2I(args.next());
 			queue.paused     = I2B(S2I(args.next()));
+			queue.tag        = args.next();
+			queue.group      = S2I(args.next());
 		}
 
 		private static method addQueueTile(SpaceSplitter args, integer owner) {
@@ -97,6 +97,8 @@ library Loader requires Core {
 			} else if (op == "so") {
 				setOffset(args, owner);
 			}
+
+			args.destroy();
 		}
 
 		private static method onChat() {
