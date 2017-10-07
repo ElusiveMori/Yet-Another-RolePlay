@@ -49,7 +49,6 @@ library Lists requires Util {
 			weather[SH("raysofmoonlight")]      = 'LRma';
 			weather[SH("windheavy")]            = 'WNcw';
 
-			tiles.boolean['0000'] = true;
 			tiles.boolean['Ldrt'] = true;
 			tiles.boolean['Ldro'] = true;
 			tiles.boolean['Ldrg'] = true;

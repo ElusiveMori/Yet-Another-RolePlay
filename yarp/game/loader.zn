@@ -38,6 +38,10 @@ library Loader requires Core {
 			queue.x          = S2R(args.next()) * 128;
 			queue.y          = S2R(args.next()) * 128;
 			queue.id         = String2Id(args.next());
+
+			if (!Listing.tiles.boolean.has(queue.id)) {
+				queue.id = 'Oaby';
+			}
 		}
 
 		private static method addQueueDeform(SpaceSplitter args, integer owner) {

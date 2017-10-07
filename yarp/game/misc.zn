@@ -52,7 +52,7 @@ library Misc requires Core {
 
 			while (x < maxx) {
 				while (y < maxy) {
-					SetTerrainType(x, y, '0000', -1, 4, 1);
+					SetTerrainType(x, y, 'Oaby', -1, 4, 1);
 					y = y + 512;
 				}
 
