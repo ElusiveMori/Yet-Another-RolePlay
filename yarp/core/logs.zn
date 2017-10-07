@@ -108,10 +108,9 @@ library Logs requires Util, Constants {
 		/  I'm not even going to bother
 		/  putting asserts in here because
 		/  it just works as it is */
-		static method updateBoard() {
+		static method updateBoardSingle(integer id) {
 			integer curRow;
 			integer curMsg;
-			integer id;
 			integer i, j;
 			integer msgLines;
 			integer nameLines;
@@ -120,50 +119,56 @@ library Logs requires Util, Constants {
 			string name;
 			Board board;
 
-			for (0 <= id < 12) {
-				curMsg = offsets[id];
-				curRow = rowCount - 1;
-				logType = logTypes[id];
-				board = boards[id];
+			curMsg = offsets[id];
+			curRow = rowCount - 1;
+			logType = logTypes[id];
+			board = boards[id];
 
-				if (logType >= 0) {
-					board.all.text = "";
+			if (logType >= 0) {
+				board.all.text = "";
 
-					while (curRow >= 0 && curMsg < Log.totals[logType]) {
-						message = Log.getMessage(logType, curMsg);
+				while (curRow >= 0 && curMsg < Log.totals[logType]) {
+					message = Log.getMessage(logType, curMsg);
 
-						if (logType == TYPE_IC) {
-							name = Log.getName(curMsg);
-						} else {
-							name = GetPlayerName(Player(Log.getTalker(logType, curMsg)));
-						}
-
-						msgLines = ((StringLength(message)) / messageLength) + 1;
-						nameLines = ((StringLength(name)) / nameLength) + 1;
-
-						if (msgLines > nameLines) j = msgLines; else j = nameLines;
-						if (j > curRow + 1) return;
-
-						board[0][curRow - j + 1].text = I2S(Log.totals[logType] - curMsg);
-						board[0][curRow - j + 1].color = ARGB.create(255, 101, 72, 182);
-
-						for (0 <= i < nameLines) {
-							board[1][curRow - j + 1 + i].text = SubString(name, i * nameLength, (i + 1) * nameLength);
-							board[1][curRow - j + 1 + i].color = ARGB.fromPlayer(Player(Log.getTalker(logType, curMsg)));
-						}
-
-						for (0 <= i < msgLines) {
-							board[2][curRow - j + 1 + i].text = SubString(message, i * messageLength, (i + 1) * messageLength);
-						}
-
-						curRow = curRow - j;
-						curMsg = curMsg + 1;
+					if (logType == TYPE_IC) {
+						name = Log.getName(curMsg);
+					} else {
+						name = GetPlayerName(Player(Log.getTalker(logType, curMsg)));
 					}
 
-					board.visible[Player(id)] = true;
-				} else {
-					board.visible[Player(id)] = false;
+					msgLines = ((StringLength(message)) / messageLength) + 1;
+					nameLines = ((StringLength(name)) / nameLength) + 1;
+
+					if (msgLines > nameLines) j = msgLines; else j = nameLines;
+					if (j > curRow + 1) return;
+
+					board[0][curRow - j + 1].text = I2S(Log.totals[logType] - curMsg);
+					board[0][curRow - j + 1].color = ARGB.create(255, 101, 72, 182);
+
+					for (0 <= i < nameLines) {
+						board[1][curRow - j + 1 + i].text = SubString(name, i * nameLength, (i + 1) * nameLength);
+						board[1][curRow - j + 1 + i].color = ARGB.fromPlayer(Player(Log.getTalker(logType, curMsg)));
+					}
+
+					for (0 <= i < msgLines) {
+						board[2][curRow - j + 1 + i].text = SubString(message, i * messageLength, (i + 1) * messageLength);
+					}
+
+					curRow = curRow - j;
+					curMsg = curMsg + 1;
 				}
+
+				board.visible[Player(id)] = true;
+			} else {
+				board.visible[Player(id)] = false;
+			}
+		}
+
+		static method updateBoard() {
+			integer id;
+
+			for (0 <= id < 12) {
+				updateBoardSingle.execute(id);
 			}
 		}
 
