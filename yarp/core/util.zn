@@ -10,6 +10,7 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 	public constant integer MESSAGE_DURATION  = 60;
 
 	public integer LocalPlayer;
+	public boolean SinglePlayer = true;
 	
 	Table PlayerStrings;
 	Table ASCIIChars;
@@ -298,11 +299,7 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		}
 	}
 
-	function onInit() {
-		LocalPlayer = PID(GetLocalPlayer());
-		PlayerStrings = Table.create();
-		ASCIIChars = Table.create();
-
+	private function InitPlayerStrings() {
 		PlayerStrings[StringHash("red")]        = 0;
 		PlayerStrings[StringHash("blue")]       = 1;
 		PlayerStrings[StringHash("cyan")]       = 2;
@@ -326,7 +323,9 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		PlayerStrings[StringHash("neutral")]    = 15;
 		PlayerStrings[StringHash("passive")]    = 15;
 		PlayerStrings[StringHash("hostile")]    = 12;
+	}
 
+	private function InitAsciiTable() {
 		ASCIIChars.string[32]  = " ";
 		ASCIIChars.string[33]  = "!";
 		ASCIIChars.string[34]  = "\""; //"
@@ -422,7 +421,9 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		ASCIIChars.string[124] = "|";
 		ASCIIChars.string[125] = "}";
 		ASCIIChars.string[126] = "~";
+	}
 
+	private function InitPlayerColors() {
 		PlayerColors[0] = "|c00ff0303";
 		PlayerColors[1] = "|c000042ff";
 		PlayerColors[2] = "|c001ce6b9";
@@ -439,5 +440,27 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		PlayerColors[13] = "|c00282828";
 		PlayerColors[14] = "|c00282828";
 		PlayerColors[15] = "|c00282828";
+	}
+
+	private function InitSinglePlayer() {
+		integer i=0;
+
+		for (1 <= i <= 11) {
+			if (IsPlayerIngame(i)) {
+				SinglePlayer = false;
+				break;
+			}
+		}
+	}
+
+	function onInit() {
+		LocalPlayer = PID(GetLocalPlayer());
+		PlayerStrings = Table.create();
+		ASCIIChars = Table.create();
+
+		InitPlayerStrings.execute();
+		InitAsciiTable.execute();
+		InitPlayerColors.execute();	
+		InitSinglePlayer.execute();
 	}
 }

@@ -20,7 +20,7 @@ library Spawn requires Core {
 
 			if (spawner == null) return;
 
-			if (StringLength(arg2) == 0) {
+			if (SL(arg2) == 0) {
 				arg2 = arg1;
 				arg1 = "1";
 			}
@@ -30,10 +30,12 @@ library Spawn requires Core {
 			if (count < 1)
 				count = 1;
 
-			if (SubString(arg2, 0, 1) == "_") {
-				arg2 = SubString(arg2, 1, 5);
+			if (IdManifest.hasString(arg2)) {
+				unitId = IdManifest.getByString(arg2);
+			} else if (Sub(arg2, 0, 1) == "_") {
+				arg2 = Sub(arg2, 1, 5);
 
-				if (StringLength(arg2) == 4)
+				if (SL(arg2) == 4)
 					unitId = String2Id(arg2);
 				else {
 					spawner = null;
@@ -42,7 +44,7 @@ library Spawn requires Core {
 			} else
 				unitId = UnitId(arg2);
 
-			if (!(IsIdUtility(unitId) || StringLength(UnitId2String(unitId)) == 0)) {
+			if (!(IsIdUtility(unitId) || SL(UnitId2String(unitId)) == 0)) {
 				x = GetUnitX(spawner);
 				y = GetUnitY(spawner);
 

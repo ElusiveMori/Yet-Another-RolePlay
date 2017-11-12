@@ -229,6 +229,9 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 			cloneData.color     = color;
 			cloneData.z         = z;
 			cloneData.setVertexColor(vertexR, vertexG, vertexB, vertexA);
+			cloneData.group     = group;
+			cloneData.tag       = tag;
+
 
 			return clone;
 		}

@@ -462,7 +462,12 @@ library Unit requires Core {
 
 		//! runtextmacro CommandHeader("Command_UnitId")
 		//! runtextmacro CommandStart("Command_UnitId")
-			MessageTo(s_thread.owner, "ID: " + Id2String(unitData.id) + " (" + I2S(unitData.id) + ")");
+			if (IdManifest.hasId(unitData.id)) {
+				s_string1 = IdManifest.getById(unitData.id);
+			} else {
+				s_string1 = "<none>";
+			}
+			MessageTo(s_thread.owner, "(" + GetUnitName(what) + ") ID: " + Id2String(unitData.id) + "; EID: " + s_string1);
 		//! runtextmacro CommandEnd()
 
 		//! runtextmacro CommandHeader("Command_UnitLife")
@@ -495,7 +500,15 @@ library Unit requires Core {
 		//! runtextmacro CommandEnd();
 
 		//! runtextmacro CommandHeader("Command_UnitAttach")
-			s_string1 = ConvertSlashes(thread.args.next());
+			string mdl = thread.args.next();
+
+			if (IdManifest.hasString(mdl)) {
+				s_string1 = ModelManifest.getById(IdManifest.getByString(mdl));
+			} else if (Sub(mdl, 0, 1) == "_") {
+				s_string1 = ModelManifest.getById(String2Id(Sub(mdl, 1, 5)));
+			} else {
+				s_string1 = ConvertSlashes(thread.args.next());
+			}
 			s_string2 = thread.args.next();
 		//! runtextmacro CommandStart("Command_UnitAttach")
 			AddSpecialEffectTarget(s_string1, what, s_string2);
