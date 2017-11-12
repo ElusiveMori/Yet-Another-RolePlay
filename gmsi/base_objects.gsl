@@ -47,11 +47,11 @@ Unit GetBaseCustomUnit(string id) {
 	base.bountydice = 0;
 	base.bountysides = 0;
 	base.goldcost = 0;
-	base.HP = 512;
+	base.HP = 100;
 	base.regenHP = 0;
 	base.level = 0;
-	base.manaN = 512;
-	base.mana0 = 512;
+	base.manaN = 200;
+	base.mana0 = 200;
 	base.regenMana = 0;
 	base.goldRep = 0;
 	base.reptm = 1;
@@ -69,7 +69,7 @@ Unit GetBaseCustomUnit(string id) {
 	base.backSw1 = 0.5;
 	base.dmgpt1 = 0.5;
 	base.cool1 = 1;
-	base.dmgplus1 = 16;
+	base.dmgplus1 = 4;
 	base.dice1 = 1;
 	base.sides1 = 1;
 	base.fused = 0;
