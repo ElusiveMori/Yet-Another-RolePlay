@@ -281,9 +281,12 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		static real offsetsY[];
 		static Table processors;
 		static boolean pasting[];
+		static integer lastLoaded[];
 
 //		static constant real delay = 0.001;
-		static constant real delay = 0.015625;
+		static constant real delayUnit = 0.0625; // 16 per second
+		static constant real delayTerrain = 0.00390625; // 128 per second
+		static constant real delayDeform = 0.25; // 4 per second
 
 		static method setOffset(integer who, real x, real y) {
 			offsetsX[who] = x;
@@ -316,12 +319,16 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 
 			if (LoadQueue.tops[who] > 0) {
 				clearQueue.execute(who);
+			} else {
+				lastLoaded[who] = -1;
+				Message(PlayerName(who) + " has started loading!");
 			}
 
 			counters[who] = 0;
 		}
 
 		static method process() {
+			real delay = 0;
 			timer processor = GetExpiredTimer();
 			integer id = GetHandleId(processor);
 			integer who = -1;
@@ -335,8 +342,14 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 
 				if (queue > 0) {
 					if (queue.objectType == 0) {
+						if (lastLoaded[queue.owner] != 0) {
+							lastLoaded[queue.owner] = 0;
+							Message(PlayerName(queue.owner) + " is now loading units!");
+						}
+
 						if (!IsIdUtility(queue.id)) {
 							what = CreateUnit(Player(queue.owner), queue.id, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.angle);
+							delay = delayUnit;
 
 							if (what != null) {
 								unitData = UnitData[what];
@@ -360,17 +373,35 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 						}
 
 					} else if (queue.objectType == 1) {
+						if (lastLoaded[queue.owner] != 1) {
+							lastLoaded[queue.owner] = 1;
+							Message(PlayerName(queue.owner) + " is now loading terrain!");
+						}
+
 						SetTerrainType(offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.id, -1, 1, 0);
+						delay = delayTerrain;
 					} else if (queue.objectType == 2) {
+						if (lastLoaded[queue.owner] != 2) {
+							lastLoaded[queue.owner] = 2;
+							Message(PlayerName(queue.owner) + " is now loading height! (brace for impact)");
+						}
+
 						DeformationList.create(who, offsetsX[who] + queue.x, offsetsY[who] + queue.y, queue.magnitude, queue.radius);
+						delay = delayDeform;
 					}
 
 					counters[who] = counters[who] + 1;
 					queue.destroy();
 
+					if (SinglePlayer) {
+						delay = 0.001;
+					}
+
 					TimerStart(processor, delay, false, function thistype.process);
 				} else {
 					MessageTo(who, "Pasting has finished! Total objects: " + I2S(counters[who]));
+					Message(PlayerName(who) + " has finished loading!");
+
 					DestroyTimer(processor);
 					pasting[who] = false;
 					processors.remove(id);
@@ -385,10 +416,12 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		static method startPaste(integer who) {
 			timer processor;
 
+			Message(PlayerName(who) + " has started pasting!");
+
 			if (!pasting[who]) {	
 				processor = CreateTimer();
 				processors[GetHandleId(processor)] = who;
-				TimerStart(processor, delay, false, function thistype.process);
+				TimerStart(processor, 0, false, function thistype.process);
 				pasting[who] = true;
 			}
 		}
