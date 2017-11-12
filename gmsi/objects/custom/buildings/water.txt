@@ -1,0 +1,5 @@
+icon = "ReplaceableTextures\\CommandButtons\\BTNCrushingWave.blp";
+
+AddBuilding("rectwater", "Rectangular Water", "YARP\\Water\\WaterPlane.MDX");
+
+AddBuilderMultiple("waterbld", "Water Stuff");
