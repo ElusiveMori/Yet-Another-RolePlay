@@ -131,6 +131,24 @@ library Regions requires Core {
 			thread.selection.run(function thistype.Command_RunRegion_aux);
 		}
 
+		private static method Command_Raise_aux() {
+			unit what = GetEnumUnit();
+			CommandThread thread;
+
+			if (PID(GetOwningPlayer(what)) == s_thread.owner && GetUnitTypeId(what) == REGION_ID) {
+				if (DeformationRaiser.start(s_thread.owner, RegionController[what].rectangle, s_real1) == -1) {
+					WarningMessageTo(s_thread.owner, "You are already rising an area. Wait for it to finish.");
+				}
+			}
+		}
+
+		private static method Command_Raise(CommandThread thread) {
+			s_real1 = S2R(thread.args.next());
+			s_thread = thread;
+
+			thread.selection.run(function thistype.Command_Raise_aux);
+		}
+
 		private static method onInit() {
 			Command.register("region",   thistype.Command_CreateRegion,   CMD_DIRECT);
 			Command.register("save",     thistype.Command_SaveRegion,     CMD_DIRECT);
@@ -138,6 +156,7 @@ library Regions requires Core {
 			Command.register("lighting", thistype.Command_LightingRegion, CMD_DIRECT);
 			Command.register("weather",  thistype.Command_WeatherRegion,  CMD_DIRECT);
 			Command.register("run",      thistype.Command_RunRegion,      CMD_DIRECT);
+			Command.register("raise",    thistype.Command_Raise,          CMD_DIRECT);
 		}
 	}
 	

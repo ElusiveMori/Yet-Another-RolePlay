@@ -142,13 +142,9 @@ library Region requires Util, Logs, Constants {
 		method alignToGrid() {
 			real x = GetUnitX(unit);
 			real y = GetUnitY(unit);
-			real sx, sy;
 
-			if (x > 0) sx = 1; else sx = -1;
-			if (y > 0) sy = 1; else sy = -1;
-
-			SetUnitX(unit, I2R(R2I((x + sx * 64) / 128)) * 128);
-			SetUnitY(unit, I2R(R2I((y + sy * 64) / 128)) * 128);
+			SetUnitX(unit, GetTileCenterCoordinate(x));
+			SetUnitY(unit, GetTileCenterCoordinate(y));
 
 			IssueImmediateOrder(unit, "stop");
 		}

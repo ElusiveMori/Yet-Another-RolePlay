@@ -1,4 +1,84 @@
 library Deformations requires Util {
+	public struct DeformationRaiser[] {
+		boolean raising;
+		real curx;
+		real cury;
+		real minx;
+		real miny;
+		real maxx;
+		real maxy;
+		integer count;
+		integer owner;
+		real magnitude;
+
+		static Table processors;
+
+		method tick() {
+			DeformationList.create(owner, GetTileCenterCoordinate(curx + 16), GetTileCenterCoordinate(cury), magnitude, 4);
+
+			curx = curx + 128;
+
+			if (curx > maxx) {
+				curx = minx;
+				cury = cury + 128;
+			}
+
+			if (cury > maxy) {
+				raising = false;
+			}
+		}
+
+		static method process() {
+			timer processor = GetExpiredTimer();
+			thistype raiser = processors[GetHandleId(processor)];
+			raiser.tick();
+			
+			if (raiser.raising) {
+				TimerStart(processor, 0.0625, false, function thistype.process);
+			}
+
+			processor = null;
+		}
+
+		static method start(integer who, rect where, real magnitude) -> thistype {
+			thistype this = who;
+			timer processor;
+
+			if (this.raising) {
+				return -1;
+			}
+
+			this.owner = who;
+			this.magnitude = magnitude;
+
+			this.minx = GetRectMinX(where);
+			this.miny = GetRectMinY(where);
+			this.maxx = GetRectMaxX(where) - 128;
+			this.maxy = GetRectMaxY(where) - 128;
+
+			if (this.minx < WorldBounds.minX) this.minx = WorldBounds.minX + 128;
+			if (this.miny < WorldBounds.minY) this.miny = WorldBounds.minY + 128;
+			if (this.maxx > WorldBounds.maxX) this.maxx = WorldBounds.maxX - 128;
+			if (this.maxy > WorldBounds.maxY) this.maxy = WorldBounds.maxY - 128;
+
+			curx = this.minx;
+			cury = this.miny;
+
+			this.raising = true;
+
+			processor = CreateTimer();
+			processors[GetHandleId(processor)] = this;
+
+			TimerStart(processor, 0, false, function thistype.process);
+
+			return this;
+		}
+
+		static method onInit() {
+			processors = Table.create();
+		}
+	}
+
 	public struct DeformationList[] {
 		module Alloc;
 
@@ -16,19 +96,10 @@ library Deformations requires Util {
 		static method create(integer who, real x, real y, real magnitude, real radius) -> thistype {
 			thistype this = allocate();
 
-			if (x > 0) {
-				x = I2R(R2I((x + 64) / 128)) * 128;
-			} else {
-				x = I2R(R2I((x - 64) / 128)) * 128;
-			}
+			x = GetTileCenterCoordinate(x);
+			y = GetTileCenterCoordinate(y);
 
-			if (y > 0) {
-				y = I2R(R2I((y + 64) / 128)) * 128;
-			} else {
-				y = I2R(R2I((y - 64) / 128)) * 128;
-			}
-
-			this.deformation = TerrainDeformCrater(x, y, radius, -magnitude, 50, true);
+			this.deformation = TerrainDeformCrater(x, y, radius, -magnitude, 10, true);
 			this.x = x;
 			this.y = y;
 			this.magnitude = magnitude;
@@ -59,7 +130,7 @@ library Deformations requires Util {
 			if (prev > 0)
 				prev.next = next;
 
-			TerrainDeformStop(deformation, 0);
+			TerrainDeformCrater(x, y, radius, magnitude, 10, true);
 		}
 	}
 }

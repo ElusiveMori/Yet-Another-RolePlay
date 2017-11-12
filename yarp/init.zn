@@ -9,6 +9,7 @@
 //! import vjass "yarp/ext/aids.j"
 //! import vjass "yarp/ext/argb.j"
 //! import vjass "yarp/ext/board.j"
+//! import vjass "yarp/ext/tiledefinition.j"
 
 // Below are version-dependent imports
 // ! import vjass "yarp/ext/typecast.j"

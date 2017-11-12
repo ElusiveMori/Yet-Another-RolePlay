@@ -176,6 +176,39 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			return false;
 		}
 
+		static method checkCommandConflict(integer who, string macro) -> boolean {
+			integer i;
+
+			for (0 <= i < Command.count) {
+				if (Macro.expandableBy(Command.all[i], macro))
+					return true;
+			}
+
+			return false;
+		}
+
+		static method checkAliasConflict(integer who, string macro) -> boolean {
+			integer i;
+
+			for (0 <= i < Alias.count) {
+				if (Macro.expandableBy(Alias.all[i], macro))
+					return true;
+			}
+
+			return false;
+		}
+
+		static method checkMacroConflict(integer who, string macro) -> boolean {
+			integer i;
+			
+			for (0 <= i < counts[who]) {
+				if (Macro.expandableBy(macros[who][i], macro))
+					return true;
+			}
+
+			return false;
+		}
+
 		static method getAvailability(integer who, string macro) -> integer {
 			integer i;
 
@@ -187,24 +220,16 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			if (counts[who] >= 64)
 				return ERR_MACRO_LIMIT_EXHAUSTED;
 
-			for (0 <= i < SL(macro)) {
-				if (Sub(macro, i, i + 1) == "-")
-					return ERR_MACRO_FORBIDDEN;
+			if (Macro.checkCommandConflict.evaluate(who, macro)) {
+				return ERR_MACRO_CONFLICT_COMMAND;
 			}
 
-			for (0 <= i < Command.count) {
-				if (Macro.expandableBy(Command.all[i], macro))
-					return ERR_MACRO_CONFLICT_COMMAND;
+			if (Macro.checkAliasConflict.evaluate(who, macro)) {
+				return ERR_MACRO_CONFLICT_ALIAS;
 			}
 
-			for (0 <= i < Alias.count) {
-				if (Macro.expandableBy(Alias.all[i], macro))
-					return ERR_MACRO_CONFLICT_ALIAS;
-			}
-
-			for (0 <= i < counts[who]) {
-				if (Macro.expandableBy(macros[who][i], macro))
-					return ERR_MACRO_CONFLICT_MACRO;
+			if (Macro.checkMacroConflict.evaluate(who, macro)) {
+				return ERR_MACRO_CONFLICT_MACRO;
 			}
 
 			return ERR_NONE;
