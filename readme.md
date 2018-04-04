@@ -58,9 +58,13 @@ If you wish to:
 - Edit the terrain, you'll still need to setup WEX, because without it, triggers won't get installed.
 
 If you can't follow these steps and get confused - please don't bother me. I'm not going to digest it for you.
+
 If you feel like you're doing everything right, but it doesn't work for some reason - you can ask me a question in the YARP discord. You can find a link to it on the wiki.
+
 If you don't know how to edit Zinc, vJASS, or GMSI - use Google. Hiveworkshop.com is also a great website for learning WC3 modding, and was my primary source of info when making this. If I could learn everything using available resources - so can you.
+
 If you want minor help with the triggers, GMSI, or an explanation of some of the map's systems, you can ask me in the discord.
+
 Good luck and have fun.
 # Information
 
