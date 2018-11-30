@@ -35,7 +35,7 @@ library Limits requires Util, Security {
 		static method warnAdmins(integer who) {
 			integer i;
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				if (GetPlayerAccessLevel(i) >= ACCESS_LVL_ADMIN) {
 					WarningMessageTo(i, PlayerName(who) + " has been spawning too much!");
 				}
@@ -45,7 +45,7 @@ library Limits requires Util, Security {
 		private static method resetPlayerSpawnLimits() {
 			integer i;
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				resetPlayerSpawnLimit(i);
 			}
 		}
@@ -56,7 +56,7 @@ library Limits requires Util, Security {
 			TimerStart(limitResetter, period, true, function thistype.resetPlayerSpawnLimits);
 			limitResetter = null;
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				unitLimits[i] = playerSpawnPerMinute;
 				spammers[i] = false;
 			}

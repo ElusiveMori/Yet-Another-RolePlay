@@ -172,7 +172,7 @@ library Region requires Util, Logs, Constants {
 					enabledDNC = false;
 					fogEnabled = false;
 
-					SetUnitColor(unit, ConvertPlayerColor(12));
+					SetUnitColor(unit, ConvertPlayerColor(bj_PLAYER_NEUTRAL_EXTRA));
 					if (IsLocalPlayer(who)) {
 						SetUnitVertexColor(unit, 255, 255, 255, 100);
 					} else {
@@ -196,8 +196,8 @@ library Region requires Util, Logs, Constants {
 
 	// this struct is just for callbacks and timers
 	struct Region[] {
-		static rect rectangles[12][16];
-		static integer rectangleControllers[12][16];
+		static rect rectangles[24][16];
+		static integer rectangleControllers[24][16];
 
 		private static method onCast() {
 			integer spellId = GetSpellAbilityId();
@@ -271,7 +271,7 @@ library Region requires Util, Logs, Constants {
 			rect rectangle;
 			integer i;
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				temp = NewGroup();
 				GroupEnumUnitsSelected(temp, Player(i), null);
 
@@ -310,7 +310,7 @@ library Region requires Util, Logs, Constants {
 			boolean DNCHit = false;
 			boolean fogHit = false;
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				for (0 <= j < 16) {
 					controller = rectangleControllers[i][j];
 					if (controller > 0) {
@@ -373,7 +373,7 @@ library Region requires Util, Logs, Constants {
 			TriggerRegisterAnyUnitEventBJ(orderTrigger, EVENT_PLAYER_UNIT_ISSUED_TARGET_ORDER);
 			TriggerRegisterAnyUnitEventBJ(castTrigger, EVENT_PLAYER_UNIT_SPELL_CAST);
 			
-			for (0 <= i < 12)
+			for (0 <= i < bj_MAX_PLAYERS)
 				for (0 <= j < 16) {
 					rectangles[i][j] = Rect(0, 0, 0, 0);
 					rectangleControllers[i][j] = 0;

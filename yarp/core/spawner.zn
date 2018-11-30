@@ -56,7 +56,7 @@ library Spawner requires Util, Constants {
 
 			TriggerRegisterAnyUnitEventBJ(pointOrderTrigger, EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER);
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				if (IsPlayerIngame(i)) {
 					spawners[i] = CreateUnit(Player(i), SPAWNER_ID, 0, 0, 0);
 					SetUnitX(spawners[i], WorldBounds.centerX);

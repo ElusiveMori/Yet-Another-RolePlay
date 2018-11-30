@@ -278,7 +278,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 		}
 
 		private static method AIDS_filter(unit what) -> boolean {
-			if (GetPlayerId(GetOwningPlayer(what)) > 11 || IsUnitUtility(what))
+			if (GetPlayerId(GetOwningPlayer(what)) >= bj_MAX_PLAYERS || IsUnitUtility(what))
 				return false;
 
 			return true;
@@ -291,7 +291,7 @@ library UnitData requires Util, UnitTypes, Selection, Commands, Locust {
 			TriggerAddAction(upgradeTrigger, function thistype.onUpgrade);
 			TriggerRegisterAnyUnitEventBJ(upgradeTrigger, EVENT_PLAYER_UNIT_UPGRADE_FINISH);
 
-			for (0 <= i <= 12)
+			for (0 <= i <= bj_MAX_PLAYERS)
 				SetPlayerAbilityAvailable(Player(i), ABIL_BUILDFLY_BOOK, false);
 		}
 	}

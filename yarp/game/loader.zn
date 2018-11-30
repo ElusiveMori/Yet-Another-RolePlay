@@ -120,7 +120,7 @@ library Loader requires Core {
 
 			TriggerAddAction(chatTrigger, function thistype.onChat);
 			
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				TriggerRegisterPlayerChatEvent(chatTrigger, Player(i), "", false);
 			}
 

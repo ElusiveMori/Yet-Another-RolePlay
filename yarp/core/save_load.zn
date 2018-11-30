@@ -182,7 +182,7 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		}
 
 		static method save(integer who, rect where, string filename) {
-			debug Assert(who >= 0 && who < 12, "Save.save", "Invalid player ID.");
+			debug Assert(who >= 0 && who < bj_MAX_PLAYERS, "Save.save", "Invalid player ID.");
 			debug Assert(SL(filename) > 0,     "Save.save", "Filename is zero-length.");
 
 			owner = who;
@@ -284,9 +284,9 @@ library SaveLoad requires Util, UnitTypes, UnitData, Security, Deformations, Has
 		static integer lastLoaded[];
 
 //		static constant real delay = 0.001;
-		static constant real delayUnit = 0.0625; // 16 per second
-		static constant real delayTerrain = 0.00390625; // 128 per second
-		static constant real delayDeform = 0.25; // 4 per second
+		static real delayUnit = 0.03125; // 32 per second
+		static real delayTerrain = 0.00390625; // 128 per second
+		static real delayDeform = 0.0625; // 16 per second
 
 		static method setOffset(integer who, real x, real y) {
 			offsetsX[who] = x;

@@ -63,7 +63,7 @@ library InstantBuild requires Core {
 			TriggerAddAction(buildTrigger, function thistype.onBuild);
 			TriggerAddAction(orderTrigger, function thistype.onOrder);
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				TriggerRegisterPlayerUnitEvent(buildTrigger, Player(i), EVENT_PLAYER_UNIT_CONSTRUCT_START, null);
 				TriggerRegisterPlayerUnitEvent(orderTrigger, Player(i), EVENT_PLAYER_UNIT_ISSUED_POINT_ORDER, null);
 			}

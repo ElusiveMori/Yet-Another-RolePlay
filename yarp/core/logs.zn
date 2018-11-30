@@ -61,7 +61,7 @@ library Logs requires Util, Constants {
 
 		static method log(integer talker, integer logType, string message) {
 			debug Assert(logType < 3 && logType >= 0,  "Log.log", "Invalid log type.");
-			debug Assert(talker < 12 && talker >= 0,    "Log.log", "Invalid player ID.");
+			debug Assert(talker < bj_MAX_PLAYERS && talker >= 0,    "Log.log", "Invalid player ID.");
 
 			shiftMessage.execute(logType);
 			shiftTalker.execute(logType);
@@ -90,13 +90,13 @@ library Logs requires Util, Constants {
 
 		static method setActiveLogType(integer who, integer logType) {
 			debug Assert(logType < 3 && logType >= -1,  "LogBoard.setActiveLogType", "Invalid log type.");
-			debug Assert(who < 12 && who >= 0,          "LogBoard.setActiveLogType", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0,          "LogBoard.setActiveLogType", "Invalid player ID.");
 
 			logTypes[who] = logType;
 		}
 
 		static method setLogScroll(integer who, integer scroll) {
-			debug Assert(who < 12 && who >= 0, "LogBoard.setLogScroll", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "LogBoard.setLogScroll", "Invalid player ID.");
 
 			if (scroll > 2047) scroll = 2047;
 			if (scroll < 0) scroll = 0;
@@ -167,7 +167,7 @@ library Logs requires Util, Constants {
 		static method updateBoard() {
 			integer id;
 
-			for (0 <= id < 12) {
+			for (0 <= id < bj_MAX_PLAYERS) {
 				updateBoardSingle.execute(id);
 			}
 		}
@@ -182,14 +182,14 @@ library Logs requires Util, Constants {
 			integer i, j;
 			TriggerAddAction(chatTrigger, function thistype.onChat);
 
-			for (0 <= i < 12)
+			for (0 <= i < bj_MAX_PLAYERS)
 				TriggerRegisterPlayerChatEvent(chatTrigger, Player(i), "", false);
 
 			chatTrigger = null;
 
 			TriggerSleepAction(0);
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				offsets[i] = 0;
 				logTypes[i] = -1;
 				boards[i] = Board.create();
@@ -210,14 +210,14 @@ library Logs requires Util, Constants {
 	}
 
 	public function MessageOOC(integer who, string message) {
-		debug Assert(who < 12 && who >= 0, "MessageOOC", "Invalid player ID.");
+		debug Assert(who < bj_MAX_PLAYERS && who >= 0, "MessageOOC", "Invalid player ID.");
 
 		SimpleMessage("|c00b65949OOC >>|r " + PlayerName(who) + ": " + message);
 		Log.log(who, TYPE_OOC, message);
 	}
 
 	public function MessageIC(integer who, string name, string message) {
-		debug Assert(who < 12 && who >= 0, "MessageIC", "Invalid player ID.");
+		debug Assert(who < bj_MAX_PLAYERS && who >= 0, "MessageIC", "Invalid player ID.");
 
 		SimpleMessage(PColorStr(name, who) + " " + message);
 		Log.log(who, TYPE_IC, message);

@@ -698,7 +698,7 @@ endstruct
 
 private struct VisibleHelper extends array
     public method operator []= takes player p, boolean b returns nothing
-        if GetPlayerId(p) > 11 then
+        if GetPlayerId(p) >= bj_MAX_PLAYERS then
             debug call ErrorMsg("Board.visible[\"" + GetPlayerName(p) + "\"]=" + B2S(b), "Given player is a neutral player")
             return
         endif
@@ -710,7 +710,7 @@ private struct VisibleHelper extends array
         endif
     endmethod
     public method operator [] takes player p returns boolean
-        if GetPlayerId(p) > 11 then
+        if GetPlayerId(p) >= bj_MAX_PLAYERS then
             debug call ErrorMsg("Board.visible[\"" + GetPlayerName(p) + "\"]", "Given player is a neutral player")
             return false
         endif
@@ -721,7 +721,7 @@ endstruct
 
 private struct MinimizedHelper extends array
     public method operator[]= takes player p, boolean b returns nothing
-        if GetPlayerId(p) > 11 then
+        if GetPlayerId(p) >= bj_MAX_PLAYERS then
             debug call ErrorMsg("Board.minimized[\"" + GetPlayerName(p) + "\"]=" + B2S(b), "Given player is a neutral player")
             return
         endif
@@ -764,7 +764,7 @@ struct Board
     integer bColCount = 0
     integer bRowCount = 0
     
-    boolean array bVisibleFor[12]
+    boolean array bVisibleFor[24]
     
     static integer bTemp
     
@@ -819,7 +819,7 @@ struct Board
     public method operator visible= takes boolean b returns nothing
         local integer i = 0
         loop
-            exitwhen i == 12
+            exitwhen i == bj_MAX_PLAYERS
             
             set bVisibleFor[i] = b
             

@@ -32,8 +32,8 @@ library Misc requires Core {
 			integer id = GetUnitTypeId(filtered);
 
 			if (GetOctet(id, 3) == 112 && GetOctet(id, 2) == 83) {
-				SetUnitOwner(filtered, Player(13), true);
-				SetUnitColor(filtered, GetPlayerColor(Player(13)));
+				SetUnitOwner(filtered, Player(bj_PLAYER_NEUTRAL_EXTRA), true);
+				SetUnitColor(filtered, GetPlayerColor(Player(bj_PLAYER_NEUTRAL_EXTRA)));
 				SetUnitTimeScale(filtered, 0.1);
 			}
 
@@ -72,11 +72,11 @@ library Misc requires Core {
 			TriggerRegisterAnyUnitEventBJ(purchaseTrigger, EVENT_PLAYER_UNIT_SELL);
 			TriggerAddAction(purchaseTrigger, function thistype.onPurchase);
 
-			for (0 <= i < 12) {
-				SetPlayerAllianceStateBJ(Player(13), Player(i), bj_ALLIANCE_ALLIED_ADVUNITS);
+			for (0 <= i < bj_MAX_PLAYERS) {
+				SetPlayerAllianceStateBJ(Player(bj_PLAYER_NEUTRAL_EXTRA), Player(i), bj_ALLIANCE_ALLIED_ADVUNITS);
 				TriggerRegisterPlayerEvent(leaveTrigger, Player(i), EVENT_PLAYER_LEAVE);
 
-				for (0 <= j < 12) {
+				for (0 <= j < bj_MAX_PLAYERS) {
 					SetPlayerAllianceStateBJ(Player(i), Player(j), bj_ALLIANCE_ALLIED);
 				}
 			}

@@ -2,13 +2,13 @@ library Security requires Util, UnitData, UnitTypes, Constants {
 	integer accesses[];
 
 	public function GetPlayerAccessLevel(integer who) -> integer {
-		debug Assert(who >= 0 && who < 12, "GetPlayerAccessLevel", "Invalid player ID.");
+		debug Assert(who >= 0 && who < bj_MAX_PLAYERS, "GetPlayerAccessLevel", "Invalid player ID.");
 
 		return accesses[who];
 	}
 
 	public function SetPlayerAccessLevel(integer who, integer access) {
-		debug Assert(who >= 0 && who < 12, "SetPlayerAccessLevel", "Invalid player ID.");
+		debug Assert(who >= 0 && who < bj_MAX_PLAYERS, "SetPlayerAccessLevel", "Invalid player ID.");
 
 		accesses[who] = access;
 	}
@@ -18,7 +18,7 @@ library Security requires Util, UnitData, UnitTypes, Constants {
 		integer owner = unitData.realOwner;
 
 		debug Assert(what != null,         "HasPlayerUnitAccess", "Invalid unit.");
-		debug Assert(who >= 0 && who < 12, "HasPlayerUnitAccess", "Invalid player ID.");
+		debug Assert(who >= 0 && who < bj_MAX_PLAYERS, "HasPlayerUnitAccess", "Invalid player ID.");
 
 		return (unitData.allocated) && ((who == unitData.realOwner) || (GetPlayerAccessLevel(who) > GetPlayerAccessLevel(owner)));
 	}
@@ -36,9 +36,21 @@ library Security requires Util, UnitData, UnitTypes, Constants {
 		accesses[9]  = ACCESS_LVL_REGULAR;
 		accesses[10] = ACCESS_LVL_REGULAR;
 		accesses[11] = ACCESS_LVL_REGULAR;
-		accesses[12] = ACCESS_LVL_PASSIVE;
-		accesses[13] = ACCESS_LVL_PASSIVE;
-		accesses[14] = ACCESS_LVL_PASSIVE;
-		accesses[15] = ACCESS_LVL_PASSIVE;
+		accesses[12]  = ACCESS_LVL_REGULAR;
+		accesses[13]  = ACCESS_LVL_REGULAR;
+		accesses[14]  = ACCESS_LVL_REGULAR;
+		accesses[15]  = ACCESS_LVL_REGULAR;
+		accesses[16]  = ACCESS_LVL_REGULAR;
+		accesses[17]  = ACCESS_LVL_REGULAR;
+		accesses[18]  = ACCESS_LVL_REGULAR;
+		accesses[19]  = ACCESS_LVL_REGULAR;
+		accesses[20]  = ACCESS_LVL_REGULAR;
+		accesses[21] = ACCESS_LVL_REGULAR;
+		accesses[22] = ACCESS_LVL_REGULAR;
+		accesses[23] = ACCESS_LVL_REGULAR;
+		accesses[24] = ACCESS_LVL_PASSIVE;
+		accesses[25] = ACCESS_LVL_PASSIVE;
+		accesses[26] = ACCESS_LVL_PASSIVE;
+		accesses[27] = ACCESS_LVL_PASSIVE;
 	}
 }

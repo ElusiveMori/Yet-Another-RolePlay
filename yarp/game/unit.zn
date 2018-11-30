@@ -102,7 +102,7 @@ library Unit requires Core {
 			}
 
 			if (s_int < 0) return;
-			s_bool = (s_int < 12);
+			s_bool = (s_int < bj_MAX_PLAYERS);
 
 			thread.selection.run(function thistype.Command_UnitGive_aux);
 		}
@@ -136,7 +136,7 @@ library Unit requires Core {
 			}
 
 			if (s_int < 0) return;
-			s_bool = (s_int < 12);
+			s_bool = (s_int < bj_MAX_PLAYERS);
 
 			thread.selection.run(function thistype.Command_UnitGiveForce_aux);
 		}

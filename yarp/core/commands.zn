@@ -7,76 +7,76 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		static integer count;
 		static string all[];
 
-		static method save(integer who, string alias, string expansion) {
-			debug Assert(who < 12 && who >= 0,                   "Alias.save", "Invalid player ID.");
-			debug Assert(Alias.getAvailability(who, alias) == 0, "Alias.save", "This alias is unavailable.");
+		static method save(integer who, string aliaz, string expansion) {
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0,                   "Alias.save", "Invalid player ID.");
+			debug Assert(Alias.getAvailability(who, aliaz) == 0, "Alias.save", "This aliaz is unavailable.");
 
-			all[count] = alias;
+			all[count] = aliaz;
 			count = count + 1;
 
-			aliases[who].string[SHC(alias)] = expansion;
+			aliases[who].string[SHC(aliaz)] = expansion;
 		}
 
-		static method saveall(string alias, string expansion) {
+		static method saveall(string aliaz, string expansion) {
 			integer i;
 
-			for (0 <= i < 12)
-				Alias.save(i, alias, expansion);
+			for (0 <= i < bj_MAX_PLAYERS)
+				Alias.save(i, aliaz, expansion);
 		}
 
-		static method remove(integer who, string alias) {
-			debug Assert(who < 12 && who >= 0, "Alias.remove", "Invalid player ID.");
-			debug Assert(Alias.exists(who, alias),  "Alias.remove", "Alias does not exist.");
+		static method remove(integer who, string aliaz) {
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Alias.remove", "Invalid player ID.");
+			debug Assert(Alias.exists(who, aliaz),  "Alias.remove", "Alias does not exist.");
 
-			aliases[who].string.remove(SHC(alias));
+			aliases[who].string.remove(SHC(aliaz));
 		}
 
-		static method get(integer who, string alias) -> string {
-			debug Assert(who < 12 && who >= 0, "Alias.get", "Invalid player ID.");
-			debug Assert(Alias.exists(who, alias),  "Alias.get", "Alias does not exist.");
+		static method get(integer who, string aliaz) -> string {
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Alias.get", "Invalid player ID.");
+			debug Assert(Alias.exists(who, aliaz),  "Alias.get", "Alias does not exist.");
 			
-			return aliases[who].string[SHC(alias)];
+			return aliases[who].string[SHC(aliaz)];
 		}
 
-		static method exists(integer who, string alias) -> boolean {
-			debug Assert(who < 12 && who >= 0, "Alias.exists", "Invalid player ID.");
+		static method exists(integer who, string aliaz) -> boolean {
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Alias.exists", "Invalid player ID.");
 
-			return aliases[who].string.has(SHC(alias));
+			return aliases[who].string.has(SHC(aliaz));
 		}
 
-		static method getAvailability(integer who, string alias) -> integer {
+		static method getAvailability(integer who, string aliaz) -> integer {
 			integer i;
-			debug Assert(who < 12 && who >= 0, "Alias.getAvailability", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Alias.getAvailability", "Invalid player ID.");
 
-			if (SL(alias) == 0)
+			if (SL(aliaz) == 0)
 				return ERR_ALIAS_ZERO_LENGTH;
 
-			for (0 <= i < SL(alias)) {
-				if (Sub(alias, i, i + 1) == "-")
+			for (0 <= i < SL(aliaz)) {
+				if (Sub(aliaz, i, i + 1) == "-")
 					return ERR_ALIAS_FORBIDDEN;
 			}
 
-			if (Command.exists(alias))
+			if (Command.exists(aliaz))
 				return ERR_ALIAS_CONFLICT_COMMAND;
 
-			if (Macro.expandable(who, alias))
+			if (Macro.expandable(who, aliaz))
 				return ERR_ALIAS_CONFLICT_MACRO;
 
-			if (Alias.exists(who, alias))
+			if (Alias.exists(who, aliaz))
 				return ERR_ALIAS_CONFLICT_ALIAS;
 
 			return ERR_NONE;
 		}
 
 		private static method onInit() {
-			aliases = TableArray[12];
+			aliases = TableArray[bj_MAX_PLAYERS];
 			count = 0;
 		}
 	}
 
 	public struct Macro[] {
-		private static string macros[12][64];
-		private static string expansions[12][64];
+		private static string macros[24][64];
+		private static string expansions[24][64];
 		private static integer counts[];
 
 		static method save(integer who, string macro, string expansion) {
@@ -84,7 +84,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 
 			macro = StringTrim(macro);
 
-			debug Assert(who < 12 && who >= 0,                   "Macro.save", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0,                   "Macro.save", "Invalid player ID.");
 			debug Assert(Macro.getAvailability(who, macro) == 0, "Macro.save", "This macro is unavailable.");
 
 			macros[who][counts[who]]     = macro;
@@ -95,7 +95,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		static method saveall(string macro, string expansion) {
 			integer i;
 
-			for (0 <= i < 12)
+			for (0 <= i < bj_MAX_PLAYERS)
 				Macro.save(i, macro, expansion);
 		}
 
@@ -103,7 +103,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			integer i;
 			integer count;
 
-			debug Assert(who < 12 && who >= 0,     "Macro.remove", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0,     "Macro.remove", "Invalid player ID.");
 			debug Assert(Macro.exists(who, macro), "Macro.remove", "This macro does not exist.");
 
 			count = counts[who];
@@ -126,7 +126,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			integer count = counts[who];
 			string macro;
 
-			debug Assert(who < 12 && who >= 0, "Macro.expand", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Macro.expand", "Invalid player ID.");
 
 			for (0 <= i < count) {
 				macro = macros[who][i];
@@ -143,7 +143,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			integer count = counts[who];
 			string macro;
 
-			debug Assert(who < 12 && who >= 0, "Macro.expandable", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Macro.expandable", "Invalid player ID.");
 
 			for (0 <= i < count) {
 				macro = macros[who][i];
@@ -163,7 +163,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 			integer i;
 			integer count = counts[who];
 
-			debug Assert(who < 12 && who >= 0, "Macro.exists", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Macro.exists", "Invalid player ID.");
 
 			if (SL(macro) == 0)
 				return false;
@@ -212,7 +212,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		static method getAvailability(integer who, string macro) -> integer {
 			integer i;
 
-			debug Assert(who < 12 && who >= 0, "Macro.getAvailability", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "Macro.getAvailability", "Invalid player ID.");
 
 			if (SL(macro) == 0)
 				return ERR_MACRO_ZERO_LENGTH;
@@ -238,7 +238,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static method onInit() {
 			integer i;
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				counts[i] = 0;
 			}
 		}
@@ -354,7 +354,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		static method create(integer who, integer filter) -> thistype {
 			thistype this = allocate();
 
-			debug Assert(who < 12 && who >= 0, "CommandThread.create", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "CommandThread.create", "Invalid player ID.");
 
 			m_next = 0;
 			m_prev = 0;
@@ -546,7 +546,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		static method stopAll(integer who) {
 			CommandThread list = top;
 
-			debug Assert(who < 12 && who >= 0, "CommandThread.stopAll", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "CommandThread.stopAll", "Invalid player ID.");
 
 			while (list > 0) {
 				if (list.m_owner == who)
@@ -559,7 +559,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static method decreaseQuotas() {
 			integer i;
 
-			for (0 <= i <= 11) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				playerQuotas[i] = playerQuotas[i] - maxPlayerQuota * 0.1;
 
 				if (playerQuotas[i] < 0) playerQuotas[i] = 0;
@@ -578,13 +578,13 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static string auto[];
 
 		static method getCommand(integer who) -> string {
-			debug Assert(who < 12 && who >= 0, "AutoCommands.getCommand", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "AutoCommands.getCommand", "Invalid player ID.");
 
 			return auto[who];
 		}
 
 		static method setCommand(integer who, string command) {
-			debug Assert(who < 12 && who >= 0, "AutoCommands.setCommand", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "AutoCommands.setCommand", "Invalid player ID.");
 
 			auto[who] = command;
 		}
@@ -592,7 +592,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static method onInit() {
 			integer i = 0;
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				auto[i] = "";
 			}
 		}
@@ -602,13 +602,13 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static integer auto[];
 
 		static method getGroup(integer who) -> integer {
-			debug Assert(who < 12 && who >= 0, "AutoGroups.getGroup", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "AutoGroups.getGroup", "Invalid player ID.");
 
 			return auto[who];
 		}
 
 		static method setGroup(integer who, integer what) {
-			debug Assert(who < 12 && who >= 0, "AutoGroups.setGroup", "Invalid player ID.");
+			debug Assert(who < bj_MAX_PLAYERS && who >= 0, "AutoGroups.setGroup", "Invalid player ID.");
 
 			auto[who] = what;
 		}
@@ -616,7 +616,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 		private static method onInit() {
 			integer i = 0;
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				auto[i] = 0;
 			}
 		}
@@ -674,7 +674,7 @@ library Commands requires Util, CommandParser, Selection, Logs, Constants {
 
 			TriggerAddAction(chatTrigger, function thistype.onChat);
 			
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				TriggerRegisterPlayerChatEvent(chatTrigger, Player(i), "", false);
 				delayed[i] = "";
 			}

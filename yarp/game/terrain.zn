@@ -251,7 +251,7 @@ library Terrain requires Core {
 			Command.register("terrain",       thistype.Command_Terrain,       CMD_DIRECT);
 			Command.register("dood",          thistype.Command_Dood,          CMD_DIRECT);
 
-			for (0 <= i < 12) {
+			for (0 <= i < bj_MAX_PLAYERS) {
 				doodSizes[i] = 1;
 			}
 		}

@@ -5,26 +5,26 @@ library Generic requires Core {
 		}
 
 		private static method Command_MakeAlias(CommandThread thread) {
-			string alias = thread.args.next();
+			string aliaz = thread.args.next();
 			string expansion = thread.args.restParsed();
 
-			integer result = Alias.getAvailability(thread.owner, alias);
+			integer result = Alias.getAvailability(thread.owner, aliaz);
 
 			if (result == ERR_NONE || result == ERR_ALIAS_CONFLICT_ALIAS) {
 				if (result == ERR_ALIAS_CONFLICT_ALIAS) {
-					Alias.remove(thread.owner, alias);
+					Alias.remove(thread.owner, aliaz);
 				}
 
-				Alias.save(thread.owner, alias, expansion);
-				MessageTo(thread.owner, "Successfully created alias [" + ColorStr(alias, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
+				Alias.save(thread.owner, aliaz, expansion);
+				MessageTo(thread.owner, "Successfully created aliaz [" + ColorStr(aliaz, GENERIC_HIGHLIGHT) + "]: " + ColorStr(expansion, GENERIC_HIGHLIGHT));
 			} else if (result == ERR_ALIAS_CONFLICT_COMMAND) {
-				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing command.");
+				MessageTo(thread.owner, "Couldn't create the aliaz! It conflicts with an existing command.");
 			} else if (result == ERR_ALIAS_CONFLICT_MACRO) {
-				MessageTo(thread.owner, "Couldn't create the alias! It conflicts with an existing macro.");
+				MessageTo(thread.owner, "Couldn't create the aliaz! It conflicts with an existing macro.");
 			} else if (result == ERR_ALIAS_ZERO_LENGTH) {
-				MessageTo(thread.owner, "Couldn't create the alias! The alias must not be zero-length.");
+				MessageTo(thread.owner, "Couldn't create the aliaz! The aliaz must not be zero-length.");
 			} else if (result == ERR_ALIAS_FORBIDDEN) {
-				MessageTo(thread.owner, "Couldn't create the alias! It contains a forbidden character: -");
+				MessageTo(thread.owner, "Couldn't create the aliaz! It contains a forbidden character: -");
 			}
 		}
 
@@ -40,7 +40,7 @@ library Generic requires Core {
 			} else if (result == ERR_MACRO_CONFLICT_COMMAND) {
 				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing command.");
 			} else if (result == ERR_MACRO_CONFLICT_ALIAS) {
-				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing alias.");
+				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing aliaz.");
 			} else if (result == ERR_MACRO_CONFLICT_MACRO) {
 				MessageTo(thread.owner, "Couldn't create the macro! It conflicts with an existing macro.");
 			} else if (result == ERR_MACRO_LIMIT_EXHAUSTED) {
@@ -53,13 +53,13 @@ library Generic requires Core {
 		}
 
 		private static method Command_RemoveAlias(CommandThread thread) {
-			string alias = thread.args.next();
+			string aliaz = thread.args.next();
 
-			if (Alias.exists(thread.owner, alias)) {
-				Alias.remove(thread.owner, alias);
-				MessageTo(thread.owner, "Successfully removed alias [" + alias + "].");
+			if (Alias.exists(thread.owner, aliaz)) {
+				Alias.remove(thread.owner, aliaz);
+				MessageTo(thread.owner, "Successfully removed aliaz [" + aliaz + "].");
 			} else {
-				MessageTo(thread.owner, "This alias does not exist!");
+				MessageTo(thread.owner, "This aliaz does not exist!");
 			}
 		}
 
@@ -90,7 +90,7 @@ library Generic requires Core {
 					CommandThread.stopAll(thread.owner);
 				}
 			} else if (cmd == "stopeveryone") {
-				for (0 <= i <= 11) {
+				for (0 <= i < bj_MAX_PLAYERS) {
 					CommandThread.stopAll(thread.owner);
 				}
 			}
@@ -214,6 +214,21 @@ library Generic requires Core {
 			allianceType = null;
 		}
 
+		private static method Command_Admin(CommandThread thread) {
+			string cmd = thread.args.next();
+			real arg1 = S2R(thread.args.next());
+
+			if (GetPlayerAccessLevel(thread.owner) >= ACCESS_LVL_HOST) {
+				if (cmd == "heightspeed") {
+					Load.delayDeform = arg1;
+				} else if (cmd == "unitspeed") {
+					Load.delayUnit = arg1;
+				} else if (cmd == "terrainspeed") {
+					Load.delayTerrain = arg1;
+				}
+			}
+		}
+
 		private static method onInit_aliases() {
 			Alias.saveall("unally", "alliance unally");
 			Alias.saveall("ally", "alliance ally");
@@ -224,7 +239,7 @@ library Generic requires Core {
 		}
 
 		private static method onInit() {
-			Command.register("alias",       thistype.Command_MakeAlias,     CMD_DIRECT);
+			Command.register("aliaz",       thistype.Command_MakeAlias,     CMD_DIRECT);
 			Command.register("macro",       thistype.Command_MakeMacro,     CMD_DIRECT);
 			Command.register("unalias",     thistype.Command_RemoveAlias,   CMD_DIRECT);
 			Command.register("unmacro",     thistype.Command_RemoveMacro,   CMD_DIRECT);
@@ -237,6 +252,7 @@ library Generic requires Core {
 			Command.register("wait",        thistype.Command_Wait,          CMD_NONE);
 			Command.register("repeat",      thistype.Command_Repeat,        CMD_EXEC);
 			Command.register("seq",         thistype.Command_Sequence,      CMD_EXEC);
+			Command.register("admin",       thistype.Command_Admin,         CMD_DIRECT);
 
 			onInit_aliases.execute();
 		}

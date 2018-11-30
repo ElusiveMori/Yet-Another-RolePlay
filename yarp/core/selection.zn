@@ -35,7 +35,7 @@ library Selection requires Util {
 		}
 
 		method fromPlayer(integer who) {
-			debug Assert(who >= 0 && who < 12, "Selection.fromPlayer", "Invalid player ID.");
+			debug Assert(who >= 0 && who < bj_MAX_PLAYERS, "Selection.fromPlayer", "Invalid player ID.");
 
 			GroupEnumUnitsSelected(m_group, P(who), null);
 		}

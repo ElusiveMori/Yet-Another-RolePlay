@@ -14,6 +14,8 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 	
 	Table PlayerStrings;
 	Table ASCIIChars;
+	Table HexChars;
+	Table HexInts;
 	string PlayerColors[];
 	integer DebugCounter = 1;
 
@@ -148,27 +150,6 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		return PColorStr(GetPlayerName(P(who)), who);
 	}
 
-/*  public function StringTrim (string s) -> string {
-		integer il = 0;
-		integer ir = StringLength(s) - 1;
-		string char = SubString(s, il, il + 1);
-
-		while (char == " ") {
-			il = il + 1;
-			char = SubString(s, il, il + 1);
-		}
-
-		char = SubString(s, ir, ir + 1);
-
-		while (char == " ") {
-			ir = ir - 1;
-			char = SubString(s, ir, ir + 1);
-		}
-
-		return SubString(s, il, ir + 1);
-	}
-*/
-
 	public function PlayerIdFromString(string color) -> integer {
 		if (PlayerStrings.has(StringHash(color)))
 			return PlayerStrings[StringHash(color)];
@@ -266,16 +247,57 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 			return 10;
 		} else if (color == PLAYER_COLOR_BROWN) {
 			return 11;
-		} else {
+		}else if (color == PLAYER_COLOR_MAROON) {
 			return 12;
+		} else if (color == PLAYER_COLOR_NAVY) {
+			return 13;
+		} else if (color == PLAYER_COLOR_TURQUOISE) {
+			return 14;
+		} else if (color == PLAYER_COLOR_VIOLET) {
+			return 15;
+		} else if (color == PLAYER_COLOR_WHEAT) {
+			return 16;
+		} else if (color == PLAYER_COLOR_PEACH) {
+			return 17;
+		} else if (color == PLAYER_COLOR_MINT) {
+			return 18;
+		} else if (color == PLAYER_COLOR_LAVENDER) {
+			return 19;
+		} else if (color == PLAYER_COLOR_COAL) {
+			return 20;
+		} else if (color == PLAYER_COLOR_SNOW) {
+			return 21;
+		} else if (color == PLAYER_COLOR_EMERALD) {
+			return 22;
+		} else if (color == PLAYER_COLOR_PEANUT) {
+			return 23;
+		} else {
+			return 24;
 		}
+	}
+
+	public function Hex2IntChar(string hex) -> integer {
+		return HexChars[SH(hex)];
+	}
+
+	public function Hex2Int(string hex) -> integer {
+		integer number = 0;
+		integer power = 1;
+		integer i = 0;
+
+		for (SL(hex) > i >= 0) {
+			number = number + power * Hex2IntChar(Sub(hex, i, i + 1));
+			power = power * 16;
+		}
+
+		return number;
 	}
 
 	function Pause() {
 		PauseGame(true);
 	}
 
-	function AssertMessage(string str) {
+	public function AssertMessage(string str) {
 		DisplayTimedTextToPlayer(GetLocalPlayer(), 0, 0, 60000, ColorStr(str, ASSERT_HIGHLIGHT));
 	}
 
@@ -285,6 +307,12 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		TimerStart(stopper, 0, true, function Pause);
 
 		i = 1/0;
+	}
+
+	public function TestAssert(boolean condition, string name) {
+		if (!condition) {
+			AssertMessage(">>> Test '" + name + "' has failed!");
+		}
 	}
 
 	public function Assert(boolean condition, string where, string error) {
@@ -297,6 +325,42 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 			AssertMessage("=======================================");
 			StopGame();
 		}
+	}
+
+	private function InitHex() {
+		HexChars[StringHash("0")] = 0;
+		HexChars[StringHash("1")] = 1;
+		HexChars[StringHash("2")] = 2;
+		HexChars[StringHash("3")] = 3;
+		HexChars[StringHash("4")] = 4;
+		HexChars[StringHash("5")] = 5;
+		HexChars[StringHash("6")] = 6;
+		HexChars[StringHash("7")] = 7;
+		HexChars[StringHash("8")] = 8;
+		HexChars[StringHash("9")] = 9;
+		HexChars[StringHash("A")] = 10;
+		HexChars[StringHash("B")] = 11;
+		HexChars[StringHash("C")] = 12;
+		HexChars[StringHash("D")] = 13;
+		HexChars[StringHash("E")] = 14;
+		HexChars[StringHash("F")] = 15;
+
+		HexInts.string[0] = "0";
+		HexInts.string[1] = "1";
+		HexInts.string[2] = "2";
+		HexInts.string[3] = "3";
+		HexInts.string[4] = "4";
+		HexInts.string[5] = "5";
+		HexInts.string[6] = "6";
+		HexInts.string[7] = "7";
+		HexInts.string[8] = "8";
+		HexInts.string[9] = "9";
+		HexInts.string[10] = "A";
+		HexInts.string[11] = "B";
+		HexInts.string[12] = "C";
+		HexInts.string[13] = "D";
+		HexInts.string[14] = "E";
+		HexInts.string[15] = "F";
 	}
 
 	private function InitPlayerStrings() {
@@ -319,10 +383,40 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		PlayerStrings[StringHash("darkgreen")]  = 10;
 		PlayerStrings[StringHash("dg")]         = 10;
 		PlayerStrings[StringHash("brown")]      = 11;
-		PlayerStrings[StringHash("black")]      = 15;
-		PlayerStrings[StringHash("neutral")]    = 15;
-		PlayerStrings[StringHash("passive")]    = 15;
-		PlayerStrings[StringHash("hostile")]    = 12;
+		PlayerStrings[StringHash("black")]      = 24;
+		PlayerStrings[StringHash("neutral")]    = 24;
+		PlayerStrings[StringHash("passive")]    = 24;
+		PlayerStrings[StringHash("hostile")]    = 24;
+
+		PlayerStrings[StringHash("maroon")]     = 12;
+		PlayerStrings[StringHash("navy")]       = 13;
+		PlayerStrings[StringHash("turquoise")]  = 14;
+		PlayerStrings[StringHash("violet")]     = 15;
+		PlayerStrings[StringHash("wheat")]      = 16;
+		PlayerStrings[StringHash("peach")]      = 17;
+		PlayerStrings[StringHash("mint")]       = 18;
+		PlayerStrings[StringHash("lavender")]   = 19;
+		PlayerStrings[StringHash("coal")]       = 20;
+		PlayerStrings[StringHash("snow")]       = 21;
+		PlayerStrings[StringHash("emerald")]    = 22;
+		PlayerStrings[StringHash("peanut")]     = 23;
+		PlayerStrings[StringHash("black")]      = 24;
+
+		PlayerStrings[StringHash("red2")]       = 12;
+		PlayerStrings[StringHash("blue2")]      = 13;
+		PlayerStrings[StringHash("teal2")]      = 14;
+		PlayerStrings[StringHash("purple2")]    = 15;
+		PlayerStrings[StringHash("yellow2")]    = 16;
+		PlayerStrings[StringHash("orange2")]    = 17;
+		PlayerStrings[StringHash("green2")]     = 18;
+		PlayerStrings[StringHash("pink2")]      = 19;
+		PlayerStrings[StringHash("gray2")]      = 20;
+		PlayerStrings[StringHash("white")]      = 21;
+		PlayerStrings[StringHash("lightblue2")] = 21;
+		PlayerStrings[StringHash("lb2")]        = 21;
+		PlayerStrings[StringHash("darkgreen2")] = 22;
+		PlayerStrings[StringHash("dg2")]        = 22;
+    	PlayerStrings[StringHash("brown2")]     = 23;
 	}
 
 	private function InitAsciiTable() {
@@ -436,16 +530,28 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		PlayerColors[9] = "|c007ebff1";
 		PlayerColors[10] = "|c00106246";
 		PlayerColors[11] = "|c004e2a04";
-		PlayerColors[12] = "|c00282828";
-		PlayerColors[13] = "|c00282828";
-		PlayerColors[14] = "|c00282828";
-		PlayerColors[15] = "|c00282828";
+		PlayerColors[12] = "|c009b0000"; //
+		PlayerColors[13] = "|c000000c3"; //
+		PlayerColors[14] = "|c0000eaff"; //
+		PlayerColors[15] = "|c00be00fe"; //
+		PlayerColors[16] = "|c00ebcd87"; //
+		PlayerColors[17] = "|c00f8a48b"; //
+		PlayerColors[18] = "|c00bfff80"; //
+		PlayerColors[19] = "|c00dcb9eb"; //
+		PlayerColors[20] = "|c00282828"; //
+		PlayerColors[21] = "|c00ebf0ff"; //
+		PlayerColors[22] = "|c0000781e"; //
+		PlayerColors[23] = "|c00a40b33"; //
+		PlayerColors[24] = "|c00282828";
+		PlayerColors[25] = "|c00282828";
+		PlayerColors[26] = "|c00282828";
+		PlayerColors[27] = "|c00282828";
 	}
 
 	private function InitSinglePlayer() {
 		integer i=0;
 
-		for (1 <= i <= 11) {
+		for (1 <= i < bj_MAX_PLAYERS) {
 			if (IsPlayerIngame(i)) {
 				SinglePlayer = false;
 				break;
@@ -457,10 +563,13 @@ library Util requires AIDS, Bitwise, Alloc, ARGB, Board, GameClock, GroupUtils, 
 		LocalPlayer = PID(GetLocalPlayer());
 		PlayerStrings = Table.create();
 		ASCIIChars = Table.create();
+		HexChars = Table.create();
+		HexInts = Table.create();
 
 		InitPlayerStrings.execute();
 		InitAsciiTable.execute();
 		InitPlayerColors.execute();	
 		InitSinglePlayer.execute();
+		InitHex.execute();
 	}
 }

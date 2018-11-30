@@ -16,7 +16,7 @@ library Regions requires Core {
 			unit spawner = Spawner.get(thread.owner);
 			unit loc = CreateUnit(P(thread.owner), REGION_ID, GetUnitX(spawner), GetUnitY(spawner), 270);
 
-			SetUnitColor(loc, ConvertPlayerColor(12));
+			SetUnitColor(loc, ConvertPlayerColor(bj_PLAYER_NEUTRAL_VICTIM));
 			if (IsLocalPlayer(thread.owner)) {
 				SetUnitVertexColor(loc, 255, 255, 255, 100);
 			} else {
